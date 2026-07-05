@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מקובקי | מדידות אדריכליות וסריקה תלת-מימדית בדיוק מרבי</title>
+<meta name="description" content="מקובקי - מדידות אדריכליות וסריקה תלת-מימדית בטכנולוגיית לייזר מתקדמת. מדידת פנים, תצ&quot;ר, תב&quot;ע, מפה טופוגרפית, תיעוד תשתיות, סיור וירטואלי והדמיות. תיעוד מצב קיים מדויק לאדריכלים, מעצבים ויזמים.">
+<link rel="icon" href="assets/real/logo-main.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/real/hero-poster.jpg">
+<link rel="stylesheet" href="assets/makovki.css?v=6">
+</head>
+<body>
+
+<div data-include="header"></div>
+
+<!-- ============================ HERO (cinematic video) ============================ -->
+<section class="hero-v" id="hero" aria-label="מקובקי - מדידה וסריקה תלת-מימדית בדיוק מרבי">
+  <div class="hero-v__bg" aria-hidden="true">
+    <!-- ambient blurred fill: a soft full-bleed copy so the whole hero reads as one cinematic screen -->
+    <video class="hero-v__fill" autoplay muted loop playsinline preload="auto" tabindex="-1" aria-hidden="true">
+      <source src="assets/real/hero-loop.mp4?v=5" type="video/mp4">
+    </video>
+    <!-- crisp focal clip: the whole shot - עודד + the architect, the device, the 3D model -->
+    <video class="hero-v__video" autoplay muted loop playsinline preload="auto"
+           poster="assets/real/hero-poster.jpg" aria-hidden="true">
+      <source src="assets/real/hero-loop.mp4?v=5" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="container hero-v__inner">
+    <div class="hero-v__copy">
+      <span class="hero-v__eyebrow">מדידות מבוססות סריקת לייזר · 2,400,000 קרני לייזר בשנייה</span>
+      <h1>הנכס שלך, הופך ל<span class="hl">דאטה מדויקת</span> בתלת-מימד</h1>
+      <p class="hero-v__sub">מקובקי סורקת מבנים ושטחים בטכנולוגיית לייזר מהמתקדמות בעולם, ומפיקה תיעוד מצב קיים מדויק לאדריכלים ומעצבים - מדידה אדריכלית, תצ"ר, תב"ע ומפות מדידה, סיור וירטואלי והדמיות. הכל מסריקה אחת, בדיוק מילימטרי.</p>
+      <div class="hero-v__actions">
+        <a class="btn btn--primary" href="contact.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          לקבלת הצעת מחיר
+        </a>
+        <a class="btn btn--on-dark" href="#technology">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a7 7 0 0 1 7 7c0 3-2 4-2 6H7c0-2-2-3-2-6a7 7 0 0 1 7-7z"/><path d="M9 21h6"/></svg>
+          איך הטכנולוגיה עובדת
+        </a>
+      </div>
+      <div class="hero-v__stats">
+        <div class="hero-v__stat"><div class="num">120<span class="u u--area">מ&quot;ר</span></div><div class="lbl">נסרקים תוך דקות בודדות</div></div>
+        <div class="hero-v__stat"><div class="num">5</div><div class="lbl">ימי עסקים למסירה</div></div>
+        <div class="hero-v__stat"><div class="num">360<span class="u u--deg">°</span></div><div class="lbl">סיור וירטואלי הניתן למדידה</div></div>
+      </div>
+    </div>
+  </div>
+
+  <a class="hero-v__cue" href="#technology" aria-label="גללו למטה"><span></span></a>
+</section>
+
+<!-- ============================ CLIENTS ============================ -->
+<section class="clients">
+  <div class="container">
+    <div class="clients__head">מדדנו וסרקנו עבור המובילים בישראל</div>
+    <div class="clients__row">
+      <img class="clients__logo" src="assets/real/clients/technion.png" alt="הטכניון">
+      <img class="clients__logo" src="assets/real/clients/aura.png" alt="אאורה">
+      <img class="clients__logo" src="assets/real/clients/alrov.jpg" alt="אלרוב נדל&quot;ן">
+      <img class="clients__logo" src="assets/real/clients/giron.jpg" alt="קבוצת גירון">
+      <img class="clients__logo" src="assets/real/clients/building-center.png" alt="מרכז הבנייה הישראלי">
+      <img class="clients__logo" src="assets/real/clients/shefayim.jpg" alt="מלון שפיים">
+    </div>
+  </div>
+</section>
+
+<!-- ============================ INTRO / STAT STRIP ============================ -->
+<section class="stat-strip stat-strip--light section" data-count-zone style="padding-block:48px;">
+  <div class="container">
+    <div class="stat-strip__grid">
+      <div class="stat-strip__cell"><div class="num"><span data-count="2337">0</span></div><div class="lbl">לקוחות</div></div>
+      <div class="stat-strip__cell"><div class="num"><span data-count="4785">0</span></div><div class="lbl">פרויקטים</div></div>
+      <div class="stat-strip__cell"><div class="num"><span data-count="10" data-suffix="+">0</span></div><div class="lbl">שנות ניסיון</div></div>
+      <div class="stat-strip__cell"><div class="num"><span data-count="100" data-suffix="%">0</span></div><div class="lbl">לקוחות מרוצים</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MEASUREMENT (core deliverables) ============================ -->
+<section class="section section--tint" id="measurement">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">שירותי מדידה</span>
+      <h2>כל מדידה שאדריכל, יזם או קבלן צריך</h2>
+      <p class="lead">עודד מקובקי, מודד מוסמך, מבצע את מלוא קשת המדידות - מתיעוד מצב קיים לתכנון ועד תוכניות מדידה רשמיות להיתר ולרישום.</p>
+    </div>
+    <div class="deliverables">
+      <a class="deliv reveal" href="measurement.html#architectural">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M6 21V8l6-4 6 4v13"/><path d="M10 21v-5h4v5"/></svg></span>
+        <h3>מדידה אדריכלית / פנים</h3>
+        <p>תיעוד מצב קיים מדויק של מבנה או דירה - קירות, פתחים, גבהים וזוויות - כבסיס אמין לתכנון ולשיפוץ.</p>
+        <span class="card__link">לפרטים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+      </a>
+      <a class="deliv reveal" href="measurement.html#tzar">
+        <span class="abbr">תוכנית לצורכי רישום</span>
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+        <h3>תצ"ר</h3>
+        <p>תוכנית לצורכי רישום בית משותף בטאבו, בעריכת מודד מוסמך - מדידה, חלוקה ורישום מדויק.</p>
+        <span class="card__link">לפרטים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+      </a>
+      <a class="deliv reveal" href="measurement.html#tatag">
+        <span class="abbr">תוכנית תיאום גבהים</span>
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18h18M6 18V9m6 9V5m6 13v-6"/></svg></span>
+        <h3>תת"ג</h3>
+        <p>תיאום גבהים מדויק לקראת בנייה - התאמת מפלסי המבנה לסביבה, לכביש ולתשתיות.</p>
+        <span class="card__link">לפרטים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+      </a>
+      <a class="deliv reveal" href="measurement.html#taba">
+        <span class="abbr">תוכנית בניין עיר</span>
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 3v18"/></svg></span>
+        <h3>תב"ע</h3>
+        <p>מדידות ותשריטים לתוכנית בניין עיר - בסיס גיאודטי מדויק להליכי תכנון ורישוי.</p>
+        <span class="card__link">לפרטים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+      </a>
+      <a class="deliv reveal" href="measurement.html#topographic">
+        <span class="abbr">מפה מצבית</span>
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12s3-6 9-6 9 6 9 6M3 17s3-4 9-4 9 4 9 4"/><circle cx="12" cy="6" r="1"/></svg></span>
+        <h3>מפה טופוגרפית</h3>
+        <p>מיפוי מדויק של פני השטח, גבהים ופרטי סביבה - נדרשת לרוב כתנאי להגשת בקשה להיתר בנייה.</p>
+        <span class="card__link">לפרטים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+      </a>
+      <a class="deliv reveal" href="measurement.html#land">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20l4-9 4 5 3-7 5 11"/></svg></span>
+        <h3>מדידת קרקע</h3>
+        <p>מדידת גבולות מגרש, שטחים ופרטי קרקע - לרישום, לתכנון ולבירור זכויות מדויק.</p>
+        <span class="card__link">לפרטים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+      </a>
+    </div>
+    <div class="text-center" style="margin-top:38px;">
+      <a class="btn btn--primary" href="measurement.html">לכל שירותי המדידה <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GOOGLE REVIEWS (running slider) ============================ -->
+<section class="section reviews">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">ביקורות מ-Google</span>
+      <h2>מה הלקוחות אומרים עלינו</h2>
+      <div class="google-badge">
+        <svg class="google-badge__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+        <span class="google-badge__score">5.0</span>
+        <span class="google-badge__stars">★★★★★</span>
+        <span class="google-badge__txt">ביקורות אמיתיות מלקוחות מרוצים</span>
+      </div>
+    </div>
+
+    <div class="reviews-slider" data-reviews>
+      <button class="rev-nav rev-prev" aria-label="ביקורת קודמת"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <div class="reviews-viewport">
+        <div class="reviews-track">
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#7c4dff;">N<img src="assets/real/reviews/nina-g.jpg" alt="Nina G" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>Nina G</b><span>לפני שבוע</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">כל פרוייקט קטן כגדול מתחיל במדידה מקצועית. כבר שנים שאני עובדת מול עודד ומרוצה תמיד מהתהליך. המדידה לוקחת עשר-עשרים דקות ותוך ימים ספורים אני כבר מקבלת את הקבצים באיזה פורמט שאבחר: רוויט, אוטוקאד, סקטצ' אפ וכמובן עם סיור וירטואלי של הדירה שחוסך ללקוח שלי זמן הגעה לשטח. מדידה מקצועית זה כל מה שמעצבת צריכה להתחלה של פרוייקט. ממליצה.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#e0568b;">ד<img src="assets/real/reviews/dana.jpg" alt="דנה פינגרר" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דנה פינגרר</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">אני עובדת עם עודד מספר שנים ותמיד מרוצה מתוכניות המדידות שהוא מבצע. זהו שלב סופר חשוב בתהליך התכנון מכיוון שעליו מתבססות כל התוכניות. העבודה עם עודד תמיד נעימה, הוא שירותי ויעיל והתוצרים מתקבלים במהירות. ממליצה בחום.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#0f9d8f;">א<img src="assets/real/reviews/anni.jpg" alt="אנני זגורי" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>אנני זגורי</b><span>לפני שבועיים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">מחיר הוגן, ביצוע מהיר ותוצר איכותי. משתמשת בשירותיו המצוינים של עודד המודד וממליצה בלב מלא.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#f59e0b;">ד<img src="assets/real/reviews/dana-n.jpg" alt="דנה נ׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דנה נ׳</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">אני עובדת עם עודד שנים כמעצבת פנים. מעבר לזה שהוא מקסים ומאוד שירותי, המדידות תמיד יוצאות הכי מדויקות וכל התהליך לוקח כמה דקות. הסיור הווירטואלי שעודד מוסיף מאוד עוזר בשלב השיפוץ והתכנון. עבדתי בעבר עם מודדים אחרים, והיום עודד הוא המודד היחיד שאני עובדת איתו.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#3b82f6;">ר<img src="assets/real/reviews/ravid.jpg" alt="רביד ר׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>רביד ר׳</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">נעזרת כמעצבת פנים בשירותי המדידה כבר כמה פרוייקטים. זריזות ויעילות. ממליצה בחום.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#8b5cf6;">נ<img src="assets/real/reviews/nina-a.jpg" alt="נינה א׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>נינה א׳</b><span>לקוחה מרוצה</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">שירות מקצועי ומדויק. אוהבת איך שעודד ללא היסוס קפץ על פרויקט פרו בונו עבור חייל פצוע. תודה וכל הכבוד.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#ef4444;">ד<img src="assets/real/reviews/dani.jpg" alt="דני עיצוב רהיטים" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דני עיצוב רהיטים</b><span>לקוח מרוצה</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">עודד ביצע עבור לקוחות שלי מדידה ואין כמוהו. החומר והשרטוטים הגיעו במקצועיות. מובנים ונוחים לעבודה. ממליצה מאד.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#06b6d4;">ש<img src="assets/real/reviews/shirley.jpg" alt="שירלי צ׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>שירלי צ׳</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">עודד המודד התותח, אני מעצבת פנים ומשתמשת בשירותי המדידה שלו ומרוצה מאוד. מעבר לדיוק ולניסיון, הערך המוסף שלו הוא בשירות גם לאחר ביצוע העבודה.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#d946ef;">א<img src="assets/real/reviews/orly.jpg" alt="אורלי ט׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>אורלי ט׳</b><span>אדריכלית</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">כאדריכלית נדרשתי להשתמש בשירותי מדידות לצורך הגשה להיתר. הגעתי לעודד ומיד הבנתי שמדובר באדם מקסים, אדיב, שירותי, שעובד בצורה מקצועית וענה על כל הדרישות. ממליצה מאוד מאוד.</p>
+          </article>
+
+        </div>
+      </div>
+      <button class="rev-nav rev-next" aria-label="ביקורת הבאה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TECHNOLOGY ============================ -->
+<section class="section section--ink tech-show" id="technology">
+  <div class="container">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow">הטכנולוגיה שמאחורי הדיוק</span>
+        <h2>סורק לייזר אחד. ענן נקודות מלא של כל מבנה.</h2>
+        <p class="lead">בלב מקובקי עומד סורק לייזר תלת-מימדי מהמתקדמים בעולם. הוא יורה 2,400,000 קרני לייזר בשנייה ולוכד כל קיר, פתח, זווית וצנרת בדיוק מילימטרי - וכל זאת תוך דקות בשטח, בלי לשבש את השגרה.</p>
+        <div class="pill-list">
+          <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>סריקה תוך דקות</span>
+          <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>דיוק מילימטרי</span>
+          <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 2v20M2 12h20"/></svg>כיסוי מלא ללא נקודות עיוורות</span>
+        </div>
+        <div class="formats">
+          <div class="format-chip"><span class="dot"></span>AutoCAD<small>DWG לתכנון</small></div>
+          <div class="format-chip"><span class="dot"></span>Revit<small>מודל BIM</small></div>
+          <div class="format-chip"><span class="dot"></span>SketchUp<small>מודל תלת-מימד</small></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="device-stage">
+          <span class="device-ring r2"></span>
+          <span class="device-ring r1"></span>
+          <img src="assets/real/device.png" alt="סורק הלייזר התלת-מימדי הנייד של מקובקי - מסך חי המציג סריקת מבנה">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ADDITIONAL SERVICES ============================ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">מעבר למדידה</span>
+      <h2>מסריקה אחת - שלל תוצרים מקצועיים</h2>
+      <p class="lead">אותה סריקה מדויקת הופכת לסיור וירטואלי, להדמיה ולתיעוד תשתיות - כל תוצר לצורך ולקהל שלו.</p>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-media reveal">
+        <img src="assets/real/vtour-example.png" alt="דוגמה לסיור וירטואלי תלת-מימדי של דירה - מקובקי">
+        <span class="feature-media__tag">סיור וירטואלי אינטראקטיבי</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">סיור וירטואלי 360°</span>
+        <h2>לטייל בנכס מכל מקום, ולמדוד בתוך הסיור</h2>
+        <p>סיור תלת-מימדי מדויק שמאפשר לאדריכל, ללקוח או לקונה להתהלך בנכס מרחוק, ואף למדוד אורך, רוחב ושטח בתוך הסיור עצמו. זמין 24/7, מכל מסך.</p>
+        <div class="pill-list">
+          <span class="pill">נדל"ן ודירות</span>
+          <span class="pill">חנויות ומסחר</span>
+          <span class="pill">מבנים ואתרים היסטוריים</span>
+        </div>
+        <a class="card__link" href="virtual-tour.html">לשירות הסיור הווירטואלי <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="feature-row feature-row--flip">
+      <div class="feature-media reveal">
+        <img src="assets/real/interactive-viz.png" alt="הדמיה אדריכלית אינטראקטיבית - מקובקי">
+        <span class="feature-media__tag">הדמיה פוטו-ריאליסטית</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">הדמיות סטילס ווידאו</span>
+        <h2>למכור את הפרויקט עוד לפני שנבנה</h2>
+        <p>הדמיות מרהיבות - סטילס, וידאו ואינטראקטיב - שמציגות את החזון האדריכלי בצורה משכנעת. כלי שיווק ומכר עוצמתי לאדריכלים וליזמים.</p>
+        <div class="pill-list">
+          <span class="pill">הדמיות חוץ ופנים</span>
+          <span class="pill">סרטוני וידאו</span>
+          <span class="pill">מצגות מכר אינטראקטיביות</span>
+        </div>
+        <a class="card__link" href="visualizations.html">לשירות ההדמיות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-media reveal">
+        <img src="assets/real/pointcloud-industry.jpg" alt="ענן נקודות של מתקן תעשייתי - תיעוד תשתיות של מקובקי">
+        <span class="feature-media__tag">ענן נקודות של תשתיות</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">תיעוד תשתיות</span>
+        <h2>לתעד את מה שנעלם מתחת לחיפוי</h2>
+        <p>סריקת תשתיות באמצע הבנייה - צנרת, חשמל, מיזוג ומערכות - עוד לפני שנסגרים הקירות. תיעוד מדויק שחוסך פתיחות מיותרות בעתיד ומונע טעויות יקרות.</p>
+        <div class="pill-list">
+          <span class="pill">מפקחי בנייה וקבלנים</span>
+          <span class="pill">חשמל ואינסטלציה</span>
+          <span class="pill">מיזוג · טרום חיפויים</span>
+        </div>
+        <a class="card__link" href="infrastructure.html">לשירות תיעוד התשתיות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOR SURVEYORS (B2B) ============================ -->
+<section class="section section--soft">
+  <div class="container">
+    <div class="cta-band__box reveal">
+      <div class="split" style="gap:40px;">
+        <div>
+          <span class="eyebrow">שירות B2B למודדים</span>
+          <h2>אין לכם עדיין טכנולוגיית סריקה מתקדמת? נשמח לעבוד יחד.</h2>
+          <p style="max-width:520px;">מודדים שרוצים להציע ללקוחותיהם תוצרי סריקה תלת-מימדית - אנחנו סורקים עבורכם וממירים את ענן הנקודות ל-Revit, AutoCAD ו-SketchUp, או מפיקים סיור וירטואלי מקצועי למבנים שמדדתם.</p>
+        </div>
+        <div style="align-self:center;">
+          <a class="btn btn--primary" href="for-surveyors.html">לשיתוף פעולה עם מודדים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PROCESS ============================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">איך זה עובד</span>
+      <h2>מהשטח אליכם - ב-4 שלבים</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step__n">1</div><h4>סריקה בשטח</h4><p>הסורק לוכד את המבנה כולו בענן נקודות תלת-מימדי תוך דקות, ללא הפרעה לשגרה.</p></div>
+      <div class="step reveal"><div class="step__n">2</div><h4>עיבוד ענן הנקודות</h4><p>מעבדים את הסריקה למודל מדויק ונקי, מוכן לעבודה מקצועית.</p></div>
+      <div class="step reveal"><div class="step__n">3</div><h4>הפקת התוצר</h4><p>מפיקים תוכנית מדידה, מודל BIM, סיור וירטואלי או הדמיה - לפי הצורך.</p></div>
+      <div class="step reveal"><div class="step__n">4</div><h4>מסירה תוך 5 ימים</h4><p>מקבלים חומר איכותי ומדויק, מוכן לעבודה, תוך 5 ימי עסקים מיום המדידה.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHY US ============================ -->
+<section class="section section--soft">
+  <div class="container">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow">למה אדריכלים בוחרים במקובקי</span>
+        <h2>דיוק שחוסך זמן, כסף וטעויות</h2>
+        <p class="lead">כשהמדידה מדויקת מההתחלה, כל מה שבא אחריה פשוט יותר - התכנון, התמחור והביצוע. פחות חזרות לשטח, פחות הפתעות, יותר שקט.</p>
+      </div>
+      <div class="reveal">
+        <ul class="checks">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>מודד מוסמך</b><span> תוכניות מדידה רשמיות הקבילות ברשויות, בטאבו ובוועדות.</span></div></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>דיוק מילימטרי</b><span> תיעוד מצב קיים אמין שמונע הפתעות בשטח ובביצוע.</span></div></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>חיסכון בחזרות לשטח</b><span> כל הנכס שמור דיגיטלית וזמין 24/7 מכל מקום.</span></div></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>מהירות מסירה</b><span> חומר מוכן לעבודה תוך 5 ימי עסקים.</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================ ABOUT TEASER ============================ -->
+<section class="section section--soft about-teaser">
+  <div class="container">
+    <div class="split">
+      <div class="reveal">
+        <div class="about-portrait">
+          <img src="assets/real/oded/oded-scanner-portrait.webp" alt="עודד מקובקי, מודד מוסמך, עם סורק הלייזר הנייד NavVis VLX" style="object-position:center 22%;">
+          <div class="about-portrait__badge"><b>עודד מקובקי</b><span>מודד מוסמך · מייסד מקובקי מדידות</span></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">מי מאחורי מקובקי</span>
+        <h2>מודד מוסמך שחי טכנולוגיה</h2>
+        <p class="lead">עודד מקובקי משלב ניסיון של שנים במדידה מוסמכת עם הטכנולוגיה המתקדמת בעולם. במקום מדידה ידנית איטית, כל פרויקט מתחיל בסריקת לייזר תלת-מימדית - מהירה, מלאה ומדויקת.</p>
+        <ul class="checks" style="margin-top:22px;">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>מדידות מוסמכות</b><span> הקבילות ברשויות ובטאבו.</span></div></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>מאות פרויקטים</b><span> לאדריכלים, מעצבים, יזמים ומוסדות.</span></div></li>
+        </ul>
+        <div style="margin-top:26px;">
+          <a class="btn btn--ghost" href="about.html">הסיפור המלא <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA BAND ============================ -->
+<section class="section cta-band">
+  <div class="container">
+    <div class="cta-band__box reveal">
+      <h2>מוכנים למדוד אחרת?</h2>
+      <p>ספרו לנו על הפרויקט שלכם ונחזור אליכם עם הצעה מותאמת. ייעוץ טלפוני ראשוני - חינם.</p>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--wa" href="https://wa.me/972543040804"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/makovki.js"></script>
+</body>
+</html>

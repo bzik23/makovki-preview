@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Makovki - Knowledge-center (מידע מקצועי) page-specific styles
+   Loaded only by professional-info.html, after makovki.css.
+   Kept separate so the shared design system stays untouched.
+   ========================================================================== */
+
+/* ---- Two-column "scan stage" hero (device + live point cloud) ---- */
+.blog-hero { padding-block: clamp(46px, 6vw, 78px); }
+.blog-hero__inner {
+  display: grid; grid-template-columns: 1.02fr .98fr;
+  align-items: center; gap: clamp(30px, 4.5vw, 68px);
+}
+.blog-hero__copy { min-width: 0; }
+.blog-hero__copy .crumbs { margin-bottom: 20px; }
+.blog-hero__copy .eyebrow { margin-bottom: 16px; }
+.blog-hero__copy p { margin-top: 16px; }
+.blog-hero__meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 0;
+  margin-top: 28px;
+}
+.blog-hero__meta span {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .96rem; color: var(--text-2); padding-inline: 20px;
+}
+.blog-hero__meta span:first-child { padding-inline-start: 0; }
+.blog-hero__meta span + span { border-inline-start: 1px solid var(--line); }
+.blog-hero__meta b { font-size: 1.35rem; font-weight: 800; color: var(--violet-deep); }
+
+/* ---- The scan stage: dark panel that showcases the scanner ---- */
+.scan-stage {
+  position: relative; aspect-ratio: 5 / 4; border-radius: var(--radius-lg);
+  overflow: hidden; isolation: isolate;
+  background:
+    radial-gradient(120% 100% at 72% 6%, rgba(33,207,230,.18), transparent 48%),
+    radial-gradient(130% 130% at 22% 104%, #2b2166 0%, var(--ink) 62%);
+  border: 1px solid rgba(124,92,255,.28);
+  box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.scan-stage .hero__canvas {
+  display: block; position: absolute; inset: 0;
+  width: 100%; height: 100%; opacity: .5; z-index: 1;
+}
+.scan-stage__rings {
+  position: absolute; inset: -14%; z-index: 1; pointer-events: none;
+  background: repeating-radial-gradient(circle at 50% 56%, rgba(33,207,230,.15) 0 1.5px, transparent 1.5px 44px);
+  -webkit-mask: radial-gradient(circle at 50% 56%, #000 0%, transparent 64%);
+          mask: radial-gradient(circle at 50% 56%, #000 0%, transparent 64%);
+}
+.scan-stage__device {
+  position: absolute; left: 50%; top: 50%;
+  width: min(80%, 400px); height: auto; z-index: 3;
+  transform: translate(-50%, -52%);
+  filter: drop-shadow(0 26px 42px rgba(0,0,0,.55)) drop-shadow(0 0 30px rgba(33,207,230,.28));
+  animation: scanFloat 6.5s ease-in-out infinite;
+}
+.scan-stage__beam {
+  position: absolute; inset-inline: 6%; top: 8%; height: 2px; z-index: 4; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan) 22%, #c8faff 50%, var(--cyan) 78%, transparent);
+  box-shadow: 0 0 20px 3px rgba(33,207,230,.6);
+  animation: scanSweep 3.6s cubic-bezier(.55, 0, .45, 1) infinite;
+}
+.scan-stage__tag {
+  position: absolute; inset-inline-start: 16px; inset-block-end: 16px; z-index: 5;
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(8,17,33,.6); backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.16); color: #eaf6ff;
+  font-size: .82rem; font-weight: 600; padding: 8px 14px; border-radius: 999px;
+}
+.scan-stage__tag .dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--cyan);
+  animation: scanPulse 2s infinite;
+}
+
+@keyframes scanFloat { 0%, 100% { transform: translate(-50%, -52%); } 50% { transform: translate(-50%, -58%); } }
+@keyframes scanSweep { 0% { top: 8%; opacity: 0; } 12% { opacity: .95; } 88% { opacity: .95; } 100% { top: 90%; opacity: 0; } }
+@keyframes scanPulse { 0% { box-shadow: 0 0 0 0 rgba(33,207,230,.55); } 70% { box-shadow: 0 0 0 8px rgba(33,207,230,0); } 100% { box-shadow: 0 0 0 0 rgba(33,207,230,0); } }
+
+@media (max-width: 880px) {
+  .blog-hero__inner { grid-template-columns: 1fr; gap: 30px; }
+  .scan-stage { width: 100%; max-width: 460px; margin-inline: auto; }
+}
+@media (max-width: 520px) {
+  .scan-stage { aspect-ratio: 4 / 3.2; }
+  .blog-hero__meta b { font-size: 1.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scan-stage__device { animation: none; transform: translate(-50%, -52%); }
+  .scan-stage__beam { animation: none; opacity: .6; top: 50%; }
+  .scan-stage__tag .dot { animation: none; }
+}
+
+/* ---- Tighten the space between hero and the post grid ---- */
+.blog-section { padding-block-start: clamp(40px, 5vw, 62px); }
+.blog-section .post-filter { margin-bottom: 30px; }
