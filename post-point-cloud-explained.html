@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ענן נקודות (Point Cloud): מה זה ואיך הוא משנה את עולם המדידות | מקובקי</title>
+<meta name="description" content="מדריך לענן נקודות: מהם מיליוני נקודות מדידה תלת-מימדיות, איך הן נוצרות בסריקת לייזר, אילו פורמטים קיימים (E57/RCP/LAS) ומה עושים איתן בתכנון.">
+<link rel="canonical" href="post-point-cloud-explained.html">
+<link rel="icon" href="assets/real/logo-main.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ענן נקודות: מה זה ואיך הוא משנה את עולם המדידות">
+<meta property="og:description" content="מיליוני נקודות מדידה שמרכיבות עותק דיגיטלי מדויק של המציאות - מדריך לטכנולוגיה שמאחורי הסריקה.">
+<meta property="og:image" content="assets/real/pointcloud-1.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/makovki.css">
+</head>
+<body>
+
+<div data-include="header"></div>
+
+<section class="page-hero post-hero">
+  <div class="hero__grid"></div>
+  <div class="container">
+    <div class="hero__inner">
+      <div class="crumbs"><a href="index.html">בית</a><span>›</span><a href="professional-info.html">מידע מקצועי</a><span>›</span>ענן נקודות</div>
+      <span class="post-cat">מדידות</span>
+      <h1>ענן נקודות: מה זה ואיך הוא משנה את עולם המדידות</h1>
+      <div class="post-metaline">
+        <span class="post-author"><img src="assets/real/oded-portrait.webp" alt="עודד מקובקי">עודד מקובקי</span>
+        <span class="dot"></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7 דק' קריאה</span>
+        <span class="dot"></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>יולי 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<article class="article">
+  <div class="container">
+    <div class="article__wrap">
+
+      <p class="article__lead">ענן נקודות הוא הלב של הסריקה התלת-מימדית - עותק דיגיטלי של המציאות, בנוי ממיליוני נקודות מדידה. הוא מה שמאפשר למדוד כל פרט בחלל, גם חודשים אחרי שהמודד עזב את השטח. במאמר הזה נסביר מה זה ענן נקודות, איך הוא נוצר, ומה אפשר לעשות איתו.</p>
+
+      <figure class="figure">
+        <img src="assets/real/pointcloud-1.jpg" alt="ענן נקודות תלת-מימדי של מבנה שנסרק בלייזר" loading="lazy">
+        <figcaption>ענן נקודות - מיליוני נקודות מדידה תלת-מימדיות שמרכיבות עותק מדויק של החלל</figcaption>
+      </figure>
+
+      <div class="prose">
+        <h2>מה זה ענן נקודות?</h2>
+        <p>ענן נקודות (Point Cloud) הוא אוסף עצום של נקודות בחלל התלת-מימדי. לכל נקודה יש קואורדינטות מדויקות של מיקום (X, Y, Z), ולעיתים גם מידע על צבע. כשמצרפים מיליוני נקודות כאלה יחד, מתקבל מודל דיגיטלי מדויק של המבנה או החלל שנסרק - כמעט כמו צילום, אבל כזה שאפשר למדוד בתוכו.</p>
+        <p>בניגוד לתמונה שטוחה, ענן נקודות שומר את הגיאומטריה האמיתית של המרחב. אפשר להסתובב בו, לחתוך אותו בכל מישור ולמדוד מרחקים אמיתיים בין נקודות.</p>
+
+        <h2>איך נוצר ענן נקודות</h2>
+        <p>ענן הנקודות נוצר בתהליך הסריקה. סורק לייזר תלת-מימדי נייד יורה <strong>2,400,000 קרני לייזר בשנייה</strong>. כל קרן פוגעת במשטח וחוזרת, והסורק מחשב מהזמן והזווית את המיקום המדויק של אותה נקודה. מיליוני החזרים בשנייה, לאורך הליכה רציפה בחלל, מצטברים לענן נקודות צפוף שמתעד כל קיר, פתח, עמוד וזווית.</p>
+
+        <div class="keyfacts">
+          <div class="keyfacts__t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>הנתונים שמאחורי הסריקה</div>
+          <div class="keyfacts__grid">
+            <div class="keyfacts__item"><div class="n">2.4<span class="u">M</span></div><div class="l">קרני לייזר בשנייה</div></div>
+            <div class="keyfacts__item"><div class="n">±6<span class="u"> מ"מ</span></div><div class="l">דיוק המדידה</div></div>
+            <div class="keyfacts__item"><div class="n">120<span class="u"> מ"ר</span></div><div class="l">נסרקים בדקות</div></div>
+            <div class="keyfacts__item"><div class="n">E57</div><div class="l">RCP · LAS</div></div>
+          </div>
+        </div>
+
+        <h2>דיוק וצפיפות</h2>
+        <p>שני מאפיינים קובעים את איכות ענן הנקודות: הדיוק והצפיפות. הדיוק - עד <strong>±6 מ"מ</strong> - קובע כמה כל נקודה קרובה למיקומה האמיתי. הצפיפות קובעת כמה נקודות נלכדות לכל שטח, וככל שהיא גבוהה יותר, כך נלכדים יותר פרטים עדינים כמו פרופילים, קרניזים ומשקופים. שילוב של דיוק גבוה וצפיפות גבוהה נותן תיעוד נאמן למקור.</p>
+
+        <figure class="figure">
+          <img src="assets/real/pointcloud-data.jpg" alt="ענן נקודות צבעוני בצפיפות גבוהה של מבנה" loading="lazy">
+          <figcaption>ענן נקודות צבעוני - הצפיפות והצבע לוכדים גם את הפרטים העדינים של החלל</figcaption>
+        </figure>
+
+        <h2>פורמטים נפוצים של ענן נקודות</h2>
+        <p>ענן הנקודות נשמר בפורמטים סטנדרטיים שמשתלבים כמעט בכל תוכנת תכנון:</p>
+        <ul>
+          <li><strong>E57</strong> - פורמט פתוח ונפוץ, נתמך על ידי רוב התוכנות.</li>
+          <li><strong>RCP / RCS</strong> - הפורמט של Autodesk, לשילוב ישיר ב-AutoCAD, Revit ו-Navisworks.</li>
+          <li><strong>LAS / LAZ</strong> - פורמט נפוץ בעיקר במיפוי ובסריקות שטח גדולות.</li>
+        </ul>
+
+        <blockquote>כל מה שהיה בשטח בזמן הסריקה מתועד - אפשר למדוד אותו גם חודשים אחר כך, בלי לחזור לנכס.</blockquote>
+
+        <h2>מה עושים עם ענן נקודות</h2>
+        <p>ענן הנקודות הוא נקודת הפתיחה לכמעט כל תוצר מדידה:</p>
+        <ul>
+          <li>בסיס להפקת תוכניות דו-מימדיות מדויקות (DWG/DXF).</li>
+          <li>שכבת רקע למידול BIM חכם ב-Revit (Scan-to-BIM).</li>
+          <li>מקור למדידת מרחקים, שטחים ונפחים בכל עת.</li>
+          <li>כלי לבקרת איכות - השוואת מה שנבנה מול התכנון.</li>
+        </ul>
+
+        <div class="callout">
+          <span class="callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7l8-4 8 4v10l-8 4-8-4z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></span>
+          <div><b>משתלב בכל מקום</b><p>ענן הנקודות נפתח כמעט בכל תוכנת תכנון מובילה - AutoCAD, Revit, SketchUp ועוד - כך שהוא משתלב ישירות בתהליך העבודה הקיים שלכם.</p></div>
+        </div>
+
+        <div class="inline-cta">
+          <div><b>רוצים ענן נקודות מדויק של הפרויקט שלכם?</b><span>סריקה אחת, כל התוצרים. ייעוץ ראשוני חינם.</span></div>
+          <a class="btn" href="contact.html">לקבלת הצעת מחיר</a>
+        </div>
+
+        <h2>למה זה משנה את המשחק</h2>
+        <p>לפני עידן הסריקה, מדידה הייתה נקודתית - מדדו רק את מה שחשבו עליו מראש. ענן הנקודות הופך את הכלל: קודם לוכדים את הכל, ואחר כך מודדים מה שצריך. אין נקודות עיוורות, אין חזרות מיותרות לשטח, ואפשר להפיק ממנו כל תוצר. זו הסיבה שענן הנקודות הפך לבסיס של המדידה המודרנית. להעמקה, ראו איך <a href="post-scan-to-2d-plan.html">הופכים סריקה לתוכנית 2D</a>.</p>
+      </div>
+
+      <div class="post-tags">
+        <span class="tag">ענן נקודות</span>
+        <span class="tag">סריקת לייזר</span>
+        <span class="tag">סריקה תלת-מימדית</span>
+        <span class="tag">E57</span>
+        <span class="tag">Revit</span>
+        <span class="tag">AutoCAD</span>
+      </div>
+
+      <div class="author-box">
+        <img src="assets/real/oded-portrait.webp" alt="עודד מקובקי">
+        <div>
+          <div class="role">מודד מוסמך · מייסד מקובקי</div>
+          <b>עודד מקובקי</b>
+          <p>מתמחה במדידה אדריכלית וסריקה תלת-מימדית בטכנולוגיית לייזר, עם למעלה מעשור של ניסיון בשירות אדריכלים, מעצבי פנים ויזמים בפריסה ארצית.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<section class="section section--soft">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">שאלות נפוצות</span>
+      <h2>שאלות נפוצות על ענן נקודות</h2>
+    </div>
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q">מה ההבדל בין ענן נקודות למודל תלת-מימד?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a"><b>ענן נקודות</b> הוא הנתון הגולמי - מיליוני נקודות מדידה בלי "משמעות" מובנית. <b>מודל תלת-מימד</b> (למשל ב-Revit) בנוי מאובייקטים חכמים - קיר, דלת, חלון - שנוצרים על בסיס ענן הנקודות. הענן הוא המקור, המודל הוא הפרשנות המהונדסת שלו.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">באילו תוכנות אפשר לפתוח ענן נקודות?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">כמעט בכולן. ענן הנקודות נשמר בפורמטים סטנדרטיים כמו <b>E57, RCP ו-LAS</b>, שנתמכים ב-AutoCAD, Revit, Navisworks, SketchUp ותוכנות רבות נוספות. אנחנו מספקים את הפורמט שמתאים לתהליך העבודה שלכם.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">כמה "כבד" קובץ ענן נקודות?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">קבצי ענן נקודות יכולים להיות גדולים, כי הם מכילים מיליוני נקודות. אנחנו מוסרים אותם בפורמט ובצפיפות המתאימים לצורך, וכשצריך גם מפיקים מהם תוצרים קלים יותר לעבודה - תוכניות DWG או מודל BIM - כך שלא חייבים לעבוד ישירות מול הקובץ הכבד.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section related">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">להמשך קריאה</span>
+      <h2>מאמרים נוספים בנושא מדידות</h2>
+    </div>
+    <div class="post-grid">
+      <article class="post-card">
+        <a class="post-card__media" href="post-scan-to-2d-plan.html"><img src="assets/real/gramushka-2d.png" alt="המרת סריקה לתוכנית" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta">6 דק' קריאה</div>
+          <h3><a href="post-scan-to-2d-plan.html">מתלת-מימד לתוכנית 2D: איך הופכים סריקה למסמך עבודה</a></h3>
+          <p>מענן הנקודות ועד תוכנית קווית מדויקת ב-CAD - תהליך העבודה שהופך דאטה למסמך.</p>
+          <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+      <article class="post-card">
+        <a class="post-card__media" href="post-millimeter-accuracy.html"><img src="assets/real/pointcloud-data.jpg" alt="דיוק מילימטרי" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta">5 דק' קריאה</div>
+          <h3><a href="post-millimeter-accuracy.html">דיוק מילימטרי: כך סריקת לייזר מייתרת מדידות חוזרות</a></h3>
+          <p>סריקה אחת מתעדת את הכל - איך רמת דיוק של ±6 מ"מ משנה את כללי המשחק.</p>
+          <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+      <article class="post-card">
+        <a class="post-card__media" href="post-scan-to-revit-workflow.html"><img src="assets/real/oded/pointcloud-cathedral-stage.jpg" alt="מהסריקה ל-Revit" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta">6 דק' קריאה</div>
+          <h3><a href="post-scan-to-revit-workflow.html">מהסריקה ל-Revit: תהליך העבודה מול מודדים ומתכננים</a></h3>
+          <p>כך הופכים ענן נקודות למודל BIM עובד - תהליך ה-Scan-to-BIM שלב אחר שלב.</p>
+          <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-band">
+  <div class="container">
+    <div class="cta-band__box">
+      <h2>רוצים ענן נקודות מדויק של הפרויקט?</h2>
+      <p>ספרו לנו על הפרויקט ונחזור אליכם עם הצעה מותאמת. ייעוץ טלפוני ראשוני חינם, ותשלום רק לאחר ההגעה לנכס.</p>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--wa" href="https://wa.me/972543040804"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/makovki.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "ענן נקודות: מה זה ואיך הוא משנה את עולם המדידות",
+      "description": "מדריך לענן נקודות: מהם מיליוני נקודות מדידה תלת-מימדיות, איך הן נוצרות בסריקת לייזר, אילו פורמטים קיימים (E57/RCP/LAS) ומה עושים איתן בתכנון.",
+      "image": "https://makovki.com/assets/real/pointcloud-1.jpg",
+      "datePublished": "2026-06-22",
+      "dateModified": "2026-06-22",
+      "author": { "@type": "Person", "name": "עודד מקובקי" },
+      "publisher": { "@type": "Organization", "name": "מקובקי - מדידות וסריקה תלת-מימדית", "logo": { "@type": "ImageObject", "url": "https://makovki.com/assets/real/logo-main.png" } },
+      "mainEntityOfPage": "https://makovki.com/post-point-cloud-explained.html"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
+        { "@type": "ListItem", "position": 2, "name": "מידע מקצועי", "item": "https://makovki.com/professional-info.html" },
+        { "@type": "ListItem", "position": 3, "name": "ענן נקודות" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "מה ההבדל בין ענן נקודות למודל תלת-מימד?", "acceptedAnswer": { "@type": "Answer", "text": "ענן נקודות הוא הנתון הגולמי - מיליוני נקודות מדידה. מודל תלת-מימד בנוי מאובייקטים חכמים (קיר, דלת, חלון) שנוצרים על בסיס ענן הנקודות." } },
+        { "@type": "Question", "name": "באילו תוכנות אפשר לפתוח ענן נקודות?", "acceptedAnswer": { "@type": "Answer", "text": "בפורמטים סטנדרטיים כמו E57, RCP ו-LAS, הנתמכים ב-AutoCAD, Revit, Navisworks, SketchUp ותוכנות רבות נוספות." } },
+        { "@type": "Question", "name": "כמה כבד קובץ ענן נקודות?", "acceptedAnswer": { "@type": "Answer", "text": "הקבצים גדולים כי הם מכילים מיליוני נקודות. אנחנו מוסרים אותם בפורמט ובצפיפות המתאימים, ומפיקים מהם גם תוצרים קלים כמו DWG או מודל BIM." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

@@ -331,3 +331,71 @@
     initVideos();
   }
 })();
+
+/* ---- Client logo slider: steps one logo every 1.5s (seamless loop) ---- */
+(function () {
+  "use strict";
+  function initSlider() {
+    var slider = document.querySelector("[data-logo-slider]");
+    if (!slider) return;
+    var track = slider.querySelector(".logo-slider__track");
+    if (!track) return;
+
+    var originals = Array.prototype.slice.call(track.children);
+    var n = originals.length;
+    if (n < 2) return;
+    // Clone the full set once so the strip can loop without a visible gap.
+    for (var i = 0; i < n; i++) track.appendChild(originals[i].cloneNode(true));
+
+    var idx = 0, timer = null, paused = false, resetting = false;
+    var EASE = "transform .6s cubic-bezier(.65,0,.35,1)";
+
+    function stepWidth() {
+      var first = track.children[0];
+      var cs = getComputedStyle(track);
+      var gap = parseFloat(cs.columnGap || cs.gap || "0") || 0;
+      return first.getBoundingClientRect().width + gap;
+    }
+    function position(anim) {
+      track.style.transition = anim ? EASE : "none";
+      track.style.transform = "translateX(" + (-idx * stepWidth()) + "px)";
+    }
+    function advance() {
+      if (paused || resetting) return;
+      idx++;
+      position(true);
+      if (idx >= n) {
+        resetting = true;
+        window.setTimeout(function () {
+          idx = 0;
+          position(false);
+          void track.offsetWidth; // force reflow so the next step animates
+          resetting = false;
+        }, 640);
+      }
+    }
+    function start() { if (!timer) timer = window.setInterval(advance, 1500); }
+    function stop() { window.clearInterval(timer); timer = null; }
+
+    position(false);
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
+    start();
+    slider.addEventListener("mouseenter", function () { paused = true; });
+    slider.addEventListener("mouseleave", function () { paused = false; });
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stop(); else start();
+    });
+    var rt;
+    window.addEventListener("resize", function () {
+      window.clearTimeout(rt);
+      rt = window.setTimeout(function () { position(false); }, 150);
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSlider);
+  } else {
+    initSlider();
+  }
+})();

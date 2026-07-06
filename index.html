@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/real/hero-poster.jpg">
-<link rel="stylesheet" href="assets/makovki.css?v=6">
+<link rel="stylesheet" href="assets/makovki.css?v=12">
 </head>
 <body>
 
@@ -60,19 +60,37 @@
 <section class="clients">
   <div class="container">
     <div class="clients__head">מדדנו וסרקנו עבור המובילים בישראל</div>
-    <div class="clients__row">
-      <img class="clients__logo" src="assets/real/clients/technion.png" alt="הטכניון">
-      <img class="clients__logo" src="assets/real/clients/aura.png" alt="אאורה">
-      <img class="clients__logo" src="assets/real/clients/alrov.jpg" alt="אלרוב נדל&quot;ן">
-      <img class="clients__logo" src="assets/real/clients/giron.jpg" alt="קבוצת גירון">
-      <img class="clients__logo" src="assets/real/clients/building-center.png" alt="מרכז הבנייה הישראלי">
-      <img class="clients__logo" src="assets/real/clients/shefayim.jpg" alt="מלון שפיים">
+    <div class="logo-slider" data-logo-slider aria-label="לקוחות שסרקנו ומדדנו עבורם">
+      <div class="logo-slider__track">
+        <div class="logo-chip"><img src="assets/real/clients-wall/bmw.png" alt="BMW" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/tau.png" alt="אוניברסיטת תל אביב" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/nespresso.png" alt="נספרסו" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/clalit.png" alt="כללית" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/samsung.png" alt="סמסונג" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/electra.png" alt="אלקטרה" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/carrefour.png" alt="קארפור" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/bar-ilan.png" alt="אוניברסיטת בר אילן" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/delta.png" alt="דלתא" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/isrotel.png" alt="ישרוטל" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/beit-halochem.png" alt="בית הלוחם תל אביב" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/orchid.png" alt="אורכיד מטבחים" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/tel-aviv.png" alt="עיריית תל אביב" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/moby.png" alt="מובי בניה והשקעות" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/anis.png" alt="אניס מטבחים" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/kotel.png" alt="מנהלת הכותל" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/gordonia.png" alt="גורדוניה" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/netanya.png" alt="עיריית נתניה" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/orbit.png" alt="אורביט" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/derech-chaim.png" alt="ישיבת דרך חיים" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/sos.png" alt="SOS שירותי רכב" loading="lazy"></div>
+        <div class="logo-chip"><img src="assets/real/clients-wall/semel.png" alt="סמל מטבחים" loading="lazy"></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============================ INTRO / STAT STRIP ============================ -->
-<section class="stat-strip stat-strip--light section" data-count-zone style="padding-block:48px;">
+<section class="stat-strip stat-strip--light section" data-count-zone style="padding-block:30px;">
   <div class="container">
     <div class="stat-strip__grid">
       <div class="stat-strip__cell"><div class="num"><span data-count="2337">0</span></div><div class="lbl">לקוחות</div></div>
@@ -276,9 +294,13 @@
       </div>
       <div class="reveal">
         <div class="device-stage">
+          <span class="device-sweep" aria-hidden="true"></span>
           <span class="device-ring r2"></span>
           <span class="device-ring r1"></span>
-          <img src="assets/real/device.png" alt="סורק הלייזר התלת-מימדי הנייד של מקובקי - מסך חי המציג סריקת מבנה">
+          <span class="device-cloud" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <div class="device-float">
+            <img src="assets/real/device.png" alt="סורק הלייזר התלת-מימדי הנייד של מקובקי - מסך חי המציג סריקת מבנה">
+          </div>
         </div>
       </div>
     </div>
@@ -448,6 +470,6 @@
 
 <div data-include="footer"></div>
 
-<script src="assets/makovki.js"></script>
+<script src="assets/makovki.js?v=11"></script>
 </body>
 </html>

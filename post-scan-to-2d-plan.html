@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מתלת-מימד לתוכנית 2D: איך הופכים ענן נקודות למסמך עבודה ב-CAD | מקובקי</title>
+<meta name="description" content="איך הופכים סריקת לייזר תלת-מימדית לתוכנית דו-מימדית מדויקת ב-AutoCAD. תהליך העבודה מענן נקודות ועד תוכנית קווית מסודרת בשכבות - מאת מקובקי.">
+<link rel="canonical" href="post-scan-to-2d-plan.html">
+<link rel="icon" href="assets/real/logo-main.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="מתלת-מימד לתוכנית 2D: איך הופכים סריקה למסמך עבודה">
+<meta property="og:description" content="מענן הנקודות התלת-מימדי ועד תוכנית קווית מדויקת ב-CAD - תהליך העבודה שהופך דאטה גולמית למסמך עבודה מסודר בשכבות.">
+<meta property="og:image" content="assets/real/gramushka-2d.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/makovki.css">
+</head>
+<body>
+
+<div data-include="header"></div>
+
+<!-- ============================ POST HERO ============================ -->
+<section class="page-hero post-hero">
+  <div class="hero__grid"></div>
+  <div class="container">
+    <div class="hero__inner">
+      <div class="crumbs"><a href="index.html">בית</a><span>›</span><a href="professional-info.html">מידע מקצועי</a><span>›</span>תוכנית 2D</div>
+      <span class="post-cat">מדידות</span>
+      <h1>מתלת-מימד לתוכנית 2D: איך הופכים סריקה למסמך עבודה</h1>
+      <div class="post-metaline">
+        <span class="post-author"><img src="assets/real/oded-portrait.webp" alt="עודד מקובקי">עודד מקובקי</span>
+        <span class="dot"></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>6 דק' קריאה</span>
+        <span class="dot"></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>יולי 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ARTICLE ============================ -->
+<article class="article">
+  <div class="container">
+    <div class="article__wrap">
+
+      <p class="article__lead">הסריקה התלת-מימדית לוכדת את המציאות כולה, אבל התוצר שרוב אנשי המקצוע עובדים איתו ביום-יום הוא עדיין תוכנית דו-מימדית נקייה ב-AutoCAD. איך עוברים מענן נקודות תלת-מימדי גולמי לתוכנית קווית מדויקת, מסודרת בשכבות ומוכנה לעריכה? במאמר הזה נפרק את התהליך שלב אחר שלב - מהסריקה בשטח ועד קובץ ה-DWG שמגיע אליכם.</p>
+
+      <figure class="figure">
+        <img src="assets/real/gramushka-2d.png" alt="תוכנית אדריכלית דו-מימדית שהופקה מענן נקודות תלת-מימדי בסריקת לייזר" loading="lazy">
+        <figcaption>מענן הנקודות התלת-מימדי מפיקים תוכנית קווית מדויקת, מסודרת בשכבות ומוכנה לעבודה ב-CAD</figcaption>
+      </figure>
+
+      <div class="prose">
+        <h2>ההתחלה: ענן נקודות של החלל</h2>
+        <p>כל תוכנית דו-מימדית שאנחנו מפיקים מתחילה ממקור אחד: ענן נקודות. הסורק לוכד את החלל כולו כאוסף של מיליוני נקודות מדידה תלת-מימדיות, כשכל נקודה נושאת מיקום מדויק במרחב. יחד, הנקודות מרכיבות עותק דיגיטלי מלא של המבנה - קירות, פתחים, גבהים וזוויות, בדיוק כפי שהם בשטח.</p>
+        <p>חשוב להבין: ענן הנקודות עצמו הוא תלת-מימדי וגולמי. הוא אינו תוכנית ואינו קובץ CAD מוכן לעבודה. כדי להפוך אותו למסמך שאפשר לשרטט עליו, למסור לקבלן או להגיש, נדרש תהליך עיבוד מסודר. זה בדיוק מה שנפרק כאן.</p>
+
+        <h2>שלב א': רישום וניקוי הסריקה</h2>
+        <p>סריקה של מבנה שלם מורכבת ממעברים רבים שנאספים תוך כדי הליכה רציפה בחלל. השלב הראשון בעיבוד הוא רישום (registration) - איחוד כל המעברים למערכת קואורדינטות אחת ומדויקת, כך שכל הנקודות יושבות במקום הנכון זו ביחס לזו.</p>
+        <p>לאחר הרישום מגיע הניקוי: הסרת רעשים, השתקפויות, אנשים שחלפו בזמן הסריקה ואובייקטים זמניים שאינם חלק מהמבנה. התוצאה היא ענן נקודות נקי, צפוף ואמין - הבסיס שממנו נגזרת כל מידה בהמשך.</p>
+
+        <div class="keyfacts">
+          <div class="keyfacts__t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>הנתונים שמאחורי התוצר</div>
+          <div class="keyfacts__grid">
+            <div class="keyfacts__item"><div class="n">±6<span class="u"> מ"מ</span></div><div class="l">דיוק המדידה</div></div>
+            <div class="keyfacts__item"><div class="n">2.4<span class="u">M</span></div><div class="l">קרני לייזר בשנייה</div></div>
+            <div class="keyfacts__item"><div class="n">5<span class="u"> ימים</span></div><div class="l">ימי עסקים למסירה</div></div>
+            <div class="keyfacts__item"><div class="n">DWG<span class="u">/DXF</span></div><div class="l">פורמט התוצר</div></div>
+          </div>
+        </div>
+
+        <h2>שלב ב': חיתוך מישורים והפקת תוכניות, חתכים וחזיתות</h2>
+        <p>מענן הנקודות המעובד אפשר להפיק כל מבט שצריך. תוכנית קומה נוצרת מחיתוך אופקי של המודל בגובה מקובל - למשל מטר מהרצפה - שחושף את חתך הקירות והפתחים. חתך אנכי חושף גבהים, מפלסים וירידות תקרה. חזית נגזרת מהמעטפת החיצונית של המבנה.</p>
+        <p>מכיוון שכל המבטים האלה נלקחים מאותו ענן נקודות מדויק, הם עקביים לחלוטין זה עם זה: התוכנית, החתך והחזית תמיד מסתדרים. אין פערים בין מסמכים שנמדדו בזמנים שונים, כי כולם נגזרים ממקור מדידה אחד.</p>
+
+        <figure class="figure">
+          <img src="assets/real/pointcloud-data.jpg" alt="עיבוד ענן נקודות תלת-מימדי כבסיס להפקת תוכנית דו-מימדית" loading="lazy">
+          <figcaption>ענן הנקודות הצפוף הוא המקור לכל חיתוך - כל קו בתוכנית נגזר מנתון מדידה אמיתי</figcaption>
+        </figure>
+
+        <h2>שלב ג': שרטוט קווי מסודר בשכבות ב-DWG</h2>
+        <p>החתכים שהופקו הם הבסיס לשרטוט הקווי הסופי. כאן נכנס השרטט: הוא מניח את הקווים על גבי ענן הנקודות ומתרגם את הגיאומטריה המדויקת לקווי CAD נקיים. העבודה מסודרת בשכבות (layers) - קירות, פתחים, מידות, ריהוט קבוע, חשמל ותשתית - כל אלמנט בשכבה שלו, לפי המוסכמות המקצועיות.</p>
+        <p>התוצאה היא קובץ DWG מסודר, קריא ומוכן לעריכה, בדיוק כמו שאתם רגילים לעבוד. אין צורך לנקות, לארגן מחדש או לפענח שרבוטים - פותחים את הקובץ וממשיכים משם.</p>
+
+        <div class="callout">
+          <span class="callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 4.4-3 7.5-7 10-4-2.5-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <div><b>מוכן לעבודה מיידית</b><p>הקובץ שאתם מקבלים מסודר בשכבות לפי המוסכמות המקצועיות - קירות, פתחים, מידות ותשתית, כל אחד בשכבה שלו. אין צורך לנקות או לארגן מחדש; פותחים ב-AutoCAD וממשיכים לעבוד.</p></div>
+        </div>
+
+        <div class="inline-cta">
+          <div><b>צריכים תוכנית DWG מדויקת של מבנה קיים?</b><span>ייעוץ טלפוני ראשוני חינם, ותשלום רק לאחר ההגעה לנכס.</span></div>
+          <a class="btn" href="contact.html">לקבלת הצעת מחיר</a>
+        </div>
+
+        <h2>למה זה מדויק יותר משרטוט מהשטח</h2>
+        <p>בשיטה הישנה, מודד מודד ידנית ורושם, ואחר כך מישהו משרטט מהרישום. בכל שלב יש מקום לטעות, וכל מידה שלא נמדדה בשטח - פשוט חסרה. בעבודה מענן נקודות, השרטוט מבוסס כולו על מדידה: אין ניחוש ואין השלמה מהזיכרון.</p>
+        <p>כל קו יושב על נתון אמיתי, וכל מידה שלא חשבתם עליה מראש עדיין נמצאת בענן וניתנת להפקה בדיעבד, בלי לחזור לשטח. הדיוק של הסריקה מגיע עד ±6 מ"מ, והוא נשמר לאורך כל שרשרת העיבוד - מהמדידה ועד הקו האחרון בתוכנית.</p>
+
+        <blockquote>תוכנית טובה היא בדיוק כמו המדידה שמאחוריה. כשהמקור הוא ענן נקודות מדויק, כל קו בתוכנית מבוסס על נתון אמיתי - לא על ניחוש.</blockquote>
+
+        <h2>הפורמטים שמקבלים</h2>
+        <p>היתרון הגדול בעבודה מענן נקודות הוא הגמישות. אותה סריקה יכולה להניב מגוון תוצרים, לפי הפורמט שבו אתם עובדים:</p>
+        <ul>
+          <li><strong>תוכניות AutoCAD (DWG/DXF)</strong> - תוכניות, חתכים וחזיתות מסודרים בשכבות ומוכנים לעריכה.</li>
+          <li><strong>מודל Revit / BIM</strong> - מודל תלת-מימדי חכם ברמת LOD 200-300, שבו קירות ופתחים הם אובייקטים אמיתיים ולא קווים.</li>
+          <li><strong>מודל SketchUp</strong> - מודל נפחי לבחינת חלופות תכנון ולהמחשת החלל.</li>
+          <li><strong>ענן נקודות (E57 / RCP / LAS)</strong> - הסריקה הגולמית עצמה, לשילוב בכל תוכנת תכנון.</li>
+        </ul>
+        <p>לרוב, אנשי מקצוע מבקשים תוכנית DWG כתוצר עיקרי, ולעיתים מוסיפים לצידה מודל תלת-מימד או את ענן הנקודות עצמו. אתם בוחרים את הפורמט, ואנחנו מוסרים אותו נקי ומסודר תוך 5 ימי עסקים. להרחבה על ה-דאטה שממנה הכל מתחיל, ראו את המאמר על <a href="post-point-cloud-explained.html">ענן נקודות</a>.</p>
+      </div>
+
+      <!-- Tags -->
+      <div class="post-tags">
+        <span class="tag">תוכנית 2D</span>
+        <span class="tag">DWG</span>
+        <span class="tag">AutoCAD</span>
+        <span class="tag">ענן נקודות</span>
+        <span class="tag">סריקת לייזר</span>
+        <span class="tag">תוכנית אדריכלית</span>
+      </div>
+
+      <!-- Author -->
+      <div class="author-box">
+        <img src="assets/real/oded-portrait.webp" alt="עודד מקובקי">
+        <div>
+          <div class="role">מודד מוסמך · מייסד מקובקי</div>
+          <b>עודד מקובקי</b>
+          <p>מתמחה במדידה אדריכלית וסריקה תלת-מימדית בטכנולוגיית לייזר, עם למעלה מעשור של ניסיון בשירות אדריכלים, מעצבי פנים ויזמים בפריסה ארצית.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section section--soft">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">שאלות נפוצות</span>
+      <h2>שאלות נפוצות על המרת סריקה לתוכנית 2D</h2>
+    </div>
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q">מה מקבלים בסוף - קובץ DWG ערוך?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">כן. התוצר הוא קובץ <b>DWG/DXF</b> מסודר בשכבות, קריא וניתן לעריכה מלאה ב-AutoCAD. הקווים מבוססים על ענן הנקודות המדויק, כך שכל מידה בתוכנית אמינה ומוכנה לעבודה מיידית.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">האם אפשר לקבל גם מודל תלת-מימד?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">בהחלט. מאותה סריקה אפשר להפיק גם מודל <b>Revit / BIM</b> ברמת LOD 200-300 או מודל <b>SketchUp</b>, בנוסף לתוכנית הדו-מימדית. אתם בוחרים את הפורמטים שמתאימים לעבודה שלכם.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">כמה זמן לוקח העיבוד?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">הסריקה בשטח מהירה מאוד - כ-<b>120 מ"ר נסרקים בדקות</b> - ואת התוצרים המעובדים מוסרים תוך <b>5 ימי עסקים</b>, כולל התוכנית הקווית והסיור הווירטואלי.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ RELATED ============================ -->
+<section class="section related">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">להמשך קריאה</span>
+      <h2>מאמרים נוספים בנושא מדידות</h2>
+    </div>
+    <div class="post-grid">
+      <article class="post-card">
+        <a class="post-card__media" href="post-point-cloud-explained.html"><img src="assets/real/pointcloud-1.jpg" alt="ענן נקודות" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta">7 דק' קריאה</div>
+          <h3><a href="post-point-cloud-explained.html">ענן נקודות: מה זה ואיך הוא משנה את עולם המדידות</a></h3>
+          <p>מיליוני נקודות מדידה תלת-מימדיות שמרכיבות עותק דיגיטלי מדויק של המציאות - כל מה שצריך לדעת על הטכנולוגיה.</p>
+          <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+      <article class="post-card">
+        <a class="post-card__media" href="post-scan-to-revit-workflow.html"><img src="assets/real/oded/pointcloud-cathedral-stage.jpg" alt="מהסריקה ל-Revit" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta">6 דק' קריאה</div>
+          <h3><a href="post-scan-to-revit-workflow.html">מהסריקה ל-Revit: תהליך העבודה מול מודדים ומתכננים</a></h3>
+          <p>המסע מענן נקודות גולמי ועד מודל Revit חכם שאפשר להתחיל בו לתכנן - תהליך ה-Scan-to-BIM.</p>
+          <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+      <article class="post-card">
+        <a class="post-card__media" href="post-architectural-measurement-guide.html"><img src="assets/real/interior-measure.jpg" alt="מדידה אדריכלית" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta">7 דק' קריאה</div>
+          <h3><a href="post-architectural-measurement-guide.html">מדידה אדריכלית מדויקת: המדריך המלא לתיעוד מצב קיים</a></h3>
+          <p>מה כוללת מדידת מצב קיים, למה מדידה ידנית לא מספיקה ואילו תוצרים מקבלים בסוף.</p>
+          <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA BAND ============================ -->
+<section class="section cta-band">
+  <div class="container">
+    <div class="cta-band__box">
+      <h2>צריכים תוכנית DWG מדויקת? התחילו מסריקה</h2>
+      <p>ספרו לנו על הפרויקט ונחזור אליכם עם הצעה מותאמת. ייעוץ טלפוני ראשוני חינם, ותשלום רק לאחר ההגעה לנכס.</p>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--wa" href="https://wa.me/972543040804"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/makovki.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "מתלת-מימד לתוכנית 2D: איך הופכים סריקה למסמך עבודה",
+      "description": "איך הופכים סריקת לייזר תלת-מימדית לתוכנית דו-מימדית מדויקת ב-AutoCAD. תהליך העבודה מענן נקודות ועד תוכנית קווית מסודרת בשכבות.",
+      "image": "https://makovki.com/assets/real/gramushka-2d.png",
+      "datePublished": "2026-06-24",
+      "dateModified": "2026-06-24",
+      "author": { "@type": "Person", "name": "עודד מקובקי" },
+      "publisher": { "@type": "Organization", "name": "מקובקי - מדידות וסריקה תלת-מימדית", "logo": { "@type": "ImageObject", "url": "https://makovki.com/assets/real/logo-main.png" } },
+      "mainEntityOfPage": "https://makovki.com/post-scan-to-2d-plan.html"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
+        { "@type": "ListItem", "position": 2, "name": "מידע מקצועי", "item": "https://makovki.com/professional-info.html" },
+        { "@type": "ListItem", "position": 3, "name": "מתלת-מימד לתוכנית 2D" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "מה מקבלים בסוף - קובץ DWG ערוך?", "acceptedAnswer": { "@type": "Answer", "text": "כן. התוצר הוא קובץ DWG/DXF מסודר בשכבות, קריא וניתן לעריכה מלאה ב-AutoCAD. הקווים מבוססים על ענן הנקודות המדויק, כך שכל מידה בתוכנית אמינה ומוכנה לעבודה מיידית." } },
+        { "@type": "Question", "name": "האם אפשר לקבל גם מודל תלת-מימד?", "acceptedAnswer": { "@type": "Answer", "text": "בהחלט. מאותה סריקה אפשר להפיק גם מודל Revit / BIM ברמת LOD 200-300 או מודל SketchUp, בנוסף לתוכנית הדו-מימדית. אתם בוחרים את הפורמטים שמתאימים לעבודה שלכם." } },
+        { "@type": "Question", "name": "כמה זמן לוקח העיבוד?", "acceptedAnswer": { "@type": "Answer", "text": "הסריקה בשטח מהירה מאוד - כ-120 מ\"ר נסרקים בדקות - ואת התוצרים המעובדים מוסרים תוך 5 ימי עסקים, כולל התוכנית הקווית והסיור הווירטואלי." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

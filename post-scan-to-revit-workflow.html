@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מהסריקה ל-Revit: תהליך העבודה מול מודדים ומתכננים (Scan-to-BIM) | מקובקי</title>
+<meta name="description" content="איך הופכים ענן נקודות למודל BIM עובד ב-Revit. תהליך העבודה של Scan-to-BIM ושיתוף הפעולה בין הסורק, המודד והמתכנן - עד קובץ מוכן לתכנון.">
+<link rel="canonical" href="post-scan-to-revit-workflow.html">
+<link rel="icon" href="assets/real/logo-main.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="מהסריקה ל-Revit: תהליך העבודה מול מודדים ומתכננים">
+<meta property="og:description" content="כך הופכים ענן נקודות למודל BIM עובד. מדריך לשיתוף פעולה חלק בין הסורק, המודד והמתכנן - עד קובץ מוכן לעבודה.">
+<meta property="og:image" content="assets/real/oded/pointcloud-cathedral-stage.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/makovki.css">
+</head>
+<body>
+
+<div data-include="header"></div>
+
+<section class="page-hero post-hero">
+  <div class="hero__grid"></div>
+  <div class="container">
+    <div class="hero__inner">
+      <div class="crumbs"><a href="index.html">בית</a><span>›</span><a href="professional-info.html">מידע מקצועי</a><span>›</span>מהסריקה ל-Revit</div>
+      <span class="post-cat">תשתיות</span>
+      <h1>מהסריקה ל-Revit: תהליך העבודה מול מודדים ומתכננים</h1>
+      <div class="post-metaline">
+        <span class="post-author"><img src="assets/real/oded-portrait.webp" alt="עודד מקובקי">עודד מקובקי</span>
+        <span class="dot"></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>6 דק' קריאה</span>
+        <span class="dot"></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>יולי 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<article class="article">
+  <div class="container">
+    <div class="article__wrap">
+
+      <p class="article__lead">המונח Scan-to-BIM מתאר את המסע מענן נקודות גולמי ועד מודל Revit חכם שאפשר להתחיל בו לתכנן. במקום לשרטט מאפס, מקבלים נקודת פתיחה מדויקת. נסביר איך התהליך עובד, מהן רמות ה-LOD, ומי מעורב לאורך הדרך.</p>
+
+      <figure class="figure">
+        <img src="assets/real/oded/pointcloud-cathedral-stage.jpg" alt="ענן נקודות תלת-מימדי כבסיס למודל BIM ב-Revit" loading="lazy">
+        <figcaption>ענן הנקודות הוא נקודת הפתיחה - ממנו בונים מודל BIM חכם ב-Revit</figcaption>
+      </figure>
+
+      <div class="prose">
+        <h2>מה זה Scan-to-BIM</h2>
+        <p>Scan-to-BIM הוא התהליך שבו סריקת לייזר תלת-מימדית הופכת למודל BIM (Building Information Modeling). במקום ענן נקודות "טיפש" - אוסף של מיליוני נקודות בלבד - מקבלים מודל שבו קירות, פתחים, עמודים ורכיבים הם <strong>אובייקטים חכמים</strong> עם משמעות ומידע. זהו הבסיס שממנו אדריכל או מהנדס יכולים להתחיל לתכנן מיד ב-Revit או ב-ArchiCAD.</p>
+
+        <h2>שלב 1 - סריקה וענן נקודות מדויק</h2>
+        <p>הכל מתחיל בשטח. הסורק יורה <strong>2,400,000 קרני לייזר בשנייה</strong> ולוכד את המבנה כולו בדיוק של עד <strong>±6 מ"מ</strong>. התוצאה היא ענן נקודות צפוף - עותק דיגיטלי מלא של המבנה הפיזי.</p>
+
+        <div class="keyfacts">
+          <div class="keyfacts__t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>הנתונים שמאחורי המודל</div>
+          <div class="keyfacts__grid">
+            <div class="keyfacts__item"><div class="n">±6<span class="u"> מ"מ</span></div><div class="l">דיוק הסריקה</div></div>
+            <div class="keyfacts__item"><div class="n">200-300</div><div class="l">רמת LOD</div></div>
+            <div class="keyfacts__item"><div class="n">2.4<span class="u">M</span></div><div class="l">קרני לייזר בשנייה</div></div>
+            <div class="keyfacts__item"><div class="n">5<span class="u"> ימים</span></div><div class="l">ימי עסקים למסירה</div></div>
+          </div>
+        </div>
+
+        <h2>שלב 2 - רישום, ניקוי ושיוך קואורדינטות</h2>
+        <p>הסריקות מחוברות לענן נקודות אחיד בתהליך רישום, מנוקות מרעשים, ומקבלות מערכת קואורדינטות עקבית. השלב הזה קריטי: מודל BIM טוב מתחיל מענן נקודות נקי ומדויק, שממוקם נכון במרחב.</p>
+
+        <figure class="figure">
+          <img src="assets/real/gramushka-2d.png" alt="תוכנית שהופקה מענן נקודות כבסיס למידול ב-Revit" loading="lazy">
+          <figcaption>מהענן הנקי מפיקים תוכניות מדויקות - בסיס נאמן למידול ב-Revit</figcaption>
+        </figure>
+
+        <h2>שלב 3 - מידול ב-Revit</h2>
+        <p>כעת מתחיל המידול עצמו. על גבי ענן הנקודות בונים את המבנה כאובייקטים אמיתיים: קירות עם עובי, פתחים במיקומם המדויק, עמודים, קורות ומפלסים. התוצאה היא מודל תלת-מימדי חכם שבו לכל רכיב יש משמעות - לא רק צורה, אלא גם מידע.</p>
+
+        <blockquote>אנחנו לא רק מודדים - אנחנו מספקים לכם מודל שאפשר להתחיל בו לתכנן, במקום לשרטט מאפס.</blockquote>
+
+        <h2>רמות LOD - מה מקבלים ולמה</h2>
+        <p>רמת הפירוט של המודל נמדדת ב-LOD (Level of Development). אנחנו מספקים מודל ברמת <strong>LOD 200-300</strong> בהתאם לצורך: רמה שבה הרכיבים מדויקים במיקום, בגודל ובכמות, ומספקים בסיס אמין להמשך התכנון. אין צורך ברמה גבוהה יותר מהמשימה - מתאימים את ה-LOD למטרה כדי לא לשלם על פירוט מיותר.</p>
+
+        <div class="callout">
+          <span class="callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 12l9-5M12 12v10M12 12L3 7"/></svg></span>
+          <div><b>נקודת פתיחה מושלמת</b><p>במקום להתחיל את המודל מאפס, המתכנן מקבל מבנה מדויק ומוכן ב-Revit - וחוסך שעות רבות של שרטוט ומדידה ידנית.</p></div>
+        </div>
+
+        <h2>שיתוף הפעולה בין המודד למתכנן</h2>
+        <p>המפתח לתוצר טוב הוא מסירה נקייה ומסודרת. אנחנו מתאמים מראש את הפורמט, מערכת הקואורדינטות ורמת ה-LOD מול המתכנן, כך שהמודל נפתח אצלו מוכן להמשך עבודה, בלי צורך בתיקונים והתאמות. כך הסורק, המודד והמתכנן עובדים ברצף אחד.</p>
+
+        <div class="inline-cta">
+          <div><b>צריכים מודל Revit מדויק להתחיל ממנו?</b><span>סריקה אחת שהופכת למודל BIM מוכן לתכנון, LOD 200-300.</span></div>
+          <a class="btn" href="contact.html">לקבלת הצעת מחיר</a>
+        </div>
+
+        <h2>סיכום התהליך</h2>
+        <p>מסריקת לייזר בשטח, דרך ענן נקודות מדויק, ועד מודל Revit חכם - זהו מסע ה-Scan-to-BIM. התוצאה היא לא עוד קובץ, אלא נקודת פתיחה שחוסכת זמן ומונעת טעויות. להבנת הבסיס, ראו <a href="post-point-cloud-explained.html">מהו ענן נקודות</a> ואיך <a href="post-scan-to-2d-plan.html">הופכים סריקה לתוכנית עבודה</a>.</p>
+      </div>
+
+      <div class="post-tags">
+        <span class="tag">Scan-to-BIM</span>
+        <span class="tag">Revit</span>
+        <span class="tag">BIM</span>
+        <span class="tag">ענן נקודות</span>
+        <span class="tag">סריקת לייזר</span>
+        <span class="tag">LOD</span>
+      </div>
+
+      <div class="author-box">
+        <img src="assets/real/oded-portrait.webp" alt="עודד מקובקי">
+        <div>
+          <div class="role">מודד מוסמך · מייסד מקובקי</div>
+          <b>עודד מקובקי</b>
+          <p>מתמחה במדידה אדריכלית וסריקה תלת-מימדית בטכנולוגיית לייזר, עם למעלה מעשור של ניסיון בשירות אדריכלים, מעצבי פנים ויזמים בפריסה ארצית.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<section class="section section--soft">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">שאלות נפוצות</span>
+      <h2>שאלות נפוצות על Scan-to-BIM</h2>
+    </div>
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q">מה זה LOD 200-300?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">LOD (Level of Development) הוא מדד לרמת הפירוט של מודל BIM. ברמת <b>200-300</b> הרכיבים מדויקים במיקום, בגודל ובכמות ומספקים בסיס אמין להמשך התכנון. מתאימים את הרמה לצורך כדי לא לשלם על פירוט מיותר.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">באילו תוכנות אפשר לפתוח את המודל?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">המודל מסופק ל-<b>Revit</b> ובפורמט <b>IFC</b> שנפתח גם ב-ArchiCAD ובתוכנות BIM אחרות. במקביל אפשר לקבל תוכניות DWG ל-AutoCAD ואת ענן הנקודות עצמו.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">כמה זמן לוקח התהליך?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">הסריקה בשטח נמשכת דקות. עיבוד ומידול תלויים בגודל ובמורכבות המבנה וברמת ה-LOD המבוקשת. תוצרים סטנדרטיים נמסרים תוך <b>5 ימי עסקים</b>, ומודלים מורכבים לפי תיאום.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section related">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">להמשך קריאה</span>
+      <h2>מאמרים נוספים</h2>
+    </div>
+    <div class="post-grid">
+      <article class="post-card">
+        <a class="post-card__media" href="post-point-cloud-explained.html"><img src="assets/real/pointcloud-1.jpg" alt="ענן נקודות" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta">7 דק' קריאה</div>
+          <h3><a href="post-point-cloud-explained.html">ענן נקודות: מה זה ואיך הוא משנה את עולם המדידות</a></h3>
+          <p>מיליוני נקודות מדידה שמרכיבות עותק דיגיטלי מדויק - הבסיס למודל ה-BIM.</p>
+          <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+      <article class="post-card">
+        <a class="post-card__media" href="post-scan-to-2d-plan.html"><img src="assets/real/gramushka-2d.png" alt="המרת סריקה לתוכנית" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta">6 דק' קריאה</div>
+          <h3><a href="post-scan-to-2d-plan.html">מתלת-מימד לתוכנית 2D: איך הופכים סריקה למסמך עבודה</a></h3>
+          <p>מענן הנקודות ועד תוכנית קווית מדויקת ב-CAD - תהליך העבודה המלא.</p>
+          <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+      <article class="post-card">
+        <a class="post-card__media" href="post-laser-scanning-how-it-works.html"><img src="assets/real/oded-with-device.png" alt="איך סריקת לייזר עובדת" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
+        <div class="post-card__body">
+          <div class="post-card__meta">7 דק' קריאה</div>
+          <h3><a href="post-laser-scanning-how-it-works.html">טכנולוגיית סריקת לייזר: איך זה עובד בשטח</a></h3>
+          <p>מהצבת הסורק ועד עיבוד ענן הנקודות - תהליך הסריקה שלב אחר שלב.</p>
+          <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-band">
+  <div class="container">
+    <div class="cta-band__box">
+      <h2>צריכים מודל Revit מדויק להתחיל ממנו?</h2>
+      <p>ספרו לנו על הפרויקט ונחזור אליכם עם הצעה מותאמת. ייעוץ טלפוני ראשוני חינם, ותשלום רק לאחר ההגעה לנכס.</p>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--wa" href="https://wa.me/972543040804"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/makovki.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "מהסריקה ל-Revit: תהליך העבודה מול מודדים ומתכננים",
+      "description": "איך הופכים ענן נקודות למודל BIM עובד ב-Revit. תהליך העבודה של Scan-to-BIM ושיתוף הפעולה בין הסורק, המודד והמתכנן.",
+      "image": "https://makovki.com/assets/real/oded/pointcloud-cathedral-stage.jpg",
+      "datePublished": "2026-05-29",
+      "dateModified": "2026-05-29",
+      "author": { "@type": "Person", "name": "עודד מקובקי" },
+      "publisher": { "@type": "Organization", "name": "מקובקי - מדידות וסריקה תלת-מימדית", "logo": { "@type": "ImageObject", "url": "https://makovki.com/assets/real/logo-main.png" } },
+      "mainEntityOfPage": "https://makovki.com/post-scan-to-revit-workflow.html"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
+        { "@type": "ListItem", "position": 2, "name": "מידע מקצועי", "item": "https://makovki.com/professional-info.html" },
+        { "@type": "ListItem", "position": 3, "name": "מהסריקה ל-Revit" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "מה זה LOD 200-300?", "acceptedAnswer": { "@type": "Answer", "text": "LOD הוא מדד לרמת הפירוט של מודל BIM. ברמת 200-300 הרכיבים מדויקים במיקום, בגודל ובכמות ומספקים בסיס אמין להמשך התכנון." } },
+        { "@type": "Question", "name": "באילו תוכנות אפשר לפתוח את המודל?", "acceptedAnswer": { "@type": "Answer", "text": "המודל מסופק ל-Revit ובפורמט IFC שנפתח גם ב-ArchiCAD ובתוכנות BIM אחרות, במקביל לתוכניות DWG ולענן הנקודות." } },
+        { "@type": "Question", "name": "כמה זמן לוקח התהליך?", "acceptedAnswer": { "@type": "Answer", "text": "הסריקה בשטח נמשכת דקות. עיבוד ומידול תלויים בגודל ובמורכבות. תוצרים סטנדרטיים נמסרים תוך 5 ימי עסקים." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
