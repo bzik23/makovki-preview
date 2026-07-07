@@ -3,81 +3,555 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>תיעוד תשתיות | סריקה תלת-מימדית בלייזר והמרה לדו-מימד | מקובקי</title>
-<meta name="description" content="תיעוד תשתיות מדויק בסריקת לייזר תלת-מימדית והמרה לדו-מימד. מיפוי מערכות, צנרת ומבנים תת-קרקעיים לתכנון, לתחזוקה ולמניעת נזקים. ליזמים, קבלנים וגופי תשתית.">
+<title>תיעוד תשתיות בסריקת לייזר תלת-מימד | סיור As-Built מדיד | מקובקי</title>
+<meta name="description" content="תיעוד תשתיות מדויק בסריקת לייזר תלת-מימד לפני חיפוי וגמר: צנרת, חשמל, מיזוג וברזל. סיור 360° מדיד, ענן נקודות, שרטוטי As-Built ל-DWG ודוח מצב. צפו בסיורים אמיתיים שסרקנו - חי בעמוד. ליזמים, קבלנים, מפקחים וגופי תשתית.">
+<link rel="canonical" href="infrastructure.html">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://my.matterport.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/makovki.css">
+<style>
+  /* ============ page-scoped: hero scrim + live tour theater ============ */
+  .hero--infra .hero__scrim{
+    background:
+      linear-gradient(to right, rgba(8,17,33,.34) 0%, rgba(8,17,33,.66) 44%, rgba(8,17,33,.90) 82%, var(--ink) 100%),
+      linear-gradient(to top, var(--ink) 3%, rgba(8,17,33,.14) 52%);
+  }
+  .hero--infra{ padding-bottom: clamp(150px, 19vw, 240px); }
+  @media (max-width: 860px){
+    .hero--infra{ padding-bottom: clamp(64px, 14vw, 120px); }
+    .hero--infra .hero__scrim{
+      background:
+        linear-gradient(to right, rgba(8,17,33,.62) 0%, rgba(8,17,33,.82) 55%, var(--ink) 100%),
+        linear-gradient(to top, var(--ink) 4%, rgba(8,17,33,.36) 62%);
+    }
+  }
+
+  /* ---- Showcase section ---- */
+  .tour-showcase{
+    position: relative; z-index: 5;
+    padding-top: 0;
+    background: radial-gradient(130% 100% at 50% 0%, #f1eefc 0%, var(--bg) 58%);
+  }
+  .tour-stage{
+    max-width: 1080px; margin-inline: auto;
+    background: radial-gradient(120% 150% at 15% 0%, #2c2160 0%, var(--ink) 56%);
+    border: 1px solid rgba(124,92,255,.28);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    box-shadow: var(--shadow-lg), 0 0 0 1px rgba(124,92,255,.10);
+  }
+  @media (min-width: 861px){
+    .tour-stage{ margin-top: clamp(-210px, -14vw, -120px); }
+  }
+  .tour-stage__bar{
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    padding: 6px 8px 14px; color:#fff;
+  }
+  .tour-live{
+    display:inline-flex; align-items:center; gap:8px; white-space:nowrap;
+    font-weight:800; font-size:.8rem; letter-spacing:.03em;
+    background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16);
+    padding:7px 13px; border-radius:999px;
+  }
+  .tour-live i{ width:9px;height:9px;border-radius:50%; background:#ff5470; animation: tourpulse 1.8s infinite; }
+  @keyframes tourpulse{
+    0%{box-shadow:0 0 0 0 rgba(255,84,112,.55)} 70%{box-shadow:0 0 0 9px rgba(255,84,112,0)} 100%{box-shadow:0 0 0 0 rgba(255,84,112,0)}
+  }
+  .tour-meta{ display:flex; flex-direction:column; line-height:1.28; min-width:0; }
+  .tour-meta b{ color:#fff; font-size:1.02rem; font-weight:800; }
+  .tour-meta span{ color:#aebfd2; font-size:.85rem; }
+  .tour-open{
+    margin-inline-start:auto; display:inline-flex; align-items:center; gap:7px; white-space:nowrap;
+    color:#cfe9ff; font-weight:700; font-size:.86rem;
+    border:1px solid rgba(255,255,255,.16); padding:8px 13px; border-radius:999px;
+    transition: color .2s, border-color .2s, background .2s;
+  }
+  .tour-open:hover{ color:#fff; border-color: rgba(124,92,255,.6); background: rgba(124,92,255,.14); }
+  .tour-open svg{ width:15px;height:15px; }
+  .tour-frame{
+    position:relative; aspect-ratio:16/9; border-radius:16px; overflow:hidden; background:#05070f;
+  }
+  .tour-frame::after{
+    content:""; position:absolute; inset:0; border-radius:16px; pointer-events:none;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.07);
+  }
+  .tour-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+  .tour-hints{
+    display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:center;
+    padding:14px 8px 4px; color:#9fb2c8; font-size:.82rem; font-weight:600;
+  }
+  .tour-hints span{ display:inline-flex; align-items:center; gap:7px; }
+  .tour-hints svg{ width:15px;height:15px; stroke:var(--cyan); }
+
+  /* ---- project selector / gallery ---- */
+  .tour-pick{ text-align:center; max-width:1080px; margin: 30px auto 18px; }
+  .tour-pick span{ color:var(--violet-deep); font-weight:800; letter-spacing:.02em; font-size:.9rem; text-transform:uppercase; }
+  .tour-pick p{ color:var(--text-2); margin-top:6px; }
+  .tour-tabs{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;
+    max-width:1080px; margin-inline:auto;
+  }
+  .tour-tab{
+    position:relative; text-align:right; overflow:hidden; cursor:pointer;
+    background:var(--white); border:1.5px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s;
+  }
+  .tour-tab:hover{ transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .tour-tab.is-active{ border-color: var(--violet); box-shadow: var(--shadow-violet); }
+  .tour-tab__img{ position:relative; aspect-ratio:16/10; overflow:hidden; }
+  .tour-tab__img img{ width:100%; height:100%; object-fit:cover; display:block; transition: transform .5s var(--ease); }
+  .tour-tab:hover .tour-tab__img img{ transform: scale(1.06); }
+  .tour-tab__ov{
+    position:absolute; inset:0; display:grid; place-items:center;
+    background: linear-gradient(180deg, rgba(11,16,36,0) 34%, rgba(11,16,36,.5) 100%);
+  }
+  .tour-tab__ov b{
+    width:48px; height:48px; border-radius:50%; display:grid; place-items:center;
+    background: rgba(255,255,255,.94); box-shadow: var(--shadow);
+    transition: background .25s, transform .25s;
+  }
+  .tour-tab:hover .tour-tab__ov b{ transform: scale(1.08); }
+  .tour-tab.is-active .tour-tab__ov b{ background: var(--violet); }
+  .tour-tab__ov svg{ width:18px; height:18px; fill:var(--violet); margin-inline-start:3px; }
+  .tour-tab.is-active .tour-tab__ov svg{ fill:#fff; }
+  .tour-tab__now{
+    position:absolute; top:10px; inset-inline-end:10px; z-index:2; display:none;
+    align-items:center; gap:6px; font-size:.72rem; font-weight:800; letter-spacing:.03em;
+    color:#fff; background: rgba(124,92,255,.92); padding:5px 10px; border-radius:999px;
+  }
+  .tour-tab__now i{ width:7px;height:7px;border-radius:50%; background:#fff; animation: tourpulse 1.8s infinite; }
+  .tour-tab.is-active .tour-tab__now{ display:inline-flex; }
+  .tour-tab__cap{ padding:12px 15px 15px; }
+  .tour-tab__cap b{ display:block; color:var(--ink); font-weight:800; font-size:1.02rem; }
+  .tour-tab__cap span{ display:block; color:var(--text-2); font-size:.85rem; margin-top:3px; }
+  @media (max-width: 720px){
+    .tour-tabs{ grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
+
 <div data-include="header"></div>
 
-<section class="page-hero">
-  <canvas class="hero__canvas"></canvas>
+<!-- ============================ HERO ============================ -->
+<section class="hero hero--real hero--infra">
+  <div class="hero__media"><img src="assets/real/pointcloud-industry.jpg" alt="ענן נקודות תלת-מימדי של תשתיות ומערכות מבנה - תיעוד בסריקת לייזר, מקובקי"></div>
+  <div class="hero__scrim"></div>
+  <div class="hero__scan"></div>
   <div class="hero__grid"></div>
+  <canvas class="hero__canvas"></canvas>
   <div class="container">
-    <div class="crumbs"><a href="index.html">בית</a><span>›</span>שירותים<span>›</span>תיעוד תשתיות</div>
-    <h1>תיעוד תשתיות - לפני שהקירות נסגרים</h1>
-    <p>סורקים את התשתיות באמצע הבנייה - צנרת, חשמל, מיזוג ומערכות - עוד לפני חיפוי וגמר. תיעוד תלת-מימדי מדויק שחוסך פתיחות מיותרות בעתיד ומונע טעויות יקרות.</p>
-    <div class="hero__actions" style="margin-top:28px;">
-      <a class="btn btn--primary" href="contact.html">לקבלת הצעת מחיר</a>
-      <a class="btn btn--on-dark" href="https://wa.me/972543040804">דברו איתנו בוואטסאפ</a>
+    <div class="hero__inner">
+      <div class="crumbs"><a href="index.html">בית</a><span>›</span><a href="index.html#services">שירותים</a><span>›</span>תיעוד תשתיות</div>
+      <div class="hero__eyebrow-line">תיעוד תשתיות · סריקת לייזר באמצע הבנייה, טרום חיפוי</div>
+      <h1>רואים כל צינור, כבל וברזל - <span class="hl">עוד לפני שהקירות נסגרים</span></h1>
+      <p class="hero__sub">סורקים את התשתיות בשלב השלד - צנרת, חשמל, מיזוג וברזל - ומקבלים תיעוד תלת-מימדי מדויק שאפשר לטייל ולמדוד בתוכו. פחות פתיחות קירות בעתיד, פחות מחלוקות מול קבלני משנה, ואפס ניחושים בתחזוקה.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#live-tour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8 5v14l11-7z"/></svg>צפו בסיור אמיתי עכשיו</a>
+        <a class="btn btn--on-dark" href="contact.html">לקבלת הצעת מחיר</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><div class="num">±6<span class="u"> מ"מ</span></div><div class="lbl">דיוק התיעוד</div></div>
+        <div class="hero__stat"><div class="num">360°</div><div class="lbl">סיור הניתן למדידה</div></div>
+        <div class="hero__stat"><div class="num">As&#8209;Built</div><div class="lbl">שרטוטי DWG מדויקים</div></div>
+        <div class="hero__stat"><div class="num">24/7</div><div class="lbl">זמין מכל מסך</div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<!-- ============================ LIVE TOUR THEATER ============================ -->
+<section class="section tour-showcase" id="live-tour">
   <div class="container">
-    <div class="split">
-      <div class="reveal">
-        <span class="eyebrow">מה זה כולל</span>
-        <h2>כל מה שמתחת ומעל הקרקע - ממופה בדיוק</h2>
-        <p class="lead">תשתיות הן המקום שבו טעות מדידה הכי יקרה. הסריקה התלת-מימדית לוכדת את המצב האמיתי בשטח ומספקת בסיס נתונים אמין לכל החלטה הנדסית.</p>
-        <ul class="checks" style="margin-top:24px;">
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>מיפוי מערכות וצנרת</b><span> תיעוד מדויק של המצב הקיים.</span></div></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>המרה לדו-מימד</b><span> שרטוטים מוכנים לתכנון ולרישוי.</span></div></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>מניעת התנגשויות</b><span> זיהוי מוקדם של חפיפות וקונפליקטים.</span></div></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>בסיס לתחזוקה</b><span> תיעוד דיגיטלי זמין לאורך חיי המבנה.</span></div></li>
-        </ul>
-      </div>
-      <div class="reveal">
-        <div class="feature-media" style="aspect-ratio:4/3;">
-          <img src="assets/real/pointcloud-industry.jpg" alt="ענן נקודות של תשתיות ומערכות - תיעוד תלת-מימדי של מקובקי">
-          <span class="feature-media__tag">ענן נקודות של תשתיות</span>
+
+    <div class="tour-stage reveal">
+      <div class="tour-stage__bar">
+        <span class="tour-live"><i></i>סיור אמיתי · חי</span>
+        <div class="tour-meta">
+          <b data-tour-name>אלנקווה 5, אשקלון</b>
+          <span data-tour-desc>תיעוד תשתיות בשלב שלד - צנרת, חשמל ומרישי בטון לפני חיפוי</span>
         </div>
+        <a class="tour-open" data-tour-open href="https://my.matterport.com/show/?m=jpisVY1SCN6" target="_blank" rel="noopener">
+          פתחו במסך מלא
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M21 3l-9 9M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg>
+        </a>
+      </div>
+
+      <div class="tour-frame">
+        <iframe data-tour-frame
+          src="https://my.matterport.com/show/?m=jpisVY1SCN6&play=1&qs=1&brand=0&hr=0"
+          title="סיור וירטואלי מדיד - תיעוד תשתיות, אלנקווה 5 אשקלון | מקובקי"
+          allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay"
+          allowfullscreen loading="eager"></iframe>
+      </div>
+
+      <div class="tour-hints">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 3v4M21 12h-4"/><path d="M12 3l3 3-3 3"/></svg>גררו לסובב 360°</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>גלגלת לזום פנימה</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l6-6 12 12-6 6z"/><path d="M8 8l1.5 1.5M11 5l2 2M14 8l1.5 1.5"/></svg>מדדו מרחקים בתוך הסיור</span>
+      </div>
+    </div>
+
+    <div class="tour-pick reveal">
+      <span>שלושה פרויקטים אמיתיים שתיעדנו</span>
+      <p>בחרו אתר וצפו בתיעוד התשתיות המלא - הכל נסרק בפועל על ידי מקובקי שירותי מדידות</p>
+    </div>
+
+    <div class="tour-tabs">
+      <button class="tour-tab is-active" data-tour="alnekave" type="button" aria-label="סיור אלנקווה 5 אשקלון">
+        <span class="tour-tab__now"><i></i>מוצג עכשיו</span>
+        <span class="tour-tab__img">
+          <img src="assets/real/infra-tour-alnekave.jpg" alt="תיעוד תשתיות באלנקווה 5 אשקלון - צנרת ושרוולי חשמל חשופים על רצפת בטון לפני חיפוי">
+          <span class="tour-tab__ov"><b><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></b></span>
+        </span>
+        <span class="tour-tab__cap"><b>אלנקווה 5, אשקלון</b><span>צנרת, חשמל ומרישי בטון - שלב שלד</span></span>
+      </button>
+
+      <button class="tour-tab" data-tour="shabtai" type="button" aria-label="סיור שבתאי 27 אירוס">
+        <span class="tour-tab__now"><i></i>מוצג עכשיו</span>
+        <span class="tour-tab__img">
+          <img src="assets/real/infra-tour-shabtai.jpg" alt="תיעוד תשתיות בשבתאי 27 אירוס - שרוולי חשמל, ברזל וצנרת על תקרת בטון לפני יציקה">
+          <span class="tour-tab__ov"><b><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></b></span>
+        </span>
+        <span class="tour-tab__cap"><b>שבתאי 27, אירוס</b><span>גג ותקרה - שרוולים, ברזל וצנרת</span></span>
+      </button>
+
+      <button class="tour-tab" data-tour="talem" type="button" aria-label="סיור תלם 89 גיאה">
+        <span class="tour-tab__now"><i></i>מוצג עכשיו</span>
+        <span class="tour-tab__img">
+          <img src="assets/real/infra-tour-talem.jpg" alt="תיעוד תשתיות בתלם 89 גיאה - מהלכי חשמל ותקשורת חשופים על קירות בטון בחלל פנימי">
+          <span class="tour-tab__ov"><b><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></b></span>
+        </span>
+        <span class="tour-tab__cap"><b>תלם 89, גיאה</b><span>חלל פנימי - מהלכי חשמל ותקשורת</span></span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ WHAT IT IS (feature-row) ============================ -->
+<section class="section" id="what">
+  <div class="container">
+    <div class="feature-row">
+      <div class="feature-media reveal">
+        <img src="assets/real/infra-tour-shabtai.jpg" alt="תיעוד תשתיות בסריקת לייזר - שרוולי חשמל, ברזל וצנרת חשופים על תקרה לפני יציקה, מקובקי">
+        <span class="feature-media__tag">תיעוד מצב אמיתי, אחד-לאחד</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">מהו תיעוד תשתיות</span>
+        <h2>המקום שבו טעות מדידה הכי יקרה - ממופה בדיוק</h2>
+        <p>ברגע שהקירות נסגרים, המערכות נעלמות מהעין - וכל בירור עתידי דורש פתיחה, הריסה ותיקון. תיעוד תשתיות בסריקת לייזר לוכד את כל המערכות בזמן שהן עדיין גלויות, והופך אותן לעותק דיגיטלי מדויק שאפשר לחזור אליו בכל רגע, בלי לגעת בקיר אחד.</p>
+        <ul class="includes">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>צנרת מים, ביוב וניקוז</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>חשמל, תקשורת ומהלכים</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מיזוג אוויר וספרינקלרים</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>ברזל, זיון ומרישי בטון</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מיקום נקודות ומעברי קירות</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>גבהים, מפלסים ושיפועים</li>
+        </ul>
+        <div class="pill-list">
+          <span class="pill">יזמים וקבלנים</span><span class="pill">מפקחי בנייה</span><span class="pill">גופי תשתית</span>
+        </div>
+        <a class="btn btn--primary" href="contact.html">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--soft">
+<!-- ============================ WHY (benefit cards) ============================ -->
+<section class="section section--soft" id="why">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">למה לתעד לפני חיפוי</span>
+      <h2>סריקה אחת היום - שחוסכת הריסות מחר</h2>
+      <p class="lead">חלון ההזדמנות לתיעוד המערכות נסגר יחד עם הקירות. מי שמתעד בזמן, מרוויח שקט לאורך כל חיי המבנה.</p>
+    </div>
+    <div class="grid grid-4">
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M6 21V8l6-5 6 5v13"/><path d="M9 21v-6h6v6"/><path d="m2 12 2-2m16 2-2-2"/></svg></span>
+        <h3>אפס פתיחות מיותרות</h3>
+        <p>יודעים בדיוק היכן עובר כל צינור וכבל - במקום להרוס קיר כדי לבדוק. תיקון ושדרוג בלי ניחושים.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span>
+        <h3>מיקום מדויק לכל מערכת</h3>
+        <p>דיוק של עד ±6 מ"מ למיקום צנרת, מהלכי חשמל ונקודות - בסיס אמין לתכנון, לתיאום ולתחזוקה.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg></span>
+        <h3>מניעת התנגשויות</h3>
+        <p>זיהוי מוקדם של חפיפות בין מערכות - חשמל, מיזוג וצנרת - עוד לפני שהן הופכות לבעיה בשטח.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 4v5c0 4.4-3 7.5-7 9-4-1.5-7-4.6-7-9V7z"/></svg></span>
+        <h3>הוכחה מתועדת</h3>
+        <p>תיעוד מצב אובייקטיבי ומתוארך מול קבלני משנה, מפקחים ורשויות - מגן עליכם במחלוקות.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MEASURABLE TOUR (feature-row flip) ============================ -->
+<section class="section" id="measurable">
+  <div class="container">
+    <div class="feature-row feature-row--flip">
+      <div class="feature-media reveal">
+        <img src="assets/real/infra-tour-talem.jpg" alt="מדידה בתוך סיור וירטואלי של תשתיות - מהלכי חשמל ותקשורת חשופים, מקובקי">
+        <span class="feature-media__tag">מודדים ישירות מהמסך</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">הערך המוסף של מקובקי</span>
+        <h2>לא רק צילום - סיור שאפשר למדוד בתוכו</h2>
+        <p>כמו בסיורים שלמעלה, כל אתר שאנחנו סורקים הופך לסיור 360° חי שבו מטיילים בתשתיות מרחוק. שוכחים היכן עבר צינור? פותחים את הסיור, מודדים מרחק, גובה או מרווח ישירות מהמסך - ומשתפים בקישור אחד עם המתכנן, הקבלן והמפקח, 24/7 מכל מכשיר.</p>
+        <ul class="includes">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מדידת מרחק, גובה ומרווח</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>זמין 24/7 מכל מסך</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>שיתוף בקישור אחד</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>חוסך חזרות לשטח</li>
+        </ul>
+        <a class="card__link" href="virtual-tour.html">עוד על הסיור הווירטואלי <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DELIVERABLES ============================ -->
+<section class="section section--ink" id="deliverables">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">התוצרים</span>
+      <h2>מה מקבלים מתיעוד אחד</h2>
+      <p class="lead">מסירה מסודרת ומוכנה לעבודה - אתם בוחרים את התוצר, אנחנו דואגים לדיוק ולסדר.</p>
+    </div>
+    <div class="deliverables">
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+        <span class="abbr">VIRTUAL TOUR</span>
+        <h3>סיור 360° מדיד</h3>
+        <p>סיור וירטואלי הניתן למדידה של כל המערכות, זמין 24/7 בקישור - בדיוק כמו הסיורים בעמוד זה.</p>
+        <span class="deliv__fmt">קישור · הטמעה</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="7" r="1.4"/><circle cx="12" cy="5" r="1.4"/><circle cx="18" cy="8" r="1.4"/><circle cx="8" cy="14" r="1.4"/><circle cx="15" cy="13" r="1.4"/><circle cx="11" cy="19" r="1.4"/><circle cx="19" cy="17" r="1.4"/></svg></span>
+        <span class="abbr">POINT CLOUD</span>
+        <h3>ענן נקודות</h3>
+        <p>הסריקה הגולמית המלאה - מיליוני נקודות תלת-מימד של התשתיות, לשילוב בכל תוכנת תכנון.</p>
+        <span class="deliv__fmt">E57 · RCP · LAS</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></span>
+        <span class="abbr">AS-BUILT · DWG</span>
+        <h3>שרטוטי מצב קיים</h3>
+        <p>המרה לדו-מימד - תוכניות As-Built מסודרות בשכבות של המערכות, מוכנות לתכנון ולרישוי.</p>
+        <span class="deliv__fmt">‎.DWG · .DXF</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 12l9-5M12 12v10M12 12L3 7"/></svg></span>
+        <span class="abbr">SCAN-TO-BIM</span>
+        <h3>מודל BIM של המערכות</h3>
+        <p>מידול תלת-מימדי של התשתיות כאובייקטים חכמים - לתיאום מערכות (MEP) ולתכנון מדויק.</p>
+        <span class="deliv__fmt">‎.RVT · IFC</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+        <span class="abbr">REPORT</span>
+        <h3>דוח תיעוד מצב</h3>
+        <p>דוח מתוארך עם צילומים וצילומי מסך מהסריקה - תיעוד אובייקטיבי לשלב שהמערכות היו גלויות.</p>
+        <span class="deliv__fmt">PDF · תמונות</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l6-6 12 12-6 6z"/><path d="M8 8l1.5 1.5M11 5l2 2M14 8l1.5 1.5"/></svg></span>
+        <span class="abbr">MEASURE</span>
+        <h3>מדידות ומיקומים</h3>
+        <p>טבלת מדידות ומיקומי נקודות מפתח - מרחקים, גבהים ומרווחים, לתיאום ולביקורת בשטח.</p>
+        <span class="deliv__fmt">PDF · Excel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHO IT'S FOR ============================ -->
+<section class="section" id="audience">
   <div class="container">
     <div class="section-head center"><span class="eyebrow">למי זה מתאים</span><h2>למי שאי-דיוק עולה לו ביוקר</h2></div>
     <div class="grid grid-4">
-      <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><h3>מפקחי בנייה</h3><p>תיעוד מצב אמיתי של המערכות בכל שלב בפיקוח.</p></article>
-      <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20V8l5-3 5 3v12"/></svg></span><h3>קבלנים ויזמים</h3><p>תיעוד אתר מדויק שמונע הפתעות והוצאות בלתי צפויות.</p></article>
-      <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span><h3>חשמל · אינסטלציה · מיזוג</h3><p>מיפוי צנרת ומערכות לפני שנסגרות מאחורי החיפוי.</p></article>
-      <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 7v11H3V10z"/></svg></span><h3>אדריכלים ומהנדסים</h3><p>נתוני מצב קיים אמינים לתכנון מדויק וללא ניחושים.</p></article>
+      <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><path d="M14 6a6 6 0 0 1 6 6v3"/></svg></span><h3>מפקחי בנייה</h3><p>תיעוד מצב אמיתי של המערכות בכל שלב - בסיס אובייקטיבי לפיקוח ולאישור שלבים.</p></article>
+      <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20V8l5-3 5 3v12"/></svg></span><h3>קבלנים ויזמים</h3><p>תיעוד אתר מדויק שמונע הפתעות, מחלוקות והוצאות בלתי צפויות בהמשך הפרויקט.</p></article>
+      <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span><h3>חשמל · אינסטלציה · מיזוג</h3><p>מיפוי צנרת, מהלכים ונקודות לפני שנסגרים מאחורי החיפוי - לתיאום ולתחזוקה עתידית.</p></article>
+      <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 7v11H3V10z"/></svg></span><h3>גופי תשתית ותחזוקה</h3><p>נתוני מצב קיים אמינים למאגר נכסים דיגיטלי - זמין לכל מי שמנהל, מתחזק או משדרג.</p></article>
     </div>
   </div>
 </section>
 
+<!-- ============================ PROCESS ============================ -->
+<section class="section section--soft" id="process">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">איך זה עובד</span>
+      <h2>מהשיחה הראשונה ועד התיעוד במשרד</h2>
+      <p class="lead">תהליך פשוט ושקוף, עם תזמון נכון לשלב הבנייה. הסריקה מהירה ולא עוצרת את העבודה באתר.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step__n">1</div>
+        <h4>תזמון לשלב הנכון</h4>
+        <p>מתאמים סריקה בדיוק בחלון שבו המערכות גלויות - אחרי גמר צנרת וחשמל, לפני חיפוי וגמר.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">2</div>
+        <h4>סריקה באתר</h4>
+        <p>סורק לייזר נייד לוכד את החלל כולו בהליכה רציפה - קומה בדקות, בלי לעצור את הפעילות באתר.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">3</div>
+        <h4>עיבוד ותוצרים</h4>
+        <p>רישום וניקוי ענן הנקודות והפקת התוצרים - סיור 360° מדיד, שרטוטי As-Built ודוח מצב.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">4</div>
+        <h4>מסירה ושיתוף</h4>
+        <p>מקבלים קישור לסיור וקבצים נקיים, מוכנים לעבודה - לשיתוף מיידי עם כל בעלי העניין.</p>
+      </div>
+      <div class="steps__flow" aria-hidden="true"><i class="steps__pulse"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">שאלות נפוצות</span>
+      <h2>כל מה שחשוב לדעת על תיעוד תשתיות</h2>
+    </div>
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q">מתי הכי נכון לסרוק את התשתיות?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">בדיוק בשלב שבו המערכות כבר הותקנו אך עדיין <b>גלויות לעין</b> - אחרי גמר צנרת, חשמל ומיזוג, ולפני חיפוי, גבס וגמר. זהו חלון ההזדמנות היחיד ללכוד את המצב האמיתי בלי הריסות. אפשר לסרוק גם קומה-קומה לאורך הבנייה.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">מה מקבלים מתיעוד תשתיות?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">סיור <b>360° הניתן למדידה</b> (כמו הסיורים בעמוד זה), ענן נקודות תלת-מימד, שרטוטי <b>As-Built ל-DWG</b> בשכבות, ואופציונלית מודל BIM של המערכות ודוח תיעוד מצב מתוארך. אתם בוחרים את התוצר לפי הצורך - תכנון, תיאום, תחזוקה או הוכחה מול קבלנים.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">אפשר באמת למדוד מיקום של צינור מתוך הסיור?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">כן. הסיור אינו סרטון אלא <b>מודל מדיד</b> - נכנסים לתוכו מכל מסך, מסמנים שתי נקודות ומקבלים מרחק, גובה או מרווח מדויק. כך אפשר לאתר בדיוק היכן עובר צינור או כבל מאחורי הקיר, גם חודשים אחרי שהקירות נסגרו.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">כמה זמן לוקחת הסריקה ומה רמת הדיוק?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">הסריקה מהירה מאוד - <b>קומה נסרקת תוך דקות</b> בהליכה רציפה, בלי חצובות ובלי לעצור את העבודה באתר. הדיוק מגיע עד <b>±6 מ"מ</b>, ולוכד כל צינור, כבל, מהלך ומריש בבת אחת, ללא נקודות עיוורות.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">למי מיועד תיעוד תשתיות?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">ליזמים וקבלנים שרוצים תיעוד מצב שמונע מחלוקות, למפקחי בנייה לאישור שלבים, לקבלני חשמל, אינסטלציה ומיזוג לתיאום מערכות, ולגופי תשתית ותחזוקה שמנהלים מאגר נכסים דיגיטלי לאורך חיי המבנה.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">האם צריך אינטרנט כדי לצפות בסיור?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">הסיור מתארח באונליין ונפתח ישירות מכל דפדפן, מחשב או טלפון - בלי להתקין דבר. מספיק לשלוח קישור אחד, וכל בעל עניין (מתכנן, קבלן, מפקח) נכנס לסיור ומודד בעצמו, 24/7.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA BAND ============================ -->
 <section class="section cta-band">
   <div class="container">
-    <div class="cta-band__box reveal">
-      <h2>צריכים תיעוד תשתיות אמין?</h2>
-      <p>ספרו לנו על הפרויקט ונבנה פתרון מדידה מתאים. ייעוץ ראשוני - חינם.</p>
+    <div class="cta-band__box cta-band__box--photo reveal">
+      <img class="cta-band__photo" src="assets/real/oded/oded-cta.png" alt="עודד מקובקי עם סורק המדידה התלת-מימדי הנייד" width="677" height="1190" loading="lazy">
+      <h2>יש לכם אתר שהתשתיות בו עדיין גלויות?</h2>
+      <p>זה הרגע לתעד. ספרו לנו על הפרויקט ונבנה פתרון מדידה מתאים - ייעוץ ראשוני חינם, ותשלום רק לאחר ההגעה לאתר.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="contact.html">לקבלת הצעת מחיר</a>
-        <a class="btn btn--wa" href="https://wa.me/972543040804">וואטסאפ</a>
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--wa" href="https://wa.me/972543040804"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
       </div>
     </div>
   </div>
 </section>
 
 <div data-include="footer"></div>
+
 <script src="assets/makovki.js"></script>
+<script>
+/* ---- Live tour selector: swap the Matterport embed between real projects ---- */
+(function () {
+  "use strict";
+  var TOURS = {
+    alnekave: { id: "jpisVY1SCN6", name: "אלנקווה 5, אשקלון", desc: "תיעוד תשתיות בשלב שלד - צנרת, חשמל ומרישי בטון לפני חיפוי" },
+    shabtai:  { id: "naLxSfzrCiY", name: "שבתאי 27, אירוס",   desc: "סריקת גג ותקרה - שרוולי חשמל, ברזל וצנרת לפני יציקה" },
+    talem:    { id: "YGYzCA9eyiz", name: "תלם 89, גיאה",       desc: "תיעוד חלל פנימי - מהלכי חשמל ותקשורת חשופים על הקירות" }
+  };
+  var frame = document.querySelector("[data-tour-frame]");
+  var nameEl = document.querySelector("[data-tour-name]");
+  var descEl = document.querySelector("[data-tour-desc]");
+  var openEl = document.querySelector("[data-tour-open]");
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tour-tab"));
+  if (!frame || !tabs.length) return;
+
+  function embed(id) { return "https://my.matterport.com/show/?m=" + id + "&play=1&qs=1&brand=0&hr=0"; }
+
+  function select(key, scroll) {
+    var t = TOURS[key];
+    if (!t) return;
+    frame.src = embed(t.id);
+    if (nameEl) nameEl.textContent = t.name;
+    if (descEl) descEl.textContent = t.desc;
+    if (openEl) openEl.href = "https://my.matterport.com/show/?m=" + t.id;
+    tabs.forEach(function (b) { b.classList.toggle("is-active", b.getAttribute("data-tour") === key); });
+    if (scroll) {
+      var stage = document.querySelector(".tour-stage");
+      var header = document.querySelector(".site-header");
+      var off = (header ? header.offsetHeight : 0) + 20;
+      if (stage) window.scrollTo({ top: stage.getBoundingClientRect().top + window.scrollY - off, behavior: "smooth" });
+    }
+  }
+
+  tabs.forEach(function (b) {
+    b.addEventListener("click", function () { select(b.getAttribute("data-tour"), true); });
+  });
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "תיעוד תשתיות בסריקת לייזר תלת-מימד",
+      "serviceType": "תיעוד תשתיות / סריקת As-Built",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "מקובקי - מדידות וסריקה תלת-מימדית",
+        "telephone": "+972-54-3040804",
+        "email": "oded@makovki.com",
+        "areaServed": "IL"
+      },
+      "description": "תיעוד תשתיות בסריקת לייזר תלת-מימד לפני חיפוי וגמר: צנרת, חשמל, מיזוג וברזל. סיור 360° מדיד, ענן נקודות, שרטוטי As-Built ל-DWG ודוח תיעוד מצב.",
+      "areaServed": "IL"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
+        { "@type": "ListItem", "position": 2, "name": "שירותים", "item": "https://makovki.com/#services" },
+        { "@type": "ListItem", "position": 3, "name": "תיעוד תשתיות" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "מתי הכי נכון לסרוק את התשתיות?", "acceptedAnswer": { "@type": "Answer", "text": "בשלב שבו המערכות הותקנו אך עדיין גלויות - אחרי גמר צנרת, חשמל ומיזוג ולפני חיפוי וגמר. זהו חלון ההזדמנות היחיד ללכוד את המצב האמיתי בלי הריסות." } },
+        { "@type": "Question", "name": "מה מקבלים מתיעוד תשתיות?", "acceptedAnswer": { "@type": "Answer", "text": "סיור 360° הניתן למדידה, ענן נקודות תלת-מימד, שרטוטי As-Built ל-DWG בשכבות, ואופציונלית מודל BIM של המערכות ודוח תיעוד מצב מתוארך." } },
+        { "@type": "Question", "name": "אפשר למדוד מיקום של צינור מתוך הסיור?", "acceptedAnswer": { "@type": "Answer", "text": "כן. הסיור הוא מודל מדיד: מסמנים שתי נקודות ומקבלים מרחק, גובה או מרווח מדויק, כך שאפשר לאתר היכן עובר צינור או כבל גם אחרי שהקירות נסגרו." } },
+        { "@type": "Question", "name": "כמה זמן לוקחת הסריקה ומה רמת הדיוק?", "acceptedAnswer": { "@type": "Answer", "text": "קומה נסרקת תוך דקות בהליכה רציפה, בלי לעצור את העבודה באתר, בדיוק של עד ±6 מ\"מ וללא נקודות עיוורות." } },
+        { "@type": "Question", "name": "האם צריך אינטרנט כדי לצפות בסיור?", "acceptedAnswer": { "@type": "Answer", "text": "הסיור מתארח אונליין ונפתח מכל דפדפן, מחשב או טלפון בלי התקנה. שולחים קישור אחד וכל בעל עניין נכנס ומודד בעצמו, 24/7." } }
+      ]
+    }
+  ]
+}
+</script>
 </body>
 </html>

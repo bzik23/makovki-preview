@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=7">
+<link rel="stylesheet" href="assets/makovki.css?v=10">
 </head>
 <body>
 <div data-include="header"></div>
@@ -63,24 +63,24 @@
           <span class="contact-card__avail"><i></i>זמינים למענה עכשיו</span>
         </div>
 
-        <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.contact-form__fields').style.display='none'; this.querySelector('button').style.display='none'; document.getElementById('form-ok').style.display='flex';">
+        <form class="contact-form" id="lead-form">
           <div class="contact-form__fields">
             <div class="field">
               <label for="name">שם מלא</label>
-              <input id="name" name="name" type="text" placeholder="איך לפנות אליכם?" required>
+              <input id="name" name="name" type="text" placeholder="ישראל ישראלי" required>
             </div>
             <div class="grid grid-2 field-row">
               <div class="field">
-                <label for="phone">טלפון</label>
+                <label for="phone">טלפון לחזרה</label>
                 <input id="phone" name="phone" type="tel" placeholder="050-0000000" required>
               </div>
               <div class="field">
-                <label for="email">אימייל</label>
+                <label for="email">כתובת אימייל</label>
                 <input id="email" name="email" type="email" placeholder="you@example.com">
               </div>
             </div>
             <div class="field">
-              <label for="topic">איזה שירות מעניין אתכם?</label>
+              <label for="topic">שירות מבוקש</label>
               <select id="topic" name="topic">
                 <option>מדידה אדריכלית / מדידת פנים</option>
                 <option>תצ"ר · תב"ע · תת"ג</option>
@@ -97,20 +97,19 @@
               <label for="msg">פרטי הפרויקט <span class="field__opt">(לא חובה)</span></label>
               <textarea id="msg" name="msg" placeholder="ספרו לנו בקצרה על הנכס או הפרויקט..."></textarea>
             </div>
+            <label class="consent">
+              <input type="checkbox" name="privacy" required>
+              <span>אני מאשר/ת את <a href="privacy-policy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a> ומסכים/ה לשימוש כמפורט בה <span class="req">*</span></span>
+            </label>
           </div>
 
           <button class="btn btn--primary contact-form__submit" type="submit">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
             שליחת הפנייה
           </button>
-          <p class="contact-form__note">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            הפרטים שלכם נשמרים אצלנו בלבד - בלי ספאם, בלי שיתוף.
-          </p>
-
           <div id="form-ok">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>
-            <span>הפנייה נשלחה - נחזור אליכם בהקדם!<br><small>(טופס לדוגמה - יחובר למערכת בהמשך)</small></span>
+            <span>הפנייה נשלחה - נחזור אליכם בהקדם!<br><small>לזירוז אפשר גם <a id="form-ok-wa" href="https://wa.me/972543040804" target="_blank" rel="noopener" style="color:#1c7a3c;font-weight:700;text-decoration:underline">לשלוח את הפרטים בוואטסאפ</a></small></span>
           </div>
         </form>
       </div>
@@ -121,5 +120,47 @@
 
 <div data-include="footer"></div>
 <script src="assets/makovki.js"></script>
+<script>
+/* ===== Contact form: FormSubmit (email) + WhatsApp backup ===== */
+(function(){
+  var form = document.getElementById('lead-form');
+  if(!form) return;
+  var WA = '972543040804';
+  var ENDPOINT = 'https://formsubmit.co/ajax/oded@makovki.com';
+  function val(id){ var el = document.getElementById(id); return el && el.value ? el.value.trim() : ''; }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = val('name'), phone = val('phone'), email = val('email'),
+        topic = val('topic'), msg = val('msg');
+    var lines = ['פנייה חדשה מאתר מקובקי', 'שם: ' + name, 'טלפון: ' + phone];
+    if(email) lines.push('אימייל: ' + email);
+    lines.push('שירות מבוקש: ' + topic);
+    if(msg) lines.push('פרטים: ' + msg);
+    var waUrl = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(lines.join('\n'));
+    var waLink = document.getElementById('form-ok-wa');
+    if(waLink) waLink.href = waUrl;
+    function showOk(){
+      var f = form.querySelector('.contact-form__fields'); if(f) f.style.display='none';
+      var b = form.querySelector('.contact-form__submit'); if(b) b.style.display='none';
+      var ok = document.getElementById('form-ok'); if(ok) ok.style.display='flex';
+    }
+    var btn = form.querySelector('.contact-form__submit');
+    if(btn){ btn.disabled = true; btn.style.opacity = '.65'; }
+    var fd = new FormData();
+    fd.append('שם', name);
+    fd.append('טלפון', phone);
+    if(email) fd.append('אימייל', email);
+    fd.append('שירות מבוקש', topic);
+    if(msg) fd.append('פרטי הפרויקט', msg);
+    fd.append('_subject', 'פנייה חדשה מאתר מקובקי - ' + name);
+    fd.append('_template', 'table');
+    fd.append('_captcha', 'false');
+    fetch(ENDPOINT, { method:'POST', headers:{'Accept':'application/json'}, body: fd })
+      .then(function(r){ return r.json(); })
+      .then(function(){ showOk(); })
+      .catch(function(){ showOk(); window.open(waUrl, '_blank'); });
+  });
+})();
+</script>
 </body>
 </html>

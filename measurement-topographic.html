@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מפה טופוגרפית / מצבית מדויקת | מקובקי - תנאי מקדים להיתר בנייה, DWG מקושר לרשת הארצית</title>
+<meta name="description" content="מפה טופוגרפית / מצבית מדויקת למגרש: גבהים, קווי גובה, גבולות, עצים ותשתיות. מדידה גאודטית וסריקת לייזר תלת-מימד, קובץ DWG מקושר לרשת הארצית - תנאי מקדים להיתר בנייה. מסירה תוך מס&#39; ימים, בפריסה ארצית.">
+<link rel="canonical" href="measurement-topographic.html">
+<link rel="icon" href="assets/real/logo-main.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/makovki.css">
+<style>
+  /* page-scoped: darken the RTL text side (right) of the hero for readability */
+  .hero--topo .hero__scrim{
+    background:
+      linear-gradient(to right, rgba(8,17,33,.30) 0%, rgba(8,17,33,.66) 42%, rgba(8,17,33,.92) 80%, var(--ink) 100%),
+      linear-gradient(to top, var(--ink) 2%, rgba(8,17,33,.12) 50%);
+  }
+  /* mobile: text goes full-width, so darken the whole hero more evenly */
+  @media (max-width: 860px){
+    .hero--topo .hero__scrim{
+      background:
+        linear-gradient(to right, rgba(8,17,33,.60) 0%, rgba(8,17,33,.80) 55%, var(--ink) 100%),
+        linear-gradient(to top, var(--ink) 4%, rgba(8,17,33,.34) 62%);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div data-include="header"></div>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero hero--real hero--topo">
+  <div class="hero__media"><img src="assets/real/pointcloud-1.jpg" alt="ענן נקודות תלת-מימדי של מבנה וסביבתו הבנויה - בסיס מדידה מדויק למפה טופוגרפית, מקובקי"></div>
+  <div class="hero__scrim"></div>
+  <div class="hero__scan"></div>
+  <div class="hero__grid"></div>
+  <canvas class="hero__canvas"></canvas>
+  <div class="container">
+    <div class="hero__inner">
+      <div class="crumbs"><a href="index.html">בית</a><span>›</span><a href="measurement.html">שירותי מדידה</a><span>›</span>מפה טופוגרפית / מצבית</div>
+      <div class="hero__eyebrow-line">מפה טופוגרפית · מפה מצבית</div>
+      <h1>מפה טופוגרפית מדויקת - <span class="hl">התנאי המקדים</span> להיתר בנייה</h1>
+      <p class="hero__sub">מיפוי מדויק של המגרש וסביבתו - גבהים, קווי גובה, גבולות, עצים, מבנים ותשתיות - מבוסס מדידה גאודטית וסריקת לייזר תלת-מימדית, ומקושר לרשת הקואורדינטות הארצית. מפה טופוגרפית (הנקראת גם מפה מצבית) נדרשת לרוב כתנאי מקדים להגשת בקשה להיתר בנייה, ומגיעה אליכם כקובץ DWG נקי ומדויק.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--on-dark" href="#deliverables">מה אתם מקבלים</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><div class="num">±6<span class="u"> מ"מ</span></div><div class="lbl">דיוק סריקת הפרטים</div></div>
+        <div class="hero__stat"><div class="num" style="direction:rtl;font-size:1.5rem">רשת ארצית</div><div class="lbl">קישור קואורדינטות מדויק</div></div>
+        <div class="hero__stat"><div class="num" style="direction:rtl;font-size:1.5rem">מס' ימים</div><div class="lbl">בלבד למסירה</div></div>
+        <div class="hero__stat"><div class="num">DWG</div><div class="lbl">קובץ מהונדס, מוכן להגשה</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TRUST BAR ============================ -->
+<section class="clients">
+  <div class="container">
+    <div class="clients__head">אדריכלים, יזמים ומודדים כבר סומכים על המיפוי שלנו</div>
+    <div class="clients__row">
+      <img class="clients__logo" src="assets/real/clients/technion.png" alt="הטכניון">
+      <img class="clients__logo" src="assets/real/clients/aura.png" alt="אאורה">
+      <img class="clients__logo" src="assets/real/clients/alrov.jpg" alt="אלרוב">
+      <img class="clients__logo" src="assets/real/clients/giron.jpg" alt="גירון">
+      <img class="clients__logo" src="assets/real/clients/shefayim.jpg" alt="שפיים">
+      <img class="clients__logo" src="assets/real/clients/building-center.png" alt="בילדינג סנטר">
+    </div>
+    <div class="trust-row">
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 4.4-3 7.5-7 10-4-2.5-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>מקושר לרשת הארצית</span>
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10+ שנות ניסיון</span>
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>פריסה ארצית</span>
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>תשלום רק אחרי ההגעה לנכס</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHAT IT IS (feature-row) ============================ -->
+<section class="section" id="what">
+  <div class="container">
+    <div class="feature-row">
+      <div class="feature-media reveal">
+        <img src="assets/real/topographic-map.png" alt="מפה טופוגרפית / מפה מצבית להיתר בנייה - מקובקי מדידות">
+        <span class="feature-media__tag">מפה טופוגרפית להיתר</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">מהי מפה טופוגרפית / מצבית</span>
+        <h2>התנאי המקדים להיתר בנייה</h2>
+        <p>מיפוי מדויק של פני השטח - גבהים, קווי גובה, עצים, מבנים, גבולות ותשתיות. מפה טופוגרפית (הנקראת גם מפה מצבית) נדרשת לרוב כתנאי מקדים להגשת בקשה להיתר בנייה, ומהווה את התשתית המדויקת לתכנון. אנחנו מבצעים את מדידת הבסיס - מדידה גאודטית מדויקת וסריקת לייזר תלת-מימדית של המגרש והסביבה - ומפיקים קובץ DWG מהונדס, מקושר לרשת הקואורדינטות הארצית. במקרים שבהם נדרשת חתימה רשמית של מודד מוסמך להגשה לוועדה, העבודה מתבצעת בתיאום מלא עם מודד מוסמך.</p>
+        <ul class="includes">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מדידת גבהים וקווי גובה</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מיפוי פרטי סביבה ותשתיות</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>גבולות מגרש</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מבנים קיימים ועצים בוגרים</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>קובץ DWG מדויק ומקושר לרשת הארצית</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>ענן נקודות תלת-מימדי מלא</li>
+        </ul>
+        <div class="pill-list">
+          <span class="pill">אדריכלים</span><span class="pill">יזמים</span><span class="pill">לצורך היתר בנייה</span>
+        </div>
+        <a class="btn btn--primary" href="contact.html">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHY LASER (benefit cards) ============================ -->
+<section class="section section--soft" id="why">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">היתרון בסריקת לייזר</span>
+      <h2>למה מפה טופוגרפית בסריקת לייזר עדיפה</h2>
+      <p class="lead">אותה מפה מצבית שהוועדות מכירות ודורשות - רק מבוססת על כיסוי מלא של המגרש ועל נתונים מדויקים יותר. פחות הפתעות בשטח, פחות סבבי תיקונים מול הוועדה.</p>
+    </div>
+    <div class="grid grid-4">
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg></span>
+        <h3>כיסוי מלא של המגרש</h3>
+        <p>הסריקה לוכדת את כל השטח בבת אחת - גבהים, גבולות, עצים ותשתיות - בלי נקודות שנשכחו ובלי חזרות מיותרות לשטח.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span>
+        <h3>דיוק מוחלט</h3>
+        <p>מדידה גאודטית מקושרת לרשת הקואורדינטות הארצית, בשילוב סריקת לייזר עד ±6 מ"מ ברמת הפרטים - נתוני אמת לתכנון.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span>
+        <h3>מסירה מהירה</h3>
+        <p>קובץ DWG מהונדס ומדויק מגיע אליכם תוך מס' ימים בלבד מיום המדידה, בפריסה ארצית מלאה.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 4.4-3 7.5-7 10-4-2.5-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <h3>בסיס אמין לתכנון</h3>
+        <p>האדריכל מתכנן על מפה עדכנית ומדויקת - פחות חריגות, פחות סירובים מהוועדה ופחות תיקונים יקרים בהמשך.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DELIVERABLES ============================ -->
+<section class="section" id="deliverables">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">התוצרים</span>
+      <h2>מה אתם מקבלים ממדידת מגרש אחת</h2>
+      <p class="lead">מפה מצבית מלאה, בפורמט הנדסי, מוכנה לצירוף לבקשת ההיתר - וכל הנתונים שמאחוריה, למקרה שתצטרכו אותם.</p>
+    </div>
+    <div class="deliverables">
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></span>
+        <span class="abbr">DWG / TOPO</span>
+        <h3>מפה טופוגרפית בקובץ DWG</h3>
+        <p>מפה מצבית מלאה בפורמט הנדסי, מוכנה לצירוף לתכנון ולהגשה לוועדה.</p>
+        <span class="deliv__fmt">‎.DWG · .DXF</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20l4-9 4 5 3-7 5 11"/></svg></span>
+        <span class="abbr">LEVELS</span>
+        <h3>מדידת גבהים וקווי גובה</h3>
+        <p>קווי גובה ונקודות גובה מדויקים שמתארים את פני הקרקע והשיפועים במגרש.</p>
+        <span class="deliv__fmt">PDF · דוח מדידה</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18h18M6 18V9m6 9V5m6 13v-6"/></svg></span>
+        <span class="abbr">INFRA</span>
+        <h3>מיפוי תשתיות וסביבה</h3>
+        <p>שוחות, תאי ביקורת, עמודי חשמל ותאורה, כבישים ומדרכות - כל תשתית גלויה במגרש ובסביבתו.</p>
+        <span class="deliv__fmt">DWG · PDF</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/></svg></span>
+        <span class="abbr">BOUNDARY</span>
+        <h3>גבולות מגרש</h3>
+        <p>הגבולות הרשומים של החלקה ביחס למגרשים הסמוכים, כפי שנמדדו בשטח.</p>
+        <span class="deliv__fmt">DWG · נסח טאבו</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+        <span class="abbr">ITM GRID</span>
+        <h3>קישור לרשת הקואורדינטות הארצית</h3>
+        <p>לכל נקודה במפה מיקום מוחלט וגובה מדויק, מקושרים לרשת הארצית הרשמית.</p>
+        <span class="deliv__fmt">ITM · רשת ארצית</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="7" r="1.4"/><circle cx="12" cy="5" r="1.4"/><circle cx="18" cy="8" r="1.4"/><circle cx="8" cy="14" r="1.4"/><circle cx="15" cy="13" r="1.4"/><circle cx="11" cy="19" r="1.4"/><circle cx="19" cy="17" r="1.4"/></svg></span>
+        <span class="abbr">POINT CLOUD</span>
+        <h3>ענן נקודות תלת-מימדי</h3>
+        <p>הסריקה הגולמית המלאה של המגרש והסביבה - לשילוב בכל תוכנת תכנון או GIS.</p>
+        <span class="deliv__fmt">E57 · RCP · LAS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FIELD SURVEY (feature-row) ============================ -->
+<section class="section section--soft">
+  <div class="container">
+    <div class="feature-row feature-row--flip">
+      <div class="feature-media reveal">
+        <img src="assets/real/oded/oded-outdoor.jpg" alt="מדידה בשטח עם סורק לייזר תלת-מימדי נייד לצורך מפה טופוגרפית, מקובקי">
+        <span class="feature-media__tag">מדידה גאודטית בשטח</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">איך המפה נמדדת בפועל</span>
+        <h2>מדידה גאודטית וסריקת לייזר, יחד</h2>
+        <p>מפה מצבית מודרנית נבנית משילוב של מדידה גאודטית מדויקת - שקושרת את המגרש לרשת הקואורדינטות הארצית - לבין סריקת לייזר תלת-מימדית שממלאת את הפרטים. סורק לייזר נייד לוכד את השטח, המבנים והתשתיות בצפיפות גבוהה, ומייצר ענן נקודות מדויק שממנו מפיקים את המפה, במקום למדוד נקודות בודדות אחת-אחת.</p>
+        <ul class="includes">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מדידה גאודטית לרשת הארצית</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>סריקת לייזר לכיסוי מלא</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>בלי נקודות עיוורות בשטח</li>
+        </ul>
+        <a class="card__link" href="contact.html">לתיאום מדידה למגרש שלכם <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PROCESS ============================ -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">איך זה עובד</span>
+      <h2>מהשיחה הראשונה ועד המפה המוכנה להגשה</h2>
+      <p class="lead">תהליך פשוט ושקוף, עם לוח זמנים ברור. מסירה תוך מס' ימים בלבד מיום המדידה.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step__n">1</div>
+        <h4>אפיון והצעה</h4>
+        <p>שיחה קצרה על גודל המגרש, מטרת המפה ודרישות הוועדה הרלוונטית - ובעקבותיה הצעת מחיר שקופה, ללא הפתעות.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">2</div>
+        <h4>מדידה גאודטית וסריקה</h4>
+        <p>הגעה למגרש, קישור לרשת הקואורדינטות הארצית וסריקת לייזר של כל השטח והסביבה בכיסוי מלא.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">3</div>
+        <h4>עיבוד והפקת המפה</h4>
+        <p>עיבוד הנתונים והפקת מפה מצבית בפורמט הנדסי - גבהים, גבולות, מבנים ותשתיות, מקושרת לרשת הארצית.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">4</div>
+        <h4>מסירה ותיאום מודד</h4>
+        <p>קובץ DWG נקי ומדויק אצלכם תוך מס' ימים בלבד. במידת הצורך, מתואם מודד מוסמך לחתימה ולהגשה רשמית לוועדה.</p>
+      </div>
+      <div class="steps__flow" aria-hidden="true"><i class="steps__pulse"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ USE CASES ============================ -->
+<section class="section" id="use-cases">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">מתי פונים למפה טופוגרפית</span>
+      <h2>שירות אחד, שלל תרחישים</h2>
+      <p class="lead">בין אם אתם מגישים בקשה להיתר, מתכננים פיתוח ונוף או בודקים מגרש לפני רכישה - הבסיס תמיד אותו דבר: מפה מדויקת ועדכנית.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 4v5c0 4.4-3 7.5-7 9-4-1.5-7-4.6-7-9V7z"/></svg></span>
+        <h3>תנאי מקדים להיתר בנייה</h3>
+        <p>מפה מצבית עדכנית וחתומה כתנאי סף להגשת בקשה להיתר מול הוועדה המקומית לתכנון ובנייה.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M8 6l4-4 4 4M6 12l6-6 6 6M4 18l8-8 8 8"/></svg></span>
+        <h3>תכנון פיתוח ונוף</h3>
+        <p>מיפוי עצים, שיפועים וגבולות כבסיס לתכנון פיתוח, נוף וניקוז מדויק סביב המבנה.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+        <h3>חישובי חתך וכמויות עפר</h3>
+        <p>קווי גובה ונקודות גובה מדויקות המאפשרות חישוב חתכים וכמויות עפר לפני עבודות פיתוח.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></svg></span>
+        <h3>תכנון תשתיות ניקוז</h3>
+        <p>מיפוי שיפועים ותשתיות קיימות כבסיס לתכנון ניקוז נכון ומניעת בעיות ניקוז עתידיות.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+        <h3>מדידת מגרש לפני רכישה או תכנון</h3>
+        <p>בדיקת גבולות, שטח ושיפועי המגרש בפועל - נתוני אמת לפני קבלת החלטה או תחילת תכנון.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TECHNOLOGY ============================ -->
+<section class="section section--ink tech-show" id="technology">
+  <div class="container">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow">הטכנולוגיה שמאחורי הדיוק</span>
+        <h2>סורק לייזר אחד. ענן נקודות מלא של כל מבנה.</h2>
+        <p class="lead">בלב מקובקי עומד סורק לייזר תלת-מימדי נייד מהמתקדמים בעולם. הוא יורה 2,400,000 קרני לייזר בשנייה, לוכד כל קיר, פתח וזווית תוך דקות - ומצלם את החלל ב-360° לתיעוד ויזואלי מלא.</p>
+        <div class="spec-list">
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span><div><b>2,400,000 קרני לייזר בשנייה</b><span>איסוף נתונים בזמן אמת, בהליכה רציפה</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span><div><b>דיוק עד ±6 מ"מ</b><span>ללא סטיות של מדידה ידנית</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>120 מ"ר בדקות</b><span>סריקה מלאה של קומה, בלי לשבש שגרה</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg></span><div><b>4 מצלמות HD</b><span>תיעוד צבע וסיור 360° מלא</span></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="device-stage">
+          <span class="device-ring r2"></span>
+          <span class="device-ring r1"></span>
+          <img src="assets/real/device.png" alt="סורק הלייזר התלת-מימדי הנייד של מקובקי, מסך חי המציג סריקת מבנה">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GOOGLE REVIEWS ============================ -->
+<section class="section reviews">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">ביקורות מ-Google</span>
+      <h2>לקוחות שכבר עובדים איתנו</h2>
+      <div class="google-badge">
+        <svg class="google-badge__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+        <span class="google-badge__score">5.0</span>
+        <span class="google-badge__stars">★★★★★</span>
+        <span class="google-badge__txt">ביקורות אמיתיות מלקוחות מרוצים</span>
+      </div>
+    </div>
+
+    <div class="reviews-slider" data-reviews>
+      <button class="rev-nav rev-prev" aria-label="ביקורת קודמת"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <div class="reviews-viewport">
+        <div class="reviews-track">
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#d946ef;">א<img src="assets/real/reviews/orly.jpg" alt="אורלי ט׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>אורלי ט׳</b><span>אדריכלית</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">כאדריכלית נדרשתי להשתמש בשירותי מדידות לצורך הגשה להיתר. הגעתי לעודד ומיד הבנתי שמדובר באדם מקסים, אדיב, שירותי, שעובד בצורה מקצועית וענה על כל הדרישות. ממליצה מאוד מאוד.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#7c4dff;">N<img src="assets/real/reviews/nina-g.jpg" alt="Nina G" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>Nina G</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">כל פרוייקט קטן כגדול מתחיל במדידה מקצועית. כבר שנים שאני עובדת מול עודד ומרוצה תמיד מהתהליך. המדידה לוקחת עשר-עשרים דקות ותוך ימים ספורים אני כבר מקבלת את הקבצים באיזה פורמט שאבחר: רוויט, אוטוקאד, סקטצ' אפ וכמובן עם סיור וירטואלי של הדירה שחוסך ללקוח שלי זמן הגעה לשטח. ממליצה.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#e0568b;">ד<img src="assets/real/reviews/dana.jpg" alt="דנה פינגרר" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דנה פינגרר</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">אני עובדת עם עודד מספר שנים ותמיד מרוצה מתוכניות המדידות שהוא מבצע. זהו שלב סופר חשוב בתהליך התכנון מכיוון שעליו מתבססות כל התוכניות. העבודה עם עודד תמיד נעימה, הוא שירותי ויעיל והתוצרים מתקבלים במהירות. ממליצה בחום.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#f59e0b;">ד<img src="assets/real/reviews/dana-n.jpg" alt="דנה נ׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דנה נ׳</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">אני עובדת עם עודד שנים כמעצבת פנים. מעבר לזה שהוא מקסים ומאוד שירותי, המדידות תמיד יוצאות הכי מדויקות וכל התהליך לוקח כמה דקות. הסיור הווירטואלי שעודד מוסיף מאוד עוזר בשלב השיפוץ והתכנון. עבדתי בעבר עם מודדים אחרים, והיום עודד הוא המודד היחיד שאני עובדת איתו.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#ef4444;">ד<img src="assets/real/reviews/dani.jpg" alt="דני עיצוב רהיטים" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דני עיצוב רהיטים</b><span>לקוח מרוצה</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">עודד ביצע עבור לקוחות שלי מדידה ואין כמוהו. החומר והשרטוטים הגיעו במקצועיות. מובנים ונוחים לעבודה. ממליצה מאד.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#06b6d4;">ש<img src="assets/real/reviews/shirley.jpg" alt="שירלי צ׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>שירלי צ׳</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">עודד המודד התותח, אני מעצבת פנים ומשתמשת בשירותי המדידה שלו ומרוצה מאוד. מעבר לדיוק ולניסיון, הערך המוסף שלו הוא בשירות גם לאחר ביצוע העבודה.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#3b82f6;">ר<img src="assets/real/reviews/ravid.jpg" alt="רביד ר׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>רביד ר׳</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">נעזרת כמעצבת פנים בשירותי המדידה כבר כמה פרוייקטים. זריזות ויעילות. ממליצה בחום.</p>
+          </article>
+
+        </div>
+      </div>
+      <button class="rev-nav rev-next" aria-label="ביקורת הבאה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section section--soft" id="faq">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">שאלות נפוצות</span>
+      <h2>כל מה שחשוב לדעת לפני מפה טופוגרפית</h2>
+    </div>
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q">מה זה מפה טופוגרפית ומתי היא נדרשת?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">מפה טופוגרפית היא תיעוד גאודטי מדויק של המגרש וסביבתו - גבהים, קווי גובה, גבולות, מבנים, עצים ותשתיות. הוועדות המקומיות לתכנון ובנייה דורשות אותה כתנאי מקדים וכתנאי סף להגשת בקשה להיתר, כדי לוודא שהתכנון מבוסס על המצב האמיתי בשטח.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">מה ההבדל בין מפה טופוגרפית למפה מצבית?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">בשימוש היומיומי מדובר על אותו מסמך. <b>מפה טופוגרפית</b> מדגישה את הגבהים והטופוגרפיה, ו<b>מפה מצבית</b> מדגישה את המצב הקיים בשטח - גבולות, מבנים ותשתיות. בפועל המפה הנדרשת להיתר משלבת את שניהם: טופוגרפיה יחד עם תיעוד מלא של המגרש.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">מה כוללת המפה?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">מפה מצבית מלאה כוללת טופוגרפיה וקווי גובה, גבולות המגרש ביחס לחלקות הסמוכות, מבנים קיימים, תשתיות גלויות (שוחות, תאי ביקורת, עמודי חשמל ותאורה) ועצים בוגרים - הכל מקושר לרשת הקואורדינטות הארצית ומוגש בפורמט הנדסי.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">מה בדיוק מקובקי מספקת, ומה מקום המודד המוסמך?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">מקובקי מבצעת את מדידת הבסיס: מדידה גאודטית מדויקת וסריקת לייזר תלת-מימדית של המגרש והסביבה, ומפיקה קובץ DWG מהונדס ומקושר לרשת הארצית. כשנדרשת מפה חתומה רשמית להגשה לוועדה, העבודה מתבצעת בתיאום מלא עם מודד מוסמך שמבצע את החתימה וההגשה הפורמלית.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">כמה מדויקת המדידה?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">המדידה הגאודטית מקושרת לרשת הקואורדינטות הארצית, כך שלכל נקודה במפה מיקום מוחלט וגובה מדויק. ברמת הפרטים - סריקת הלייזר התלת-מימדית מגיעה לדיוק של עד <b>±6 מ"מ</b>, ללא הסטיות של מדידה ידנית.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">באיזה פורמט מקבלים את המפה?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">המפה מגיעה כקובץ <b>DWG / DXF</b> מהונדס, מוכן לפתיחה ולהגשה. בנוסף אפשר לקבל את ענן הנקודות הגולמי (E57 / RCP / LAS) לשילוב בכל תוכנת תכנון או GIS, ודוח מדידה מסודר.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">כמה זמן מפה מצבית נשארת בתוקף?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">הוועדות דורשות מפה <b>עדכנית</b> שמשקפת את המצב בשטח כיום. אם חלו שינויים במגרש מאז המדידה - בנייה, הריסה, שינוי תשתיות - יש לעדכן את המפה לפני ההגשה. דרישת העדכניות המדויקת נקבעת על ידי הוועדה הרלוונטית.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA BAND ============================ -->
+<section class="section cta-band">
+  <div class="container">
+    <div class="cta-band__box cta-band__box--photo reveal">
+      <img class="cta-band__photo" src="assets/real/oded/oded-cta.png" alt="עודד מקובקי עם סורק המדידה התלת-מימדי הנייד" width="677" height="1190" loading="lazy">
+      <h2>יש לכם מגרש שדורש מפה טופוגרפית להיתר?</h2>
+      <p>ספרו לנו על המגרש והפרויקט ונחזור אליכם עם הצעה מותאמת. ייעוץ טלפוני ראשוני - חינם, ותשלום רק לאחר ההגעה לנכס.</p>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--wa" href="https://wa.me/972543040804"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/makovki.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "מפה טופוגרפית / מצבית בסריקת לייזר ומדידה גאודטית",
+      "serviceType": "מפה טופוגרפית / מצבית",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "מקובקי - מדידות וסריקה תלת-מימדית",
+        "telephone": "+972-54-3040804",
+        "email": "oded@makovki.com",
+        "areaServed": "IL"
+      },
+      "description": "מפה טופוגרפית / מצבית מדויקת למגרש: גבהים, קווי גובה, גבולות, עצים ותשתיות. מדידה גאודטית וסריקת לייזר תלת-מימד, קובץ DWG מקושר לרשת הקואורדינטות הארצית - תנאי מקדים להיתר בנייה.",
+      "areaServed": "IL"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
+        { "@type": "ListItem", "position": 2, "name": "שירותי מדידה", "item": "https://makovki.com/measurement/" },
+        { "@type": "ListItem", "position": 3, "name": "מפה טופוגרפית / מצבית" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "מה זה מפה טופוגרפית ומתי היא נדרשת?", "acceptedAnswer": { "@type": "Answer", "text": "מפה טופוגרפית היא תיעוד גאודטי מדויק של המגרש וסביבתו - גבהים, קווי גובה, גבולות, מבנים, עצים ותשתיות. הוועדות דורשות אותה כתנאי מקדים להגשת בקשה להיתר." } },
+        { "@type": "Question", "name": "מה ההבדל בין מפה טופוגרפית למפה מצבית?", "acceptedAnswer": { "@type": "Answer", "text": "בשימוש היומיומי מדובר על אותו מסמך. מפה טופוגרפית מדגישה את הגבהים והטופוגרפיה, ומפה מצבית מדגישה את המצב הקיים בשטח - גבולות, מבנים ותשתיות. המפה הנדרשת להיתר משלבת את שניהם." } },
+        { "@type": "Question", "name": "מה כוללת המפה?", "acceptedAnswer": { "@type": "Answer", "text": "טופוגרפיה וקווי גובה, גבולות המגרש, מבנים קיימים, תשתיות גלויות ועצים בוגרים - הכל מקושר לרשת הקואורדינטות הארצית ומוגש בפורמט הנדסי." } },
+        { "@type": "Question", "name": "מה בדיוק מקובקי מספקת, ומה מקום המודד המוסמך?", "acceptedAnswer": { "@type": "Answer", "text": "מקובקי מבצעת מדידה גאודטית וסריקת לייזר תלת-מימדית ומפיקה קובץ DWG מהונדס. כשנדרשת מפה חתומה רשמית לוועדה, העבודה מתבצעת בתיאום עם מודד מוסמך שמבצע את החתימה וההגשה הפורמלית." } },
+        { "@type": "Question", "name": "כמה מדויקת המדידה?", "acceptedAnswer": { "@type": "Answer", "text": "המדידה הגאודטית מקושרת לרשת הקואורדינטות הארצית, וברמת הפרטים סריקת הלייזר מגיעה לדיוק של עד ±6 מ\"מ." } },
+        { "@type": "Question", "name": "באיזה פורמט מקבלים את המפה?", "acceptedAnswer": { "@type": "Answer", "text": "קובץ DWG / DXF מהונדס, ובנוסף אפשר לקבל ענן נקודות גולמי (E57 / RCP / LAS) ודוח מדידה מסודר." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

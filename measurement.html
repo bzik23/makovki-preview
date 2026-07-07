@@ -4,24 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>שירותי מדידה | מקובקי - מדידה אדריכלית, תצ"ר, תב"ע, מפה טופוגרפית</title>
-<meta name="description" content="שירותי מדידה מלאים ממודד מוסמך: מדידה אדריכלית ומדידת פנים, תצ&quot;ר, תת&quot;ג, תב&quot;ע, מפה טופוגרפית / מצבית ומדידת קרקע - בטכנולוגיית סריקת לייזר תלת-מימדית מדויקת.">
+<meta name="description" content="שירותי מדידה מלאים: מדידה אדריכלית ומדידת פנים, תצ&quot;ר, תת&quot;ג, תב&quot;ע, מפה טופוגרפית / מצבית ומדידת קרקע - בטכנולוגיית סריקת לייזר תלת-מימדית מדויקת.">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css">
+<link rel="preload" as="image" href="assets/real/pointcloud-industry.jpg">
+<link rel="stylesheet" href="assets/makovki.css?v=hero1">
 </head>
 <body>
 
 <div data-include="header"></div>
 
 <!-- ============================ PAGE HERO ============================ -->
-<section class="page-hero">
+<section class="page-hero page-hero--scan">
   <div class="hero__grid"></div>
-  <canvas class="hero__canvas" style="opacity:.5;"></canvas>
+  <!-- real 3D laser-scan point cloud - the literal output of a measurement, blended into the navy -->
+  <div class="hero__media" aria-hidden="true">
+    <img src="assets/real/pointcloud-industry.jpg" alt="" width="2560" height="1103" fetchpriority="high">
+  </div>
+  <div class="page-hero__scrim" aria-hidden="true"></div>
+  <div class="hero__scan" aria-hidden="true"></div>
+  <canvas class="hero__canvas" style="opacity:.42;"></canvas>
   <div class="container">
     <div class="crumbs"><a href="index.html">בית</a><span>›</span>שירותי מדידה</div>
-    <h1>כל מדידה שאתם צריכים - ממודד מוסמך</h1>
+    <span class="hero__eyebrow-line">מבוסס סריקת לייזר תלת-מימדית · דיוק עד רמת המילימטר</span>
+    <h1>כל מדידה שאתם צריכים - <span class="hl">בסריקת לייזר תלת-מימדית</span></h1>
     <p>עודד מקובקי מבצע את מלוא קשת המדידות: מתיעוד מצב קיים לתכנון ולשיפוץ, ועד תוכניות מדידה רשמיות להיתר, לרישום ולוועדות - הכל מבוסס סריקת לייזר תלת-מימדית ומדויק עד רמת המילימטר.</p>
     <div class="hero__actions" style="margin-top:28px;">
       <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
@@ -49,7 +57,7 @@
   <div class="container">
     <div class="feature-row">
       <div class="feature-media reveal">
-        <img src="assets/real/pre-reno-measure.jpg" alt="מדידה אדריכלית ומדידת פנים על ידי מודד מוסמך - מקובקי">
+        <img src="assets/real/pre-reno-measure.jpg" alt="מדידה אדריכלית ומדידת פנים בסריקת לייזר - מקובקי">
         <span class="feature-media__tag">תיעוד מצב קיים מדויק</span>
       </div>
       <div class="feature-body reveal">
@@ -79,13 +87,13 @@
   <div class="container">
     <div class="feature-row feature-row--flip">
       <div class="feature-media reveal">
-        <img src="assets/real/tzar-plan.jpg" alt="תצ&quot;ר - תוכנית לצורכי רישום בית משותף על ידי מודד מוסמך - מקובקי">
+        <img src="assets/real/tzar-plan.jpg" alt="תצ&quot;ר - תוכנית לצורכי רישום בית משותף - מקובקי">
         <span class="feature-media__tag">תוכנית לצורכי רישום</span>
       </div>
       <div class="feature-body reveal">
         <span class="eyebrow">תצ"ר · תוכנית לצורכי רישום</span>
         <h2>רישום בית משותף בטאבו, מדויק ומסודר</h2>
-        <p>תוכנית לצורכי רישום בית משותף, בעריכת מודד מוסמך: מדידה מדויקת של הבניין והדירות, חלוקה לתת-חלקות ורישום מוסדר מול המפקח על רישום מקרקעין - בסיס משפטי ברור לכל בעלי הזכויות.</p>
+        <p>תוכנית לצורכי רישום בית משותף: מדידה מדויקת של הבניין והדירות, חלוקה לתת-חלקות ורישום מוסדר מול המפקח על רישום מקרקעין - בסיס משפטי ברור לכל בעלי הזכויות.</p>
         <ul class="includes">
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מדידת הבניין והדירות</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>חלוקה לתת-חלקות</li>
@@ -95,7 +103,10 @@
         <div class="pill-list">
           <span class="pill">יזמים וחברות בנייה</span><span class="pill">עורכי דין</span><span class="pill">ועדי בתים</span>
         </div>
-        <a class="btn btn--primary" href="contact.html">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <div class="hero__actions" style="gap:14px;">
+          <a class="btn btn--primary" href="measurement-tzar.html">לעמוד המלא: תצ"ר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="btn btn--ghost" href="contact.html">הצעת מחיר</a>
+        </div>
       </div>
     </div>
   </div>
@@ -128,7 +139,10 @@
         <div class="pill-list">
           <span class="pill">אדריכלים</span><span class="pill">יזמים וקבלנים</span><span class="pill">לצורך היתר בנייה</span>
         </div>
-        <a class="btn btn--primary" href="contact.html">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <div class="hero__actions" style="gap:14px;">
+          <a class="btn btn--primary" href="measurement-tatag.html">לעמוד המלא: תת"ג <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="btn btn--ghost" href="contact.html">הצעת מחיר</a>
+        </div>
       </div>
     </div>
   </div>
@@ -161,7 +175,10 @@
         <div class="pill-list">
           <span class="pill">אדריכלים ומתכננים</span><span class="pill">יזמים</span>
         </div>
-        <a class="btn btn--primary" href="contact.html">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <div class="hero__actions" style="gap:14px;">
+          <a class="btn btn--primary" href="measurement-taba.html">לעמוד המלא: תב"ע <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="btn btn--ghost" href="contact.html">הצעת מחיר</a>
+        </div>
       </div>
     </div>
   </div>
@@ -183,12 +200,15 @@
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מדידת גבהים וקווי גובה</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מיפוי פרטי סביבה ותשתיות</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>גבולות מגרש</li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>קובץ DWG חתום ע"י מודד מוסמך</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>קובץ DWG מדויק ומקושר לרשת הארצית</li>
         </ul>
         <div class="pill-list">
           <span class="pill">אדריכלים</span><span class="pill">יזמים</span><span class="pill">לצורך היתר בנייה</span>
         </div>
-        <a class="btn btn--primary" href="contact.html">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <div class="hero__actions" style="gap:14px;">
+          <a class="btn btn--primary" href="measurement-topographic.html">לעמוד המלא: מפה טופוגרפית <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="btn btn--ghost" href="contact.html">הצעת מחיר</a>
+        </div>
       </div>
     </div>
   </div>
@@ -211,17 +231,20 @@
       <div class="feature-body reveal">
         <span class="eyebrow">מדידת קרקע</span>
         <h2>לדעת בדיוק מה יש לכם, ואיפה</h2>
-        <p>מדידת גבולות מגרש, שטחים ופרטי קרקע - לרישום, לתכנון ולבירור זכויות. מדידה מדויקת ומוסמכת שמונעת מחלוקות עם שכנים, מבססת החלטות ומאפשרת לתכנן בביטחון.</p>
+        <p>מדידת גבולות מגרש, שטחים ופרטי קרקע - לרישום, לתכנון ולבירור זכויות. מדידה מדויקת שמונעת מחלוקות עם שכנים, מבססת החלטות ומאפשרת לתכנן בביטחון.</p>
         <ul class="includes">
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מדידת גבולות ושטח</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>סימון גבולות בשטח</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>התאמה לנסח טאבו</li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>דוח מדידה חתום</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>דוח מדידה מפורט</li>
         </ul>
         <div class="pill-list">
           <span class="pill">בעלי קרקע</span><span class="pill">יזמים</span><span class="pill">עורכי דין</span>
         </div>
-        <a class="btn btn--primary" href="contact.html">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <div class="hero__actions" style="gap:14px;">
+          <a class="btn btn--primary" href="measurement-land.html">לעמוד המלא: מדידת קרקע <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="btn btn--ghost" href="contact.html">הצעת מחיר</a>
+        </div>
       </div>
     </div>
   </div>
@@ -233,7 +256,7 @@
     <div class="section-head center">
       <span class="eyebrow">היתרון של מקובקי</span>
       <h2>למה מדידה בסריקת לייזר?</h2>
-      <p class="lead">אותה מדידה מוסמכת שאתם מכירים - רק מהירה, מלאה ומדויקת הרבה יותר.</p>
+      <p class="lead">אותה מדידה מקצועית שאתם מכירים - רק מהירה, מלאה ומדויקת הרבה יותר.</p>
     </div>
     <div class="grid grid-3">
       <div class="card reveal" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);">
@@ -258,7 +281,8 @@
 <!-- ============================ CTA BAND ============================ -->
 <section class="section cta-band">
   <div class="container">
-    <div class="cta-band__box reveal">
+    <div class="cta-band__box cta-band__box--photo reveal">
+      <img class="cta-band__photo" src="assets/real/oded/oded-cta.png" alt="עודד מקובקי עם סורק המדידה התלת-מימדי הנייד" width="677" height="1190" loading="lazy">
       <h2>יש לכם פרויקט שדורש מדידה?</h2>
       <p>ספרו לנו על הפרויקט ונחזור אליכם עם הצעה מותאמת. ייעוץ טלפוני ראשוני - חינם.</p>
       <div class="cta-band__actions">

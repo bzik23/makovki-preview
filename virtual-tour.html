@@ -3,80 +3,428 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>סיור וירטואלי 360° | מדידה בתוך הסיור | מקובקי</title>
-<meta name="description" content="סיור וירטואלי 360° אינטראקטיבי בנכס, זמין 24/7 מכל מקום, עם יכולת מדידת אורך, רוחב ושטח בתוך הסיור. כלי מכירה ותכנון לאדריכלים, יזמים וסוכנים.">
+<title>סיורים וירטואליים 360° | סיור תלת-מימדי מדיד לכל מרחב | מקובקי</title>
+<meta name="description" content="סיורים וירטואליים 360° בסריקת לייזר תלת-מימדית - לדירות, מלונות, חנויות, בתי עסק ואתרי מורשת. סיור אינטראקטיבי אמיתי שאפשר גם למדוד בתוכו, זמין 24/7 מכל מכשיר. כלי מכירה, שיווק ותיעוד. צפו בדוגמה חיה.">
+<link rel="canonical" href="virtual-tour.html">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://my.matterport.com" crossorigin>
+<link rel="preconnect" href="https://cdn-2.matterport.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/makovki.css">
 </head>
 <body>
+
 <div data-include="header"></div>
 
-<section class="page-hero">
+<!-- ============================ HERO (live demo) ============================ -->
+<section class="page-hero page-hero--tour">
   <canvas class="hero__canvas"></canvas>
   <div class="hero__grid"></div>
   <div class="container">
-    <div class="crumbs"><a href="index.html">בית</a><span>›</span>שירותים<span>›</span>סיור וירטואלי 360°</div>
-    <h1>סיור וירטואלי 360° שאפשר גם למדוד</h1>
-    <p>סיור אינטראקטיבי שמכניס את הצופה אל תוך הנכס מכל מקום, בכל שעה - ומאפשר למדוד אורך, רוחב ושטח ישירות בתוך הסיור.</p>
-    <div class="hero__actions" style="margin-top:28px;">
-      <a class="btn btn--primary" href="contact.html">לקבלת הצעת מחיר</a>
-      <a class="btn btn--on-dark" href="https://wa.me/972543040804">דברו איתנו בוואטסאפ</a>
+    <div class="crumbs"><a href="index.html">בית</a><span>›</span>סיורים וירטואליים</div>
+
+    <div class="hero-tour">
+      <div class="hero-tour__copy">
+        <h1>סיורים וירטואליים 360° <span class="hl">לכל מרחב</span></h1>
+        <p class="hero-tour__lead">הופכים כל נכס, עסק או אתר לחוויה דיגיטלית שאפשר לטייל בה מכל מסך - ואפילו למדוד בתוכה. סיור אינטראקטיבי אמיתי שנבנה מסריקת לייזר תלת-מימדית: כלי מכירה, שיווק ותיעוד שזמין 24/7. גררו את הסיור החי והתחילו לטייל.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+          <a class="btn btn--on-dark" href="#services">בחרו תחום לסיור
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-tour__stage">
+        <div class="tour-stage">
+          <div class="tour-stage__bar">
+            <span class="tour-live"><i></i>סיור אמיתי · חי</span>
+            <div class="tour-meta">
+              <b>דוגמה לסיור אינטראקטיבי 360°</b>
+              <span>נסרק על ידי מקובקי - גררו, זומו ומדדו</span>
+            </div>
+            <a class="tour-open" href="https://my.matterport.com/show/?m=KdS7TJaR7Ky" target="_blank" rel="noopener">
+              פתחו במסך מלא
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M21 3l-9 9M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg>
+            </a>
+          </div>
+
+          <div class="tour-frame">
+            <iframe
+              src="https://my.matterport.com/show/?m=KdS7TJaR7Ky&play=1&qs=1&brand=0&hr=0"
+              title="דוגמה לסיור וירטואלי 360° אינטראקטיבי מבית מקובקי"
+              allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay"
+              allowfullscreen></iframe>
+          </div>
+
+          <div class="tour-hints">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 3v4M21 12h-4"/><path d="M12 3l3 3-3 3"/></svg>גררו לסובב 360°</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>גלגלת לזום פנימה</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l6-6 12 12-6 6z"/><path d="M8 8l1.5 1.5M11 5l2 2M14 8l1.5 1.5"/></svg>מדדו מרחקים בתוך הסיור</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================ STAT STRIP ============================ -->
+<section class="stat-strip stat-strip--light section" data-count-zone style="padding-block:30px;">
+  <div class="container">
+    <div class="stat-strip__grid">
+      <div class="stat-strip__cell"><div class="num"><span data-count="360" data-suffix="°">0</span></div><div class="lbl">סיור אינטראקטיבי מלא</div></div>
+      <div class="stat-strip__cell"><div class="num"><span data-count="24" data-suffix="/7">0</span></div><div class="lbl">נגיש בכל שעה, מכל מקום</div></div>
+      <div class="stat-strip__cell"><div class="num"><span data-count="4" data-suffix="K">0</span></div><div class="lbl">צילומי סטילס מהסיור</div></div>
+      <div class="stat-strip__cell"><div class="num"><span data-count="5" data-suffix="+">0</span></div><div class="lbl">ימי עסקים למסירה</div></div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<!-- ============================ SERVICES HUB ============================ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">תחומי הסיורים</span>
+      <h2>סיור וירטואלי מותאם לכל סוג של מרחב</h2>
+      <p class="lead">בחרו את התחום שלכם וגלו איך סיור וירטואלי 360° עובד בדיוק עבורכם - עם דוגמאות, יתרונות ותשובות לכל שאלה.</p>
+    </div>
+
+    <div class="tour-hub">
+      <a class="tour-hub__card reveal" href="tour-apartments.html">
+        <div class="tour-hub__media">
+          <span class="tour-hub__tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M3 21h18M6 21V8l6-4 6 4v13"/></svg>נדל"ן</span>
+          <img src="assets/real/render-int-real.jpg" alt="סיור וירטואלי 360 לדירות ובתים פרטיים - מקובקי" loading="lazy">
+        </div>
+        <div class="tour-hub__body">
+          <h3>דירות ובתים פרטיים</h3>
+          <p>כלי מכירה ותיווך שמכניס כל קונה ושוכר אל תוך הנכס - מסנן מתעניינים, בולט במודעות והנכס פתוח 24/7.</p>
+          <span class="tour-hub__go">לעמוד השירות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </a>
+
+      <a class="tour-hub__card reveal" href="tour-hotels.html">
+        <div class="tour-hub__media">
+          <span class="tour-hub__tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M3 21V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v16M16 8h3a2 2 0 0 1 2 2v11M3 21h18"/></svg>אירוח</span>
+          <img src="assets/real/renders/render-cyprus-resort-pool.webp" alt="סיור וירטואלי 360 למלונות ואירוח - מקובקי" loading="lazy">
+        </div>
+        <div class="tour-hub__body">
+          <h3>מלונות ואירוח</h3>
+          <p>אורחים מסיירים בחדר, בסוויטה ובלובי לפני ההזמנה - יותר הזמנות ישירות, פחות ביטולים ובלטות באתרי ההזמנות.</p>
+          <span class="tour-hub__go">לעמוד השירות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </a>
+
+      <a class="tour-hub__card reveal" href="tour-retail.html">
+        <div class="tour-hub__media">
+          <span class="tour-hub__tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M3 9l1.5-5h15L21 9M4 9v11h16V9"/></svg>עסקים</span>
+          <img src="assets/real/oded/oded-scanning-retail.jpg" alt="סיור וירטואלי 360 לחנויות ובתי עסק - מקובקי" loading="lazy">
+        </div>
+        <div class="tour-hub__body">
+          <h3>חנויות ובתי עסק</h3>
+          <p>הצגת העסק בגוגל, באתר וברשתות - לקוחות נכנסים לשואורום דיגיטלי 24/7, בונים אמון ומשפרים דירוג.</p>
+          <span class="tour-hub__go">לעמוד השירות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </a>
+
+      <a class="tour-hub__card reveal" href="tour-holy-sites.html">
+        <div class="tour-hub__media">
+          <span class="tour-hub__tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 2v4M9 6h6M5 21V11l7-4 7 4v10M5 21h14"/></svg>מורשת</span>
+          <img src="assets/real/oded/pointcloud-cathedral-stage.jpg" alt="סיור וירטואלי 360 ותיעוד למקומות קדושים ומורשת - מקובקי" loading="lazy">
+        </div>
+        <div class="tour-hub__body">
+          <h3>מקומות קדושים ומורשת</h3>
+          <p>צליינות וירטואלית ותיעוד תלת-מימדי מדויק לשימור - מנגישים אתרים לכולם ושומרים ארכיון דיגיטלי לדורות.</p>
+          <span class="tour-hub__go">לעמוד השירות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHAT IT IS ============================ -->
+<section class="section section--soft" id="what">
+  <div class="container">
+    <div class="feature-row">
+      <div class="feature-media reveal">
+        <img src="assets/real/vtour-example.png" alt="ממשק סיור וירטואלי 360 אינטראקטיבי - תצוגת בית בובות ומדידה, מקובקי">
+        <span class="feature-media__tag">סיור 360° מדיד</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">מהו סיור וירטואלי</span>
+        <h2>לא עוד תמונות - חוויה שנכנסים לתוכה</h2>
+        <p>סיור וירטואלי 360° הוא מודל דיגיטלי אינטראקטיבי של מרחב אמיתי, שאפשר לטייל בו מכל מסך - לעבור מחדר לחדר, להסתכל לכל כיוון, לזום פנימה ולהרגיש את הפרופורציות האמיתיות. בניגוד לסרטון או לאלבום תמונות, כאן <b>הצופה שולט</b> בחוויה ומרגיש כאילו הוא באמת שם.</p>
+        <p>ההבדל הגדול: הסיורים שלנו נבנים מ<b>סריקת לייזר תלת-מימדית</b>, ולכן הם לא רק יפים - הם מדויקים ו<b>מדידים</b>. אפשר לסמן שתי נקודות ולקבל אורך, רוחב או שטח ישירות מהמסך.</p>
+        <ul class="includes">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מעבר חופשי בכל המרחב</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>תצוגת בית בובות תלת-מימדית</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מדידה בתוך הסיור</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>זמין 24/7 בקישור אחד</li>
+        </ul>
+        <a class="btn btn--primary" href="contact.html">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHY / BENEFITS ============================ -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">למה סיור וירטואלי</span>
+      <h2>יתרון שמרגישים בכל תחום</h2>
+      <p class="lead">בין אם אתם מוכרים דירה, ממלאים מלון, מושכים לקוחות לעסק או מנגישים אתר מורשת - סיור וירטואלי עובד עבורכם מסביב לשעון.</p>
+    </div>
+    <div class="grid grid-4">
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <h3>זמין 24/7</h3>
+        <p>המרחב פתוח לביקור בכל שעה, מכל מקום בעולם, בלי תיאום ובלי איש צוות - בקישור אחד.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <h3>סוגרים מרחוק</h3>
+        <p>קונים, אורחים ולקוחות מכל הארץ ומהעולם מתרשמים, מחליטים וסוגרים - בלי להגיע פיזית.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l6-6 12 12-6 6z"/><path d="M8 8l1.5 1.5M11 5l2 2M14 8l1.5 1.5"/></svg></span>
+        <h3>מדיד ומדויק</h3>
+        <p>נבנה מסריקת לייזר תלת-מימדית - מסמנים שתי נקודות ומקבלים אורך, רוחב ושטח מהמסך.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span>
+        <h3>בולטים מהמתחרים</h3>
+        <p>עמוד עם סיור 360° זוכה ליותר צפיות, זמן שהייה ארוך יותר ופניות איכותיות - וקופץ מעל תמונות בלבד.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CAPABILITIES (dark) ============================ -->
+<section class="section section--ink tech-show" id="capabilities">
   <div class="container">
     <div class="split">
       <div class="reveal">
-        <span class="eyebrow">מה זה נותן לכם</span>
-        <h2>הנכס שלכם, נגיש לכולם - 24/7</h2>
-        <p class="lead">במקום לתאם ביקורים חוזרים, כל בעל עניין נכנס לנכס דיגיטלית מתי שנוח לו. הסיור נבנה מתוך הסריקה התלת-מימדית, כך שהוא לא רק יפה - הוא גם מדיד ומדויק.</p>
-        <ul class="checks" style="margin-top:24px;">
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>מדידה בתוך הסיור</b><span> אורך, רוחב ושטח בלחיצה.</span></div></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>זמין מכל מכשיר</b><span> מחשב, טאבלט ונייד, ללא התקנה.</span></div></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>חוסך ביקורים בשטח</b><span> פחות נסיעות, יותר החלטות מהירות.</span></div></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>כלי מכירה חזק</b><span> מציגים נכס מרשים עוד לפני פגישה פיזית.</span></div></li>
-        </ul>
+        <span class="eyebrow">מה יש בתוך הסיור</span>
+        <h2>סיור שאפשר לנווט, למדוד ולהבין בתוכו</h2>
+        <p class="lead">כל סיור שאנחנו מפיקים כולל חבילה מלאה של כלים אינטראקטיביים - לא רק צילום 360°, אלא מרחב חכם ומדיד:</p>
+        <div class="spec-list">
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 12l9-5M12 12v10M12 12L3 7"/></svg></span><div><b>תצוגת בית בובות (Dollhouse)</b><span>סיבוב המרחב כמודל תלת-מימדי שלם</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="1.5"/><path d="M3 9h7v12M14 3v18M3 15h7"/></svg></span><div><b>תוכנית קומה אינטראקטיבית</b><span>מבט-על וקפיצה לכל חדר או אזור</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l6-6 12 12-6 6z"/><path d="M8 8l1.5 1.5M11 5l2 2M14 8l1.5 1.5"/></svg></span><div><b>מדידה בתוך הסיור</b><span>אורך, רוחב ושטח בלחיצה</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span><div><b>נקודות עניין (תגיות מידע)</b><span>טקסט, מחיר, מדיה וקישורים בסיור</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5v14l11-7z"/></svg></span><div><b>סיור מודרך אוטומטי</b><span>מסלול צפייה חלק שרץ כמו סרטון</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.4"/><path d="M8 6l1.5-2h5L16 6"/></svg></span><div><b>צילומי סטילס באיכות 4K</b><span>תמונות שיווק חדות ישירות מהסיור</span></div></div>
+        </div>
+        <div style="margin-top:26px;"><a class="btn btn--primary" href="contact.html">רוצה סיור למרחב שלי</a></div>
       </div>
       <div class="reveal">
-        <div class="feature-media" style="aspect-ratio:4/3;">
-          <img src="assets/real/vtour-example.png" alt="דוגמה לסיור וירטואלי תלת-מימדי אינטראקטיבי - מקובקי">
-          <span class="feature-media__tag">סיור 360° מדיד</span>
+        <div class="feature-media feature-media--tour">
+          <img src="assets/real/interactive-viz.png" alt="ממשק סיור וירטואלי 360 אינטראקטיבי עם תצוגת בית בובות ומדידה - מקובקי">
+          <span class="feature-media__tag">מרחב חכם ומדיד</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--soft">
+<!-- ============================ HOW IT WORKS / TECH ============================ -->
+<section class="section section--soft" id="tech">
   <div class="container">
-    <div class="section-head center"><span class="eyebrow">למי זה מתאים</span><h2>סיור אחד, המון שימושים</h2></div>
-    <div class="grid grid-3">
-      <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 7v11H3V10z"/></svg></span><h3>אדריכלים</h3><p>גישה למצב הקיים בכל רגע, בלי לחזור פיזית לנכס.</p></article>
-      <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M6 21V9l6-4 6 4v12"/></svg></span><h3>יזמים וקבלנים</h3><p>מצגת מכר חיה שמציגה את הנכס בצורה הכי משכנעת.</p></article>
-      <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v4m0 12v4"/></svg></span><h3>מודדים</h3><p>הוספת שכבת סיור וירטואלי מקצועי למבנים שמדדתם.</p></article>
+    <div class="feature-row feature-row--flip">
+      <div class="feature-media reveal">
+        <img src="assets/real/pointcloud-data.jpg" alt="ענן נקודות תלת-מימדי מסריקת לייזר - הבסיס לסיור וירטואלי מדיד, מקובקי">
+        <span class="feature-media__tag">ענן נקודות תלת-מימד</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">איך זה נבנה</span>
+        <h2>הטכנולוגיה שמאחורי הסיור</h2>
+        <p>הסיור הווירטואלי לא מצולם - הוא <b>נסרק</b>. אנחנו סורקים את המרחב בסורק לייזר תלת-מימדי מתקדם שלוכד עד <b>2,400,000 נקודות בשנייה</b> ובונה ממנו ענן נקודות מדויק של כל קיר, פינה ואובייקט. מתוך ענן הנקודות מופק סיור 360° חלק ומדיד - עם <b>דיוק של עד ±6 מ"מ</b>.</p>
+        <p>כל זה נעשה בהליכה שקטה שאורכת דקות, בלי חצובות ובלי לשבש את הפעילות במקום. את הסיור המוכן, כולל תצוגת בית בובות, תוכנית קומה ונקודות עניין, מקבלים בדרך כלל תוך <b>מספר ימי עסקים</b>.</p>
+        <div class="pill-list">
+          <span class="pill">2.4M נקודות/שנייה</span><span class="pill">דיוק ±6 מ"מ</span><span class="pill">סריקה לא פולשנית</span><span class="pill">מסירה תוך ימים</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ============================ PROCESS ============================ -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">איך זה עובד</span>
+      <h2>מהשיחה ועד הסיור המוכן - תוך ימים</h2>
+      <p class="lead">תהליך פשוט, מהיר ולא מפריע. אתם רק פותחים את הדלת - את כל השאר אנחנו עושים.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step__n">1</div>
+        <h4>תיאום והצעה</h4>
+        <p>שיחה קצרה להבנת המרחב והמטרה, ובעקבותיה הצעת מחיר שקופה לפי גודל - ללא הפתעות.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">2</div>
+        <h4>סריקה בשטח</h4>
+        <p>מגיעים וסורקים את המרחב בלייזר תלת-מימדי בהליכה שקטה - דקות ספורות, בלי לשבש פעילות.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">3</div>
+        <h4>עיבוד והפקה</h4>
+        <p>מעבדים את הסריקה לסיור 360° חלק, מוסיפים תצוגת בית בובות, תוכנית קומה ונקודות עניין.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">4</div>
+        <h4>קישור מוכן לשימוש</h4>
+        <p>מקבלים קישור לסיור ואפשרות הטמעה באתר, ברשתות ובגוגל - מוכן לשיתוף מיידי.</p>
+      </div>
+      <div class="steps__flow" aria-hidden="true"><i class="steps__pulse"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section section--soft" id="faq">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">שאלות נפוצות</span>
+      <h2>כל מה שחשוב לדעת על סיורים וירטואליים</h2>
+    </div>
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q">מה ההבדל בין סיור וירטואלי לבין תמונות או סרטון?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">בתמונות ובסרטון אתם רואים מה שהצלם בחר להראות. בסיור וירטואלי <b>הצופה שולט</b> - הוא מטייל בעצמו, מסתכל לכל כיוון, זז מחדר לחדר ומרגיש את הפרופורציות האמיתיות. ומכיוון שהסיור נבנה מסריקת לייזר, אפשר גם <b>למדוד</b> בתוכו.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">אילו סוגי מקומות אתם סורקים?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">כמעט כל מרחב פנימי: <b>דירות ובתים</b>, <b>מלונות, צימרים ואולמות</b>, <b>חנויות, מסעדות ובתי עסק</b>, וכן <b>אתרי מורשת ומקומות קדושים</b>. לכל תחום יש עמוד ייעודי עם דוגמאות ופרטים - בחרו את שלכם באזור "תחומי הסיורים" למעלה.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">אפשר באמת למדוד מתוך הסיור?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">כן. מכיוון שהסיור נבנה מסריקת לייזר תלת-מימדית הוא <b>מדיד</b> - מסמנים שתי נקודות ומקבלים אורך, רוחב או שטח, בדיוק של עד ±6 מ"מ. שימושי לבדיקת התאמת רהיטים, לתכנון עיצוב, לאדריכלים ולמתכננים.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">איך משתפים ומטמיעים את הסיור?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">מקבלים <b>קישור אחד</b> שאפשר לשלוח בוואטסאפ, במייל וברשתות, וגם <b>להטמיע</b> באתר, במודעה או בפרופיל Google של העסק. הצופה פותח את הסיור מכל מחשב או טלפון, בלי להתקין דבר.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">כמה זמן לוקח לקבל את הסיור?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">הסריקה בשטח אורכת <b>דקות עד שעות</b> לפי גודל המרחב, ואת הסיור המוכן מקבלים בדרך כלל תוך <b>מספר ימי עסקים</b> - כולל תצוגת בית בובות, תוכנית קומה ונקודות עניין.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">כמה עולה סיור וירטואלי?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">המחיר נקבע בעיקר לפי <b>גודל המרחב</b> ומספר האזורים לסריקה. אחרי שיחה קצרה תקבלו הצעת מחיר שקופה וללא הפתעות. השאירו פרטים ונחזור אליכם עם התאמה מדויקת.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ RELATED ARTICLES ============================ -->
+<section class="section" id="learn">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">מרכז הידע</span>
+      <h2>רוצים להעמיק? כתבנו על זה</h2>
+      <p class="lead">מדריכים ותובנות על סיורים וירטואליים מהבלוג המקצועי של מקובקי.</p>
+    </div>
+    <div class="grid grid-3">
+      <a class="card reveal" href="post-virtual-tour-real-estate.html" style="text-decoration:none;">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M6 21V8l6-4 6 4v13"/></svg></span>
+        <h3>סיור וירטואלי לנדל"ן</h3>
+        <p>איך סיור 360° הפך לכלי המכירה החזק ביותר בשוק הנדל"ן - וכיצד הוא מסנן קונים ומקצר עסקאות.</p>
+      </a>
+      <a class="card reveal" href="post-virtual-tour-sales-tool.html" style="text-decoration:none;">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span>
+        <h3>הסיור ככלי מכירה</h3>
+        <p>למה מרחב שאפשר לטייל בו משכנע יותר מכל תמונה, ואיך להפוך אותו למנוע פניות איכותיות.</p>
+      </a>
+      <a class="card reveal" href="post-virtual-tour-saves-visits.html" style="text-decoration:none;">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <h3>חוסכים ביקורים מיותרים</h3>
+        <p>איך סיור וירטואלי מצמצם נסיעות וסיורי סרק, ומשאיר רק פגישות עם מתעניינים רציניים.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA BAND ============================ -->
 <section class="section cta-band">
   <div class="container">
-    <div class="cta-band__box reveal">
-      <h2>רוצים סיור וירטואלי לנכס שלכם?</h2>
-      <p>נשמח להראות דוגמאות ולהתאים פתרון. ייעוץ ראשוני - חינם.</p>
+    <div class="cta-band__box cta-band__box--photo reveal">
+      <img class="cta-band__photo" src="assets/real/oded/oded-cta.png" alt="עודד מקובקי עם סורק המדידה התלת-מימדי הנייד" width="677" height="1190" loading="lazy">
+      <h2>רוצים סיור וירטואלי למרחב שלכם?</h2>
+      <p>נשמח להראות דוגמאות ולהתאים פתרון בדיוק לתחום שלכם. ייעוץ ראשוני - חינם.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="contact.html">לקבלת הצעת מחיר</a>
-        <a class="btn btn--wa" href="https://wa.me/972543040804">וואטסאפ</a>
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--wa" href="https://wa.me/972543040804"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
       </div>
     </div>
   </div>
 </section>
 
 <div data-include="footer"></div>
+
 <script src="assets/makovki.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "סיורים וירטואליים 360°",
+      "serviceType": "סיור וירטואלי תלת-מימדי",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "מקובקי - מדידות וסריקה תלת-מימדית",
+        "telephone": "+972-54-3040804",
+        "email": "oded@makovki.com",
+        "areaServed": "IL"
+      },
+      "description": "סיורים וירטואליים 360° בסריקת לייזר תלת-מימדית לדירות, מלונות, חנויות, בתי עסק ואתרי מורשת. סיור אינטראקטיבי מדיד, זמין 24/7, ככלי מכירה, שיווק ותיעוד. דיוק עד ±6 מ\"מ, מסירה תוך ימים.",
+      "areaServed": "IL",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "תחומי הסיורים הווירטואליים",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "סיור וירטואלי לדירות ובתים פרטיים", "url": "https://makovki.com/tour-apartments.html" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "סיור וירטואלי למלונות ואירוח", "url": "https://makovki.com/tour-hotels.html" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "סיור וירטואלי לחנויות ובתי עסק", "url": "https://makovki.com/tour-retail.html" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "סיור וירטואלי למקומות קדושים ומורשת", "url": "https://makovki.com/tour-holy-sites.html" } }
+        ]
+      }
+    },
+    {
+      "@type": "ItemList",
+      "name": "תחומי הסיורים הווירטואליים",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "דירות ובתים פרטיים", "url": "https://makovki.com/tour-apartments.html" },
+        { "@type": "ListItem", "position": 2, "name": "מלונות ואירוח", "url": "https://makovki.com/tour-hotels.html" },
+        { "@type": "ListItem", "position": 3, "name": "חנויות ובתי עסק", "url": "https://makovki.com/tour-retail.html" },
+        { "@type": "ListItem", "position": 4, "name": "מקומות קדושים ומורשת", "url": "https://makovki.com/tour-holy-sites.html" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
+        { "@type": "ListItem", "position": 2, "name": "סיורים וירטואליים" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "מה ההבדל בין סיור וירטואלי לבין תמונות או סרטון?", "acceptedAnswer": { "@type": "Answer", "text": "בתמונות ובסרטון רואים מה שהצלם בחר להראות. בסיור וירטואלי הצופה שולט - מטייל בעצמו, מסתכל לכל כיוון ומרגיש את הפרופורציות האמיתיות. ומכיוון שהסיור נבנה מסריקת לייזר, אפשר גם למדוד בתוכו." } },
+        { "@type": "Question", "name": "אילו סוגי מקומות אתם סורקים?", "acceptedAnswer": { "@type": "Answer", "text": "כמעט כל מרחב פנימי: דירות ובתים, מלונות צימרים ואולמות, חנויות מסעדות ובתי עסק, וכן אתרי מורשת ומקומות קדושים. לכל תחום עמוד ייעודי עם דוגמאות ופרטים." } },
+        { "@type": "Question", "name": "אפשר באמת למדוד מתוך הסיור?", "acceptedAnswer": { "@type": "Answer", "text": "כן. הסיור נבנה מסריקת לייזר תלת-מימדית ולכן הוא מדיד - מסמנים שתי נקודות ומקבלים אורך, רוחב או שטח בדיוק של עד ±6 מ\"מ." } },
+        { "@type": "Question", "name": "איך משתפים ומטמיעים את הסיור?", "acceptedAnswer": { "@type": "Answer", "text": "מקבלים קישור אחד לשיתוף בוואטסאפ, במייל וברשתות, ואפשר להטמיע אותו באתר, במודעה או בפרופיל Google של העסק. הצופה פותח מכל מחשב או טלפון בלי להתקין דבר." } },
+        { "@type": "Question", "name": "כמה זמן לוקח לקבל את הסיור?", "acceptedAnswer": { "@type": "Answer", "text": "הסריקה בשטח אורכת דקות עד שעות לפי גודל המרחב, ואת הסיור המוכן מקבלים בדרך כלל תוך מספר ימי עסקים כולל תצוגת בית בובות, תוכנית קומה ונקודות עניין." } },
+        { "@type": "Question", "name": "כמה עולה סיור וירטואלי?", "acceptedAnswer": { "@type": "Answer", "text": "המחיר נקבע בעיקר לפי גודל המרחב ומספר האזורים לסריקה. אחרי שיחה קצרה מקבלים הצעת מחיר שקופה וללא הפתעות." } }
+      ]
+    }
+  ]
+}
+</script>
 </body>
 </html>

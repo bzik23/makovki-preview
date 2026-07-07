@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מדידת BIM - מודל תלת-מימדי מדויק למבנים קיימים | מקובקי - Scan to BIM, As-Built, מוכן ל-Revit</title>
+<meta name="description" content="מדידת BIM בסריקת לייזר תלת-מימד: מודל BIM מדויק של מבנה קיים (As-Built / Scan to BIM), עד רמת LOD 350, מוכן ל-Revit, ArchiCAD ו-IFC. תיעוד מצב קיים מלא - קירות, מערכות, גבהים ומפלסים - לאדריכלים, יזמים ומהנדסים. דיוק עד ±6 מ&quot;מ, פריסה ארצית.">
+<link rel="canonical" href="bim.html">
+<link rel="icon" href="assets/real/logo-main.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/makovki.css?v=14">
+<style>
+  /* ===== page-scoped: hero readability over point-cloud media ===== */
+  .hero--bim .hero__scrim{
+    background:
+      linear-gradient(to right, rgba(8,12,33,.28) 0%, rgba(8,12,33,.64) 42%, rgba(8,12,33,.92) 80%, var(--ink) 100%),
+      linear-gradient(to top, var(--ink) 2%, rgba(8,12,33,.12) 50%);
+  }
+  @media (max-width: 860px){
+    .hero--bim .hero__scrim{
+      background:
+        linear-gradient(to right, rgba(8,12,33,.62) 0%, rgba(8,12,33,.82) 55%, var(--ink) 100%),
+        linear-gradient(to top, var(--ink) 4%, rgba(8,12,33,.34) 62%);
+    }
+  }
+
+  /* ===== LOD ladder ===== */
+  .lod-ladder{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:8px;
+  }
+  .lod-card{
+    position:relative; background:var(--bg); border:1px solid var(--line);
+    border-radius:var(--radius); padding:26px 22px 24px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column;
+  }
+  .lod-card__lod{
+    font-weight:900; font-size:1.5rem; letter-spacing:.02em;
+    background:var(--grad-brand); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .lod-card__lod small{ display:block; font-size:.72rem; font-weight:700; letter-spacing:.14em; color:var(--text-3); -webkit-text-fill-color:var(--text-3); margin-bottom:4px; }
+  .lod-meter{ display:flex; gap:6px; margin:16px 0 16px; }
+  .lod-meter i{ height:8px; flex:1; border-radius:99px; background:var(--bg-soft-2); }
+  .lod-meter i.on{ background:var(--grad-brand); }
+  .lod-card h3{ font-size:1.08rem; margin:0 0 6px; }
+  .lod-card p{ font-size:.94rem; color:var(--text-2); margin:0; line-height:1.6; }
+  @media (max-width:900px){ .lod-ladder{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .lod-ladder{ grid-template-columns:1fr; } }
+
+  /* ===== federated / disciplines model ===== */
+  .federate{ display:grid; grid-template-columns:1.05fr .95fr; gap:44px; align-items:center; }
+  .fed-stack{
+    position:relative; height:360px;
+    perspective:1200px;
+  }
+  .fed-layer{
+    position:absolute; inset:0; margin:auto; width:78%; height:60px;
+    border-radius:14px; border:1.5px solid rgba(255,255,255,.5);
+    display:flex; align-items:center; gap:12px; padding:0 18px;
+    font-weight:800; color:#fff; font-size:1rem;
+    transform-style:preserve-3d;
+    box-shadow:0 12px 26px -14px rgba(6,10,30,.6);
+    backdrop-filter:blur(2px);
+  }
+  .fed-layer .dot{ width:12px; height:12px; border-radius:50%; background:#fff; box-shadow:0 0 0 4px rgba(255,255,255,.25); }
+  .fed-layer small{ margin-inline-start:auto; font-weight:600; font-size:.78rem; opacity:.85; }
+  .fed-layer.l1{ background:linear-gradient(120deg,#21cfe6,#0ea5c4); transform:rotateX(58deg) rotateZ(-32deg) translateZ(0px)   translateY(-108px); }
+  .fed-layer.l2{ background:linear-gradient(120deg,#7c5cff,#5b3fd6); transform:rotateX(58deg) rotateZ(-32deg) translateZ(0px)   translateY(-36px); }
+  .fed-layer.l3{ background:linear-gradient(120deg,#ff8a4c,#ef6a2c); transform:rotateX(58deg) rotateZ(-32deg) translateZ(0px)   translateY(36px); }
+  .fed-layer.l4{ background:linear-gradient(120deg,#7ee787,#3ea653); transform:rotateX(58deg) rotateZ(-32deg) translateZ(0px)   translateY(108px); }
+  .fed-legend{ display:flex; flex-direction:column; gap:14px; }
+  .fed-item{ display:flex; align-items:flex-start; gap:14px; }
+  .fed-swatch{ width:16px; height:16px; border-radius:5px; margin-top:4px; flex:none; }
+  .fed-item b{ display:block; font-size:1.02rem; }
+  .fed-item span{ color:var(--text-2); font-size:.92rem; }
+  .fed-badge{
+    display:inline-flex; align-items:center; gap:9px; margin-top:6px; padding:11px 18px;
+    border-radius:99px; font-weight:800; color:#fff; background:var(--grad-brand);
+    box-shadow:var(--shadow-brand);
+  }
+  @media (max-width:860px){
+    .federate{ grid-template-columns:1fr; gap:12px; }
+    .fed-stack{ height:300px; margin-bottom:8px; }
+    .fed-layer{ width:88%; }
+  }
+
+  /* ===== contains grid (what the model holds) ===== */
+  .contains{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:6px; }
+  .contains span{
+    display:flex; align-items:center; gap:9px; padding:12px 14px; font-weight:600; font-size:.95rem;
+    background:var(--bg); border:1px solid var(--line); border-radius:var(--radius-sm);
+  }
+  .contains span svg{ width:17px; height:17px; color:var(--violet); flex:none; }
+  @media (max-width:820px){ .contains{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:440px){ .contains{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div data-include="header"></div>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero hero--real hero--bim">
+  <div class="hero__media"><img src="assets/real/pointcloud-data.jpg" alt="ענן נקודות תלת-מימדי צבעוני של מבנה - מדידת BIM בסריקת לייזר, מקובקי"></div>
+  <div class="hero__scrim"></div>
+  <div class="hero__scan"></div>
+  <div class="hero__grid"></div>
+  <canvas class="hero__canvas"></canvas>
+  <div class="container">
+    <div class="hero__inner">
+      <div class="crumbs"><a href="index.html">בית</a><span>›</span>שירותים<span>›</span>מדידת BIM</div>
+      <div class="hero__eyebrow-line">מדידת BIM / Scan to BIM · סריקת לייזר תלת-מימד</div>
+      <h1>מדידת BIM - <span class="hl">מודל תלת-מימדי מדויק</span> למבנים קיימים</h1>
+      <p class="hero__sub">הופכים מבנה קיים למודל BIM חכם ונאמן למציאות. במקום לתכנן לפי שרטוטים ישנים או מדידות ידניות - מקבלים תמונת מצב מלאה של המבנה כפי שהוא באמת בנוי (As-Built), מוכנה לעבודה ב-Revit, ArchiCAD ו-IFC. נקודת אמת אחת שממנה מתחיל כל תכנון, שיפוץ ותיאום מערכות.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--on-dark" href="#deliverables">מה אתם מקבלים</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><div class="num">±6<span class="u"> מ"מ</span></div><div class="lbl">דיוק המודל</div></div>
+        <div class="hero__stat"><div class="num" style="font-size:1.7rem">LOD 350</div><div class="lbl">רמת פירוט מקסימלית</div></div>
+        <div class="hero__stat"><div class="num">2.4M</div><div class="lbl">נקודות לייזר בשנייה</div></div>
+        <div class="hero__stat"><div class="num" style="font-size:1.7rem">Revit</div><div class="lbl">IFC · ArchiCAD · DWG</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TRUST BAR ============================ -->
+<section class="clients">
+  <div class="container">
+    <div class="clients__head">אדריכלים, יזמים וחברות בנייה כבר עובדים איתנו</div>
+    <div class="clients__row">
+      <img class="clients__logo" src="assets/real/clients/technion.png" alt="הטכניון">
+      <img class="clients__logo" src="assets/real/clients/aura.png" alt="אאורה">
+      <img class="clients__logo" src="assets/real/clients/alrov.jpg" alt="אלרוב">
+      <img class="clients__logo" src="assets/real/clients/giron.jpg" alt="גירון">
+      <img class="clients__logo" src="assets/real/clients/shefayim.jpg" alt="שפיים">
+      <img class="clients__logo" src="assets/real/clients/building-center.png" alt="בילדינג סנטר">
+    </div>
+    <div class="trust-row">
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 4.4-3 7.5-7 10-4-2.5-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>דיוק עד ±6 מ"מ</span>
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 12l9-5M12 12v10M12 12L3 7"/></svg>מודל מוכן ל-Revit ו-ArchiCAD</span>
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10+ שנות ניסיון</span>
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>פריסה ארצית</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHAT IS BIM MEASUREMENT (feature-row) ============================ -->
+<section class="section" id="mapping">
+  <div class="container">
+    <div class="feature-row">
+      <div class="feature-media reveal">
+        <img src="assets/real/pointcloud-1.jpg" alt="ענן נקודות תלת-מימדי של מבנה - הבסיס למודל BIM של מקובקי (Scan to BIM)">
+        <span class="feature-media__tag">ענן נקודות ← מודל BIM</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">מהי מדידת BIM</span>
+        <h2>ממבנה פיזי למודל דיגיטלי חכם</h2>
+        <p>מדידת BIM (Building Information Modeling - מידול מידע מבנים) היא תהליך שבו סורקים מבנה קיים בלייזר תלת-מימדי והופכים אותו למודל דיגיטלי מדויק. במקום לקבל רק תוכנית דו-מימדית (DWG), אתם מקבלים <b>מודל תלת-מימדי חכם</b> שאפשר לעבוד עליו ב-Revit או ב-ArchiCAD - מודל שמכיל לא רק צורה, אלא מידע: מהו כל רכיב, מה ממדיו והיכן הוא ממוקם.</p>
+        <p>המודל משקף את המבנה כפי שהוא <b>באמת בנוי בשטח</b>, עד רמת המילימטר. זה הבסיס האמין שממנו מתחיל כל תכנון, שיפוץ, תוספת בנייה או תיאום מערכות - בלי ניחושים ובלי הפתעות.</p>
+        <div class="contains">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>קירות ומחיצות</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>עמודים וקורות</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>תקרות ורצפות</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>חלונות ופתחים</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>מערכות חשמל</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>מערכות מיזוג</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>צנרת ואינסטלציה</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>גבהים ומפלסים</span>
+        </div>
+        <div class="pill-list" style="margin-top:20px;">
+          <span class="pill">מדידת BIM</span><span class="pill">Scan to BIM</span><span class="pill">מדידת מצב קיים</span>
+        </div>
+        <a class="btn btn--primary" href="contact.html" style="margin-top:22px;">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ AS-BUILT (why you need it) ============================ -->
+<section class="section section--soft" id="as-built">
+  <div class="container">
+    <div class="feature-row feature-row--flip">
+      <div class="feature-media reveal">
+        <img src="assets/real/gramushka-2d.png" alt="תוכנית דו-מימדית ישנה של מבנה - למה תוכניות מקוריות לא תואמות את המצב הקיים בשטח">
+        <span class="feature-media__tag">התוכנית הישנה ← המצב האמיתי</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">As-Built / As-Made</span>
+        <h2>BIM למבנים קיימים - כי התוכניות הישנות כבר לא מדויקות</h2>
+        <p>בבתי מלון, מפעלים, בנייני משרדים, בתי חולים, קניונים ומבני ציבור - התוכניות המקוריות נעשו לפני 20-30 שנה, ומאז הזיזו קירות, הוסיפו מערכות, שיפצו וביצעו שינויים. כשמגיע אדריכל או מהנדס לתכנן על בסיס מידע לא מדויק - נולדות טעויות יקרות בשטח.</p>
+        <p><b>מדידת As-Built (מצב קיים)</b> פותרת את זה: אנחנו סורקים את המבנה כפי שהוא היום ובונים ממנו מודל BIM שמשקף את המציאות אחד-לאחד. זו נקודת הפתיחה הבטוחה לכל שיפוץ, התחדשות עירונית, שינוי ייעוד או שימור מבנים.</p>
+        <ul class="includes">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מודל שמשקף את המבנה כפי שהוא באמת בנוי</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>סוף לפערים בין השרטוט לשטח</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>בסיס אמין לשיפוץ, תוספת בנייה ושימור</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>תיעוד מלא של מערכות גלויות בפועל</li>
+        </ul>
+        <a class="card__link" href="measurement-architectural.html">צריכים גם תוכניות מדידה אדריכלית? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PROCESS (flow, dark) ============================ -->
+<section class="section section--ink" id="process">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">כיצד מתבצע התהליך</span>
+      <h2>מהסריקה בשטח ועד מודל ה-BIM במשרד</h2>
+      <p class="lead">ארבעה צעדים בין המבנה הפיזי לבין מודל שאפשר להתחיל בו לתכנן. אנחנו לא רק מודדים - אנחנו מספקים נקודת פתיחה מושלמת ל-Revit.</p>
+    </div>
+    <div class="flow">
+      <div class="flow__node reveal">
+        <div class="flow__img"><img src="assets/real/oded/oded-scanning-room.jpg" alt="עודד מקובקי סורק מבנה בסורק לייזר נייד - שלב הסריקה בשטח למדידת BIM"></div>
+        <div class="flow__body">
+          <span class="flow__step"><span class="n">1</span>סריקה בשטח</span>
+          <h3>לוכדים את המבנה תוך דקות</h3>
+          <p>סורק לייזר נייד סורק את החלל כולו בהליכה רציפה - בלי חצובות ובלי לשבש את הפעילות במקום.</p>
+        </div>
+      </div>
+      <div class="flow__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg></div>
+      <div class="flow__node reveal">
+        <div class="flow__img"><img src="assets/real/pointcloud-data.jpg" alt="ענן נקודות תלת-מימדי מדויק - עותק דיגיטלי של המבנה שנסרק"></div>
+        <div class="flow__body">
+          <span class="flow__step"><span class="n">2</span>ענן נקודות</span>
+          <h3>עותק דיגיטלי, אחד-לאחד</h3>
+          <p>מיליוני נקודות תלת-מימד נרשמות ומנוקות לכדי עותק דיגיטלי מדויק של המבנה, בדיוק של מילימטרים.</p>
+        </div>
+      </div>
+      <div class="flow__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg></div>
+      <div class="flow__node reveal">
+        <div class="flow__img"><img src="assets/real/building-render.webp" alt="מידול BIM - הפיכת ענן הנקודות למודל תלת-מימדי חכם ב-Revit"></div>
+        <div class="flow__body">
+          <span class="flow__step"><span class="n">3</span>מידול BIM</span>
+          <h3>מרכיבים מודל חכם</h3>
+          <p>מהענן בונים מודל BIM שבו כל קיר, פתח ורכיב הם אובייקט אמיתי עם מידע - לא רק קווים.</p>
+        </div>
+      </div>
+      <div class="flow__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg></div>
+      <div class="flow__node reveal">
+        <div class="flow__img"><img src="assets/real/gramushka-2d.png" alt="מסירת תוצרים - מודל Revit, קובצי IFC ותוכניות DWG נקיות"></div>
+        <div class="flow__body">
+          <span class="flow__step"><span class="n">4</span>מסירה</span>
+          <h3>Revit, IFC ותוכניות DWG</h3>
+          <p>מקבלים את המודל בפורמט שביקשתם, נקי ומסודר, מוכן לפתיחה ולעבודה מיידית במשרד.</p>
+        </div>
+      </div>
+    </div>
+    <div class="formats" style="justify-content:center;">
+      <div class="format-chip"><span class="dot"></span>Revit<small>מודל BIM · RVT</small></div>
+      <div class="format-chip"><span class="dot"></span>ArchiCAD<small>IFC</small></div>
+      <div class="format-chip"><span class="dot"></span>AutoCAD<small>DWG / DXF</small></div>
+      <div class="format-chip"><span class="dot"></span>ענן נקודות<small>E57 / RCP / LAS</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ LOD LADDER ============================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">רמת הפירוט</span>
+      <h2>איזו רמת LOD אתם צריכים?</h2>
+      <p class="lead">רמת הפירוט של מודל BIM (Level of Development) נקבעת לפי הצורך - ממודל מסה כללי ועד מודל מפורט עם חיבורים ומערכות. אנחנו מתאימים את רמת המודל בדיוק למה שהפרויקט שלכם דורש, בלי לשלם על פירוט מיותר.</p>
+    </div>
+    <div class="lod-ladder">
+      <div class="lod-card reveal">
+        <span class="lod-card__lod"><small>LEVEL OF DEVELOPMENT</small>LOD 100</span>
+        <div class="lod-meter"><i class="on"></i><i></i><i></i><i></i></div>
+        <h3>מודל מסה</h3>
+        <p>נפחים כלליים, גבהים ומיקום - לבחינת חלופות ראשונית ולתכנון עקרוני.</p>
+      </div>
+      <div class="lod-card reveal">
+        <span class="lod-card__lod"><small>LEVEL OF DEVELOPMENT</small>LOD 200</span>
+        <div class="lod-meter"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+        <h3>רכיבים גנריים</h3>
+        <p>קירות, פתחים ורכיבים בממדים ובמיקום מקורבים - בסיס נוח להתחלת תכנון.</p>
+      </div>
+      <div class="lod-card reveal">
+        <span class="lod-card__lod"><small>LEVEL OF DEVELOPMENT</small>LOD 300</span>
+        <div class="lod-meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+        <h3>גיאומטריה מדויקת</h3>
+        <p>רכיבים בממדים, בצורה ובמיקום מדויקים - מתאים להגשה, לתיאום ולתכנון מפורט.</p>
+      </div>
+      <div class="lod-card reveal">
+        <span class="lod-card__lod"><small>LEVEL OF DEVELOPMENT</small>LOD 350</span>
+        <div class="lod-meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        <h3>חיבורים ומערכות</h3>
+        <p>כולל ממשקים בין רכיבים ומערכות - לתיאום מלא בין דיסציפלינות וזיהוי התנגשויות.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MODELING / FEDERATED (disciplines) ============================ -->
+<section class="section section--ink" id="modeling">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">מידול BIM</span>
+      <h2>מודל אחד. כל הדיסציפלינות.</h2>
+      <p class="lead">מודל BIM מאגד אדריכלות, קונסטרוקציה ומערכות במודל מתואם אחד - מקור אמת דיגיטלי אחד שכל בעלי העניין עובדים עליו, מזהים בו התנגשויות מוקדם ומנהלים ממנו את הפרויקט לאורך כל חייו.</p>
+    </div>
+    <div class="federate">
+      <div class="fed-stack reveal" aria-hidden="true">
+        <div class="fed-layer l1"><span class="dot"></span>אדריכלות<small>Architecture</small></div>
+        <div class="fed-layer l2"><span class="dot"></span>קונסטרוקציה<small>Structure</small></div>
+        <div class="fed-layer l3"><span class="dot"></span>חשמל ותאורה<small>Electrical</small></div>
+        <div class="fed-layer l4"><span class="dot"></span>מיזוג ואינסטלציה<small>MEP</small></div>
+      </div>
+      <div class="reveal">
+        <div class="fed-legend">
+          <div class="fed-item"><span class="fed-swatch" style="background:linear-gradient(120deg,#21cfe6,#0ea5c4)"></span><div><b>שכבה אדריכלית</b><span>קירות, פתחים, גמרים ומפלסים כבסיס לתכנון.</span></div></div>
+          <div class="fed-item"><span class="fed-swatch" style="background:linear-gradient(120deg,#7c5cff,#5b3fd6)"></span><div><b>שכבה קונסטרוקטיבית</b><span>עמודים, קורות ואלמנטים נושאים למהנדס הקונסטרוקציה.</span></div></div>
+          <div class="fed-item"><span class="fed-swatch" style="background:linear-gradient(120deg,#ff8a4c,#ef6a2c)"></span><div><b>מערכות חשמל ותאורה</b><span>נקודות, לוחות ותוואי גלוי לתיאום מול יועץ החשמל.</span></div></div>
+          <div class="fed-item"><span class="fed-swatch" style="background:linear-gradient(120deg,#7ee787,#3ea653)"></span><div><b>מיזוג, אינסטלציה וצנרת</b><span>מערכות MEP גלויות - בסיס לתכנון ולתחזוקה.</span></div></div>
+        </div>
+        <div class="fed-badge"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg>מודל BIM מאוחד (Federated Model)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DELIVERABLES ============================ -->
+<section class="section" id="deliverables">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">התוצרים</span>
+      <h2>מה אתם מקבלים ממדידת BIM</h2>
+      <p class="lead">מסירה בפורמט שבו אתם עובדים - נקי, מסודר ומוכן לפתיחה במשרד. אתם בוחרים את התוצר, אנחנו דואגים לדיוק.</p>
+    </div>
+    <div class="deliverables">
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 12l9-5M12 12v10M12 12L3 7"/></svg></span>
+        <span class="abbr">SCAN-TO-BIM</span>
+        <h3>מודל Revit / BIM</h3>
+        <p>מודל תלת-מימדי חכם ברמת LOD 200-350, מוכן להתחלת התכנון ב-Revit או ArchiCAD.</p>
+        <span class="deliv__fmt">‎.RVT · IFC</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7l8-4 8 4v10l-8 4-8-4z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg></span>
+        <span class="abbr">OPEN BIM</span>
+        <h3>קובץ IFC פתוח</h3>
+        <p>מודל בפורמט IFC לעבודה בכל תוכנת BIM ולשיתוף בין יועצים ודיסציפלינות.</p>
+        <span class="deliv__fmt">‎.IFC</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></span>
+        <span class="abbr">DWG / AUTOCAD</span>
+        <h3>תוכניות AutoCAD</h3>
+        <p>תוכניות, חתכים, חזיתות וגבהים שהופקו מהמודל - מסודרים בשכבות ומוכנים לעריכה.</p>
+        <span class="deliv__fmt">‎.DWG · .DXF</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="7" r="1.4"/><circle cx="12" cy="5" r="1.4"/><circle cx="18" cy="8" r="1.4"/><circle cx="8" cy="14" r="1.4"/><circle cx="15" cy="13" r="1.4"/><circle cx="11" cy="19" r="1.4"/><circle cx="19" cy="17" r="1.4"/></svg></span>
+        <span class="abbr">POINT CLOUD</span>
+        <h3>ענן נקודות</h3>
+        <p>הסריקה הגולמית המלאה - מיליוני נקודות תלת-מימד לשילוב ולעבודה ישירה במודל.</p>
+        <span class="deliv__fmt">E57 · RCP · LAS</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+        <span class="abbr">VIRTUAL TOUR</span>
+        <h3><a href="virtual-tour.html" style="color:inherit">סיור וירטואלי 360°</a></h3>
+        <p>סיור הניתן למדידה, זמין 24/7 מכל מסך - לשיתוף עם הצוות, היועצים והלקוח.</p>
+        <span class="deliv__fmt">קישור · הטמעה</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+        <span class="abbr">DATA</span>
+        <h3>טבלאות שטחים וכמויות</h3>
+        <p>חילוץ שטחים, ממדים וכמויות ישירות מהמודל - בסיס מדויק לאומדן ולתכנון.</p>
+        <span class="deliv__fmt">PDF · Excel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHO IS IT FOR ============================ -->
+<section class="section section--soft" id="audience">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">למי מתאים שירות מדידת BIM</span>
+      <h2>קהל איכותי שעובד עם מודל, לא עם ניחושים</h2>
+      <p class="lead">מדידת BIM פונה למי שהתכנון שלו חייב לשבת מדויק על המבנה הקיים - אדריכלים, יזמים, מהנדסים ומנהלי נכסים.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M6 21V8l6-4 6 4v13"/><path d="M10 21v-5h4v5"/></svg></span>
+        <h3>אדריכלים ומתכננים</h3>
+        <p>מודל מצב קיים מדויק כבסיס תכנוני אמין - מקצר תהליכי תכנון ומצמצם טעויות בשטח. מדידה למודל Revit, מוכנה לעבודה ביום הראשון.</p>
+      </article>
+      <article class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20V8l5-3 5 3v12"/><path d="M15 20v-8h5v8"/></svg></span>
+        <h3>יזמים וחברות בנייה</h3>
+        <p>מודל מצב קיים לתכנון הרחבות, התחדשות עירונית, שיפוץ או שינוי ייעוד - בסיס לתיאום, לבקרה ולניהול פרויקט על מקור אמת אחד.</p>
+      </article>
+      <article class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21h16M6 21V7l6-4 6 4v14M9 21v-6h6v6"/><path d="M9 10h.01M15 10h.01"/></svg></span>
+        <h3>מבנים קיימים ומורכבים</h3>
+        <p>בתי חולים, מפעלים, מוסדות, מבני ציבור ומבנים לשימור - שבהם מערכות רבות דורשות תיעוד מדויק לפני כל התערבות.</p>
+      </article>
+      <article class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 3-2 4-2 6H7c0-2-2-3-2-6a7 7 0 0 1 7-7z"/><path d="M9 21h6"/></svg></span>
+        <h3>מהנדסים ויועצים</h3>
+        <p>בסיס נתונים מדויק לתכנון קונסטרוקציה ומערכות - עמודים, קורות, תוואי מערכות ומפלסים כאובייקטים אמיתיים במודל.</p>
+      </article>
+      <article class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 7v11H3V10z"/><path d="M9 21v-6h6v6"/></svg></span>
+        <h3>מנהלי מבנים ונכסים</h3>
+        <p>מודל דיגיטלי זמין לתחזוקה, לניהול ולתכנון שינויים לאורך כל חיי המבנה (Facility Management).</p>
+      </article>
+      <article class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V8l6-4v4l6-4v17M4 21h16M9 21v-4h3v4"/></svg></span>
+        <h3>מנהלי פרויקטים</h3>
+        <p>כלי תיאום ובקרה על בסיס מודל אחד - שקיפות מלאה בין כל בעלי העניין, מהתכנון ועד המסירה.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BENEFITS ============================ -->
+<section class="section" id="benefits">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">היתרונות</span>
+      <h2>לתכנן נכון מתחיל מלמדוד נכון</h2>
+      <p class="lead">מדידה מבוססת BIM חוסכת סבבי תיקונים, מונעת הפתעות בשטח והופכת את המבנה הקיים לנכס דיגיטלי מדויק שמשרת אתכם לאורך כל הפרויקט.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span>
+        <h3>דיוק גבוה מאוד</h3>
+        <p>מודל בדיוק של עד ±6 מ"מ, נאמן למציאות - בלי טעויות אנוש של מדידה ידנית.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 4v5c0 4.4-3 7.5-7 9-4-1.5-7-4.6-7-9V7z"/></svg></span>
+        <h3>הפחתת טעויות תכנון וביצוע</h3>
+        <p>כשהתכנון יושב על מודל מדויק, פחות הפתעות בשטח ופחות סבבי תיקונים יקרים.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7L12 17l-6.5 4 2-7L2 9h7z"/></svg></span>
+        <h3>זיהוי התנגשויות מוקדם</h3>
+        <p>מזהים קונפליקטים בין מערכות לרכיבים עוד לפני הביצוע - Clash Detection במודל.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <h3>חיסכון בזמן ובעלויות</h3>
+        <p>מודל מוכן חוסך שרטוט מאפס, ביקורי שטח חוזרים וטעויות שמתגלות באתר.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 3h11l5 5v13H4z"/><path d="M15 3v5h5"/><path d="M8 13h8M8 17h6"/></svg></span>
+        <h3>תיעוד מלא של המצב הקיים</h3>
+        <p>נכס דיגיטלי אחד שמכיל את כל המבנה - חוזרים אליו בכל שלב, גם שנים קדימה.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <h3>עבודה נוחה מול כל הצוות</h3>
+        <p>שפה משותפת מול אדריכלים, מהנדסים ויועצים - כולם עובדים על אותו מקור אמת.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ COMPLEX BUILDINGS SHOWCASE ============================ -->
+<section class="section section--soft" id="complex">
+  <div class="container">
+    <div class="feature-row">
+      <div class="feature-media reveal">
+        <img src="assets/real/pointcloud-industry.jpg" alt="ענן נקודות תלת-מימדי צבעוני של מפעל / מבנה תעשייתי עתיר מערכות - מדידת BIM למבנים מורכבים">
+        <span class="feature-media__tag">מפעל / מבנה עתיר מערכות</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">מבנים מורכבים</span>
+        <h2>מפעלים, מוסדות ומבנים עתירי מערכות</h2>
+        <p>ככל שהמבנה מורכב יותר - יותר צנרת, יותר תעלות מיזוג, יותר מערכות חשמל - כך גדל הערך של מודל BIM מדויק. סריקת לייזר לוכדת את כל התוואי הגלוי בבת אחת, והמודל הופך לבסיס אמין לתכנון שדרוגים, הוספת מערכות ותחזוקה - בלי לפרק, בלי לנחש ובלי לחזור שוב ושוב לשטח.</p>
+        <ul class="includes">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>בתי חולים ומוסדות רפואיים</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מפעלים ומתקני תעשייה</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>קניונים ומבני מסחר</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מבני ציבור ומבנים לשימור</li>
+        </ul>
+        <a class="card__link" href="infrastructure.html">גם תיעוד תשתיות באמצע בנייה <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TECHNOLOGY ============================ -->
+<section class="section section--ink tech-show" id="technology">
+  <div class="container">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow">הטכנולוגיה שמאחורי הדיוק</span>
+        <h2>סורק לייזר אחד. ענן נקודות מלא של כל מבנה.</h2>
+        <p class="lead">בלב מקובקי עומד סורק לייזר תלת-מימדי נייד מהמתקדמים בעולם. הוא יורה 2,400,000 קרני לייזר בשנייה, לוכד כל קיר, פתח, מערכת וזווית תוך דקות - ומצלם את החלל ב-360° לתיעוד ויזואלי מלא, כבסיס למודל BIM נאמן למציאות.</p>
+        <div class="spec-list">
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span><div><b>2,400,000 קרני לייזר בשנייה</b><span>איסוף נתונים בזמן אמת, בהליכה רציפה</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span><div><b>דיוק עד ±6 מ"מ</b><span>ללא סטיות של מדידה ידנית</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>120 מ"ר בדקות</b><span>סריקה מלאה של קומה, בלי לשבש שגרה</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg></span><div><b>4 מצלמות HD</b><span>תיעוד צבע וסיור 360° מלא</span></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="device-stage">
+          <span class="device-ring r2"></span>
+          <span class="device-ring r1"></span>
+          <img src="assets/real/device.png" alt="סורק הלייזר התלת-מימדי הנייד של מקובקי, מסך חי המציג סריקת מבנה">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GOOGLE REVIEWS ============================ -->
+<section class="section reviews">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">ביקורות מ-Google</span>
+      <h2>אדריכלים ומתכננים שכבר עובדים איתנו</h2>
+      <div class="google-badge">
+        <svg class="google-badge__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+        <span class="google-badge__score">5.0</span>
+        <span class="google-badge__stars">★★★★★</span>
+        <span class="google-badge__txt">ביקורות אמיתיות מלקוחות מרוצים</span>
+      </div>
+    </div>
+
+    <div class="reviews-slider" data-reviews>
+      <button class="rev-nav rev-prev" aria-label="ביקורת קודמת"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <div class="reviews-viewport">
+        <div class="reviews-track">
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#7c4dff;">N<img src="assets/real/reviews/nina-g.jpg" alt="Nina G" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>Nina G</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">כל פרוייקט קטן כגדול מתחיל במדידה מקצועית. כבר שנים שאני עובדת מול עודד ומרוצה תמיד מהתהליך. המדידה לוקחת עשר-עשרים דקות ותוך ימים ספורים אני כבר מקבלת את הקבצים באיזה פורמט שאבחר: רוויט, אוטוקאד, סקטצ' אפ וכמובן עם סיור וירטואלי. ממליצה.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#e0568b;">ד<img src="assets/real/reviews/dana.jpg" alt="דנה פינגרר" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דנה פינגרר</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">אני עובדת עם עודד מספר שנים ותמיד מרוצה מתוכניות המדידות שהוא מבצע. זהו שלב סופר חשוב בתהליך התכנון מכיוון שעליו מתבססות כל התוכניות. העבודה עם עודד תמיד נעימה, הוא שירותי ויעיל והתוצרים מתקבלים במהירות. ממליצה בחום.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#d946ef;">א<img src="assets/real/reviews/orly.jpg" alt="אורלי ט׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>אורלי ט׳</b><span>אדריכלית</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">כאדריכלית נדרשתי להשתמש בשירותי מדידות לצורך הגשה להיתר. הגעתי לעודד ומיד הבנתי שמדובר באדם מקסים, אדיב, שירותי, שעובד בצורה מקצועית וענה על כל הדרישות. ממליצה מאוד מאוד.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#f59e0b;">ד<img src="assets/real/reviews/dana-n.jpg" alt="דנה נ׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דנה נ׳</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">אני עובדת עם עודד שנים כמעצבת פנים. מעבר לזה שהוא מקסים ומאוד שירותי, המדידות תמיד יוצאות הכי מדויקות וכל התהליך לוקח כמה דקות. הסיור הווירטואלי שעודד מוסיף מאוד עוזר בשלב השיפוץ והתכנון. עבדתי בעבר עם מודדים אחרים, והיום עודד הוא המודד היחיד שאני עובדת איתו.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#ef4444;">ד<img src="assets/real/reviews/dani.jpg" alt="דני עיצוב רהיטים" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דני עיצוב רהיטים</b><span>לקוח מרוצה</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">עודד ביצע עבור לקוחות שלי מדידה ואין כמוהו. החומר והשרטוטים הגיעו במקצועיות. מובנים ונוחים לעבודה. ממליצה מאד.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#06b6d4;">ש<img src="assets/real/reviews/shirley.jpg" alt="שירלי צ׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>שירלי צ׳</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">עודד המודד התותח, אני מעצבת פנים ומשתמשת בשירותי המדידה שלו ומרוצה מאוד. מעבר לדיוק ולניסיון, הערך המוסף שלו הוא בשירות גם לאחר ביצוע העבודה.</p>
+          </article>
+
+        </div>
+      </div>
+      <button class="rev-nav rev-next" aria-label="ביקורת הבאה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section section--soft" id="faq">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">שאלות נפוצות</span>
+      <h2>כל מה שחשוב לדעת על מדידת BIM</h2>
+    </div>
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q">מהי מדידת BIM ובמה היא שונה ממדידה רגילה?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">מדידת BIM היא תהליך שבו סורקים מבנה קיים בלייזר תלת-מימדי ובונים ממנו <b>מודל דיגיטלי חכם</b> (Building Information Modeling). בניגוד למדידה שמפיקה רק תוכנית דו-מימדית (DWG), במודל BIM כל קיר, פתח, עמוד או מערכת הם <b>אובייקט אמיתי עם מידע</b> - לא רק קווים על נייר. את המודל אפשר לפתוח ולערוך ב-Revit או ב-ArchiCAD ולהמשיך ממנו את התכנון.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">מה זה As-Built BIM (מדידת מצב קיים)?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">As-Built (וגם As-Made) הוא מודל BIM שנבנה לפי <b>המצב הקיים בפועל</b> - כפי שהמבנה באמת בנוי היום, אחרי כל השינויים והשיפוצים שנעשו לאורך השנים. זה חשוב במיוחד במבנים ותיקים, שבהם התוכניות המקוריות כבר לא תואמות את המציאות. As-Built הוא נקודת הפתיחה הבטוחה לכל שיפוץ, תוספת בנייה, שינוי ייעוד או שימור.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">איזו רמת LOD אני מקבל, ואיך בוחרים אותה?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">רמת הפירוט (Level of Development) נעה מ-<b>LOD 100</b> (מודל מסה כללי) ועד <b>LOD 350</b> (רכיבים מדויקים כולל חיבורים ומערכות). אנחנו מתאימים את הרמה לצורך: לבחינת חלופות מספיק LOD 100-200, ולתכנון מפורט, להגשה ולתיאום מערכות עובדים ב-LOD 300-350. כך אתם משלמים בדיוק על רמת הפירוט שהפרויקט צריך.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">אילו קבצים אני מקבל, ואיך הם נפתחים ב-Revit?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">אתם בוחרים את הפורמט: <b>מודל Revit (.RVT)</b>, קובץ <b>IFC</b> (Open BIM לכל תוכנה), מודל <b>ArchiCAD</b>, תוכניות <b>DWG</b> ל-AutoCAD, ענן נקודות (E57 / RCP / LAS) וסיור 360°. הקבצים מגיעים נקיים ומסודרים, מוכנים לפתיחה ולעבודה מיידית - מודל Revit פשוט נפתח וממשיכים לתכנן ממנו.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">האם השירות מתאים למבנים גדולים ומורכבים?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">בהחלט - ודווקא שם הערך הגדול ביותר. בתי חולים, מפעלים, קניונים, מבני ציבור ומבנים לשימור עתירי מערכות (צנרת, מיזוג, חשמל) נסרקים במלואם, והמודל הופך לבסיס אמין לתכנון שדרוגים, תוספות ותחזוקה. הסורק הנייד לוכד את כל התוואי הגלוי בבת אחת, גם בחללים מורכבים.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">כמה זמן לוקח התהליך?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">הסריקה בשטח מהירה מאוד: כ-<b>120 מ"ר נסרקים תוך דקות</b> בהליכה רציפה, בלי לשבש את הפעילות במבנה. את ענן הנקודות והתוצרים הדו-מימדיים מקבלים תוך ימים ספורים; זמן בניית מודל ה-BIM עצמו תלוי בגודל המבנה, במורכבותו וברמת ה-LOD הנדרשת - ונסגר מראש בהצעת מחיר שקופה.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">מה ההבדל בין מדידה אדריכלית למדידת BIM?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">שתיהן מתחילות מאותה סריקת לייזר של המבנה. <b>מדידה אדריכלית</b> מפיקה בעיקר תוצרים דו-מימדיים - תוכניות, חתכים וחזיתות (DWG). <b>מדידת BIM</b> מוסיפה על כך <b>מודל תלת-מימדי חכם</b> (Revit / IFC) שבו הרכיבים הם אובייקטים עם מידע - לתיאום בין דיסציפלינות, זיהוי התנגשויות וניהול מבנה. פעמים רבות מפיקים את שני התוצרים מאותה סריקה.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">כמה עולה מדידת BIM ומה משפיע על המחיר?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">המחיר נגזר בעיקר מגודל השטח, ממורכבות המבנה ומרמת ה-LOD הנדרשת, וכן מסוג התוצר (מודל Revit / IFC / תוכניות / סיור). אחרי שיחת אפיון קצרה תקבלו <b>הצעת מחיר שקופה וללא הפתעות</b>. השאירו פרטים ונחזור אליכם.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA BAND ============================ -->
+<section class="section cta-band">
+  <div class="container">
+    <div class="cta-band__box cta-band__box--photo reveal">
+      <img class="cta-band__photo" src="assets/real/oded/oded-cta.png" alt="עודד מקובקי עם סורק המדידה התלת-מימדי הנייד" width="677" height="1190" loading="lazy">
+      <h2>יש לכם מבנה שצריך להפוך למודל BIM?</h2>
+      <p>ספרו לנו על הפרויקט ונבנה פתרון מדידה ומידול מתאים - מ-As-Built מלא ועד מודל Revit לתכנון. ייעוץ ראשוני - חינם.</p>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--wa" href="https://wa.me/972543040804"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/makovki.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "מדידת BIM - מודל תלת-מימדי מדויק למבנים קיימים",
+      "serviceType": "מדידת BIM / Scan to BIM / מידול As-Built",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "מקובקי - מדידות וסריקה תלת-מימדית",
+        "telephone": "+972-54-3040804",
+        "email": "oded@makovki.com",
+        "areaServed": "IL"
+      },
+      "description": "מדידת BIM בסריקת לייזר תלת-מימד: מודל BIM מדויק של מבנה קיים (As-Built / Scan to BIM) עד רמת LOD 350, מוכן ל-Revit, ArchiCAD ו-IFC, כולל ענן נקודות, תוכניות DWG וסיור 360°.",
+      "areaServed": "IL"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
+        { "@type": "ListItem", "position": 2, "name": "שירותים", "item": "https://makovki.com/#services" },
+        { "@type": "ListItem", "position": 3, "name": "מדידת BIM" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "מהי מדידת BIM ובמה היא שונה ממדידה רגילה?", "acceptedAnswer": { "@type": "Answer", "text": "מדידת BIM היא תהליך שבו סורקים מבנה קיים בלייזר תלת-מימדי ובונים ממנו מודל דיגיטלי חכם (Building Information Modeling). בניגוד למדידה שמפיקה רק תוכנית דו-מימדית, במודל BIM כל קיר, פתח, עמוד או מערכת הם אובייקט אמיתי עם מידע, שאפשר לפתוח ולערוך ב-Revit או ב-ArchiCAD." } },
+        { "@type": "Question", "name": "מה זה As-Built BIM (מדידת מצב קיים)?", "acceptedAnswer": { "@type": "Answer", "text": "As-Built הוא מודל BIM שנבנה לפי המצב הקיים בפועל - כפי שהמבנה באמת בנוי היום, אחרי כל השינויים והשיפוצים. זה חשוב במבנים ותיקים שבהם התוכניות המקוריות כבר לא תואמות את המציאות, והוא נקודת הפתיחה לכל שיפוץ, תוספת בנייה, שינוי ייעוד או שימור." } },
+        { "@type": "Question", "name": "איזו רמת LOD אני מקבל, ואיך בוחרים אותה?", "acceptedAnswer": { "@type": "Answer", "text": "רמת הפירוט נעה מ-LOD 100 (מודל מסה כללי) ועד LOD 350 (רכיבים מדויקים כולל חיבורים ומערכות). מתאימים את הרמה לצורך: LOD 100-200 לבחינת חלופות, ו-LOD 300-350 לתכנון מפורט, להגשה ולתיאום מערכות." } },
+        { "@type": "Question", "name": "אילו קבצים אני מקבל, ואיך הם נפתחים ב-Revit?", "acceptedAnswer": { "@type": "Answer", "text": "מודל Revit (.RVT), קובץ IFC (Open BIM), מודל ArchiCAD, תוכניות DWG ל-AutoCAD, ענן נקודות (E57 / RCP / LAS) וסיור 360°. הקבצים מגיעים נקיים ומסודרים, מוכנים לפתיחה ולעבודה מיידית." } },
+        { "@type": "Question", "name": "האם השירות מתאים למבנים גדולים ומורכבים?", "acceptedAnswer": { "@type": "Answer", "text": "כן, ודווקא שם הערך הגדול ביותר. בתי חולים, מפעלים, קניונים ומבנים לשימור עתירי מערכות נסרקים במלואם, והמודל הופך לבסיס אמין לתכנון שדרוגים, תוספות ותחזוקה." } },
+        { "@type": "Question", "name": "מה ההבדל בין מדידה אדריכלית למדידת BIM?", "acceptedAnswer": { "@type": "Answer", "text": "שתיהן מתחילות מאותה סריקת לייזר. מדידה אדריכלית מפיקה בעיקר תוצרים דו-מימדיים (DWG), ואילו מדידת BIM מוסיפה מודל תלת-מימדי חכם (Revit / IFC) שבו הרכיבים הם אובייקטים עם מידע - לתיאום בין דיסציפלינות, זיהוי התנגשויות וניהול מבנה. לרוב מפיקים את שני התוצרים מאותה סריקה." } },
+        { "@type": "Question", "name": "כמה עולה מדידת BIM ומה משפיע על המחיר?", "acceptedAnswer": { "@type": "Answer", "text": "המחיר נגזר מגודל השטח, ממורכבות המבנה ומרמת ה-LOD הנדרשת, וכן מסוג התוצר. אחרי שיחת אפיון קצרה מקבלים הצעת מחיר שקופה וללא הפתעות." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

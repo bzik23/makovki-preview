@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תב"ע - מדידה גיאודטית לתוכנית בניין עיר | מקובקי - מקושר לרשת הארצית</title>
+<meta name="description" content="מדידה גיאודטית מדויקת לתב&quot;ע: תשריט מצב קיים מהימן, מקושר לרשת ישראל החדשה, קובץ DWG וענן נקודות תלת-מימד - בסיס אמין לעבודה מול ועדות התכנון.">
+<link rel="canonical" href="measurement-taba.html">
+<link rel="icon" href="assets/real/logo-main.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/makovki.css">
+<style>
+  /* page-scoped: darken the RTL text side (right) of the hero for readability */
+  .hero--taba .hero__scrim{
+    background:
+      linear-gradient(to right, rgba(8,17,33,.32) 0%, rgba(8,17,33,.68) 44%, rgba(8,17,33,.92) 80%, var(--ink) 100%),
+      linear-gradient(to top, var(--ink) 2%, rgba(8,17,33,.12) 50%);
+  }
+  @media (max-width: 860px){
+    .hero--taba .hero__scrim{
+      background:
+        linear-gradient(to right, rgba(8,17,33,.60) 0%, rgba(8,17,33,.80) 55%, var(--ink) 100%),
+        linear-gradient(to top, var(--ink) 4%, rgba(8,17,33,.34) 62%);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div data-include="header"></div>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero hero--real hero--taba">
+  <div class="hero__media"><img src="assets/real/pointcloud-industry.jpg" alt="ענן נקודות תלת-מימדי מקושר לרשת הקואורדינטות הארצית - בסיס גיאודטי לתב&quot;ע, מקובקי"></div>
+  <div class="hero__scrim"></div>
+  <div class="hero__scan"></div>
+  <div class="hero__grid"></div>
+  <canvas class="hero__canvas"></canvas>
+  <div class="container">
+    <div class="hero__inner">
+      <div class="crumbs"><a href="index.html">בית</a><span>›</span><a href="measurement.html">שירותי מדידה</a><span>›</span>תב"ע</div>
+      <div class="hero__eyebrow-line">תב"ע · תוכנית בניין עיר</div>
+      <h1>מדידות שמניחות את <span class="hl">היסוד</span> לתכנון תב"ע</h1>
+      <p class="hero__sub">בסיס מדידה גיאודטי מדויק להליכי תכנון תב"ע - תשריט מצב קיים מהימן, מקושר למערכת הקואורדינטות הארצית (רשת ישראל החדשה), שמאפשר לאדריכלים ולמתכננים לעבוד מול ועדות התכנון בביטחון מלא.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--on-dark" href="#deliverables">מה אתם מקבלים</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><div class="num">±6<span class="u"> מ"מ</span></div><div class="lbl">דיוק המדידה</div></div>
+        <div class="hero__stat"><div class="num" style="direction:rtl;font-size:1.5rem">רשת ישראל</div><div class="lbl">קואורדינטות ארציות (ITM)</div></div>
+        <div class="hero__stat"><div class="num" style="direction:rtl;font-size:1.5rem">מצב קיים</div><div class="lbl">תשריט מדידה מהימן</div></div>
+        <div class="hero__stat"><div class="num" style="direction:rtl;font-size:1.5rem">מס' ימים</div><div class="lbl">בלבד למסירה</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TRUST BAR ============================ -->
+<section class="clients">
+  <div class="container">
+    <div class="clients__head">אדריכלים, מתכננים ויזמים שכבר עובדים איתנו</div>
+    <div class="clients__row">
+      <img class="clients__logo" src="assets/real/clients/technion.png" alt="הטכניון">
+      <img class="clients__logo" src="assets/real/clients/aura.png" alt="אאורה">
+      <img class="clients__logo" src="assets/real/clients/alrov.jpg" alt="אלרוב">
+      <img class="clients__logo" src="assets/real/clients/giron.jpg" alt="גירון">
+      <img class="clients__logo" src="assets/real/clients/shefayim.jpg" alt="שפיים">
+      <img class="clients__logo" src="assets/real/clients/building-center.png" alt="בילדינג סנטר">
+    </div>
+    <div class="trust-row">
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 4.4-3 7.5-7 10-4-2.5-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>דיוק גיאודטי עד רמת המילימטר</span>
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>מקושר לרשת ישראל החדשה</span>
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10+ שנות ניסיון</span>
+      <span class="trust-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>תשלום רק אחרי ההגעה לנכס</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHAT IT IS (feature-row) ============================ -->
+<section class="section" id="what">
+  <div class="container">
+    <div class="feature-row">
+      <div class="feature-media reveal">
+        <img src="assets/real/building-render.webp" alt="הדמיית בניין המבוססת על מדידה גיאודטית מדויקת לתוכנית תב&quot;ע - מקובקי">
+        <span class="feature-media__tag">בסיס גיאודטי לתכנון</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">תב"ע · תוכנית בניין עיר</span>
+        <h2>מה זה תב"ע, ולמה הוא מתחיל במדידה מדויקת</h2>
+        <p>תב"ע (תוכנית בניין עיר) קובעת את זכויות הבנייה, הייעודים והשימושים המותרים במקרקעין - והיא הבסיס החוקי לכל תכנון עתידי באזור. כל הליך תב"ע, מיזום ועד אישור, נשען על תשריט מצב קיים מהימן: מדידה גיאודטית מדויקת של המגרש והסביבה, מקושרת למערכת הקואורדינטות הארצית (רשת ישראל החדשה). בלי בסיס מדידה מדויק, גם התוכנית הטובה ביותר עלולה להיתקל בסטיות גבולות או באי-התאמה לנתוני הרשות מול הוועדה.</p>
+        <ul class="includes">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>תשריט מצב קיים מדויק</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>מדידה גיאודטית מקושרת לרשת הארצית</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>גבולות מגרש וחלקה</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>קובץ DWG/AutoCAD מוכן לעבודה</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>ענן נקודות תלת-מימד</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>תיאום מול מודד מוסמך לחתימה ולהגשה</li>
+        </ul>
+        <div class="pill-list">
+          <span class="pill">אדריכלים ומתכננים</span><span class="pill">יזמים</span>
+        </div>
+        <a class="btn btn--primary" href="contact.html">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ISRAEL GRID / COORDINATES ============================ -->
+<section class="section section--soft" id="coordinates">
+  <div class="container">
+    <div class="feature-row feature-row--flip">
+      <div class="feature-media reveal">
+        <img src="assets/real/topographic-map.png" alt="מפה טופוגרפית מקושרת למערכת הקואורדינטות הארצית - בסיס למדידה גיאודטית לתב&quot;ע, מקובקי">
+        <span class="feature-media__tag">מקושר לרשת ישראל החדשה</span>
+      </div>
+      <div class="feature-body reveal">
+        <span class="eyebrow">דיוק שמדבר בשפה של הוועדה</span>
+        <h2>מדידה שמדברת את השפה של רשות התכנון</h2>
+        <p>כל תוכנית תב"ע נבדקת ומאושרת ביחס למערכת קואורדינטות אחידה - רשת ישראל החדשה (ITM), המשמשת את כל רשויות התכנון והמיפוי בישראל. מדידה שאינה מקושרת נכון לרשת הזו עלולה ליצור סטיות וחוסר התאמה מול נתוני הרשות, ולעכב את האישור. אנחנו מבצעים את המדידה ומקשרים אותה במדויק לרשת הארצית, כך שהתשריט שמונח על שולחן הוועדה תואם, אמין ומוכן לבדיקה.</p>
+        <ul class="includes">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>קישור מדויק לרשת ישראל החדשה (ITM)</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>נקודות בקרה גיאודטיות מאומתות</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>התאמה לנתוני המרכז למיפוי ישראל</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>תשריט קריא וברור לוועדת התכנון</li>
+        </ul>
+        <a class="card__link" href="#faq">עוד על רשת ישראל החדשה בשאלות הנפוצות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WHY (benefit cards) ============================ -->
+<section class="section section--soft" id="why">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">היתרון בתב"ע</span>
+      <h2>למה מדידה גיאודטית מדויקת קריטית בתב"ע</h2>
+      <p class="lead">תוכנית תב"ע נשארת רלוונטית שנים ומשפיעה על זכויות בנייה עתידיות - טעות במדידה בשלב הזה מתגלגלת לכל התוכניות שנבנות עליה.</p>
+    </div>
+    <div class="grid grid-4">
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span>
+        <h3>דיוק מוחלט</h3>
+        <p>דיוק גיאודטי עד רמת המילימטר, ללא סטיות שעלולות לעכב אישור מול הוועדה.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 3v18"/></svg></span>
+        <h3>קישור לרשת הארצית</h3>
+        <p>מדידה מקושרת נכון לרשת ישראל החדשה (ITM) - תואמת לכל נתוני הרשות והמיפוי הממלכתי.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+        <h3>תשריט קריא לוועדה</h3>
+        <p>תשריט מצב קיים ברור ומסודר, מוכן להגשה ולבדיקה מול ועדת התכנון המקומית והמחוזית.</p>
+      </div>
+      <div class="card benefit reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 4.4-3 7.5-7 10-4-2.5-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <h3>תיאום עם מודד מוסמך</h3>
+        <p>בסיס מדידה מדויק שמאפשר עבודה חלקה מול מודד מוסמך, לחתימה ולהגשה הרשמית של התוכנית.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DELIVERABLES ============================ -->
+<section class="section" id="deliverables">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">התוצרים</span>
+      <h2>מה אתם מקבלים ממדידה לתב"ע</h2>
+      <p class="lead">בסיס מדידה מלא, מדויק ומקושר לרשת הארצית - מוכן לשילוב בתוכנית ולהגשה לוועדת התכנון.</p>
+    </div>
+    <div class="deliverables">
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 3h11l5 5v13H4z"/><path d="M15 3v5h5"/><path d="M8 13h8M8 17h6"/></svg></span>
+        <span class="abbr">EXISTING SURVEY</span>
+        <h3>תשריט מצב קיים</h3>
+        <p>תשריט מדויק של המגרש והסביבה הבנויה, מוכן לשילוב בתוכנית התב"ע ולהגשה לוועדה.</p>
+        <span class="deliv__fmt">PDF · DWG</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M6 8v8M18 8v8M8 6h8M8 18h8"/></svg></span>
+        <span class="abbr">ITM GRID</span>
+        <h3>מדידה מקושרת לרשת הארצית</h3>
+        <p>קואורדינטות מדויקות מקושרות לרשת ישראל החדשה (ITM), תואמות לנתוני המרכז למיפוי ישראל.</p>
+        <span class="deliv__fmt">ITM · WGS84</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20l4-9 4 5 3-7 5 11"/></svg></span>
+        <span class="abbr">PARCEL</span>
+        <h3>גבולות מגרש וחלקה</h3>
+        <p>מיקום מדויק של גבולות המגרש והחלקה, בהתאמה לנסח הטאבו ולתיק הבניין.</p>
+        <span class="deliv__fmt">DWG · PDF</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></span>
+        <span class="abbr">DWG / AUTOCAD</span>
+        <h3>קובץ DWG / AutoCAD</h3>
+        <p>תוכנית מדידה מסודרת בשכבות, מוכנה לעבודה ישירה במשרד האדריכלים או המתכננים.</p>
+        <span class="deliv__fmt">‎.DWG · .DXF</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="7" r="1.4"/><circle cx="12" cy="5" r="1.4"/><circle cx="18" cy="8" r="1.4"/><circle cx="8" cy="14" r="1.4"/><circle cx="15" cy="13" r="1.4"/><circle cx="11" cy="19" r="1.4"/><circle cx="19" cy="17" r="1.4"/></svg></span>
+        <span class="abbr">POINT CLOUD</span>
+        <h3>ענן נקודות תלת-מימד</h3>
+        <p>סריקת לייזר מלאה של השטח והסביבה הבנויה - מיליוני נקודות תלת-מימד לשילוב בכל תוכנת תכנון.</p>
+        <span class="deliv__fmt">E57 · RCP · LAS</span>
+      </div>
+      <div class="deliv reveal">
+        <span class="deliv__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+        <span class="abbr">REPORT</span>
+        <h3>דוח מדידה</h3>
+        <p>תיעוד שיטת המדידה, נקודות הבקרה ורמת הדיוק - לשקיפות מלאה מול הוועדה והלקוח.</p>
+        <span class="deliv__fmt">PDF</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PROCESS ============================ -->
+<section class="section section--soft" id="process">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">איך זה עובד</span>
+      <h2>מהשיחה הראשונה ועד התשריט אצל האדריכל</h2>
+      <p class="lead">תהליך פשוט ושקוף, בתיאום מלא עם הצוות המתכנן ועם מודד מוסמך במקום שנדרש.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step__n">1</div>
+        <h4>אפיון והצעה</h4>
+        <p>בירור מטרת התוכנית - יזום, שינוי ייעוד או תוספת זכויות - והיקף המדידה הנדרש, ובעקבותיו הצעת מחיר שקופה.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">2</div>
+        <h4>מדידה גיאודטית בשטח</h4>
+        <p>מדידת המגרש והסביבה בסריקת לייזר ובנקודות בקרה גיאודטיות, וקישור מדויק לרשת הארצית.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">3</div>
+        <h4>עיבוד והפקת תשריט</h4>
+        <p>עיבוד נתוני המדידה והפקת תשריט מצב קיים מדויק, כולל קובץ DWG וענן נקודות.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__n">4</div>
+        <h4>מסירה ותיאום מול מודד מוסמך</h4>
+        <p>מסירת בסיס המדידה לאדריכל או למתכנן, בתיאום מלא מול מודד מוסמך לחתימה ולהגשה הרשמית של התוכנית.</p>
+      </div>
+      <div class="steps__flow" aria-hidden="true"><i class="steps__pulse"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ USE CASES ============================ -->
+<section class="section" id="use-cases">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">מתי פונים למדידה לתב"ע</span>
+      <h2>שירות אחד, שלל תרחישים</h2>
+      <p class="lead">מיזום תוכנית חדשה ועד התחדשות עירונית מורכבת - הבסיס תמיד אותו דבר: מדידה גיאודטית מדויקת ומהימנה.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span>
+        <h3>יזום תוכנית תב"ע נקודתית</h3>
+        <p>מדידת המגרש והסביבה כבסיס לתוכנית תב"ע נקודתית חדשה, מהיוזמה הראשונית ועד הגשה לוועדה.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21h16M6 21V7l6-4 6 4v14M9 21v-6h6v6"/><path d="M9 10h.01M15 10h.01"/></svg></span>
+        <h3>שינוי ייעוד וזכויות בנייה</h3>
+        <p>בסיס מדידה מדויק לבקשות לשינוי ייעוד הקרקע או הגדלת זכויות הבנייה במגרש.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V10l4-3v14M10 21V6l4-3v18M17 21v-8l4-3v11"/></svg></span>
+        <h3>פינוי-בינוי והתחדשות עירונית</h3>
+        <p>מדידה גיאודטית של מתחם שלם לקראת תוכנית פינוי-בינוי או התחדשות עירונית מורכבת.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V8l6-4 6 4v13M4 21h16M9 21v-4h3v4"/></svg></span>
+        <h3>תוספת זכויות בנייה</h3>
+        <p>תשריט מצב קיים מדויק לבחינת אפשרויות תוספת בנייה וניצול זכויות נוספות במגרש.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 4v5c0 4.4-3 7.5-7 9-4-1.5-7-4.6-7-9V7z"/></svg></span>
+        <h3>בסיס מצב קיים מול הוועדה</h3>
+        <p>תשריט מהימן שמייצג נאמנה את המצב הקיים בשטח, לצורך דיון והחלטה בוועדת התכנון.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TECHNOLOGY ============================ -->
+<section class="section section--ink tech-show" id="technology">
+  <div class="container">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow">הטכנולוגיה שמאחורי הדיוק</span>
+        <h2>סורק לייזר אחד. ענן נקודות מלא של כל שטח.</h2>
+        <p class="lead">בלב מקובקי עומד סורק לייזר תלת-מימדי נייד מהמתקדמים בעולם. הוא יורה 2,400,000 קרני לייזר בשנייה, לוכד כל קיר, פתח וזווית תוך דקות - ומצלם את החלל ב-360° לתיעוד ויזואלי מלא.</p>
+        <div class="spec-list">
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span><div><b>2,400,000 קרני לייזר בשנייה</b><span>איסוף נתונים בזמן אמת, בהליכה רציפה</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span><div><b>דיוק עד ±6 מ"מ</b><span>ללא סטיות של מדידה ידנית</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>120 מ"ר בדקות</b><span>סריקה מלאה של קומה, בלי לשבש שגרה</span></div></div>
+          <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg></span><div><b>4 מצלמות HD</b><span>תיעוד צבע וסיור 360° מלא</span></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="device-stage">
+          <span class="device-ring r2"></span>
+          <span class="device-ring r1"></span>
+          <img src="assets/real/device.png" alt="סורק הלייזר התלת-מימדי הנייד של מקובקי, מסך חי המציג סריקת מבנה">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GOOGLE REVIEWS ============================ -->
+<section class="section reviews">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">ביקורות מ-Google</span>
+      <h2>אדריכלים, מתכננים ויזמים שכבר עובדים איתנו</h2>
+      <div class="google-badge">
+        <svg class="google-badge__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+        <span class="google-badge__score">5.0</span>
+        <span class="google-badge__stars">★★★★★</span>
+        <span class="google-badge__txt">ביקורות אמיתיות מלקוחות מרוצים</span>
+      </div>
+    </div>
+
+    <div class="reviews-slider" data-reviews>
+      <button class="rev-nav rev-prev" aria-label="ביקורת קודמת"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <div class="reviews-viewport">
+        <div class="reviews-track">
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#d946ef;">א<img src="assets/real/reviews/orly.jpg" alt="אורלי ט׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>אורלי ט׳</b><span>אדריכלית</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">כאדריכלית נדרשתי להשתמש בשירותי מדידות לצורך הגשה להיתר. הגעתי לעודד ומיד הבנתי שמדובר באדם מקסים, אדיב, שירותי, שעובד בצורה מקצועית וענה על כל הדרישות. ממליצה מאוד מאוד.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#7c4dff;">N<img src="assets/real/reviews/nina-g.jpg" alt="Nina G" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>Nina G</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">כל פרוייקט קטן כגדול מתחיל במדידה מקצועית. כבר שנים שאני עובדת מול עודד ומרוצה תמיד מהתהליך. המדידה לוקחת עשר-עשרים דקות ותוך ימים ספורים אני כבר מקבלת את הקבצים באיזה פורמט שאבחר: רוויט, אוטוקאד, סקטצ' אפ וכמובן עם סיור וירטואלי של הדירה שחוסך ללקוח שלי זמן הגעה לשטח. ממליצה.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#e0568b;">ד<img src="assets/real/reviews/dana.jpg" alt="דנה פינגרר" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דנה פינגרר</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">אני עובדת עם עודד מספר שנים ותמיד מרוצה מתוכניות המדידות שהוא מבצע. זהו שלב סופר חשוב בתהליך התכנון מכיוון שעליו מתבססות כל התוכניות. העבודה עם עודד תמיד נעימה, הוא שירותי ויעיל והתוצרים מתקבלים במהירות. ממליצה בחום.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#f59e0b;">ד<img src="assets/real/reviews/dana-n.jpg" alt="דנה נ׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דנה נ׳</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">אני עובדת עם עודד שנים כמעצבת פנים. מעבר לזה שהוא מקסים ומאוד שירותי, המדידות תמיד יוצאות הכי מדויקות וכל התהליך לוקח כמה דקות. הסיור הווירטואלי שעודד מוסיף מאוד עוזר בשלב השיפוץ והתכנון. עבדתי בעבר עם מודדים אחרים, והיום עודד הוא המודד היחיד שאני עובדת איתו.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#ef4444;">ד<img src="assets/real/reviews/dani.jpg" alt="דני עיצוב רהיטים" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>דני עיצוב רהיטים</b><span>לקוח מרוצה</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">עודד ביצע עבור לקוחות שלי מדידה ואין כמוהו. החומר והשרטוטים הגיעו במקצועיות. מובנים ונוחים לעבודה. ממליצה מאד.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#06b6d4;">ש<img src="assets/real/reviews/shirley.jpg" alt="שירלי צ׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>שירלי צ׳</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">עודד המודד התותח, אני מעצבת פנים ומשתמשת בשירותי המדידה שלו ומרוצה מאוד. מעבר לדיוק ולניסיון, הערך המוסף שלו הוא בשירות גם לאחר ביצוע העבודה.</p>
+          </article>
+
+          <article class="review-card">
+            <div class="review-card__top">
+              <span class="review-av" style="background:#3b82f6;">ר<img src="assets/real/reviews/ravid.jpg" alt="רביד ר׳" onerror="this.remove()"></span>
+              <div class="review-card__who"><b>רביד ר׳</b><span>מעצבת פנים</span></div>
+              <svg class="review-card__g" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.19 3.32v2.76h3.54c2.08-1.91 3.28-4.73 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.54-2.76c-.98.66-2.23 1.06-3.74 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.11a6.6 6.6 0 0 1 0-4.22V7.05H2.18a11 11 0 0 0 0 9.9l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>
+            </div>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">נעזרת כמעצבת פנים בשירותי המדידה כבר כמה פרוייקטים. זריזות ויעילות. ממליצה בחום.</p>
+          </article>
+
+        </div>
+      </div>
+      <button class="rev-nav rev-next" aria-label="ביקורת הבאה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section section--soft" id="faq">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">שאלות נפוצות</span>
+      <h2>כל מה שחשוב לדעת לפני מדידה לתב"ע</h2>
+    </div>
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q">מה זה תב"ע (תוכנית בניין עיר)?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">תב"ע היא תוכנית מפורטת שקובעת את זכויות הבנייה, הייעודים והשימושים המותרים במגרש או באזור מסוים - כמה אפשר לבנות, לאיזו מטרה ובאילו תנאים. היא מהווה את הבסיס החוקי לכל היתר בנייה שיוגש בעתיד באזור.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">למה נדרשת מדידה גיאודטית לתב"ע?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">כל תוכנית תב"ע נשענת על תשריט מצב קיים מדויק: גבולות המגרש, השימושים הקיימים, גבהים ותשתיות. מדידה גיאודטית מקצועית מבטיחה שהנתונים תואמים את המציאות בשטח ואת נתוני הרשות, כך שהתוכנית לא נתקלת בבעיות או בעיכובים מול הוועדה.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">מה זה רשת ישראל החדשה (ITM), ולמה זה חשוב?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">רשת ישראל החדשה (ITM) היא מערכת הקואורדינטות הרשמית שמשמשת את כל רשויות התכנון והמיפוי בישראל. מדידה שמקושרת נכון לרשת הזו מבטיחה שהתשריט שלכם תואם במדויק לכל שכבות המידע הממלכתיות - גבולות, תשתיות ותוכניות סמוכות.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">מה מקובקי מספקת, ומה התפקיד של מודד מוסמך?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">מקובקי מספקת את בסיס המדידה הגיאודטי המדויק - סריקת לייזר, מדידת שטח ותשריט מצב קיים מקושר לרשת הארצית - שממנו נבנית תוכנית התב"ע. ההגשה והחתימה הרשמית על התוכנית, במקום שבו נדרשת חתימה של מודד מוסמך, מתבצעות בתיאום מלא עם מודד מוסמך.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">מה רמת הדיוק של המדידה?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a">המדידה מבוצעת בדיוק גיאודטי עד רמת המילימטר, בשילוב סריקת לייזר תלת-מימדית ונקודות בקרה מאומתות - ברמת דיוק המספיקה לכל הליך תכנון ורישוי.</div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">מה ההבדל בין תב"ע למפה טופוגרפית?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="faq__a"><b>מפה טופוגרפית (מצבית)</b> מתעדת את פני השטח - גבהים, עצים, מבנים ותשתיות - ונדרשת פעמים רבות כתנאי מקדים להיתר בנייה נקודתי. <b>תב"ע</b> היא מסמך תכנוני רחב יותר שקובע זכויות וייעודים לאזור שלם, ולעיתים קרובות נשען גם הוא על מדידה טופוגרפית ומדידה גיאודטית מדויקת של השטח.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA BAND ============================ -->
+<section class="section cta-band">
+  <div class="container">
+    <div class="cta-band__box cta-band__box--photo reveal">
+      <img class="cta-band__photo" src="assets/real/oded/oded-cta.png" alt="עודד מקובקי עם סורק המדידה התלת-מימדי הנייד" width="677" height="1190" loading="lazy">
+      <h2>יש לכם פרויקט שדורש מדידה לתב"ע?</h2>
+      <p>ספרו לנו על התוכנית ונחזור אליכם עם הצעה מותאמת לבסיס המדידה הגיאודטי. ייעוץ טלפוני ראשוני - חינם, ותשלום רק לאחר ההגעה לנכס.</p>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--wa" href="https://wa.me/972543040804"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+
+<script src="assets/makovki.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "מדידה גיאודטית לתוכנית בניין עיר (תב\"ע)",
+      "serviceType": "מדידה גיאודטית / תב\"ע",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "מקובקי - מדידות וסריקה תלת-מימדית",
+        "telephone": "+972-54-3040804",
+        "email": "oded@makovki.com",
+        "areaServed": "IL"
+      },
+      "description": "מדידה גיאודטית מדויקת לתב\"ע: תשריט מצב קיים מהימן, מקושר לרשת ישראל החדשה, קובץ DWG וענן נקודות תלת-מימד - בסיס אמין לעבודה מול ועדות התכנון.",
+      "areaServed": "IL"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
+        { "@type": "ListItem", "position": 2, "name": "שירותי מדידה", "item": "https://makovki.com/measurement/" },
+        { "@type": "ListItem", "position": 3, "name": "תב\"ע" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "מה זה תב\"ע (תוכנית בניין עיר)?", "acceptedAnswer": { "@type": "Answer", "text": "תב\"ע היא תוכנית מפורטת שקובעת את זכויות הבנייה, הייעודים והשימושים המותרים במגרש או באזור מסוים, ומהווה את הבסיס החוקי לכל היתר בנייה שיוגש בעתיד באזור." } },
+        { "@type": "Question", "name": "למה נדרשת מדידה גיאודטית לתב\"ע?", "acceptedAnswer": { "@type": "Answer", "text": "כל תוכנית תב\"ע נשענת על תשריט מצב קיים מדויק - גבולות המגרש, השימושים הקיימים, גבהים ותשתיות. מדידה גיאודטית מקצועית מבטיחה התאמה מלאה למציאות ולנתוני הרשות מול הוועדה." } },
+        { "@type": "Question", "name": "מה זה רשת ישראל החדשה (ITM)?", "acceptedAnswer": { "@type": "Answer", "text": "רשת ישראל החדשה (ITM) היא מערכת הקואורדינטות הרשמית שמשמשת את כל רשויות התכנון והמיפוי בישראל. מדידה מקושרת נכון לרשת הזו תואמת לכל שכבות המידע הממלכתיות." } },
+        { "@type": "Question", "name": "מה מקובקי מספקת, ומה התפקיד של מודד מוסמך?", "acceptedAnswer": { "@type": "Answer", "text": "מקובקי מספקת את בסיס המדידה הגיאודטי המדויק - סריקת לייזר, מדידת שטח ותשריט מצב קיים מקושר לרשת הארצית. ההגשה והחתימה הרשמית, במקום שנדרשת, מתבצעות בתיאום מלא עם מודד מוסמך." } },
+        { "@type": "Question", "name": "מה רמת הדיוק של המדידה?", "acceptedAnswer": { "@type": "Answer", "text": "המדידה מבוצעת בדיוק גיאודטי עד רמת המילימטר, בשילוב סריקת לייזר תלת-מימדית ונקודות בקרה מאומתות." } },
+        { "@type": "Question", "name": "מה ההבדל בין תב\"ע למפה טופוגרפית?", "acceptedAnswer": { "@type": "Answer", "text": "מפה טופוגרפית מתעדת את פני השטח ונדרשת כתנאי מקדים להיתר בנייה נקודתי. תב\"ע היא מסמך תכנוני רחב יותר שקובע זכויות וייעודים לאזור שלם, ולעיתים נשען גם על מדידה טופוגרפית וגיאודטית." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

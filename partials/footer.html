@@ -18,10 +18,11 @@
         <h4>מדידות</h4>
         <ul>
           <li><a href="measurement-architectural.html">מדידה אדריכלית / פנים</a></li>
-          <li><a href="measurement.html#tzar">תצ"ר - תוכנית לצורכי רישום</a></li>
-          <li><a href="measurement.html#taba">תב"ע - תוכנית בניין עיר</a></li>
-          <li><a href="measurement.html#topographic">מפה טופוגרפית / מצבית</a></li>
-          <li><a href="measurement.html#land">מדידת קרקע</a></li>
+          <li><a href="measurement-tzar.html">תצ"ר - תוכנית לצורכי רישום</a></li>
+          <li><a href="measurement-tatag.html">תת"ג - תוכנית תיאום גבהים</a></li>
+          <li><a href="measurement-taba.html">תב"ע - תוכנית בניין עיר</a></li>
+          <li><a href="measurement-topographic.html">מפה טופוגרפית / מצבית</a></li>
+          <li><a href="measurement-land.html">מדידת קרקע</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -60,4 +61,69 @@
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/972543040804" aria-label="וואטסאפ"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg></a>
+<!-- ===== Accessibility widget (bottom-left) - single source, appears on every page ===== -->
+<div class="a11y" data-a11y>
+  <button class="a11y__fab" type="button" aria-label="פתיחת תפריט נגישות" aria-expanded="false" aria-controls="a11y-panel" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="4" r="1.7" fill="currentColor" stroke="none"/>
+      <path d="M4.5 8.5c2.5 1 5 1.4 7.5 1.4s5-.4 7.5-1.4"/>
+      <path d="M12 9.9V14"/><path d="M9 20l3-6 3 6"/>
+    </svg>
+  </button>
+
+  <div class="a11y__panel" id="a11y-panel" role="dialog" aria-modal="false" aria-label="תפריט נגישות" hidden>
+    <div class="a11y__head">
+      <span class="a11y__title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="1.7" fill="currentColor" stroke="none"/><path d="M4.5 8.5c2.5 1 5 1.4 7.5 1.4s5-.4 7.5-1.4"/><path d="M12 9.9V14"/><path d="M9 20l3-6 3 6"/></svg>
+        תפריט נגישות
+      </span>
+      <button class="a11y__close" type="button" aria-label="סגירת תפריט הנגישות">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <div class="a11y__fontrow">
+      <span class="a11y__fontlbl">גודל טקסט</span>
+      <div class="a11y__fontctl">
+        <button type="button" class="a11y__fontbtn" data-a11y-font="-" aria-label="הקטנת טקסט">A<span>−</span></button>
+        <span class="a11y__fontval" data-a11y-fontval aria-live="polite">100%</span>
+        <button type="button" class="a11y__fontbtn" data-a11y-font="+" aria-label="הגדלת טקסט">A<span>+</span></button>
+      </div>
+    </div>
+
+    <div class="a11y__grid">
+      <button type="button" class="a11y__opt" data-a11y-toggle="contrast" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18a9 9 0 0 0 0-18z" fill="currentColor"/></svg>
+        <span>ניגודיות גבוהה</span>
+      </button>
+      <button type="button" class="a11y__opt" data-a11y-toggle="grayscale" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z"/></svg>
+        <span>גווני אפור</span>
+      </button>
+      <button type="button" class="a11y__opt" data-a11y-toggle="links" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 14.5l5-5"/><path d="M11 6.5l1-1a4 4 0 0 1 5.7 5.7l-1 1"/><path d="M13 17.5l-1 1a4 4 0 0 1-5.7-5.7l1-1"/></svg>
+        <span>הדגשת קישורים</span>
+      </button>
+      <button type="button" class="a11y__opt" data-a11y-toggle="readable" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19L11 5l6 14M7.5 14h7"/></svg>
+        <span>גופן קריא</span>
+      </button>
+      <button type="button" class="a11y__opt" data-a11y-toggle="spacing" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h12M9 12h12M9 18h12"/><path d="M4 4v16M4 4L2.5 6M4 4l1.5 2M4 20l-1.5-2M4 20l1.5-2"/></svg>
+        <span>ריווח שורות</span>
+      </button>
+      <button type="button" class="a11y__opt" data-a11y-toggle="noanim" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        <span>עצירת אנימציות</span>
+      </button>
+    </div>
+
+    <div class="a11y__foot">
+      <button type="button" class="a11y__reset" data-a11y-reset>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+        איפוס נגישות
+      </button>
+      <a class="a11y__statement" href="accessibility-statement.html">הצהרת נגישות</a>
+    </div>
+  </div>
+</div>
