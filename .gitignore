@@ -1,0 +1,4 @@
+# Local video source / backup artifacts - not part of the published site
+assets/real/*.bak.mp4
+assets/real/*-src.mp4
+assets/real/hero-shot*.mp4

@@ -675,6 +675,42 @@
   }
 })();
 
+/* ---- Matterport tour facade: a poster (.tour-frame--img) loads the live 3D
+   tour inline, in place, on click - instead of opening a new tab. The href is
+   kept as a no-JS fallback. Shared by the tour-* hero posters. ---- */
+(function () {
+  "use strict";
+  function embed(id) { return "https://my.matterport.com/show/?m=" + id + "&play=1&qs=1&brand=0&hr=0"; }
+  function loadInline(a) {
+    var href = a.getAttribute("href") || "";
+    var m = href.match(/[?&]m=([^&]+)/);
+    if (!m) { window.open(href, "_blank", "noopener"); return; }   // no id - fall back to opening the link
+    var box = document.createElement("div");
+    box.className = "tour-frame is-live";                           // reuse the frame's size / rounding / clip
+    var iframe = document.createElement("iframe");
+    iframe.setAttribute("allow", "xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay");
+    iframe.setAttribute("allowfullscreen", "");
+    iframe.setAttribute("title", a.getAttribute("aria-label") || "סיור וירטואלי 360° אינטראקטיבי");
+    iframe.src = embed(m[1]);
+    box.appendChild(iframe);
+    a.parentNode.replaceChild(box, a);                             // swap poster -> live tour in the same cell
+  }
+  function initTourPosters() {
+    var posters = document.querySelectorAll(".tour-frame--img");
+    for (var i = 0; i < posters.length; i++) {
+      posters[i].addEventListener("click", function (e) {
+        e.preventDefault();
+        loadInline(this);
+      });
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTourPosters);
+  } else {
+    initTourPosters();
+  }
+})();
+
 /* ---- Client logo slider: steps one logo every 1.5s (seamless loop) ---- */
 (function () {
   "use strict";
