@@ -5,7 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>תיעוד תשתיות בסריקת לייזר תלת-מימד | סיור As-Built מדיד | מקובקי</title>
 <meta name="description" content="תיעוד תשתיות מדויק בסריקת לייזר תלת-מימד לפני חיפוי וגמר: צנרת, חשמל, מיזוג וברזל. סיור 360° מדיד, ענן נקודות, שרטוטי As-Built ל-DWG ודוח מצב. צפו בסיורים אמיתיים שסרקנו - חי בעמוד. ליזמים, קבלנים, מפקחים וגופי תשתית.">
-<link rel="canonical" href="infrastructure.html">
+<link rel="canonical" href="https://makovki.com/infrastructure.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="מקובקי">
+<meta property="og:locale" content="he_IL">
+<meta property="og:title" content="תיעוד תשתיות בסריקת לייזר תלת-מימד | סיור As-Built מדיד | מקובקי">
+<meta property="og:description" content="תיעוד תשתיות מדויק בסריקת לייזר תלת-מימד לפני חיפוי וגמר: צנרת, חשמל, מיזוג וברזל. סיור 360° מדיד, ענן נקודות, שרטוטי As-Built ל-DWG ודוח מצב. צפו בסיורים אמיתיים שסרקנו - חי בעמוד. ליזמים, קבלנים, מפקחים וגופי תשתית.">
+<meta property="og:url" content="https://makovki.com/infrastructure.html">
+<meta property="og:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="תיעוד תשתיות בסריקת לייזר תלת-מימד | סיור As-Built מדיד | מקובקי">
+<meta name="twitter:description" content="תיעוד תשתיות מדויק בסריקת לייזר תלת-מימד לפני חיפוי וגמר: צנרת, חשמל, מיזוג וברזל. סיור 360° מדיד, ענן נקודות, שרטוטי As-Built ל-DWG ודוח מצב. צפו בסיורים אמיתיים שסרקנו - חי בעמוד. ליזמים, קבלנים, מפקחים וגופי תשתית.">
+<meta name="twitter:image" content="https://makovki.com/assets/real/og-cover.jpg">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +30,7 @@
       linear-gradient(to right, rgba(8,17,33,.34) 0%, rgba(8,17,33,.66) 44%, rgba(8,17,33,.90) 82%, var(--ink) 100%),
       linear-gradient(to top, var(--ink) 3%, rgba(8,17,33,.14) 52%);
   }
-  .hero--infra{ padding-bottom: clamp(150px, 19vw, 240px); }
+  .hero--infra{ padding-bottom: clamp(72px, 10vw, 120px); }
   @media (max-width: 860px){
     .hero--infra{ padding-bottom: clamp(64px, 14vw, 120px); }
     .hero--infra .hero__scrim{
@@ -32,7 +43,8 @@
   /* ---- Showcase section ---- */
   .tour-showcase{
     position: relative; z-index: 5;
-    padding-top: 0;
+    padding-top: clamp(48px, 6vw, 74px);
+    padding-bottom: clamp(30px, 4vw, 54px);
     background: radial-gradient(130% 100% at 50% 0%, #f1eefc 0%, var(--bg) 58%);
   }
   .tour-stage{
@@ -43,8 +55,23 @@
     padding: 14px;
     box-shadow: var(--shadow-lg), 0 0 0 1px rgba(124,92,255,.10);
   }
-  @media (min-width: 861px){
-    .tour-stage{ margin-top: clamp(-210px, -14vw, -120px); }
+  /* ---- small intro heading above the live theater ---- */
+  .tour-intro{
+    text-align:center; max-width:760px;
+    margin: 0 auto clamp(26px, 3.4vw, 40px);
+  }
+  .tour-intro__eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--violet-deep); font-weight:800; font-size:.8rem;
+    letter-spacing:.04em; text-transform:uppercase;
+  }
+  .tour-intro__eyebrow i{
+    width:8px;height:8px;border-radius:50%; background:#ff5470;
+    animation: tourpulse 1.8s infinite;
+  }
+  .tour-intro h2{
+    margin-top:12px; color:var(--ink);
+    font-size: clamp(1.3rem, 3vw, 1.85rem); line-height:1.24;
   }
   .tour-stage__bar{
     display:flex; align-items:center; gap:14px; flex-wrap:wrap;
@@ -131,6 +158,24 @@
   @media (max-width: 720px){
     .tour-tabs{ grid-template-columns: 1fr; }
   }
+
+  /* ---- deliverables on the dark section: these are SIMPLE cards (no flip faces),
+         so the global flip-card rule strips their surface and the body text goes
+         unreadable on --ink. Restore a dark-section card treatment + light text. ---- */
+  .section--ink .deliverables .deliv{
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: var(--radius);
+    padding: 26px 24px;
+  }
+  .section--ink .deliverables .deliv::before{ display:block; }
+  .section--ink .deliverables .deliv:hover{
+    transform: translateY(-5px);
+    background: rgba(255,255,255,.07);
+    border-color: rgba(124,92,255,.32);
+  }
+  .section--ink .deliverables .deliv h3{ color:#fff; }
+  .section--ink .deliverables .deliv p{ color:#c3d2e4; }
 </style>
 </head>
 <body>
@@ -167,6 +212,11 @@
 <!-- ============================ LIVE TOUR THEATER ============================ -->
 <section class="section tour-showcase" id="live-tour">
   <div class="container">
+
+    <div class="tour-intro reveal">
+      <span class="tour-intro__eyebrow"><i></i>תיעוד חי מהאתר</span>
+      <h2>צפו בתיעוד תשתיות שבוצע על ידי מקובקי שירותי מדידות</h2>
+    </div>
 
     <div class="tour-stage reveal">
       <div class="tour-stage__bar">
@@ -466,7 +516,7 @@
       <p>זה הרגע לתעד. ספרו לנו על הפרויקט ונבנה פתרון מדידה מתאים - ייעוץ ראשוני חינם, ותשלום רק לאחר ההגעה לאתר.</p>
       <div class="cta-band__actions">
         <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
-        <a class="btn btn--wa" href="https://wa.me/972543040804"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
+        <a class="btn btn--wa" href="https://wa.me/972543040804?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
       </div>
     </div>
   </div>

@@ -63,6 +63,8 @@
     initVizGallery();
     initFilter();
     initAvailability();
+    initMobileSliders();
+    initHeroLift();
     initA11y();
     var y = document.querySelector("[data-year]");
     if (y) y.textContent = String(new Date().getFullYear());
@@ -391,11 +393,139 @@
     apply();
   }
 
-  /* ---- Mobile nav toggle ---- */
+  /* ---- Mobile nav toggle + two-tap dropdown accordion ---- */
   function initNav() {
     var nav = document.querySelector(".nav");
     var toggle = document.querySelector(".nav__toggle");
     if (nav && toggle) toggle.addEventListener("click", function () { nav.classList.toggle("open"); });
+
+    var menu = nav && nav.querySelector(".nav__menu");
+    if (!menu) return;
+    var mq = window.matchMedia("(max-width: 860px)");
+
+    /* On mobile, a first tap on a service that has sub-pages expands its
+       sub-menu (accordion) instead of navigating; a second tap follows the link. */
+    menu.addEventListener("click", function (e) {
+      if (!mq.matches) return;                         // desktop: hover opens, links navigate
+      var link = e.target.closest(".nav__link");
+      if (!link) return;                               // tapped a sub-item or empty space
+      var li = link.closest(".has-drop");
+      if (!li) return;                                 // plain top-level link (אודות / יצירת קשר)
+      if (!li.classList.contains("is-open")) {
+        e.preventDefault();                            // first tap: reveal sub-pages only
+        var open = menu.querySelectorAll(".has-drop.is-open");
+        for (var i = 0; i < open.length; i++) if (open[i] !== li) open[i].classList.remove("is-open");
+        li.classList.add("is-open");
+      }
+      /* already open -> let the tap navigate to the service page */
+    });
+
+    /* Collapse any expanded sections when the whole menu is closed, so each
+       reopen starts fresh (first tap always expands, never accidentally navigates). */
+    toggle.addEventListener("click", function () {
+      if (!nav.classList.contains("open")) {
+        menu.querySelectorAll(".has-drop.is-open").forEach(function (o) { o.classList.remove("is-open"); });
+      }
+    });
+  }
+
+  /* ---- Mobile: auto-rotating slider for the "why / benefit" card grids ----
+     On phones each #why card grid becomes a 1-up carousel that advances every
+     1.5s (with dots). The grid is wrapped in a clipping viewport; on desktop the
+     structure is inert and the original grid layout shows unchanged. */
+  function initMobileSliders() {
+    var grids = document.querySelectorAll("#why .grid.grid-4");
+    Array.prototype.forEach.call(grids, setupMobileSlider);
+  }
+
+  function setupMobileSlider(grid) {
+    var cards = Array.prototype.filter.call(grid.children, function (c) {
+      return c.classList && c.classList.contains("card");
+    });
+    if (cards.length < 2) return;
+
+    var vp = document.createElement("div");
+    vp.className = "msl-viewport";
+    grid.parentNode.insertBefore(vp, grid);
+    vp.appendChild(grid);
+
+    var dotsWrap = document.createElement("div");
+    dotsWrap.className = "msl-dots";
+    vp.parentNode.insertBefore(dotsWrap, vp.nextSibling);
+
+    var idx = 0, timer = null;
+    var mq = window.matchMedia("(max-width: 560px)");
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    var dots = cards.map(function (_, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", "כרטיסייה " + (i + 1));
+      if (i === 0) b.className = "is-active";
+      b.addEventListener("click", function () { idx = i; render(); start(); });
+      dotsWrap.appendChild(b);
+      return b;
+    });
+
+    function render() {
+      idx = (idx % cards.length + cards.length) % cards.length;
+      // RTL track: positive translateX reveals the next (leftward) card
+      grid.style.transform = mq.matches
+        ? "translateX(" + (idx * cards[0].getBoundingClientRect().width) + "px)"
+        : "";
+      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === idx); });
+    }
+    function advance() { idx++; render(); }
+    function stop() { if (timer) { window.clearInterval(timer); timer = null; } }
+    function start() {
+      stop();
+      if (mq.matches && !reduce.matches) timer = window.setInterval(advance, 1500);
+    }
+
+    vp.addEventListener("mouseenter", stop);
+    vp.addEventListener("mouseleave", start);
+    vp.addEventListener("touchstart", stop, { passive: true });
+    vp.addEventListener("touchend", start, { passive: true });
+    document.addEventListener("visibilitychange", function () { if (document.hidden) stop(); else start(); });
+
+    var rt;
+    window.addEventListener("resize", function () {
+      window.clearTimeout(rt);
+      rt = window.setTimeout(function () { render(); start(); }, 160);
+    });
+    if (mq.addEventListener) mq.addEventListener("change", function () { idx = 0; render(); start(); });
+
+    render();
+    start();
+  }
+
+  /* ---- Mobile: lift the hero paragraph out of the video hero so the clip has
+     more room to breathe; it docks right below the hero and returns on desktop. ---- */
+  function initHeroLift() {
+    var sub = document.querySelector(".hero-v__sub");
+    var hero = document.querySelector(".hero-v");
+    if (!sub || !hero) return;
+    var home = sub.parentNode;                 // .hero-v__copy (desktop home)
+    var anchor = sub.nextElementSibling;       // .hero-v__actions (position marker)
+
+    var dock = document.createElement("div");
+    dock.className = "hero-sub-dock";
+    var inner = document.createElement("div");
+    inner.className = "container";
+    dock.appendChild(inner);
+    hero.parentNode.insertBefore(dock, hero.nextSibling);
+
+    var mq = window.matchMedia("(max-width: 860px)");
+    function place() {
+      if (mq.matches) {
+        if (sub.parentNode !== inner) inner.appendChild(sub);
+      } else if (sub.parentNode !== home) {
+        if (anchor && anchor.parentNode === home) home.insertBefore(sub, anchor);
+        else home.appendChild(sub);
+      }
+    }
+    place();
+    if (mq.addEventListener) mq.addEventListener("change", place);
   }
 
   /* ---- Active link highlight ---- */
@@ -548,9 +678,7 @@
 /* ---- Client logo slider: steps one logo every 1.5s (seamless loop) ---- */
 (function () {
   "use strict";
-  function initSlider() {
-    var slider = document.querySelector("[data-logo-slider]");
-    if (!slider) return;
+  function setupSlider(slider) {
     var track = slider.querySelector(".logo-slider__track");
     if (!track) return;
 
@@ -606,10 +734,14 @@
       rt = window.setTimeout(function () { position(false); }, 150);
     });
   }
+  function initSliders() {
+    var sliders = document.querySelectorAll("[data-logo-slider]");
+    for (var i = 0; i < sliders.length; i++) setupSlider(sliders[i]);
+  }
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initSlider);
+    document.addEventListener("DOMContentLoaded", initSliders);
   } else {
-    initSlider();
+    initSliders();
   }
 })();
 
@@ -657,5 +789,69 @@
     document.addEventListener("DOMContentLoaded", initTourTheater);
   } else {
     initTourTheater();
+  }
+})();
+
+/* ==========================================================================
+   Visualizations hero showcase - crossfade through real Makovki renders.
+   Auto-advances every 4.6s; thumbnails jump directly. Pauses on hover / when
+   the tab is hidden; respects prefers-reduced-motion (stays on the first frame,
+   thumbnails still work).
+   ========================================================================== */
+(function () {
+  "use strict";
+  function initVizShow() {
+    var show = document.querySelector("[data-viz-show]");
+    if (!show) return;
+    var imgs = Array.prototype.slice.call(show.querySelectorAll(".viz-show__img"));
+    var thumbs = Array.prototype.slice.call(show.querySelectorAll(".viz-thumb"));
+    var capEl = show.querySelector("[data-viz-cap]");
+    if (imgs.length < 2) return;
+
+    var cur = 0, timer = null, paused = false;
+    var DELAY = 4600;
+
+    function select(i) {
+      i = (i + imgs.length) % imgs.length;
+      if (i === cur) return;
+      cur = i;
+      for (var k = 0; k < imgs.length; k++) imgs[k].classList.toggle("is-active", k === i);
+      for (var t = 0; t < thumbs.length; t++) {
+        thumbs[t].classList.toggle("is-active", t === i);
+        thumbs[t].setAttribute("aria-selected", t === i ? "true" : "false");
+      }
+      if (capEl) {
+        var cap = imgs[i].getAttribute("data-cap") || "";
+        capEl.style.opacity = "0";
+        window.setTimeout(function () { capEl.textContent = cap; capEl.style.opacity = "1"; }, 220);
+      }
+    }
+    function advance() { if (!paused) select(cur + 1); }
+    function start() { if (!timer) timer = window.setInterval(advance, DELAY); }
+    function stop() { window.clearInterval(timer); timer = null; }
+
+    for (var t = 0; t < thumbs.length; t++) {
+      (function (btn) {
+        btn.addEventListener("click", function () {
+          select(parseInt(btn.getAttribute("data-viz-i"), 10) || 0);
+          stop(); start(); // restart the clock so a manual pick gets full dwell
+        });
+      })(thumbs[t]);
+    }
+
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return; // thumbnails already wired; skip auto-rotation
+
+    start();
+    show.addEventListener("mouseenter", function () { paused = true; });
+    show.addEventListener("mouseleave", function () { paused = false; });
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stop(); else start();
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initVizShow);
+  } else {
+    initVizShow();
   }
 })();

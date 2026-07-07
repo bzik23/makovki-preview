@@ -172,6 +172,18 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); }
 .nav__wa svg { width: 24px; height: 24px; }
 .nav__wa:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -8px rgba(37,211,102,.7); filter: brightness(1.05); }
 
+/* Quick-call icon button - hidden on desktop (the phone-number button shows there),
+   revealed on mobile where it replaces the "הצעת מחיר" button, next to WhatsApp. */
+.nav__call {
+  display: none; place-items: center; flex: none;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--grad-brand); color: #fff;
+  box-shadow: var(--shadow-brand);
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), filter .2s;
+}
+.nav__call svg { width: 23px; height: 23px; }
+.nav__call:hover { transform: translateY(-2px); box-shadow: var(--shadow-violet); filter: brightness(1.05); }
+
 /* ------------------------------ Header ---------------------------------- */
 .site-header {
   position: sticky; top: 0; z-index: 100;
@@ -723,16 +735,74 @@ html.a11y-noanim, html.a11y-noanim * , html.a11y-noanim *::before, html.a11y-noa
     position: absolute; top: 74px; inset-inline: 0; background: #fff;
     border-bottom: 1px solid var(--line); padding: 14px 18px; box-shadow: var(--shadow-lg);
   }
-  .nav.open .nav__menu .dropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; padding: 4px 0 8px; min-width: 0; }
+  /* Mobile accordion: a service's sub-menu is COLLAPSED until its main link is
+     tapped once (JS adds .is-open). A second tap on the main link navigates. */
+  .nav.open .nav__menu .dropdown {
+    position: static; opacity: 1; visibility: visible; transform: none;
+    box-shadow: none; border: none; min-width: 0;
+    overflow: hidden; max-height: 0; padding: 0;
+    transition: max-height .33s var(--ease), padding .33s var(--ease);
+  }
+  .nav.open .nav__menu .has-drop.is-open > .dropdown { max-height: 720px; padding: 4px 0 8px; }
+  .nav.open .nav__menu .has-drop.is-open > .nav__link svg { transform: rotate(180deg); }
+  .nav.open .nav__menu .has-drop > .nav__link svg { opacity: .9; }
   .split, .contact-grid { grid-template-columns: 1fr; gap: 36px; }
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
   .hero__stats { gap: 26px; }
 }
 @media (max-width: 560px) {
-  .grid-4, .steps, .stat-strip__grid, .footer-grid { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: 1fr; }
+  .stat-strip__grid { grid-template-columns: repeat(2, 1fr); } /* 2x2 on mobile */
+  /* Footer: brand + contact full width; the two service columns sit side by side
+     (RTL -> "שירותי מדידות" on the right, "שירותים נוספים" on the left). */
+  .footer-grid { grid-template-columns: 1fr 1fr; column-gap: 18px; }
+  .footer-about, .footer-contact { grid-column: 1 / -1; }
   .hero__actions { flex-direction: column; align-items: stretch; }
   .hero__actions .btn { width: 100%; }
   body { font-size: 1rem; } /* =16px at root default; stays relative for the a11y text-size control */
+}
+/* ---- Mobile: vertical "laser" timeline for the 4 process steps.
+   Desktop threads a horizontal rail through the badges (>=1001px); phones get the
+   same idea rotated vertical - a gradient rail in a right gutter, badges on it. */
+@media (max-width: 700px) {
+  .steps { grid-template-columns: 1fr; gap: 14px; position: relative; }
+  .steps::before {
+    content: ""; position: absolute; z-index: 1; top: 38px; bottom: 38px;
+    right: 34px; width: 3px; border-radius: 999px; pointer-events: none; opacity: .6;
+    background: linear-gradient(to bottom,
+      var(--cyan) 0%, var(--violet-deep) 42%, var(--amber-deep) 74%, var(--cyan) 100%);
+  }
+  .step { padding: 20px 70px 22px 20px; }   /* right gutter holds the rail + badge */
+  .step__n {
+    position: absolute; top: 18px; right: 13px; margin: 0; z-index: 2;
+    width: 44px; height: 44px; box-shadow: 0 6px 16px rgba(11,16,36,.14);
+  }
+  .step h4 { margin-top: 2px; }
+}
+
+/* ---- Mobile: turn the "why / benefit" card grids into a 1-up auto slider.
+   JS (initMobileSliders) wraps each #why .grid in .msl-viewport and appends
+   .msl-dots. On phones the grid becomes a horizontal track; desktop is untouched. */
+.msl-dots { display: none; }
+@media (max-width: 560px) {
+  .msl-viewport { overflow: hidden; position: relative; }
+  #why .grid.grid-4 {
+    display: flex; flex-wrap: nowrap; gap: 0;
+    transition: transform .5s cubic-bezier(.6,.02,.3,1); will-change: transform;
+  }
+  #why .grid.grid-4 > .card {
+    flex: 0 0 100%; min-width: 100%;
+    opacity: 1 !important; transform: none !important;   /* neutralise reveal in the slider */
+  }
+  .msl-dots {
+    display: flex; justify-content: center; gap: 8px; margin-top: 20px;
+  }
+  .msl-dots button {
+    width: 8px; height: 8px; padding: 0; border: none; cursor: pointer;
+    border-radius: 999px; background: var(--line);
+    transition: width .3s var(--ease), background .3s var(--ease);
+  }
+  .msl-dots button.is-active { width: 24px; background: var(--grad-brand); }
 }
 
 /* ==========================================================================
@@ -807,44 +877,57 @@ h2 { letter-spacing: -.015em; }
    as part of the background - no frame, feathered into --ink - with a right-biased scrim
    (RTL: copy on the right) so the headline always passes contrast, plus the shared laser
    scan sweep + point-cloud canvas layered over it. */
-.page-hero--scan { padding-block: clamp(72px, 10vw, 132px); }
-.page-hero--scan .hero__grid { z-index: 1; opacity: .18; }
+.page-hero--scan { padding-block: clamp(64px, 8.5vw, 112px); }
+.page-hero--scan .hero__grid { z-index: 1; opacity: .14; }
 /* mirror so the bright tower sits on the LEFT and the darker scan sky falls under the
    copy on the RIGHT (RTL) - keeps the headline/paragraph over the calmest area */
 .page-hero--scan .hero__media { z-index: 0; transform: scaleX(-1); }
 .page-hero--scan .hero__media img {
-  object-position: 40% 64%;                 /* subject low + left, so the right stays open for text */
-  transform: scale(1.06);
-  filter: saturate(1.08) contrast(1.06) brightness(1.03);
+  object-position: 20% 58%;                 /* push the busy tower to the far left so the copy column stays clear */
+  transform: scale(1.1);
+  /* dim + de-glare so the point cloud reads as a calm backdrop, not a bright subject fighting the headline */
+  filter: saturate(.96) contrast(1.03) brightness(.84);
   /* feather every edge so the scan floats in the navy instead of reading as a rectangle */
-  -webkit-mask-image: radial-gradient(128% 122% at 42% 60%, #000 50%, transparent 100%);
-          mask-image: radial-gradient(128% 122% at 42% 60%, #000 50%, transparent 100%);
+  -webkit-mask-image: radial-gradient(132% 128% at 26% 56%, #000 46%, transparent 100%);
+          mask-image: radial-gradient(132% 128% at 26% 56%, #000 46%, transparent 100%);
   animation: heroDrift 30s ease-in-out infinite alternate;
 }
 .page-hero--scan .hero__scan { z-index: 2; }
 .page-hero--scan .hero__canvas { z-index: 2; }
-/* readability veil - strong on the right (text side), clear over the scan on the left */
+/* readability veil - an EVEN, rich-indigo (not murky-black) wash across the copy column,
+   kept clear over the bright scan on the left, with a violet glow so the hero feels lit, not heavy */
 .page-hero--scan .page-hero__scrim {
   position: absolute; inset: 0; z-index: 3; pointer-events: none;
   background:
-    radial-gradient(58% 78% at 84% 30%, rgba(124,92,255,.22) 0%, transparent 60%),
+    radial-gradient(60% 82% at 82% 24%, rgba(124,92,255,.32) 0%, transparent 60%),
+    radial-gradient(46% 60% at 96% 96%, rgba(33,207,230,.14) 0%, transparent 62%),
     linear-gradient(to right,
-      rgba(11,16,36,0) 0%, rgba(11,16,36,.2) 26%,
-      rgba(11,16,36,.72) 52%, rgba(11,16,36,.95) 100%),
-    linear-gradient(to top, rgba(11,16,36,.7) 0%, rgba(11,16,36,0) 46%);
+      rgba(14,19,46,0) 0%, rgba(14,19,46,.18) 20%,
+      rgba(14,19,46,.6) 37%, rgba(14,19,46,.83) 53%, rgba(14,19,46,.92) 74%, rgba(14,19,46,.94) 100%),
+    linear-gradient(to bottom, rgba(14,19,46,.34) 0%, rgba(14,19,46,0) 34%, rgba(14,19,46,0) 72%, rgba(14,19,46,.42) 100%);
 }
 .page-hero--scan .container { position: relative; z-index: 5; }
+/* explicit light headline + dark halo so the white first line stays crisp over the scan */
+.page-hero--scan h1 {
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(6,8,26,.6), 0 3px 30px rgba(8,11,32,.62);
+}
 .page-hero--scan h1 .hl {
   background: var(--grad-warm); -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
 }
+/* brighten + protect the copy so it stays crisp over any part of the scan */
+.page-hero--scan p { color: #e6ecf9; text-shadow: 0 1px 14px rgba(8,11,32,.5); }
+.page-hero--scan .hero__eyebrow-line { color: #dccfff; }
+.page-hero--scan .crumbs { color: #bcc6e0; }
+.page-hero--scan .crumbs a { color: #dbe2f1; }
 @media (max-width: 760px) {
   .page-hero--scan .hero__media img { object-position: 46% 58%; }
-  /* even, stronger veil so centered copy stays crisp; image reads as a backdrop */
+  /* even, rich-indigo veil (matches desktop) so centered copy stays crisp; image reads as a lit backdrop */
   .page-hero--scan .page-hero__scrim {
     background:
-      radial-gradient(80% 56% at 50% 20%, rgba(124,92,255,.18) 0%, transparent 62%),
-      linear-gradient(to bottom, rgba(11,16,36,.5) 0%, rgba(11,16,36,.72) 52%, rgba(11,16,36,.92) 100%);
+      radial-gradient(84% 58% at 50% 16%, rgba(124,92,255,.22) 0%, transparent 62%),
+      linear-gradient(to bottom, rgba(14,19,46,.5) 0%, rgba(14,19,46,.72) 52%, rgba(14,19,46,.9) 100%);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1418,15 +1501,35 @@ html { overflow-x: clip; }
 .hero__inner, .hero__actions, .hero__stats { max-width: 100%; }
 .btn { max-width: 100%; }
 @media (max-width: 860px) {
-  .nav { gap: 12px; }
-  .nav__cta { margin-inline-start: auto; gap: 8px; }
-  .nav__cta .btn { padding: 11px 18px; }
+  /* Mobile header: logo far LEFT with the two icon buttons (quick-call + WhatsApp)
+     hugging it, and the hamburger pinned far RIGHT. The "הצעת מחיר" text button is
+     dropped on mobile. RTL flex -> lowest order sits at the right edge, highest at
+     the left; the auto margin on the CTA pushes the toggle out to the right. */
+  .nav { gap: 10px; justify-content: flex-start; }
+  .nav__toggle { order: 0; flex: none; }        /* far right */
+  .nav__cta { order: 1; margin-inline-start: auto; gap: 9px; }  /* hugs the brand */
+  .brand { order: 2; }                          /* far left */
+  .nav__cta .btn--primary { display: none; }    /* drop the quote button on mobile */
+  .nav__call { display: inline-grid; }          /* quick-call icon next to WhatsApp */
   .brand__logo { width: 42px; height: 42px; }
+}
+/* Narrow phones: trim header padding so the row stays comfortable. */
+@media (max-width: 560px) {
+  .site-header .container { padding-inline: 16px; }
+  .nav { gap: 8px; }
 }
 @media (max-width: 400px) {
   .brand__txt b { font-size: 1.15rem; }
   .hero__stats { gap: 18px 24px; }
   .hero__stat .num { font-size: 1.8rem; }
+  .site-header .container { padding-inline: 12px; }
+}
+/* Smallest phones (~320-360px): keep logo/icons/hamburger on one comfortable row. */
+@media (max-width: 360px) {
+  .site-header .container { padding-inline: 10px; }
+  .nav { gap: 6px; }
+  .nav__cta { gap: 7px; }
+  .brand__txt b { font-size: 1.05rem; }
 }
 
 /* ---- Video portfolio (lightweight YouTube facade) ---- */
@@ -1533,7 +1636,7 @@ html { overflow-x: clip; }
 .hero-v__stat .num .u{ color:var(--amber-deep); font-size:.6em; font-weight:800; }
 .hero-v__stat .num .u--area{ order:-1; margin-inline-end:5px; }   /* מ"ר מוצג משמאל למספר */
 .hero-v__stat .num .u--deg{ align-self:flex-start; }              /* ° מוגבה כמקובל בסימון מעלות */
-.hero-v__stat .num .u--min{ margin-inline-start:5px; }            /* דק' מוצג מימין למספר */
+.hero-v__stat .num .u--min{ order:-1; margin-inline-end:5px; }    /* דק' מוצג משמאל למספר */
 .hero-v__stat .lbl{ font-size:.88rem; color:var(--text-2); margin-top:8px; max-width:172px; text-align:center; }
 
 /* scroll cue */
@@ -1574,11 +1677,26 @@ html { overflow-x: clip; }
   .hero-v__copy{ text-align:center; max-width:560px; padding-bottom:clamp(36px,9vw,64px); }
   .hero-v__eyebrow{ justify-content:center; }
   .hero-v__sub{ margin-inline:auto; }
-  .hero-v__actions{ justify-content:center; }
-  .hero-v__actions .btn{ flex:1 1 auto; justify-content:center; }
-  .hero-v__stats{ justify-content:center; gap:26px; }
-  .hero-v__stat .lbl{ margin-inline:auto; }
+  .hero-v__actions{ display:none; }   /* mobile: drop the hero CTA buttons entirely */
+  /* paragraph is lifted out of the hero (JS -> .hero-sub-dock); hide it while it
+     still sits in the hero copy so the video keeps the full stage (no pre-JS flash) */
+  .hero-v__copy .hero-v__sub{ display:none; }
+  /* three stats stay on ONE row, numbers aligned on the same baseline */
+  .hero-v__stats{ flex-wrap:nowrap; justify-content:center; align-items:flex-start; gap:10px; }
+  .hero-v__stat{ flex:1 1 0; min-width:0; }
+  .hero-v__stat .num{ font-size:clamp(1.35rem,6vw,1.9rem); }
+  .hero-v__stat .lbl{ margin-inline:auto; max-width:none; font-size:.72rem; line-height:1.35; margin-top:6px; }
   .hero-v__cue{ display:none; }
+}
+
+/* Dock that receives the hero paragraph on mobile (built by initHeroLift). */
+.hero-sub-dock{ display:none; }
+@media (max-width:860px){
+  .hero-sub-dock{ display:block; padding-block:22px 2px; }
+  .hero-sub-dock .hero-v__sub{
+    display:block; text-align:center; margin:0 auto; max-width:600px;
+    text-shadow:none; color:var(--text-2);
+  }
 }
 
 /* Desktop: align the hero copy's RIGHT edge to the start (the "א") of "אודות"
@@ -2225,10 +2343,16 @@ html { overflow-x: clip; }
    Used on tour-apartments (and re-usable on the other tour pages). */
 .page-hero--tour{ padding-block: clamp(34px, 5vw, 66px); }
 .page-hero--tour .crumbs{ margin-bottom: 22px; }
+/* the interactive tour reads best with room to breathe: on wide desktops let this
+   hero stretch into the empty left gutter (up to 1440) while the copy stays anchored
+   under the menu on the right, so both the theater AND the text column get wider. */
+@media (min-width: 1200px){
+  .page-hero--tour .container{ max-width: min(1440px, calc(100% - var(--menu-start) - var(--edge))); }
+}
 .hero-tour{
   display:grid;
-  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
-  gap: clamp(26px, 3.6vw, 54px);
+  grid-template-columns: minmax(0, .66fr) minmax(0, 1.5fr);
+  gap: clamp(24px, 3.2vw, 46px);
   align-items:center;
 }
 .hero-tour__copy{ max-width: 560px; }
@@ -2249,7 +2373,7 @@ html { overflow-x: clip; }
   filter: blur(30px);
 }
 .hero-tour__stage .tour-stage{ position:relative; z-index:1; max-width:none; margin:0; }
-.hero-tour__stage .tour-frame{ aspect-ratio:16/10; }
+.hero-tour__stage .tour-frame{ aspect-ratio:16/10.6; }
 .hero-tour__stage .tour-hints{ padding-bottom:2px; }
 
 @media (max-width: 980px){
@@ -2423,3 +2547,112 @@ html { overflow-x: clip; }
 .tour-hub__go svg{ width:17px; height:17px; transition: transform .3s var(--ease); }
 .tour-hub__card:hover .tour-hub__go svg{ transform: translateX(-5px); }
 @media (max-width:760px){ .tour-hub{ grid-template-columns:1fr; } }
+
+/* ==========================================================================
+   Visualizations hero - split copy + live showcase of real Makovki renders.
+   The stage crossfades through 5 authentic project renders (auto + thumbs),
+   turning the hero itself into proof of the work.
+   ========================================================================== */
+.page-hero--viz { padding-block: clamp(30px, 5vw, 60px); overflow: hidden; }
+.page-hero--viz .crumbs { margin-bottom: 20px; }
+.viz-hero {
+  display: grid;
+  grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr);
+  gap: clamp(26px, 3.4vw, 52px);
+  align-items: center;
+}
+.viz-hero__copy { max-width: 560px; }
+.viz-hero__copy .eyebrow { margin-bottom: 14px; }
+.viz-hero__copy h1 { margin: 0; color: var(--ink); }
+.viz-hero__copy h1 .hl {
+  background: var(--grad-warm); -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.viz-hero__copy p { color: var(--text-2); font-size: 1.15rem; margin-top: 16px; max-width: 520px; }
+.viz-hero__tags {
+  display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px;
+}
+.viz-hero__tags li {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border-radius: 999px;
+  background: rgba(255,255,255,.7); border: 1px solid var(--line);
+  color: var(--text-2); font-size: .86rem; font-weight: 700;
+  box-shadow: 0 4px 14px -8px rgba(20,16,60,.14);
+}
+.viz-hero__tags li::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--grad-brand);
+}
+
+/* ---- Showcase stage ---- */
+.viz-hero__stage { position: relative; min-width: 0; }
+.viz-hero__stage::before {
+  content: ""; position: absolute; inset: -8% -6% 4%; z-index: 0; pointer-events: none;
+  background: radial-gradient(56% 58% at 50% 34%, rgba(124,92,255,.30), transparent 72%);
+  filter: blur(34px);
+}
+.viz-show { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; }
+.viz-show__frame {
+  position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius-lg);
+  overflow: hidden; background: #05070f;
+  box-shadow: var(--shadow-lg); border: 1px solid rgba(124,92,255,.14);
+}
+.viz-show__img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.05); transition: opacity .9s var(--ease);
+}
+.viz-show__img.is-active { opacity: 1; animation: vizKen 6.5s var(--ease) forwards; }
+@keyframes vizKen { from { transform: scale(1.05); } to { transform: scale(1); } }
+
+.viz-show__badge {
+  position: absolute; z-index: 3; top: 14px; inset-inline-start: 14px;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 14px 7px 12px; border-radius: 999px;
+  background: rgba(8,17,33,.62); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .005em;
+}
+.viz-show__dot {
+  width: 9px; height: 9px; border-radius: 50%; background: var(--cyan);
+  box-shadow: 0 0 0 0 rgba(33,207,230,.6); animation: vizDot 2.4s ease-in-out infinite;
+}
+@keyframes vizDot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(33,207,230,.55); }
+  55%     { box-shadow: 0 0 0 7px rgba(33,207,230,0); }
+}
+.viz-show__cap {
+  position: absolute; z-index: 3; inset-inline: 0; bottom: 0;
+  display: flex; align-items: center; gap: 9px;
+  padding: 34px 18px 15px;
+  background: linear-gradient(to top, rgba(3,6,17,.86) 0%, rgba(3,6,17,.5) 46%, transparent 100%);
+  color: #fff; font-size: .96rem; font-weight: 600;
+}
+.viz-show__cap svg { width: 18px; height: 18px; color: var(--cyan); flex: none; }
+.viz-show__cap span { transition: opacity .5s var(--ease); }
+
+/* ---- Thumbnail rail ---- */
+.viz-show__thumbs { display: flex; gap: 10px; }
+.viz-thumb {
+  flex: 1 1 0; min-width: 0; aspect-ratio: 16 / 10; position: relative;
+  border-radius: 11px; overflow: hidden; background: var(--ink-2);
+  border: 2px solid transparent; opacity: .55;
+  transition: opacity .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.viz-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.viz-thumb:hover { opacity: .85; transform: translateY(-2px); }
+.viz-thumb.is-active { opacity: 1; border-color: var(--violet); box-shadow: var(--shadow-violet); }
+
+@media (max-width: 980px) {
+  .viz-hero { grid-template-columns: 1fr; gap: 26px; }
+  .viz-hero__copy { max-width: none; }
+  .viz-hero__copy p { max-width: none; }
+}
+@media (max-width: 520px) {
+  .viz-show__thumbs { gap: 7px; }
+  .viz-show__cap { font-size: .88rem; padding: 30px 14px 12px; }
+  .viz-show__badge { font-size: .72rem; top: 10px; inset-inline-start: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .viz-show__img.is-active { animation: none; transform: scale(1); }
+  .viz-show__dot { animation: none; }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הדף לא נמצא (404) | מקובקי</title>
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/assets/real/logo-main.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/makovki.css">
+<style>
+  /* self-contained 404 - root-absolute paths so it renders on any broken URL depth */
+  .e404-wrap{ min-height:100vh; display:flex; flex-direction:column; }
+  .e404-top{ padding:22px 0; border-bottom:1px solid var(--line); }
+  .e404-brand{ display:inline-flex; align-items:center; gap:11px; text-decoration:none; color:var(--ink); }
+  .e404-brand img{ width:44px; height:44px; }
+  .e404-brand b{ font-size:1.15rem; font-weight:800; }
+  .e404-brand small{ display:block; font-size:.72rem; color:var(--text-2); font-weight:600; }
+  .e404-main{ flex:1; display:flex; align-items:center; text-align:center; padding:60px 0; }
+  .e404-num{ font-size:clamp(96px,20vw,200px); font-weight:900; line-height:.85; letter-spacing:-.04em;
+    background:linear-gradient(120deg,var(--cyan) 0%,var(--violet-deep) 55%,var(--amber-deep) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .e404-eyebrow{ display:inline-block; margin-top:14px; font-weight:800; letter-spacing:.14em;
+    font-size:.78rem; color:var(--violet-deep); }
+  .e404-main h1{ margin:8px 0 12px; font-size:clamp(1.6rem,4vw,2.3rem); color:var(--ink); }
+  .e404-main p{ color:var(--text-2); max-width:520px; margin:0 auto 28px; font-size:1.08rem; line-height:1.6; }
+  .e404-actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .e404-foot{ padding:20px 0; border-top:1px solid var(--line); text-align:center; color:var(--text-2); font-size:.85rem; }
+  .e404-foot a{ color:var(--violet-deep); text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="e404-wrap">
+  <div class="e404-top">
+    <div class="container">
+      <a class="e404-brand" href="/index.html">
+        <img src="/assets/real/logo-main.png" alt="מקובקי">
+        <span><b>מקובקי</b><small>מדידות · סריקה תלת-מימדית</small></span>
+      </a>
+    </div>
+  </div>
+
+  <main class="e404-main">
+    <div class="container">
+      <div class="e404-num">404</div>
+      <span class="e404-eyebrow">העמוד לא נמצא</span>
+      <h1>אופס - הדף הזה לא כאן</h1>
+      <p>ייתכן שהקישור השתנה, שהעמוד הוסר, או שנפלה טעות קטנה בכתובת. בואו נחזיר אתכם למסלול.</p>
+      <div class="e404-actions">
+        <a class="btn btn--primary" href="/index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          חזרה לדף הבית
+        </a>
+        <a class="btn btn--ghost" href="/measurement.html">לשירותי המדידה</a>
+        <a class="btn btn--ghost" href="/contact.html">צור קשר</a>
+      </div>
+    </div>
+  </main>
+
+  <div class="e404-foot">
+    <div class="container">
+      צריכים עזרה? <a href="tel:0543040804">054-3040804</a> · <a href="https://wa.me/972543040804?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C">וואטסאפ</a> · <a href="mailto:oded@makovki.com">oded@makovki.com</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
