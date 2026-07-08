@@ -1251,7 +1251,9 @@ h2 { letter-spacing: -.015em; }
 .fleet__item:nth-child(3):hover { box-shadow: var(--shadow-amber); }
 
 /* ---- Outcome list (from one scan - what you get) ---- */
-.outcome-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 900px; margin: 38px auto 0; }
+.outcome-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 900px; margin: clamp(40px, 5vw, 56px) auto 0; }
+/* breathing room before the virtual-tour feature-row so it doesn't crowd the cards */
+.outcome-list + .feature-row { margin-top: clamp(56px, 8vw, 100px); }
 .outcome-list li { display: flex; align-items: center; gap: 15px; background: #fff; border: 1px solid var(--line); border-radius: 15px; padding: 16px 18px; box-shadow: var(--shadow); }
 .outcome-list__ic { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, var(--cyan-soft), #d3f4fb); color: var(--cyan-deep); }
 .outcome-list__ic svg { width: 23px; height: 23px; }

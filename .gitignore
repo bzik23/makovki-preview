@@ -6,3 +6,8 @@ assets/real/hero-shot*.mp4
 # Stray capture/dump artifacts from local tooling - never publish
 live_index.html
 mk-live.html
+
+# Local test/screenshot scripts - never publish
+shot*.py
+shotsvc*.py
+check.py
