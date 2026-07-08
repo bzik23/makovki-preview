@@ -901,8 +901,8 @@ h2 { letter-spacing: -.015em; }
   background:
     radial-gradient(60% 82% at 82% 24%, rgba(124,92,255,.32) 0%, transparent 60%),
     radial-gradient(46% 60% at 96% 96%, rgba(33,207,230,.14) 0%, transparent 62%),
-    /* dark pocket right behind the headline so the white first line stays crisp over the tower, tapering out before the vivid scan mass on the left */
-    radial-gradient(54% 34% at 70% 32%, rgba(11,14,38,.6) 0%, rgba(11,14,38,.3) 54%, transparent 82%),
+    /* dark pocket behind the headline so BOTH lines stay crisp over the tower, tapering out before the vivid scan mass on the left */
+    radial-gradient(64% 46% at 66% 40%, rgba(11,14,38,.7) 0%, rgba(11,14,38,.4) 56%, transparent 84%),
     linear-gradient(to right,
       rgba(11,14,38,0) 0%, rgba(11,14,38,0) 21%,
       rgba(11,14,38,.44) 36%, rgba(11,14,38,.82) 49%, rgba(11,14,38,.92) 68%, rgba(11,14,38,.96) 100%),
@@ -917,9 +917,16 @@ h2 { letter-spacing: -.015em; }
   /* soft dark halo so the white line stays crisp even where it crosses the bright tower */
   text-shadow: 0 1px 3px rgba(6,8,26,.7), 0 2px 20px rgba(8,11,32,.6);
 }
+/* On the DARK scan hero the old warm gradient's amber end (#ff8a4c) read as a muddy,
+   low-contrast brown over the navy - so the highlight uses a bright laser-scan gradient
+   (light cyan -> light violet): both stops clear contrast against the navy. */
 .page-hero.page-hero--scan h1 .hl {
-  background: var(--grad-warm); -webkit-background-clip: text; background-clip: text;
+  background: linear-gradient(100deg, #56e0f5 0%, #9f8bff 100%);
+  -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
+  /* text-shadow doesn't paint on transparent-fill clipped text, but filter does:
+     a tight dark halo so the gradient line stays crisp where it crosses the bright tower */
+  filter: drop-shadow(0 1px 3px rgba(6,8,26,.85)) drop-shadow(0 2px 16px rgba(6,8,26,.55));
 }
 /* brighten + protect the copy so it stays crisp over any part of the scan */
 .page-hero.page-hero--scan p { color: #e6ecf9; text-shadow: 0 1px 14px rgba(8,11,32,.5); }
