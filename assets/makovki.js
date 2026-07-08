@@ -60,6 +60,7 @@
     initCanvases();
     initObservers();
     initReviewSlider();
+    initVideoTestimonials();
     initVizGallery();
     initFilter();
     initAvailability();
@@ -126,6 +127,142 @@
     slider.addEventListener("mouseleave", play);
     var rt;
     window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(render, 160); });
+    render(); play();
+  }
+
+  /* ---- Video testimonials: RTL-aware carousel + click-to-play lightbox ---- */
+  function initVideoTestimonials() {
+    var slider = document.querySelector("[data-vtest]");
+    if (!slider) return;
+    var viewport = slider.querySelector(".vtest-viewport");
+    var track = slider.querySelector(".vtest-track");
+    var cards = Array.prototype.slice.call(track.children);
+    if (!cards.length) return;
+    var prev = slider.querySelector(".vt-prev");
+    var next = slider.querySelector(".vt-next");
+    var dotsWrap = slider.querySelector("[data-vtest-dots]");
+    var isRTL = getComputedStyle(slider).direction === "rtl";
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var idx = 0, timer = null, dots = [];
+
+    function step() {
+      var cs = getComputedStyle(track);
+      var gap = parseFloat(cs.columnGap || cs.gap) || 24;
+      return cards[0].getBoundingClientRect().width + gap;
+    }
+    function perView() { return Math.max(1, Math.round(viewport.clientWidth / step())); }
+    function maxIdx() { return Math.max(0, cards.length - perView()); }
+
+    function buildDots() {
+      if (!dotsWrap) return;
+      var n = maxIdx() + 1;
+      if (dots.length === n) return;
+      dotsWrap.innerHTML = "";
+      dots = [];
+      for (var i = 0; i < n; i++) {
+        (function (j) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "vt-dot" + (j === idx ? " is-active" : "");
+          b.setAttribute("aria-label", "מעבר להמלצה " + (j + 1));
+          b.addEventListener("click", function () { idx = j; render(); play(); });
+          dotsWrap.appendChild(b);
+          dots.push(b);
+        })(i);
+      }
+    }
+    function syncDots() { dots.forEach(function (d, i) { d.classList.toggle("is-active", i === idx); }); }
+
+    function render() {
+      var mi = maxIdx();
+      if (idx > mi) idx = 0;
+      if (idx < 0) idx = mi;
+      var slide = mi > 0;
+      track.style.justifyContent = slide ? "flex-start" : "center";
+      var offset = slide ? step() * idx : 0;
+      track.style.transform = "translateX(" + (isRTL ? offset : -offset) + "px)";
+      if (prev) prev.style.display = slide ? "grid" : "none";
+      if (next) next.style.display = slide ? "grid" : "none";
+      buildDots();
+      if (dotsWrap) dotsWrap.style.display = slide ? "flex" : "none";
+      syncDots();
+    }
+    function advance() { var mi = maxIdx(); if (mi <= 0) return; idx = (idx + 1) % (mi + 1); render(); }
+    function play() {
+      clearInterval(timer);
+      if (reduce || userTook || maxIdx() <= 0) return;
+      if (lb && lb.classList.contains("is-open")) return;
+      timer = setInterval(advance, 5200);
+    }
+    function stop() { clearInterval(timer); }
+    function go(d) { var mi = maxIdx(); if (mi <= 0) return; idx = (idx + d + (mi + 1)) % (mi + 1); render(); play(); }
+
+    if (next) next.addEventListener("click", function () { go(1); });
+    if (prev) prev.addEventListener("click", function () { go(-1); });
+    slider.addEventListener("mouseenter", stop);
+    slider.addEventListener("mouseleave", play);
+    var rt;
+    window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { dots = []; render(); }, 160); });
+
+    /* touch: swipe between cards + stop autoplay once the user takes control */
+    var userTook = false, tx = 0, ty = 0;
+    viewport.addEventListener("touchstart", function (e) {
+      userTook = true; stop();
+      tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+    }, { passive: true });
+    viewport.addEventListener("touchend", function (e) {
+      var dx = e.changedTouches[0].clientX - tx;
+      var dy = e.changedTouches[0].clientY - ty;
+      if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? 1 : -1);
+    }, { passive: true });
+
+    /* ---- lightbox (built lazily, shared across cards) ---- */
+    var lb = null;
+    function ensureLightbox() {
+      if (lb) return lb;
+      lb = document.createElement("div");
+      lb.className = "vt-lightbox";
+      lb.innerHTML =
+        '<div class="vt-lightbox__bd" data-vt-dismiss></div>' +
+        '<div class="vt-lightbox__stage">' +
+          '<button class="vt-close" type="button" aria-label="סגירת הסרטון" data-vt-dismiss>' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
+          '<div class="vt-frame"></div>' +
+        '</div>';
+      document.body.appendChild(lb);
+      lb.addEventListener("click", function (e) { if (e.target.closest("[data-vt-dismiss]")) closeLightbox(); });
+      return lb;
+    }
+    function openLightbox(id, orient) {
+      if (!id) return;
+      ensureLightbox();
+      stop();
+      lb.setAttribute("data-orient", orient === "portrait" ? "portrait" : "landscape");
+      var src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+      lb.querySelector(".vt-frame").innerHTML =
+        '<iframe src="' + src + '" title="המלצת לקוח - מקובקי" ' +
+        'allow="autoplay; encrypted-media; picture-in-picture; fullscreen"></iframe>';
+      lb.classList.add("is-open");
+      document.documentElement.style.overflow = "hidden";
+    }
+    function closeLightbox() {
+      if (!lb || !lb.classList.contains("is-open")) return;
+      lb.classList.remove("is-open");
+      lb.querySelector(".vt-frame").innerHTML = "";
+      document.documentElement.style.overflow = "";
+      play();
+    }
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLightbox(); });
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stop(); else play();
+    });
+
+    cards.forEach(function (card) {
+      card.addEventListener("click", function () {
+        openLightbox(card.getAttribute("data-yt"), card.getAttribute("data-orient"));
+      });
+    });
+
     render(); play();
   }
 
