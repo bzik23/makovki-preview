@@ -2,3 +2,7 @@
 assets/real/*.bak.mp4
 assets/real/*-src.mp4
 assets/real/hero-shot*.mp4
+
+# Stray capture/dump artifacts from local tooling - never publish
+live_index.html
+mk-live.html
