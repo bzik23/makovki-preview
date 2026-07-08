@@ -1335,7 +1335,7 @@ h2 { letter-spacing: -.015em; }
 
 /* ---- Stat strip (light variant) - wide, low-profile capsule; delicate cyan numerals ---- */
 .stat-strip--light { background: var(--bg-soft); color: var(--ink); border-block: 1px solid var(--line); }
-.stat-strip--light .container { max-width: 1360px; }   /* open the card wider than the page grid */
+.stat-strip--light .container { max-width: 1360px; margin-inline: auto; }   /* open the card wider than the page grid, centered (override the menu-start start-margin) */
 .stat-strip--light .stat-strip__grid {
   background: var(--line);
   border-radius: 34px;

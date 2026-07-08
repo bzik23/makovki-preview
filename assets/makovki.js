@@ -38,6 +38,23 @@
     return weeks > 0 ? weeks : 0;
   }
 
+  /* ===========================================================================
+     שנות ניסיון - מתחלף אוטומטית לפי תאריך.
+     כרגע 9, ומ-01/01/2027 יעלה ל-10 לבד (בלי עדכון ידני).
+     מקור אמת יחיד: כל מקום שמציג את המספר מסומן ב-.mk-exp-num (טקסט)
+     או ב-data-exp (מונה מונפש) ומתעדכן מכאן.
+     =========================================================================== */
+  var MK_EXP_YEARS = 9;                 // ערך בסיס (עד תאריך המעבר)
+  var MK_EXP_BUMP_DATE = "2027-01-01";  // מתאריך זה ואילך המספר עולה ב-1 (ל-10)
+  function mkExpYears() {
+    var bump = Date.parse(MK_EXP_BUMP_DATE);
+    return (!isNaN(bump) && Date.now() >= bump) ? MK_EXP_YEARS + 1 : MK_EXP_YEARS;
+  }
+  function initExpYears() {
+    var y = String(mkExpYears());
+    document.querySelectorAll(".mk-exp-num").forEach(function (el) { el.textContent = y; });
+  }
+
   /* ---- Load shared partials, then init ---- */
   function loadIncludes() {
     var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-include]"));
@@ -66,6 +83,7 @@
     initAvailability();
     initMobileSliders();
     initHeroLift();
+    initExpYears();
     initA11y();
     var y = document.querySelector("[data-year]");
     if (y) y.textContent = String(new Date().getFullYear());
@@ -682,6 +700,7 @@
     var weeks = mkWeeksSinceGolive();
     document.querySelectorAll("[data-count]").forEach(function (el) {
       var target = parseFloat(el.getAttribute("data-count"));
+      if (el.hasAttribute("data-exp")) target = mkExpYears(); // שנות ניסיון - נשלט לפי תאריך
       var weekly = parseFloat(el.getAttribute("data-weekly")); // הגדלה שבועית אוטומטית
       if (!isNaN(weekly)) target += weeks * weekly;
       var suffix = el.getAttribute("data-suffix") || "";
