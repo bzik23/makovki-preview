@@ -1033,9 +1033,11 @@ h2 { letter-spacing: -.015em; }
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .deliv { background: transparent; border: 0; padding: 0; overflow: visible; perspective: 1400px; transition: none; }
-  .deliv::before { display: none; }                    /* accent bar moves onto the faces */
-  .deliv:hover { transform: none; box-shadow: none; }
+  /* Only the flip variant (image front that rotates to a back face) drops its frame on
+     desktop. Simple text deliverables (no .deliv__inner) keep the base white card. */
+  .deliv:has(> .deliv__inner) { background: transparent; border: 0; padding: 0; overflow: visible; perspective: 1400px; transition: none; }
+  .deliv:has(> .deliv__inner)::before { display: none; }                    /* accent bar moves onto the faces */
+  .deliv:has(> .deliv__inner):hover { transform: none; box-shadow: none; }
   .deliv__inner { position: relative; min-height: 330px; transform-style: preserve-3d; transition: transform .95s var(--ease); }
   .deliv:hover .deliv__inner { transform: rotateY(180deg); }
   .deliv__face {
