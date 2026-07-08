@@ -883,13 +883,13 @@ h2 { letter-spacing: -.015em; }
    copy on the RIGHT (RTL) - keeps the headline/paragraph over the calmest area */
 .page-hero--scan .hero__media { z-index: 0; transform: scaleX(-1); }
 .page-hero--scan .hero__media img {
-  object-position: 20% 58%;                 /* push the busy tower to the far left so the copy column stays clear */
-  transform: scale(1.1);
-  /* dim + de-glare so the point cloud reads as a calm backdrop, not a bright subject fighting the headline */
-  filter: saturate(.96) contrast(1.03) brightness(.84);
+  object-position: 28% 48%;                 /* full scan composition in view, centred slightly left */
+  transform: scale(1.04);
+  /* let the point cloud read crisp and vivid - it IS the hero (our actual scan output), not a faint backdrop */
+  filter: saturate(1.1) contrast(1.08) brightness(1.02);
   /* feather every edge so the scan floats in the navy instead of reading as a rectangle */
-  -webkit-mask-image: radial-gradient(132% 128% at 26% 56%, #000 46%, transparent 100%);
-          mask-image: radial-gradient(132% 128% at 26% 56%, #000 46%, transparent 100%);
+  -webkit-mask-image: radial-gradient(155% 145% at 36% 46%, #000 56%, transparent 100%);
+          mask-image: radial-gradient(155% 145% at 36% 46%, #000 56%, transparent 100%);
   animation: heroDrift 30s ease-in-out infinite alternate;
 }
 .page-hero--scan .hero__scan { z-index: 2; }
@@ -901,33 +901,44 @@ h2 { letter-spacing: -.015em; }
   background:
     radial-gradient(60% 82% at 82% 24%, rgba(124,92,255,.32) 0%, transparent 60%),
     radial-gradient(46% 60% at 96% 96%, rgba(33,207,230,.14) 0%, transparent 62%),
+    /* dark pocket right behind the headline so the white first line stays crisp over the tower, tapering out before the vivid scan mass on the left */
+    radial-gradient(54% 34% at 70% 32%, rgba(11,14,38,.6) 0%, rgba(11,14,38,.3) 54%, transparent 82%),
     linear-gradient(to right,
-      rgba(14,19,46,0) 0%, rgba(14,19,46,.18) 20%,
-      rgba(14,19,46,.6) 37%, rgba(14,19,46,.83) 53%, rgba(14,19,46,.92) 74%, rgba(14,19,46,.94) 100%),
-    linear-gradient(to bottom, rgba(14,19,46,.34) 0%, rgba(14,19,46,0) 34%, rgba(14,19,46,0) 72%, rgba(14,19,46,.42) 100%);
+      rgba(11,14,38,0) 0%, rgba(11,14,38,0) 21%,
+      rgba(11,14,38,.44) 36%, rgba(11,14,38,.82) 49%, rgba(11,14,38,.92) 68%, rgba(11,14,38,.96) 100%),
+    linear-gradient(to bottom, rgba(11,14,38,.28) 0%, rgba(11,14,38,0) 30%, rgba(11,14,38,0) 66%, rgba(11,14,38,.55) 100%);
 }
 .page-hero--scan .container { position: relative; z-index: 5; }
-/* explicit light headline + dark halo so the white first line stays crisp over the scan */
-.page-hero--scan h1 {
+/* The scan hero is DARK, so its copy must be LIGHT. Both classes (.page-hero.page-hero--scan)
+   raise specificity to (0,2,x) so these win over the later "Light page-hero" block
+   (.page-hero h1{color:var(--ink)} etc.) that would otherwise force dark ink over the dark scan. */
+.page-hero.page-hero--scan h1 {
   color: #fff;
-  text-shadow: 0 1px 2px rgba(6,8,26,.6), 0 3px 30px rgba(8,11,32,.62);
+  /* soft dark halo so the white line stays crisp even where it crosses the bright tower */
+  text-shadow: 0 1px 3px rgba(6,8,26,.7), 0 2px 20px rgba(8,11,32,.6);
 }
-.page-hero--scan h1 .hl {
+.page-hero.page-hero--scan h1 .hl {
   background: var(--grad-warm); -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
 }
 /* brighten + protect the copy so it stays crisp over any part of the scan */
-.page-hero--scan p { color: #e6ecf9; text-shadow: 0 1px 14px rgba(8,11,32,.5); }
-.page-hero--scan .hero__eyebrow-line { color: #dccfff; }
-.page-hero--scan .crumbs { color: #bcc6e0; }
-.page-hero--scan .crumbs a { color: #dbe2f1; }
+.page-hero.page-hero--scan p { color: #e6ecf9; text-shadow: 0 1px 14px rgba(8,11,32,.5); }
+.page-hero.page-hero--scan .hero__eyebrow-line { color: #dccfff; }
+.page-hero.page-hero--scan .crumbs { color: #bcc6e0; }
+.page-hero.page-hero--scan .crumbs a { color: #dbe2f1; }
 @media (max-width: 760px) {
-  .page-hero--scan .hero__media img { object-position: 46% 58%; }
-  /* even, rich-indigo veil (matches desktop) so centered copy stays crisp; image reads as a lit backdrop */
+  /* on the small screen the scan is a backdrop, not the star (as it is on desktop): dim it so the
+     centred headline never competes with the bright structure, and keep a solid even veil */
+  .page-hero--scan .hero__media img {
+    object-position: 44% 50%;
+    filter: saturate(1.02) contrast(1.03) brightness(.72);
+  }
   .page-hero--scan .page-hero__scrim {
     background:
-      radial-gradient(84% 58% at 50% 16%, rgba(124,92,255,.22) 0%, transparent 62%),
-      linear-gradient(to bottom, rgba(14,19,46,.5) 0%, rgba(14,19,46,.72) 52%, rgba(14,19,46,.9) 100%);
+      radial-gradient(90% 54% at 50% 12%, rgba(124,92,255,.22) 0%, transparent 60%),
+      linear-gradient(to bottom,
+        rgba(11,14,38,.86) 0%, rgba(11,14,38,.84) 30%, rgba(11,14,38,.8) 46%,
+        rgba(11,14,38,.72) 62%, rgba(11,14,38,.7) 74%, rgba(11,14,38,.86) 100%);
   }
 }
 @media (prefers-reduced-motion: reduce) {
