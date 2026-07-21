@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css">
+<link rel="stylesheet" href="assets/makovki.css?v=r3">
 </head>
 <body>
 
@@ -55,17 +55,17 @@
 
       <div class="prose">
         <h2>מה זה Scan-to-BIM</h2>
-        <p>Scan-to-BIM הוא התהליך שבו סריקת לייזר תלת-מימדית הופכת למודל BIM (Building Information Modeling). במקום ענן נקודות "טיפש" - אוסף של מיליוני נקודות בלבד - מקבלים מודל שבו קירות, פתחים, עמודים ורכיבים הם <strong>אובייקטים חכמים</strong> עם משמעות ומידע. זהו הבסיס שממנו אדריכל או מהנדס יכולים להתחיל לתכנן מיד ב-Revit או ב-ArchiCAD.</p>
+        <p>Scan-to-BIM הוא התהליך שבו סריקת לייזר תלת-מימדית הופכת למודל BIM (Building Information Modeling). במקום ענן נקודות "טיפש" - אוסף של מיליוני נקודות בלבד - מקבלים מודל שבו קירות, פתחים, עמודים ורכיבים הם <strong>אובייקטים חכמים</strong> עם משמעות ומידע. זהו הבסיס שממנו אדריכל או מהנדס יכולים להתחיל לתכנן מיד ב-Revit או בכל תוכנת BIM.</p>
 
         <h2>שלב 1 - סריקה וענן נקודות מדויק</h2>
-        <p>הכל מתחיל בשטח. הסורק יורה <strong>1,200,000 קרני לייזר בשנייה</strong> ולוכד את המבנה כולו בדיוק <strong>עד 6 מ"מ על 500 מ"ר (לפי הוראות יצרן)</strong>. התוצאה היא ענן נקודות צפוף - עותק דיגיטלי מלא של המבנה הפיזי.</p>
+        <p>הכל מתחיל בשטח. הסורק יורה <strong>2,400,000 קרני לייזר בשנייה</strong> ולוכד את המבנה כולו בדיוק <strong>עד 6 מ"מ על 500 מ"ר (לפי הוראות יצרן)</strong>. התוצאה היא ענן נקודות צפוף - עותק דיגיטלי מלא של המבנה הפיזי.</p>
 
         <div class="keyfacts">
           <div class="keyfacts__t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>הנתונים שמאחורי המודל</div>
           <div class="keyfacts__grid">
             <div class="keyfacts__item"><div class="n">±6<span class="u"> מ"מ</span></div><div class="l">סטייה על 500 מ"ר</div></div>
             <div class="keyfacts__item"><div class="n">200-300</div><div class="l">רמת LOD</div></div>
-            <div class="keyfacts__item"><div class="n">1.2<span class="u">M</span></div><div class="l">קרני לייזר בשנייה</div></div>
+            <div class="keyfacts__item"><div class="n">2.4<span class="u">M</span></div><div class="l">קרני לייזר בשנייה</div></div>
             <div class="keyfacts__item"><div class="n" style="direction:rtl;font-size:1.5rem">כיסוי מלא</div><div class="l">ללא נקודות עיוורות</div></div>
           </div>
         </div>
@@ -138,7 +138,7 @@
       </details>
       <details class="faq__item">
         <summary class="faq__q">באילו תוכנות אפשר לפתוח את המודל?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
-        <div class="faq__a">המודל מסופק ל-<b>Revit</b> ובפורמט <b>IFC</b> שנפתח גם ב-ArchiCAD ובתוכנות BIM אחרות. במקביל אפשר לקבל תוכניות DWG ל-AutoCAD ואת ענן הנקודות עצמו.</div>
+        <div class="faq__a">המודל מסופק ל-<b>Revit</b> ובפורמט <b>IFC</b> שנפתח בכל תוכנות ה-BIM. במקביל אפשר לקבל תוכניות DWG ל-AutoCAD ואת ענן הנקודות עצמו.</div>
       </details>
       <details class="faq__item">
         <summary class="faq__q">כמה זמן לוקח התהליך?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></span></summary>
@@ -230,7 +230,7 @@
       "@type": "FAQPage",
       "mainEntity": [
         { "@type": "Question", "name": "מה זה LOD 200-300?", "acceptedAnswer": { "@type": "Answer", "text": "LOD הוא מדד לרמת הפירוט של מודל BIM. ברמת 200-300 הרכיבים מדויקים במיקום, בגודל ובכמות ומספקים בסיס אמין להמשך התכנון." } },
-        { "@type": "Question", "name": "באילו תוכנות אפשר לפתוח את המודל?", "acceptedAnswer": { "@type": "Answer", "text": "המודל מסופק ל-Revit ובפורמט IFC שנפתח גם ב-ArchiCAD ובתוכנות BIM אחרות, במקביל לתוכניות DWG ולענן הנקודות." } },
+        { "@type": "Question", "name": "באילו תוכנות אפשר לפתוח את המודל?", "acceptedAnswer": { "@type": "Answer", "text": "המודל מסופק ל-Revit ובפורמט IFC שנפתח בכל תוכנות ה-BIM, במקביל לתוכניות DWG ולענן הנקודות." } },
         { "@type": "Question", "name": "כמה זמן לוקח התהליך?", "acceptedAnswer": { "@type": "Answer", "text": "הסריקה בשטח נמשכת דקות. עיבוד ומידול תלויים בגודל ובמורכבות. לוח הזמנים המדויק נסגר מראש בהצעת מחיר שקופה." } }
       ]
     }

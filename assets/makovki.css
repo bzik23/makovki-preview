@@ -2898,3 +2898,44 @@ html { overflow-x: clip; }
 
 /* note under the format chips in the dark technology section */
 .formats-note { margin-top: 14px; font-size: .92rem; line-height: 1.55; color: #c7cfe6; max-width: 520px; }
+
+
+/* ===========================================================================
+   ROUND 3 FIXES (client feedback 2026-07) - emphasized/animated WHY-US,
+   gradient headline helper, viz format cards as links
+   =========================================================================== */
+
+/* gradient-emphasized headline (client: "אולי מודגש, אולי animated יותר") */
+.hl-grad{
+  background: linear-gradient(100deg, var(--cyan-deep, #0ea5c4) 0%, var(--violet, #7c5cff) 55%, #ef6a2c 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* staggered slide-in for the checks list + a soft pulse on the check icons
+   (keys off the shared .reveal -> .in mechanism from makovki.js) */
+.why-us-anim .reveal:not(.in) .checks li{ opacity: 0; transform: translateX(18px); }
+.why-us-anim .reveal.in .checks li{ opacity: 0; transform: translateX(18px); animation: whyIn .55s var(--ease, ease) forwards; }
+.why-us-anim .reveal.in .checks li:nth-child(1){ animation-delay: .05s; }
+.why-us-anim .reveal.in .checks li:nth-child(2){ animation-delay: .2s; }
+.why-us-anim .reveal.in .checks li:nth-child(3){ animation-delay: .35s; }
+.why-us-anim .reveal.in .checks li:nth-child(4){ animation-delay: .5s; }
+@keyframes whyIn{ to{ opacity: 1; transform: none; } }
+.why-us-anim .reveal.in .checks .ck{ animation: ckPulse 2.6s ease-in-out infinite; }
+.why-us-anim .reveal.in .checks li:nth-child(2) .ck{ animation-delay: .4s; }
+.why-us-anim .reveal.in .checks li:nth-child(3) .ck{ animation-delay: .8s; }
+.why-us-anim .reveal.in .checks li:nth-child(4) .ck{ animation-delay: 1.2s; }
+@keyframes ckPulse{ 0%,100%{ transform: scale(1); } 50%{ transform: scale(1.14); } }
+@media (prefers-reduced-motion: reduce){
+  .why-us-anim .checks li{ opacity: 1 !important; transform: none !important; animation: none !important; }
+  .why-us-anim .checks .ck{ animation: none !important; }
+}
+
+/* viz format cards are now links to example galleries - keep card look, add affordance */
+a.card{ text-decoration: none; }
+a.card .card__go{
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 14px;
+  color: var(--violet, #7c5cff); font-weight: 700; font-size: .92rem;
+}
+a.card .card__go svg{ width: 15px; height: 15px; transition: transform .25s var(--ease, ease); }
+a.card:hover .card__go svg{ transform: translateX(-4px); }
