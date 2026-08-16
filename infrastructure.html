@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://my.matterport.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r5">
+<link rel="stylesheet" href="assets/makovki.css?v=r8">
 <style>
   /* ============ page-scoped: hero scrim + live tour theater ============ */
   .hero--infra .hero__scrim{
@@ -172,6 +172,15 @@
     box-shadow: none;
   }
   .section--ink .grid .card p{ color:#c3d2e4; }
+
+  /* ---- the warranty callout sits on the dark audience section: the base .callout
+         is a light violet surface, so give it a dark-section treatment ---- */
+  .section--ink .callout{
+    background: rgba(124,92,255,.12);
+    border-color: rgba(124,92,255,.30);
+  }
+  .section--ink .callout b{ color:#fff; }
+  .section--ink .callout p{ color:#c3d2e4; }
 </style>
 </head>
 <body>
@@ -338,13 +347,6 @@
         <p>תיעוד מצב אובייקטיבי ומתוארך מול קבלני משנה, מפקחים ורשויות - מגן עליכם במחלוקות.</p>
       </div>
     </div>
-    <div class="callout reveal" style="max-width:920px;margin:34px auto 0;">
-      <span class="callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 4.4-3 7.5-7 9-4-1.5-7-4.6-7-9V7z"/><path d="M12 8v4"/><circle cx="12" cy="15.5" r=".9" fill="currentColor"/></svg></span>
-      <div>
-        <b>7 שנות אחריות קבלן - וכל שנה בהן עולה כסף</b>
-        <p>תקופת האחריות של הקבלן על המבנה נמשכת שנים אחרי המסירה. מי שלא יודע איפה הדברים נמצאים משלם הרבה יותר כדי לחפש אותם - פתיחת קירות, ימי עבודה ומחלוקות. תיעוד אחד בזמן הנכון מקצר כל בירור עתידי לכמה דקות מול המסך.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -381,6 +383,13 @@
       <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M5 20V8l5-3 5 3v12"/></svg></span><h3>קבלנים ויזמים</h3><p>תיעוד אתר מדויק שמונע הפתעות, מחלוקות והוצאות בלתי צפויות בהמשך הפרויקט.</p></article>
       <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span><h3>חשמל · אינסטלציה · מיזוג</h3><p>מיפוי צנרת, מהלכים ונקודות לפני שנסגרים מאחורי החיפוי - לתיאום ולתחזוקה עתידית.</p></article>
       <article class="card reveal"><span class="card__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 7v11H3V10z"/></svg></span><h3>בעלי נכסים וחברות ניהול</h3><p>הכי חשוב למי שהנכס נשאר אצלו: מאגר מצב קיים אמין לכל חיי המבנה - זמין לכל מי שמנהל, מתחזק, משפץ או משדרג.</p></article>
+    </div>
+    <div class="callout reveal" style="max-width:940px;margin:34px auto 0;">
+      <span class="callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 4.4-3 7.5-7 9-4-1.5-7-4.6-7-9V7z"/><path d="M12 8v4"/><circle cx="12" cy="15.5" r=".9" fill="currentColor"/></svg></span>
+      <div>
+        <b>7 שנות אחריות קבלן - וכל קריאה בהן מתחילה באותה שאלה: איפה זה עובר?</b>
+        <p>אחריות הקבלן על המבנה מלווה אתכם שנים אחרי המסירה, ובכל תקלה בתקופה הזו מחפשים קודם כול את המערכת עצמה. בלי תיעוד, החיפוש הוא בשטח - פתיחת קירות, ימי עבודה, תיקון ומחלוקות. עם סיור מדיד של המערכות מהשלב שבו הן היו גלויות, אותו בירור נסגר בכמה דקות מול המסך - וזה מה שהופך את התיעוד לזול בהרבה מהחיפוש.</p>
+      </div>
     </div>
   </div>
 </section>
