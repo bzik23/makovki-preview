@@ -3136,3 +3136,38 @@ a.card:hover .card__go svg{ transform: translateX(-4px); }
 .google-badge__link svg { width: 15px; height: 15px; transition: transform .25s var(--ease, ease); }
 .google-badge__link:hover { border-bottom-color: currentColor; }
 .google-badge__link:hover svg { transform: translateX(-3px); }
+
+/* ---- Reviews: full wall page + "see all" slider card ---- */
+.review-stars__off { color: #d9dbe4; }
+
+.review-card--all {
+  display: flex; flex-direction: column; justify-content: center; gap: 10px;
+  background: linear-gradient(150deg, #f4f0ff, #eafcff);
+  border-color: rgba(124, 92, 255, .28);
+}
+.review-card--all b { font-size: 1.28rem; font-weight: 900; color: var(--ink, #101433); }
+.review-card--all p { font-size: .95rem; line-height: 1.6; color: var(--text-2, #55597a); margin: 0; }
+.review-card--all .btn { align-self: flex-start; margin-top: 6px; }
+
+.rev-hero__badge {
+  display: inline-flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 26px;
+  padding: 12px 20px; border-radius: 999px;
+  background: rgba(255, 255, 255, .1); border: 1px solid rgba(180, 200, 255, .28);
+}
+.rev-hero__badge .google-badge__g { width: 24px; height: 24px; flex: none; }
+.rev-hero__score { font-size: 1.3rem; font-weight: 900; color: #fff; }
+.rev-hero__stars { color: #fbbc05; letter-spacing: 1px; }
+.rev-hero__link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: #8fe6ff; font-weight: 700; font-size: .92rem; text-decoration: none;
+}
+.rev-hero__link svg { width: 15px; height: 15px; transition: transform .25s var(--ease, ease); }
+.rev-hero__link:hover svg { transform: translateX(-3px); }
+
+.rev-wall-sec { background: linear-gradient(180deg, #fbfaff 0%, #fff 40%); }
+.rev-wall { columns: 3 300px; column-gap: 20px; }
+.rev-wall .review-card {
+  break-inside: avoid; -webkit-column-break-inside: avoid; page-break-inside: avoid;
+  width: 100%; margin: 0 0 20px; display: block;
+}
+@media (max-width: 700px) { .rev-wall { columns: 1; } }
