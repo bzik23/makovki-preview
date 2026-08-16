@@ -2290,25 +2290,32 @@ html { overflow-x: clip; }
    Knowledge-center ARTICLE (single post) - prose + supporting components
    ========================================================================== */
 
-/* ---- Post hero (dark, with meta + category) ---- */
+/* ---- Post hero (light gradient, with meta + category) ----
+   The page-hero is LIGHT (see "Light page-hero" block), so the post copy must be
+   dark ink. Keeping the old #fff title here made the headline nearly unreadable. */
 .post-hero { padding-block: clamp(52px, 7vw, 84px); }
 .post-hero .hero__inner { max-width: 820px; }
 .post-hero .post-cat {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: .82rem; font-weight: 700; letter-spacing: .03em;
-  color: #0b1024; background: var(--cyan); padding: 6px 15px; border-radius: 999px;
-  margin-bottom: 18px;
+  color: #06333c; background: var(--cyan); padding: 6px 15px; border-radius: 999px;
+  margin-bottom: 18px; box-shadow: 0 6px 16px -8px rgba(14,165,196,.6);
 }
-.post-hero h1 { color: #fff; letter-spacing: 0; }
+.post-hero h1 { color: var(--ink); letter-spacing: 0; }
 .post-hero .post-metaline {
   display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px;
-  margin-top: 22px; color: #9fb2c8; font-size: .92rem; font-weight: 500;
+  margin-top: 22px; color: var(--text-2); font-size: .92rem; font-weight: 500;
 }
 .post-hero .post-metaline span { display: inline-flex; align-items: center; gap: 7px; }
-.post-hero .post-metaline svg { width: 16px; height: 16px; opacity: .85; }
-.post-hero .post-metaline .dot { width: 4px; height: 4px; border-radius: 50%; background: #5c6f88; }
-.post-hero .post-author { display: inline-flex; align-items: center; gap: 9px; }
-.post-hero .post-author img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1.5px solid rgba(255,255,255,.25); }
+.post-hero .post-metaline svg { width: 16px; height: 16px; opacity: .75; color: var(--violet-deep); }
+.post-hero .post-metaline .dot { width: 4px; height: 4px; border-radius: 50%; background: #b9b6cc; }
+.post-hero .post-author { display: inline-flex; align-items: center; gap: 9px; color: var(--text); font-weight: 600; }
+.post-hero .post-author img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1.5px solid rgba(124,92,255,.28); }
+/* narrow screens: the meta line wraps, and a separator dot would be left orphaned at line end */
+@media (max-width: 560px) {
+  .post-hero .post-metaline { gap: 6px 14px; }
+  .post-hero .post-metaline .dot { display: none; }
+}
 
 /* ---- Article shell ---- */
 .article { padding-block: clamp(46px, 6vw, 72px); }
