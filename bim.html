@@ -21,21 +21,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r5">
+<link rel="stylesheet" href="assets/makovki.css?v=r7">
 <style>
-  /* ===== page-scoped: hero readability over point-cloud media ===== */
-  .hero--bim .hero__scrim{
-    background:
-      linear-gradient(to right, rgba(8,12,33,.28) 0%, rgba(8,12,33,.64) 42%, rgba(8,12,33,.92) 80%, var(--ink) 100%),
-      linear-gradient(to top, var(--ink) 2%, rgba(8,12,33,.12) 50%);
-  }
-  @media (max-width: 860px){
-    .hero--bim .hero__scrim{
-      background:
-        linear-gradient(to right, rgba(8,12,33,.62) 0%, rgba(8,12,33,.82) 55%, var(--ink) 100%),
-        linear-gradient(to top, var(--ink) 4%, rgba(8,12,33,.34) 62%);
-    }
-  }
+  /* page-scoped hero treatment lives at the bottom of this block (see "Client feedback") */
 
   /* ===== LOD ladder ===== */
   .lod-ladder{
@@ -118,13 +106,36 @@
       border-radius:11px; background:var(--cyan-soft); color:var(--cyan-deep);
     }
   }
-  /* Client feedback: the BIM hero read too dark - lift the point-cloud image and thin the veil */
-  .hero--bim .hero__media img{ filter:saturate(1.12) contrast(1.05) brightness(1.28); }
+  /* Client feedback (2nd pass): the BIM hero still read too dark - lift the point-cloud
+     image further and thin the ink veil, including the solid wall on the far (left) side.
+     Readability is held by a local shadow on the copy instead of a heavy full-bleed veil. */
+  .hero--bim .hero__media img{ filter:saturate(1.12) contrast(1.04) brightness(1.36); }
   .hero--bim .hero__scrim{
     background:
-      radial-gradient(70% 90% at 86% 22%, rgba(124,92,255,.22) 0%, transparent 55%),
-      linear-gradient(to left, rgba(11,10,32,.24) 0%, rgba(11,10,32,.56) 42%, rgba(11,10,32,.86) 78%, var(--ink) 100%),
-      linear-gradient(to top, var(--ink) 2%, rgba(11,10,32,.06) 46%);
+      /* local pool of shade behind the copy block (RTL: right of center) so the text keeps
+         contrast while the frame as a whole stays bright */
+      radial-gradient(78% 88% at 76% 52%, rgba(11,10,32,.56) 0%, rgba(11,10,32,.30) 54%, transparent 80%),
+      radial-gradient(70% 90% at 86% 22%, rgba(124,92,255,.18) 0%, transparent 55%),
+      linear-gradient(to left, rgba(11,10,32,.14) 0%, rgba(11,10,32,.30) 50%, rgba(11,10,32,.56) 100%),
+      linear-gradient(to top, var(--ink) 2%, rgba(11,10,32,.30) 22%, rgba(11,10,32,.04) 48%);
+  }
+  .hero--bim .crumbs{ color:#c3d0e2; }
+  .hero--bim .crumbs a{ color:#dbe6f4; }
+  .hero--bim .hero__inner h1{ filter:drop-shadow(0 2px 10px rgba(8,10,30,.75)) drop-shadow(0 1px 2px rgba(8,10,30,.6)); }
+  .hero--bim .hero__sub,
+  .hero--bim .hero__eyebrow-line,
+  .hero--bim .crumbs,
+  .hero--bim .hero__stat .lbl{ text-shadow:0 1px 3px rgba(8,10,30,.8), 0 2px 16px rgba(8,10,30,.6); }
+  .hero--bim .hero__sub{ color:#dbe6f4; }
+  .hero--bim .hero__stat .num{ text-shadow:0 2px 12px rgba(8,10,30,.7); }
+  @media (max-width: 860px){
+    /* Mobile stacks the copy over the brightest part of the frame - keep a touch more veil */
+    .hero--bim .hero__media img{ filter:saturate(1.15) contrast(1.02) brightness(1.42); }
+    .hero--bim .hero__scrim{
+      background:
+        linear-gradient(to left, rgba(11,10,32,.42) 0%, rgba(11,10,32,.56) 60%, rgba(11,10,32,.7) 100%),
+        linear-gradient(to top, var(--ink) 2%, rgba(11,10,32,.16) 55%);
+    }
   }
 </style>
 </head>
@@ -767,6 +778,12 @@
             </div>
             <div class="review-stars">★★★★★</div>
             <p class="review-text">עודד מומלץ. שירות מהיר ומקצועי</p>
+          </article>
+
+          <article class="review-card review-card--all">
+            <b>72 ביקורות בגוגל</b>
+            <p>כולן אמיתיות, כולן מלקוחות שעבדו איתנו. אפשר לקרוא את כולן במקום אחד.</p>
+            <a class="btn btn--primary" href="reviews.html">לכל הביקורות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
           </article>
 
           <article class="review-card review-card--all">
