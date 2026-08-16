@@ -1153,6 +1153,13 @@ h2 { letter-spacing: 0; }
   padding: 8px 15px; border-radius: 999px; font-size: .84rem; font-weight: 600;
   border: 1px solid rgba(255,255,255,.14);
 }
+/* the media box itself is a link to the live 3D model (reuses .tour-play for the
+   play badge); the tag sits above the badge overlay and never eats the click */
+.feature-media--link { display: block; text-decoration: none; }
+.feature-media--link .feature-media__tag {
+  z-index: 3; pointer-events: none; inset-block-start: 16px; inset-block-end: auto;
+}
+.feature-media--link:hover .tour-play b { transform: scale(1.09); background: var(--violet); }
 /* auto-rotating visualization gallery: images stacked in the same box, crossfading */
 .feature-media--gallery .viz-track { position: absolute; inset: 0; }
 .feature-media--gallery .viz-slide {
