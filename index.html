@@ -518,6 +518,12 @@
             <a class="btn btn--primary" href="reviews.html">לכל הביקורות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
           </article>
 
+          <article class="review-card review-card--all">
+            <b>72 ביקורות בגוגל</b>
+            <p>כולן אמיתיות, כולן מלקוחות שעבדו איתנו. אפשר לקרוא את כולן במקום אחד.</p>
+            <a class="btn btn--primary" href="reviews.html">לכל הביקורות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          </article>
+
         </div>
       </div>
       <button class="rev-nav rev-next" aria-label="ביקורת הבאה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -614,32 +620,38 @@
 </section>
 
 <!-- ============================ SPEED TEST (100 m² benchmark) ============================ -->
-<section class="section section--soft speed-test">
+<section class="section section--ink speed-test">
   <div class="container">
     <div class="section-head center">
-      <span class="eyebrow">מהירות שקשה להתעלם ממנה</span>
+      <span class="eyebrow">מהירות ורציפות</span>
       <h2>מבחן ה-100 מ&quot;ר</h2>
       <p class="lead">כמה זמן לוקח לסרוק נכס של 100 מ&quot;ר? ההבדל בין מדידה מסורתית לסריקת לייזר נייד הוא לא שיפור קטן - הוא שינוי סדר גודל.</p>
     </div>
-    <div class="vs reveal">
-      <div class="speed-card speed-card--old">
-        <span class="speed-card__label"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>מדידה מסורתית / Stop &amp; Go</span>
-        <div class="speed-card__time"><span class="speed-card__num">90-120</span><span class="speed-card__unit">דקות</span></div>
-        <p class="speed-card__desc">מצלמות חצובה ומדידה נקודתית - דורש עשרות עצירות מסורבלות, השבתה של הנכס והפרעה לשגרה.</p>
-        <div class="speed-card__bar"><i></i></div>
+
+    <div class="lanes reveal">
+      <div class="lane lane--old">
+        <span class="lane__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>סריקה מסורתית / מצלמות חצובה (Stop &amp; Go)</span>
+        <div class="lane__row">
+          <span class="lane__badge"><b>90-120</b><i>דקות</i></span>
+          <div class="lane__track"><span class="lane__fill"></span></div>
+        </div>
+        <p class="lane__note">מדידה נקודתית שדורשת עשרות עצירות מסורבלות - השבתה של הנכס והפרעה לשגרה.</p>
       </div>
-      <div class="speed-vs__mid"><span class="speed-vs__chip">VS</span></div>
-      <div class="speed-card speed-card--new">
-        <span class="speed-card__label"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>סריקת לייזר נייד (Mobile Mapping)</span>
-        <div class="speed-card__time"><span class="speed-card__num">5</span><span class="speed-card__unit">דקות בלבד</span></div>
-        <p class="speed-card__desc">הליכה רציפה ללא עצירות - איסוף כ-100 נקודות מבט לסיור מדיד תוך 5 דקות, בדיוק גבוה מאוד.</p>
-        <div class="speed-card__bar"><i></i></div>
+
+      <div class="lane lane--new">
+        <span class="lane__title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>סריקת לייזר נייד של מקובקי (Mobile Mapping)</span>
+        <div class="lane__row">
+          <span class="lane__badge"><b>5</b><i>דקות בלבד</i></span>
+          <div class="lane__track"><span class="lane__fill"></span></div>
+        </div>
+        <p class="lane__note">הליכה רציפה ללא עצירות - איסוף כ-100 נקודות מבט לסיור מדיד, בדיוק גבוה מאוד.</p>
       </div>
     </div>
+
     <ul class="speed-benefits reveal">
-      <li class="speed-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><b>אפס השבתה של הנכס</b></li>
-      <li class="speed-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg><b>מינימום הפרעה לשוכרים קיימים</b></li>
-      <li class="speed-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><b>חיסכון בימי שרטוט למשרד</b></li>
+      <li class="speed-benefit"><span class="speed-benefit__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span><b>אפס השבתה של הנכס</b></li>
+      <li class="speed-benefit"><span class="speed-benefit__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span><b>מינימום הפרעה לשוכרים קיימים</b></li>
+      <li class="speed-benefit"><span class="speed-benefit__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><b>חיסכון בימי שרטוט למשרד</b></li>
     </ul>
   </div>
 </section>
