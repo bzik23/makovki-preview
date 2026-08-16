@@ -885,10 +885,14 @@ h2 { letter-spacing: 0; }
    copy on the RIGHT (RTL) - keeps the headline/paragraph over the calmest area */
 .page-hero--scan .hero__media { z-index: 0; transform: scaleX(-1); }
 .page-hero--scan .hero__media img {
-  object-position: 28% 48%;                 /* full scan composition in view, centred slightly left */
+  /* frame the LIT half of the scan (plant + concrete pad). The source photo's top third is a
+     pure-black scan sky; centring it vertically (was 48%) pulled that void across the hero. */
+  object-position: 30% 64%;
   transform: scale(1.04);
-  /* let the point cloud read crisp and vivid - it IS the hero (our actual scan output), not a faint backdrop */
-  filter: saturate(1.12) contrast(1.06) brightness(1.16);
+  /* let the point cloud read crisp and vivid - it IS the hero (our actual scan output), not a faint backdrop.
+     contrast BELOW 1 is the lift: it raises the pure-black sky off zero so the hero reads as a lit
+     night scan instead of a black rectangle (brightness alone can't lift pure black - 0 x n = 0). */
+  filter: saturate(1.16) contrast(.9) brightness(1.34);
   /* feather every edge so the scan floats in the navy instead of reading as a rectangle */
   -webkit-mask-image: radial-gradient(155% 145% at 36% 46%, #000 56%, transparent 100%);
           mask-image: radial-gradient(155% 145% at 36% 46%, #000 56%, transparent 100%);
@@ -900,15 +904,22 @@ h2 { letter-spacing: 0; }
    kept clear over the bright scan on the left, with a violet glow so the hero feels lit, not heavy */
 .page-hero--scan .page-hero__scrim {
   position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  /* the veil tints with a LIT indigo (#171b45), not near-black (#0b0e26): same readability,
+     but the hero reads illuminated rather than murky - the client's "too dark" note. */
   background:
-    radial-gradient(60% 82% at 82% 24%, rgba(124,92,255,.32) 0%, transparent 60%),
-    radial-gradient(46% 60% at 96% 96%, rgba(33,207,230,.14) 0%, transparent 62%),
-    /* dark pocket behind the headline so BOTH lines stay crisp over the tower, tapering out before the vivid scan mass on the left */
-    radial-gradient(64% 46% at 66% 40%, rgba(11,14,38,.5) 0%, rgba(11,14,38,.28) 56%, transparent 84%),
+    radial-gradient(62% 84% at 82% 22%, rgba(124,92,255,.34) 0%, transparent 62%),
+    radial-gradient(48% 62% at 96% 96%, rgba(33,207,230,.16) 0%, transparent 64%),
+    /* atmospheric lift over the source photo's black night-sky corner, so it reads as depth
+       around the scan rather than a dead void */
+    radial-gradient(52% 66% at 6% 0%, rgba(86,224,245,.13) 0%, rgba(124,92,255,.1) 44%, transparent 76%),
+    /* soft pocket behind the WHOLE copy block (eyebrow -> paragraph), not just the headline: the lit
+       scan runs bright yellow handrails straight under the paragraph's leading edge, and measured
+       contrast there fell to 2.8:1 without this. Feathered, so the left half stays fully lit. */
+    radial-gradient(58% 76% at 62% 50%, rgba(14,17,48,.6) 0%, rgba(14,17,48,.34) 54%, transparent 84%),
     linear-gradient(to right,
-      rgba(11,14,38,0) 0%, rgba(11,14,38,0) 21%,
-      rgba(11,14,38,.3) 36%, rgba(11,14,38,.62) 49%, rgba(11,14,38,.74) 68%, rgba(11,14,38,.8) 100%),
-    linear-gradient(to bottom, rgba(11,14,38,.2) 0%, rgba(11,14,38,0) 30%, rgba(11,14,38,0) 66%, rgba(11,14,38,.4) 100%);
+      rgba(23,27,69,0) 0%, rgba(23,27,69,0) 24%,
+      rgba(23,27,69,.26) 38%, rgba(23,27,69,.46) 50%, rgba(23,27,69,.55) 68%, rgba(23,27,69,.62) 100%),
+    linear-gradient(to bottom, rgba(23,27,69,.14) 0%, rgba(23,27,69,0) 32%, rgba(23,27,69,0) 68%, rgba(23,27,69,.3) 100%);
 }
 .page-hero--scan .container { position: relative; z-index: 5; }
 /* The scan hero is DARK, so its copy must be LIGHT. Both classes (.page-hero.page-hero--scan)
@@ -923,11 +934,16 @@ h2 { letter-spacing: 0; }
    low-contrast brown over the navy - so the highlight uses a bright laser-scan gradient
    (light cyan -> light violet): both stops clear contrast against the navy. */
 .page-hero.page-hero--scan h1 .hl {
-  background: linear-gradient(100deg, #56e0f5 0%, #9f8bff 100%);
+  /* stops raised (was #56e0f5 -> #9f8bff) now that the scan behind them is lit: on the brighter
+     backdrop the old mid-tone cyan read muddy next to the pure-white first line. */
+  background: linear-gradient(100deg, #7ceeff 0%, #bcaaff 100%);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
-  /* text-shadow doesn't paint on transparent-fill clipped text, but filter does:
-     a tight dark halo so the gradient line stays crisp where it crosses the bright tower */
+  /* ⚠️ the h1's text-shadow IS inherited here and paint order is background -> text-shadow -> glyph,
+     so a dark shadow lands ON TOP of the clipped gradient and greys the letters out (this is what made
+     the line render as muddy slate instead of cyan->violet). Kill it; the halo comes from filter,
+     which applies to the composited result instead. */
+  text-shadow: none;
   filter: drop-shadow(0 1px 3px rgba(6,8,26,.85)) drop-shadow(0 2px 16px rgba(6,8,26,.55));
 }
 /* brighten + protect the copy so it stays crisp over any part of the scan */
@@ -936,22 +952,35 @@ h2 { letter-spacing: 0; }
 .page-hero.page-hero--scan .crumbs { color: #bcc6e0; }
 .page-hero.page-hero--scan .crumbs a { color: #dbe2f1; }
 @media (max-width: 760px) {
-  /* on the small screen the scan is a backdrop, not the star (as it is on desktop): dim it so the
-     centred headline never competes with the bright structure, and keep a solid even veil */
+  /* on the small screen the scan is a backdrop, not the star (as it is on desktop), but it must still
+     be VISIBLE: frame the lit plant, lift the black sky (contrast<1) and keep only as much veil as the
+     centred headline needs. The old .72 dim under a near-opaque .86 veil read as a black block. */
   .page-hero--scan .hero__media img {
-    object-position: 44% 50%;
-    filter: saturate(1.02) contrast(1.03) brightness(.72);
+    object-position: 46% 68%;
+    filter: saturate(1.06) contrast(.92) brightness(1.04);
+    /* at 390px the box is TALLER than the cover-scaled photo is deep, so cover crops horizontally only
+       and the whole frame height - including the black sky - is on screen (object-position Y is a no-op
+       here). Zooming past cover is what crops that sky away, so mobile gets its own drift keyframes. */
+    animation: heroDriftScanMobile 32s ease-in-out infinite alternate;
   }
   .page-hero--scan .page-hero__scrim {
     background:
-      radial-gradient(90% 54% at 50% 12%, rgba(124,92,255,.22) 0%, transparent 60%),
+      radial-gradient(90% 54% at 50% 12%, rgba(124,92,255,.24) 0%, transparent 60%),
       linear-gradient(to bottom,
-        rgba(11,14,38,.86) 0%, rgba(11,14,38,.84) 30%, rgba(11,14,38,.8) 46%,
-        rgba(11,14,38,.72) 62%, rgba(11,14,38,.7) 74%, rgba(11,14,38,.86) 100%);
+        rgba(23,27,69,.78) 0%, rgba(23,27,69,.74) 30%, rgba(23,27,69,.7) 46%,
+        rgba(23,27,69,.63) 62%, rgba(23,27,69,.6) 74%, rgba(23,27,69,.74) 100%);
   }
+}
+/* negative translateY pulls the frame DOWN the photo (less sky at the top of the hero); the zoom
+   leaves ~25% overflow top and bottom, so these offsets never expose the image edge */
+@keyframes heroDriftScanMobile {
+  from { transform: scale(1.5) translateY(-7%); }
+  to   { transform: scale(1.58) translateY(-12%); }
 }
 @media (prefers-reduced-motion: reduce) {
   .page-hero--scan .hero__media img { animation: none; }
+  /* animation:none would drop the mobile zoom back to plain cover (black sky back in frame) */
+  @media (max-width: 760px) { .page-hero--scan .hero__media img { transform: scale(1.52) translateY(-9%); } }
   .page-hero--scan .hero__scan::before { animation: none; opacity: 0; }
 }
 
@@ -3308,3 +3337,87 @@ a.card:hover .card__go svg{ transform: translateX(-4px); }
   width: 100%; margin: 0 0 20px; display: block;
 }
 @media (max-width: 700px) { .rev-wall { columns: 1; } }
+
+/* ==========================================================================
+   Scanner toolkit strip - LIGHT sections (the .fleet block above is dark-only:
+   it floats transparent cutouts on the ink background with coloured halos, which
+   collapses on white). Here each device sits on its own tinted plate instead,
+   and mix-blend-mode:multiply drops the white studio background of the product
+   shots (rtc360 / drone) into the plate so they read as cutouts too.
+   ========================================================================== */
+.kit { margin-top: clamp(46px, 5.4vw, 72px); }
+.kit__head { max-width: 800px; }
+.kit__head h3 { font-size: clamp(1.42rem, 2.3vw, 1.94rem); margin: 8px 0 12px; }
+.kit__head p { margin: 0; color: var(--text-2); font-size: 1.02rem; line-height: 1.75; }
+
+.kit__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: clamp(24px, 3vw, 32px); }
+.kit-card {
+  margin: 0; padding: 16px 14px 18px; text-align: center;
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+}
+.kit-card:hover { transform: translateY(-6px); border-color: rgba(124, 92, 255, .32); box-shadow: var(--shadow-lg); }
+.kit-card__plate {
+  position: relative; display: grid; place-items: center; height: 138px; overflow: hidden;
+  border-radius: var(--radius-sm); background: linear-gradient(158deg, #f5f2ff 0%, #eafaff 100%);
+}
+.kit-card:nth-child(2) .kit-card__plate { background: linear-gradient(158deg, #eafaff 0%, #f1f4ff 100%); }
+.kit-card:nth-child(3) .kit-card__plate { background: linear-gradient(158deg, #f6f3ff 0%, #fff2ea 100%); }
+.kit-card:nth-child(4) .kit-card__plate { background: linear-gradient(158deg, #eefaf1 0%, #eafaff 100%); }
+.kit-card__plate img {
+  width: auto; max-width: 84%; height: 112px; object-fit: contain;
+  mix-blend-mode: multiply;                    /* kills the white studio bg of the product shots */
+  transition: transform .35s var(--ease);
+}
+.kit-card:hover .kit-card__plate img { transform: scale(1.05); }
+/* the drone shot is a wide 1:1 with a lot of empty sky - let it fill more of the plate
+   so it reads at the same visual weight as the three tall scanners next to it */
+.kit-card:nth-child(4) .kit-card__plate img { max-width: 100%; height: 128px; }
+.kit-card__use {
+  position: absolute; inset-inline-start: 10px; top: 10px;
+  padding: 4px 10px; border-radius: 999px; background: rgba(255, 255, 255, .86);
+  font-size: .72rem; font-weight: 800; color: var(--violet-deep); letter-spacing: .01em;
+}
+.kit-card figcaption { margin-top: 14px; }
+.kit-card figcaption b { display: block; font-size: 1.02rem; font-weight: 800; color: var(--ink); }
+.kit-card figcaption span { display: block; margin-top: 5px; font-size: .84rem; font-weight: 600; line-height: 1.5; color: var(--text-2); }
+
+/* the three things the toolkit buys the client: their template, the tour, the speed */
+.kit-perks { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0 0; padding: 0; }
+.kit-perk {
+  display: flex; align-items: flex-start; gap: 14px; padding: 18px 18px 17px;
+  border-radius: var(--radius); border: 1px solid rgba(124, 92, 255, .18);
+  background: linear-gradient(150deg, #f5f1ff 0%, #eafcff 100%);
+}
+.kit-perk__ic {
+  flex: none; width: 42px; height: 42px; display: grid; place-items: center;
+  border-radius: 12px; background: #fff; color: var(--violet-deep); box-shadow: var(--shadow);
+}
+.kit-perk__ic svg { width: 21px; height: 21px; }
+.kit-perk b { display: block; font-size: 1.02rem; font-weight: 800; color: var(--ink); margin-bottom: 5px; }
+.kit-perk p { margin: 0; font-size: .92rem; line-height: 1.62; color: var(--text-2); }
+.kit-perk a {
+  display: inline-flex; align-items: center; gap: 5px; margin-top: 8px;
+  font-size: .89rem; font-weight: 700; color: var(--violet-deep); text-decoration: none;
+}
+.kit-perk a svg { width: 14px; height: 14px; transition: transform .25s var(--ease); }
+.kit-perk a:hover svg { transform: translateX(-3px); }
+
+@media (max-width: 1000px) {
+  .kit__grid { grid-template-columns: repeat(2, 1fr); }
+  .kit-perks { grid-template-columns: 1fr; gap: 12px; }
+}
+@media (max-width: 560px) {
+  .kit__grid { gap: 12px; }
+  .kit-card { padding: 12px 10px 14px; }
+  /* narrow cards: the badge would sit on top of the device, so reserve a strip for it */
+  .kit-card__plate { height: 118px; padding-top: 22px; }
+  .kit-card__use { top: 7px; inset-inline-start: 7px; padding: 3px 8px; font-size: .66rem; }
+  .kit-card__plate img { height: 82px; }
+  .kit-card:nth-child(4) .kit-card__plate img { height: 92px; }
+  .kit-card figcaption b { font-size: .94rem; }
+  .kit-card figcaption span { font-size: .78rem; }
+  .kit-perk { padding: 15px 14px; gap: 12px; }
+  .kit-perk__ic { width: 38px; height: 38px; }
+}
