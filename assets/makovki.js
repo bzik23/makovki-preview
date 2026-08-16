@@ -831,6 +831,32 @@
   }
 })();
 
+/* ---- Tour wall (examples.html): a thumbnail loads the live Matterport tour
+   in place on click, so 25 tours cost nothing until one is opened ---- */
+(function () {
+  "use strict";
+  function initTourWall() {
+    var cards = document.querySelectorAll(".tour-card[data-mp]");
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].addEventListener("click", function () {
+        if (this.classList.contains("is-live")) return;
+        var iframe = document.createElement("iframe");
+        iframe.setAttribute("allow", "xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay");
+        iframe.setAttribute("allowfullscreen", "");
+        iframe.setAttribute("title", this.getAttribute("aria-label") || "סיור וירטואלי 360°");
+        iframe.src = "https://my.matterport.com/show/?m=" + this.getAttribute("data-mp") + "&play=1&qs=1&title=0&brand=0";
+        this.classList.add("is-live");
+        this.appendChild(iframe);
+      });
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTourWall);
+  } else {
+    initTourWall();
+  }
+})();
+
 /* ---- Matterport tour facade: a poster (.tour-frame--img) loads the live 3D
    tour inline, in place, on click - instead of opening a new tab. The href is
    kept as a no-JS fallback. Shared by the tour-* hero posters. ---- */

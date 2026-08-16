@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r9">
+<link rel="stylesheet" href="assets/makovki.css?v=r11">
 </head>
 <body>
 <div data-include="header"></div>
@@ -49,7 +49,7 @@
   <div class="container">
     <div class="section-head center">
       <span class="eyebrow">הדמיות סטילס</span>
-      <h2>14 הדמיות פוטו-ריאליסטיות מפרויקטים אמיתיים</h2>
+      <h2>הדמיות פוטו-ריאליסטיות מפרויקטים אמיתיים</h2>
       <p class="lead">חוץ ופנים, מגורים ומשרדים - הדמיות ברמה שמוכרת פרויקט לפני שהוא נבנה.</p>
     </div>
     <div class="gallery">
@@ -80,6 +80,11 @@
       <p class="lead">טיסות וסיורים תלת-מימדיים שהופקו על ידי מקובקי שירותי מדידה - לחצו לצפייה.</p>
     </div>
     <div class="video-grid">
+      <button class="video-card video-card--feature reveal" data-yt="ShqjY2HuUZM" aria-label="נגן: סיור אדריכלי בפרויקט">
+        <img src="https://i.ytimg.com/vi/ShqjY2HuUZM/maxresdefault.jpg" alt="הדמיית וידאו - סיור אדריכלי בפרויקט" loading="lazy">
+        <span class="video-card__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="video-card__cap">סיור אדריכלי בפרויקט</span>
+      </button>
       <button class="video-card reveal" data-yt="zrnQXfeqbKg" aria-label="נגן: הדמיית פרויקט קפריסין">
         <img src="https://i.ytimg.com/vi/zrnQXfeqbKg/maxresdefault.jpg" alt="הדמיית וידאו - פרויקט מגורים בקפריסין" loading="lazy">
         <span class="video-card__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
@@ -110,11 +115,6 @@
         <span class="video-card__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
         <span class="video-card__cap">דירת גן</span>
       </button>
-      <button class="video-card reveal" data-yt="ShqjY2HuUZM" aria-label="נגן: סרטון הדמיה אדריכלית">
-        <img src="https://i.ytimg.com/vi/ShqjY2HuUZM/maxresdefault.jpg" alt="הדמיית וידאו - סיור אדריכלי בפרויקט" loading="lazy">
-        <span class="video-card__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="video-card__cap">סיור אדריכלי בפרויקט</span>
-      </button>
     </div>
     <div class="text-center" style="margin-top:34px;">
       <a class="btn btn--ghost" href="https://www.youtube.com/@makovki6930" target="_blank" rel="noopener">לערוץ היוטיוב המלא <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
@@ -144,10 +144,165 @@
         <span class="card__go">לסיור המקצועי <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
       </a>
     </div>
-    <div class="gallery" style="margin-top:26px;">
-      <figure class="gallery__item reveal"><img src="assets/real/interior-measure.jpg" alt="מדידה בתוך סיור וירטואלי מדיד - כלי Mark &amp; measure - מקובקי שירותי מדידה" loading="lazy"><figcaption>מדידה בתוך הסיור - אורך, שטח ופוליליין</figcaption></figure>
-      <figure class="gallery__item reveal"><img src="assets/real/oded/pointcloud-cathedral-stage.webp" alt="ענן נקודות של מבנה מורשת בתצוגה - מקובקי שירותי מדידה" loading="lazy"><figcaption>ענן נקודות של מבנה מורשת</figcaption></figure>
-      <figure class="gallery__item reveal"><img src="assets/real/interactive-viz.png" alt="הדמיה אינטראקטיבית - בחירת חומר וגימור בזמן אמת - מקובקי שירותי מדידה" loading="lazy"><figcaption>הדמיה אינטראקטיבית</figcaption></figure>
+    <div class="tourwall reveal">
+      <h3 class="tourwall__title">סיורים שיווקיים (Matterport)</h3>
+      <p class="tourwall__sub">לחצו על סיור כדי לפתוח אותו כאן בעמוד, ולהסתובב בנכס בעצמכם.</p>
+      <h4 class="tourwall__group">דירות ובתים פרטיים</h4>
+      <div class="tourwall__grid">
+        <button class="tour-card" data-mp="KdS7TJaR7Ky" aria-label="פתיחת הסיור הווירטואלי: דירת יוקרה - חוף תל אביב">
+          <img src="assets/real/tours/KdS7TJaR7Ky.webp" alt="סיור וירטואלי 360° - דירת יוקרה - חוף תל אביב, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">דירת יוקרה - חוף תל אביב</span>
+        </button>
+        <button class="tour-card" data-mp="Zi6UQf9aU7H" aria-label="פתיחת הסיור הווירטואלי: גלי התכלת - הרצליה פיתוח">
+          <img src="assets/real/tours/Zi6UQf9aU7H.webp" alt="סיור וירטואלי 360° - גלי התכלת - הרצליה פיתוח, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">גלי התכלת - הרצליה פיתוח</span>
+        </button>
+        <button class="tour-card" data-mp="erjWvbvpFej" aria-label="פתיחת הסיור הווירטואלי: וינגייט">
+          <img src="assets/real/tours/erjWvbvpFej.webp" alt="סיור וירטואלי 360° - וינגייט, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">וינגייט</span>
+        </button>
+        <button class="tour-card" data-mp="gfXnYCY6cdw" aria-label="פתיחת הסיור הווירטואלי: West 114">
+          <img src="assets/real/tours/gfXnYCY6cdw.webp" alt="סיור וירטואלי 360° - West 114, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">West 114</span>
+        </button>
+        <button class="tour-card" data-mp="Z2o8Xgc85s7" aria-label="פתיחת הסיור הווירטואלי: יוניצמן 21">
+          <img src="assets/real/tours/Z2o8Xgc85s7.webp" alt="סיור וירטואלי 360° - יוניצמן 21, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">יוניצמן 21</span>
+        </button>
+        <button class="tour-card" data-mp="sUKg9tWxvv6" aria-label="פתיחת הסיור הווירטואלי: שבט - הרצליה פיתוח">
+          <img src="assets/real/tours/sUKg9tWxvv6.webp" alt="סיור וירטואלי 360° - שבט - הרצליה פיתוח, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">שבט - הרצליה פיתוח</span>
+        </button>
+      </div>
+      <h4 class="tourwall__group">מלונות ואירוח</h4>
+      <div class="tourwall__grid">
+        <button class="tour-card" data-mp="wnkLn9YGzZM" aria-label="פתיחת הסיור הווירטואלי: מלון המלך שלמה - אילת">
+          <img src="assets/real/tours/wnkLn9YGzZM.webp" alt="סיור וירטואלי 360° - מלון המלך שלמה - אילת, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">מלון המלך שלמה - אילת</span>
+        </button>
+        <button class="tour-card" data-mp="HYCgFqAX94d" aria-label="פתיחת הסיור הווירטואלי: West - חדר 49">
+          <img src="assets/real/tours/HYCgFqAX94d.webp" alt="סיור וירטואלי 360° - West - חדר 49, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">West - חדר 49</span>
+        </button>
+        <button class="tour-card" data-mp="H4RAbypJ8uq" aria-label="פתיחת הסיור הווירטואלי: West - חדר 11">
+          <img src="assets/real/tours/H4RAbypJ8uq.webp" alt="סיור וירטואלי 360° - West - חדר 11, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">West - חדר 11</span>
+        </button>
+        <button class="tour-card" data-mp="isZkNdeVwsW" aria-label="פתיחת הסיור הווירטואלי: West - חדר 10">
+          <img src="assets/real/tours/isZkNdeVwsW.webp" alt="סיור וירטואלי 360° - West - חדר 10, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">West - חדר 10</span>
+        </button>
+      </div>
+      <h4 class="tourwall__group">חנויות</h4>
+      <div class="tourwall__grid">
+        <button class="tour-card" data-mp="pDHkTwc715t" aria-label="פתיחת הסיור הווירטואלי: איקאה מטבחים - תל אביב">
+          <img src="assets/real/tours/pDHkTwc715t.webp" alt="סיור וירטואלי 360° - איקאה מטבחים - תל אביב, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">איקאה מטבחים - תל אביב</span>
+        </button>
+        <button class="tour-card" data-mp="WFux4uXXyot" aria-label="פתיחת הסיור הווירטואלי: סמסונג">
+          <img src="assets/real/tours/WFux4uXXyot.webp" alt="סיור וירטואלי 360° - סמסונג, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">סמסונג</span>
+        </button>
+        <button class="tour-card" data-mp="va7N8qeUeox" aria-label="פתיחת הסיור הווירטואלי: BMW Hybrid">
+          <img src="assets/real/tours/va7N8qeUeox.webp" alt="סיור וירטואלי 360° - BMW Hybrid, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">BMW Hybrid</span>
+        </button>
+        <button class="tour-card" data-mp="V5WnGc3T7yL" aria-label="פתיחת הסיור הווירטואלי: LAHAV נתניה">
+          <img src="assets/real/tours/V5WnGc3T7yL.webp" alt="סיור וירטואלי 360° - LAHAV נתניה, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">LAHAV נתניה</span>
+        </button>
+        <button class="tour-card" data-mp="BrC4sxiHR38" aria-label="פתיחת הסיור הווירטואלי: RegevDesign ראשון לציון">
+          <img src="assets/real/tours/BrC4sxiHR38.webp" alt="סיור וירטואלי 360° - RegevDesign ראשון לציון, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">RegevDesign ראשון לציון</span>
+        </button>
+        <button class="tour-card" data-mp="Yswmhcr2NLU" aria-label="פתיחת הסיור הווירטואלי: In & Out רמת השרון">
+          <img src="assets/real/tours/Yswmhcr2NLU.webp" alt="סיור וירטואלי 360° - In & Out רמת השרון, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">In &amp; Out רמת השרון</span>
+        </button>
+        <button class="tour-card" data-mp="B6y7191nNWc" aria-label="פתיחת הסיור הווירטואלי: מוסקט אודים">
+          <img src="assets/real/tours/B6y7191nNWc.webp" alt="סיור וירטואלי 360° - מוסקט אודים, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">מוסקט אודים</span>
+        </button>
+        <button class="tour-card" data-mp="oeGT2M6ELvA" aria-label="פתיחת הסיור הווירטואלי: לאופרד תל אביב">
+          <img src="assets/real/tours/oeGT2M6ELvA.webp" alt="סיור וירטואלי 360° - לאופרד תל אביב, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">לאופרד תל אביב</span>
+        </button>
+        <button class="tour-card" data-mp="suc5yxGAsXk" aria-label="פתיחת הסיור הווירטואלי: שוורץ הום קולקשיין נתניה">
+          <img src="assets/real/tours/suc5yxGAsXk.webp" alt="סיור וירטואלי 360° - שוורץ הום קולקשיין נתניה, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">שוורץ הום קולקשיין נתניה</span>
+        </button>
+        <button class="tour-card" data-mp="eS3noRkGwP1" aria-label="פתיחת הסיור הווירטואלי: שבירו">
+          <img src="assets/real/tours/eS3noRkGwP1.webp" alt="סיור וירטואלי 360° - שבירו, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">שבירו</span>
+        </button>
+        <button class="tour-card" data-mp="LS7scCTJYtg" aria-label="פתיחת הסיור הווירטואלי: אוטודיל">
+          <img src="assets/real/tours/LS7scCTJYtg.webp" alt="סיור וירטואלי 360° - אוטודיל, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">אוטודיל</span>
+        </button>
+        <button class="tour-card" data-mp="gxwcUtRm4ex" aria-label="פתיחת הסיור הווירטואלי: אסטון מרטין">
+          <img src="assets/real/tours/gxwcUtRm4ex.webp" alt="סיור וירטואלי 360° - אסטון מרטין, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">אסטון מרטין</span>
+        </button>
+        <button class="tour-card" data-mp="5FDbvQ1JCva" aria-label="פתיחת הסיור הווירטואלי: בריק ועץ רמת השרון">
+          <img src="assets/real/tours/5FDbvQ1JCva.webp" alt="סיור וירטואלי 360° - בריק ועץ רמת השרון, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">בריק ועץ רמת השרון</span>
+        </button>
+      </div>
+      <h4 class="tourwall__group">מקומות קדושים</h4>
+      <div class="tourwall__grid">
+        <button class="tour-card" data-mp="vviST7bcwYe" aria-label="פתיחת הסיור הווירטואלי: הכותל המערבי">
+          <img src="assets/real/tours/vviST7bcwYe.webp" alt="סיור וירטואלי 360° - הכותל המערבי, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">הכותל המערבי</span>
+        </button>
+        <button class="tour-card" data-mp="BQ1WAU5Zxv1" aria-label="פתיחת הסיור הווירטואלי: מנהרות הכותל - ירושלים">
+          <img src="assets/real/tours/BQ1WAU5Zxv1.webp" alt="סיור וירטואלי 360° - מנהרות הכותל - ירושלים, מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <span class="tour-card__cap">מנהרות הכותל - ירושלים</span>
+        </button>
+      </div>
+      <h3 class="tourwall__title tourwall__title--nv">סיורים מקצועיים מדידים (NavVis)</h3>
+      <p class="tourwall__sub">סיורים שנבנו מסריקת הלייזר עצמה, עם כלי מדידה בתוך הסיור. הצפייה נפתחת בחלון חדש ודורשת התחברות: שם משתמש <b>view</b>, סיסמה <b>makovki</b>.</p>
+      <div class="tourwall__grid">
+        <a class="tour-card tour-card--ext" href="https://makovki.iv.navvis.com/?image=2068082572545928&amp;vlon=7.94&amp;vlat=0.37&amp;fov=150.0&amp;site=256878493631889" target="_blank" rel="noopener" aria-label="פתיחת סיור מדיד: סיור מדיד - כלי מדידה בתוך הסיור">
+          <img src="assets/real/interior-measure.jpg" alt="סיור מדיד - כלי מדידה בתוך הסיור - סיור מדיד של מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h6M4 4v6M20 20h-6M20 20v-6"/><path d="M4 4l7 7M20 20l-7-7"/></svg></span>
+          <span class="tour-card__cap">סיור מדיד - כלי מדידה בתוך הסיור<i>מדידה מפולסת בתוך הסיור - אורך, שטח ופוליליין</i></span>
+        </a>
+        <a class="tour-card tour-card--ext" href="https://makovki.iv.navvis.com/?image=3684227025229111&amp;vlon=0.00&amp;vlat=0.00&amp;fov=100.0&amp;site=350921751155577" target="_blank" rel="noopener" aria-label="פתיחת סיור מדיד: סיור מדיד - נקודת מבט כל כ-0.5 מטר">
+          <img src="assets/real/interior-measure-2.jpg" alt="סיור מדיד - נקודת מבט כל כ-0.5 מטר - סיור מדיד של מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h6M4 4v6M20 20h-6M20 20v-6"/><path d="M4 4l7 7M20 20l-7-7"/></svg></span>
+          <span class="tour-card__cap">סיור מדיד - נקודת מבט כל כ-0.5 מטר<i>נקודת מבט כל כ-0.5 מטר, עם ענן נקודות מאחורי הסיור</i></span>
+        </a>
+        <a class="tour-card tour-card--ext" href="https://makovki.iv.navvis.com/?image=1923451120074940&amp;vlon=2.27&amp;vlat=-0.03&amp;fov=100.0&amp;site=3380990429340360" target="_blank" rel="noopener" aria-label="פתיחת סיור מדיד: סיור מדיד - נבנה מסריקת הלייזר">
+          <img src="assets/real/oded/pointcloud-cathedral-stage.webp" alt="סיור מדיד - נבנה מסריקת הלייזר - סיור מדיד של מקובקי שירותי מדידה" width="800" height="450" loading="lazy">
+          <span class="tour-card__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h6M4 4v6M20 20h-6M20 20v-6"/><path d="M4 4l7 7M20 20l-7-7"/></svg></span>
+          <span class="tour-card__cap">סיור מדיד - נבנה מסריקת הלייזר<i>הסיור נבנה מסריקת הלייזר עצמה - לא מצילום 360 בלבד</i></span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -233,6 +388,6 @@
   ]
 }
 </script>
-<script src="assets/makovki.js?v=r5"></script>
+<script src="assets/makovki.js?v=r11"></script>
 </body>
 </html>
