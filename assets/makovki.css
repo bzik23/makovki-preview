@@ -2825,6 +2825,16 @@ html { overflow-x: clip; }
   position:absolute; top:12px; inset-inline-start:12px; z-index:2; display:inline-flex; align-items:center; gap:6px;
   padding:6px 12px; border-radius:999px; background: rgba(124,92,255,.94); color:#fff; font-size:.78rem; font-weight:700;
 }
+/* תווית "סיור אמיתי" עם שם הפרויקט, בתחתית תמונת הכרטיס */
+.tour-hub__real{
+  position:absolute; z-index:2; inset-block-end:12px; inset-inline-start:12px;
+  display:inline-flex; align-items:center; gap:7px; padding:6px 12px; border-radius:999px;
+  background:rgba(8,17,33,.62); backdrop-filter:blur(4px);
+  color:#fff; font-size:.78rem; font-weight:700; letter-spacing:.01em;
+}
+.tour-hub__real i{ width:7px; height:7px; border-radius:50%; background:var(--cyan); flex:none; box-shadow:0 0 0 0 rgba(33,207,230,.55); animation:tourDot 2s ease-out infinite; }
+@keyframes tourDot{ 70%{ box-shadow:0 0 0 7px rgba(33,207,230,0); } 100%{ box-shadow:0 0 0 0 rgba(33,207,230,0); } }
+@media (prefers-reduced-motion:reduce){ .tour-hub__real i{ animation:none; } }
 .tour-hub__body{ padding:20px 22px 22px; display:flex; flex-direction:column; gap:9px; flex:1; }
 .tour-hub__body h3{ margin:0; color:var(--ink); font-size:1.28rem; font-weight:800; }
 .tour-hub__body p{ margin:0; color:var(--text-2); line-height:1.6; flex:1; }
@@ -3246,7 +3256,7 @@ a.card:hover .card__go svg{ transform: translateX(-4px); }
 .tourwall__group::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 /* flex ולא grid: שורה אחרונה חלקית נשארת ממורכזת ולא נצמדת לצד */
 .tourwall__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
-.tourwall__grid > * { flex: 0 1 calc((100% - 32px) / 3); }
+.tourwall__grid > * { flex: 0 1 calc((100% - 36px) / 3); }   /* 36 ולא 32: מרווח ביטחון מעיגול תת-פיקסלי שדוחף כרטיס לשורה הבאה */
 .tour-card {
   position: relative; display: block; width: 100%; padding: 0; border: 0; cursor: pointer;
   aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
