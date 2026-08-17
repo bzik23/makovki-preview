@@ -3302,16 +3302,6 @@ a.card:hover .card__go svg{ transform: translateX(-4px); }
   transform: translateY(-2px); box-shadow: 0 10px 22px rgba(33, 207, 230, .28);
 }
 
-/* ---- Google reviews: link out to the live profile ---- */
-.google-badge__link {
-  display: inline-flex; align-items: center; gap: 6px; margin-inline-start: 4px;
-  font-size: .9rem; font-weight: 700; color: var(--violet-deep, #5b3fd6); text-decoration: none;
-  border-bottom: 1px solid transparent; transition: border-color .2s var(--ease, ease);
-}
-.google-badge__link svg { width: 15px; height: 15px; transition: transform .25s var(--ease, ease); }
-.google-badge__link:hover { border-bottom-color: currentColor; }
-.google-badge__link:hover svg { transform: translateX(-3px); }
-
 /* ---- Reviews: full wall page + "see all" slider card ---- */
 .review-stars__off { color: #d9dbe4; }
 
