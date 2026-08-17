@@ -1,7 +1,9 @@
 # מקובקי - אתר סטטי. הוחלף את וורדפרס בתאריך העלייה.
 # ------------------------------------------------------------------
 # 1) HTTPS + www -> non-www (הקנוניקל בכל העמודים הוא https://makovki.com)
-# 2) 301 מכל 36 כתובות וורדפרס הישנות לעמוד המקביל באתר החדש
+# 2) 301 מכל 50 כתובות וורדפרס הישנות לעמוד המקביל באתר החדש.
+#    המקורות: wp-json (11 עמודים + 25 פוסטים), wp-sitemap.xml (6 קטגוריות
+#    + 3 מחברים) וארכיון האינטרנט (38 כתובות היסטוריות - אימת שאין נוספות).
 # 3) עמוד 404 מותאם
 # ------------------------------------------------------------------
 
@@ -18,6 +20,13 @@ DirectoryIndex index.html
   # --- www -> non-www ---
   RewriteCond %{HTTP_HOST} ^www\.makovki\.com$ [NC]
   RewriteRule ^(.*)$ https://makovki.com/$1 [R=301,L]
+
+  # --- המאמר בכתובת עברית: /מדידה-מדויקת-לאדריכלים-ומעצבים/ ---
+  # נבדק מול THE_REQUEST (שורת הבקשה הגולמית) ולא מול RedirectMatch, כי
+  # mod_alias משווה נתיב מפוענח - ו-[NC] חיוני: הדפדפנים והארכיון מקודדים
+  # %D7 באותיות גדולות, וורדפרס פלט %d7 קטנות. שתי הצורות תקינות ושקולות.
+  RewriteCond %{THE_REQUEST} "\s/+%d7%9e%d7%93%d7%99%d7%93%d7%94[^\s]*" [NC]
+  RewriteRule ^ https://makovki.com/post-architectural-measurement-guide.html [R=301,L]
 </IfModule>
 
 <IfModule mod_alias.c>
@@ -62,11 +71,29 @@ DirectoryIndex index.html
   Redirect 301 /day-to-dusk/                         https://makovki.com/visualizations.html
   Redirect 301 /apparel-system/                      https://makovki.com/visualizations.html
 
+  # ================= ארכיוני קטגוריה (היו בסייטמאפ הישן) =================
+  Redirect 301 /category/architects-interior-designers/  https://makovki.com/measurement-architectural.html
+  Redirect 301 /category/surveyors/                      https://makovki.com/for-surveyors.html
+  Redirect 301 /category/stores/                         https://makovki.com/tour-retail.html
+  Redirect 301 /category/real-estate-agents/             https://makovki.com/tour-apartments.html
+  Redirect 301 /category/entrepreneurs-contractors/      https://makovki.com/
+  Redirect 301 /category/uncategorized/                  https://makovki.com/
+
   # ================= שונות =================
   Redirect 301 /thanks/  https://makovki.com/
 
-  # הפניית המאמר בכתובת עברית מקודדת (מדידה מדויקת לאדריכלים ומעצבים)
-  RedirectMatch 301 ^/%d7%9e%d7%93%d7%99%d7%93%d7%94-.*$  https://makovki.com/post-architectural-measurement-guide.html
+
+  # סייטמאפ ישן -> החדש (גוגל מכיר את wp-sitemap.xml, שם הוגש הסייטמאפ)
+  RedirectMatch 301 ^/(wp-sitemap.*\.xml|sitemap\.rss)/?$  https://makovki.com/sitemap.xml
+
+  # ארכיוני מחבר ופידים - שאריות וורדפרס, אין להם מקבילה באתר החדש
+  RedirectMatch 301 ^/author/.*$  https://makovki.com/about.html
+  RedirectMatch 301 ^/(.*/)?feed/?$  https://makovki.com/
+
+  # מסכי הניהול של וורדפרס -> עמוד הבית (מוריד גם רעש בוטים)
+  # ⚠️ במכוון בלי wp-content/uploads: תמונות מאונדקסות בגוגל תמונות צריכות
+  # להחזיר 404 כן, ולא 301 לעמוד הבית - זה דפוס soft-404 שגוגל מעניש עליו.
+  RedirectMatch 301 ^/(wp-admin|wp-login\.php|xmlrpc\.php)(/.*)?$  https://makovki.com/
 </IfModule>
 
 # ================= עמוד שגיאה =================
