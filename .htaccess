@@ -1,0 +1,92 @@
+# מקובקי - אתר סטטי. הוחלף את וורדפרס בתאריך העלייה.
+# ------------------------------------------------------------------
+# 1) HTTPS + www -> non-www (הקנוניקל בכל העמודים הוא https://makovki.com)
+# 2) 301 מכל 36 כתובות וורדפרס הישנות לעמוד המקביל באתר החדש
+# 3) עמוד 404 מותאם
+# ------------------------------------------------------------------
+
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # --- HTTPS ---
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://makovki.com/$1 [R=301,L]
+
+  # --- www -> non-www ---
+  RewriteCond %{HTTP_HOST} ^www\.makovki\.com$ [NC]
+  RewriteRule ^(.*)$ https://makovki.com/$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_alias.c>
+  # ================= עמודי וורדפרס ישנים =================
+  Redirect 301 /contact-us/                 https://makovki.com/contact.html
+  Redirect 301 /contact-us-2/               https://makovki.com/contact.html
+  Redirect 301 /accessibility/              https://makovki.com/accessibility-statement.html
+  Redirect 301 /privacy-policy/             https://makovki.com/privacy-policy.html
+  Redirect 301 /conditions-privacy/         https://makovki.com/privacy-policy.html
+  Redirect 301 /architects-designers/       https://makovki.com/measurement-architectural.html
+  Redirect 301 /surveyors/                  https://makovki.com/for-surveyors.html
+  Redirect 301 /stores/                     https://makovki.com/tour-retail.html
+  Redirect 301 /real-estate-agents/         https://makovki.com/tour-apartments.html
+  Redirect 301 /entrepreneurs-contractors/  https://makovki.com/
+
+  # ================= פוסטים ישנים - מדידה =================
+  Redirect 301 /measurement/                             https://makovki.com/measurement.html
+  Redirect 301 /house-measuring-before-renovation/       https://makovki.com/post-measure-before-renovation.html
+  Redirect 301 /land-distribution-plan/                  https://makovki.com/measurement-tzar.html
+  Redirect 301 /topographic-map/                         https://makovki.com/measurement-topographic.html
+  Redirect 301 /converting-blueprints-to-2d/             https://makovki.com/post-scan-to-2d-plan.html
+  Redirect 301 /convert-point-cloud/                     https://makovki.com/for-surveyors.html
+  Redirect 301 /infrastructure-documentation/            https://makovki.com/infrastructure.html
+
+  # ================= פוסטים ישנים - סיורים וירטואליים =================
+  Redirect 301 /virtual-tour/                                      https://makovki.com/virtual-tour.html
+  Redirect 301 /architectural-virtual-tour/                        https://makovki.com/virtual-tour.html
+  Redirect 301 /virtual-tour-stores/                               https://makovki.com/tour-retail.html
+  Redirect 301 /add-a-virtual-tour-to-the-measured-structure/      https://makovki.com/virtual-tour.html
+
+  # ================= פוסטים ישנים - הדמיות =================
+  Redirect 301 /video-photo-visualizations/          https://makovki.com/visualizations.html
+  Redirect 301 /interactive-rendering/               https://makovki.com/visualizations.html
+  Redirect 301 /video-rendering/                     https://makovki.com/visualizations.html
+  Redirect 301 /exterior-stills-rendering/           https://makovki.com/visualizations.html
+  Redirect 301 /interactive-building-presentation/   https://makovki.com/visualizations.html
+  Redirect 301 /interactive-digital-booklet/         https://makovki.com/visualizations.html
+  Redirect 301 /interactive-booklet/                 https://makovki.com/visualizations.html
+  Redirect 301 /image-cleaning-insert-service/       https://makovki.com/visualizations.html
+  Redirect 301 /image-enhancement/                   https://makovki.com/visualizations.html
+  Redirect 301 /cleaning-adding/                     https://makovki.com/visualizations.html
+  Redirect 301 /day-to-dusk/                         https://makovki.com/visualizations.html
+  Redirect 301 /apparel-system/                      https://makovki.com/visualizations.html
+
+  # ================= שונות =================
+  Redirect 301 /thanks/  https://makovki.com/
+
+  # הפניית המאמר בכתובת עברית מקודדת (מדידה מדויקת לאדריכלים ומעצבים)
+  RedirectMatch 301 ^/%d7%9e%d7%93%d7%99%d7%93%d7%94-.*$  https://makovki.com/post-architectural-measurement-guide.html
+</IfModule>
+
+# ================= עמוד שגיאה =================
+ErrorDocument 404 /404.html
+
+# ================= דחיסה =================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# ================= מטמון דפדפן =================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType image/jpeg              "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType video/mp4               "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  # HTML לא נשמר במטמון - כדי שעדכוני תוכן יופיעו מיד
+  ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
