@@ -7,27 +7,58 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>איך סריקת לייזר תלת-מימד עובדת, שלב אחר שלב | מקובקי שירותי מדידה</title>
 <meta name="description" content="מבט מאחורי הקלעים על סריקת לייזר: מהצבת הסורק ועד עיבוד ענן הנקודות למודל עבודה. כך תהליך הסריקה עובד בפועל. קראו עוד.">
-<link rel="canonical" href="https://makovki.com/post-laser-scanning-how-it-works.html">
+<link rel="canonical" href="https://makovki.com/post-laser-scanning-how-it-works">
 <link rel="icon" href="assets/real/logo-main.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="איך סריקת לייזר תלת-מימד עובדת, שלב אחר שלב | מקובקי שירותי מדידה">
 <meta property="og:description" content="מבט מאחורי הקלעים על סריקת לייזר: מהצבת הסורק ועד עיבוד ענן הנקודות למודל עבודה. כך תהליך הסריקה עובד בפועל. קראו עוד.">
-<meta property="og:image" content="https://makovki.com/assets/real/oded-with-device.png">
 <meta property="og:site_name" content="מקובקי שירותי מדידה">
-<meta property="og:url" content="https://makovki.com/post-laser-scanning-how-it-works.html">
+<meta property="og:url" content="https://makovki.com/post-laser-scanning-how-it-works">
+<meta property="og:image" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:secure_url" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="מקובקי שירותי מדידה - סריקה תלת-מימדית בלייזר">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://makovki.com/assets/real/og-card.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r11">
+<link rel="stylesheet" href="assets/makovki.css?v=r13">
 </head>
 <body>
 
@@ -37,7 +68,7 @@
   <div class="hero__grid"></div>
   <div class="container">
     <div class="hero__inner">
-      <div class="crumbs"><a href="index.html">בית</a><span>›</span><a href="professional-info.html">מידע מקצועי</a><span>›</span>איך סריקת לייזר עובדת</div>
+      <div class="crumbs"><a href="./">בית</a><span>›</span><a href="professional-info">מידע מקצועי</a><span>›</span>איך סריקת לייזר עובדת</div>
       <span class="post-cat">תשתיות</span>
       <h1>טכנולוגיית סריקת לייזר: איך זה עובד בשטח</h1>
       <div class="post-metaline">
@@ -108,11 +139,11 @@
 
         <div class="inline-cta">
           <div><b>רוצים לראות איך זה עובד על הפרויקט שלכם?</b><span>סריקה מהירה בשטח, קבצים מדויקים ומוכנים לעבודה.</span></div>
-          <a class="btn" href="contact.html">לקבלת הצעת מחיר</a>
+          <a class="btn" href="contact">לקבלת הצעת מחיר</a>
         </div>
 
         <h2>למה זה מהיר, מדויק ולא פולשני</h2>
-        <p>השילוב של ניידות, מהירות ודיוק הוא מה שהופך את הטכנולוגיה למשנה-משחק. במקום ימי מדידה, סורקים חלל שלם בדקות; במקום נקודות בודדות, לוכדים את הכל; ובמקום לשבש את המקום, פשוט מהלכים בו. עוד על הכלי עצמו במאמר <a href="post-laser-technology-overview.html">מבט על הטכנולוגיה</a>.</p>
+        <p>השילוב של ניידות, מהירות ודיוק הוא מה שהופך את הטכנולוגיה למשנה-משחק. במקום ימי מדידה, סורקים חלל שלם בדקות; במקום נקודות בודדות, לוכדים את הכל; ובמקום לשבש את המקום, פשוט מהלכים בו. עוד על הכלי עצמו במאמר <a href="post-laser-technology-overview">מבט על הטכנולוגיה</a>.</p>
       </div>
 
       <div class="post-tags">
@@ -168,28 +199,28 @@
     </div>
     <div class="post-grid">
       <article class="post-card">
-        <a class="post-card__media" href="post-laser-technology-overview.html"><img src="assets/real/device.png" alt="הטכנולוגיה שמאחורי הסורק" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
+        <a class="post-card__media" href="post-laser-technology-overview"><img src="assets/real/device.png" alt="הטכנולוגיה שמאחורי הסורק" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">4 דק' קריאה</div>
-          <h3><a href="post-laser-technology-overview.html">עד 2.4 מיליון קרני לייזר בשנייה: מבט על הטכנולוגיה</a></h3>
+          <h3><a href="post-laser-technology-overview">עד 2.4 מיליון קרני לייזר בשנייה: מבט על הטכנולוגיה</a></h3>
           <p>מה מאפשר לסרוק חלל שלם בדקות ובדיוק גבוה מאוד - הצצה ליכולות הסורק.</p>
           <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
         </div>
       </article>
       <article class="post-card">
-        <a class="post-card__media" href="post-point-cloud-explained.html"><img src="assets/real/pointcloud-1.jpg" alt="ענן נקודות" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <a class="post-card__media" href="post-point-cloud-explained"><img src="assets/real/pointcloud-1.jpg" alt="ענן נקודות" loading="lazy"><span class="post-card__cat">מדידות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">7 דק' קריאה</div>
-          <h3><a href="post-point-cloud-explained.html">ענן נקודות: מה זה ואיך הוא משנה את עולם המדידות</a></h3>
+          <h3><a href="post-point-cloud-explained">ענן נקודות: מה זה ואיך הוא משנה את עולם המדידות</a></h3>
           <p>מיליוני נקודות מדידה שמרכיבות עותק דיגיטלי מדויק של המציאות.</p>
           <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
         </div>
       </article>
       <article class="post-card">
-        <a class="post-card__media" href="post-scan-to-revit-workflow.html"><img src="assets/real/oded/pointcloud-cathedral-stage.jpg" alt="מהסריקה ל-Revit" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
+        <a class="post-card__media" href="post-scan-to-revit-workflow"><img src="assets/real/oded/pointcloud-cathedral-stage.jpg" alt="מהסריקה ל-Revit" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">6 דק' קריאה</div>
-          <h3><a href="post-scan-to-revit-workflow.html">מהסריקה ל-Revit: תהליך העבודה מול מודדים ומתכננים</a></h3>
+          <h3><a href="post-scan-to-revit-workflow">מהסריקה ל-Revit: תהליך העבודה מול מודדים ומתכננים</a></h3>
           <p>כך הופכים ענן נקודות למודל BIM עובד - תהליך ה-Scan-to-BIM שלב אחר שלב.</p>
           <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
         </div>
@@ -205,7 +236,7 @@
       <h2>רוצים לראות איך זה עובד על הפרויקט שלכם?</h2>
       <p>ספרו לנו על הפרויקט ונחזור אליכם עם הצעה מותאמת. ייעוץ טלפוני ראשוני חינם, ותשלום רק לאחר ההגעה לנכס.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--primary" href="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
         <a class="btn btn--wa" href="https://wa.me/972543040804?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
       </div>
     </div>
@@ -214,7 +245,7 @@
 
 <div data-include="footer"></div>
 
-<script src="assets/makovki.js?v=r11"></script>
+<script src="assets/makovki.js?v=r14"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -228,13 +259,13 @@
       "dateModified": "2026-06-02",
       "author": { "@type": "Person", "name": "עודד מקובקי" },
       "publisher": { "@type": "Organization", "name": "מקובקי שירותי מדידה - מדידות וסריקה תלת-מימדית", "logo": { "@type": "ImageObject", "url": "https://makovki.com/assets/real/logo-main.png" } },
-      "mainEntityOfPage": "https://makovki.com/post-laser-scanning-how-it-works.html"
+      "mainEntityOfPage": "https://makovki.com/post-laser-scanning-how-it-works"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
-        { "@type": "ListItem", "position": 2, "name": "מידע מקצועי", "item": "https://makovki.com/professional-info.html" },
+        { "@type": "ListItem", "position": 2, "name": "מידע מקצועי", "item": "https://makovki.com/professional-info" },
         { "@type": "ListItem", "position": 3, "name": "איך סריקת לייזר עובדת" }
       ]
     },

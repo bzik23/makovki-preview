@@ -7,10 +7,35 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>מקובקי שירותי מדידה | שירותי מדידה וסריקה תלת-מימדית בדיוק גבוה מאוד</title>
 <meta name="description" content="מקובקי שירותי מדידה - שירותי מדידה וסריקה תלת-מימדית בלייזר: שירותי מדידה אדריכלית, תצ&quot;ר, תב&quot;ע, סיור וירטואלי והדמיות. קבלו הצעת מחיר.">
@@ -21,17 +46,22 @@
 <meta property="og:title" content="מקובקי שירותי מדידה | שירותי מדידה וסריקה תלת-מימדית בדיוק גבוה מאוד">
 <meta property="og:description" content="מקובקי שירותי מדידה - שירותי מדידה וסריקה תלת-מימדית בלייזר: שירותי מדידה אדריכלית, תצ&quot;ר, תב&quot;ע, סיור וירטואלי והדמיות. קבלו הצעת מחיר.">
 <meta property="og:url" content="https://makovki.com/">
-<meta property="og:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta property="og:image" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:secure_url" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="מקובקי שירותי מדידה - סריקה תלת-מימדית בלייזר">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="מקובקי שירותי מדידה | שירותי מדידה וסריקה תלת-מימדית בדיוק גבוה מאוד">
 <meta name="twitter:description" content="מקובקי שירותי מדידה - שירותי מדידה וסריקה תלת-מימדית בלייזר: שירותי מדידה אדריכלית, תצ&quot;ר, תב&quot;ע, סיור וירטואלי והדמיות. קבלו הצעת מחיר.">
-<meta name="twitter:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta name="twitter:image" content="https://makovki.com/assets/real/og-card.jpg">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/real/hero-poster.jpg">
-<link rel="stylesheet" href="assets/makovki.css?v=r11">
+<link rel="stylesheet" href="assets/makovki.css?v=r13">
 </head>
 <body>
 
@@ -57,7 +87,7 @@
       <h1>אנחנו יוצרים <span class="hl">תאום דיגיטלי</span> לנכס שלך</h1>
       <p class="hero-v__sub">מקובקי שירותי מדידה סורקת מבנים ושטחים בטכנולוגיית לייזר מהמתקדמות בעולם, ומפיקה תיעוד מצב קיים מדויק לאדריכלים ומעצבים - שירותי מדידה אדריכלית, תצ"ר, תב"ע ומפות מדידה, סיור וירטואלי והדמיות. הכל מסריקה אחת, בדיוק גבוה מאוד.</p>
       <div class="hero-v__actions">
-        <a class="btn btn--primary" href="contact.html">
+        <a class="btn btn--primary" href="contact">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
           לקבלת הצעת מחיר
         </a>
@@ -261,7 +291,7 @@
       <p class="lead">במקובקי שירותי מדידה, אנו מבצעים את מלוא קשת המדידות - החל מתיעוד מצב קיים ועד תוכניות מדידה להיתר ולרישום, ועוד</p>
     </div>
     <div class="deliverables">
-      <a class="deliv reveal" href="measurement.html#architectural">
+      <a class="deliv reveal" href="measurement#architectural">
         <div class="deliv__inner">
           <div class="deliv__face deliv__face--front">
             <img class="deliv__img" src="assets/real/arch-measure-meeting.jpg" alt="מודד ואדריכל סוקרים יחד תוכנית מדידה - שירותי מדידה אדריכלית ותיעוד פנים" loading="lazy">
@@ -275,7 +305,7 @@
           </div>
         </div>
       </a>
-      <a class="deliv reveal" href="measurement.html#tzar">
+      <a class="deliv reveal" href="measurement#tzar">
         <div class="deliv__inner">
           <div class="deliv__face deliv__face--front">
             <img class="deliv__img" src="assets/real/tzar-plan.jpg" alt="תוכנית לצורכי רישום - תצ&quot;ר" loading="lazy">
@@ -289,7 +319,7 @@
           </div>
         </div>
       </a>
-      <a class="deliv reveal" href="measurement.html#tatag">
+      <a class="deliv reveal" href="measurement#tatag">
         <div class="deliv__inner">
           <div class="deliv__face deliv__face--front">
             <img class="deliv__img" src="assets/real/land-survey.jpg" alt="מדידת גבולות חלקה בשטח - תשריט תיעוד גבולות תת&quot;ג" loading="lazy">
@@ -303,7 +333,7 @@
           </div>
         </div>
       </a>
-      <a class="deliv reveal" href="measurement.html#taba">
+      <a class="deliv reveal" href="measurement#taba">
         <div class="deliv__inner">
           <div class="deliv__face deliv__face--front">
             <img class="deliv__img" src="assets/real/building-render.webp" alt="תוכנית בניין עיר - תב&quot;ע" loading="lazy">
@@ -317,7 +347,7 @@
           </div>
         </div>
       </a>
-      <a class="deliv reveal" href="measurement.html#topographic">
+      <a class="deliv reveal" href="measurement#topographic">
         <div class="deliv__inner">
           <div class="deliv__face deliv__face--front">
             <img class="deliv__img" src="assets/real/topographic-map-hq.jpg" alt="מפה טופוגרפית עם קווי גובה ומצפן - מפה מצבית" loading="lazy">
@@ -333,7 +363,7 @@
           </div>
         </div>
       </a>
-      <a class="deliv reveal" href="measurement.html#land">
+      <a class="deliv reveal" href="measurement#land">
         <div class="deliv__inner">
           <div class="deliv__face deliv__face--front">
             <img class="deliv__img" src="assets/real/land-survey.jpg" alt="מכשיר מאזנת אופטי בשטח פתוח - סימון גבולות" loading="lazy">
@@ -349,7 +379,7 @@
       </a>
     </div>
     <div class="text-center" style="margin-top:38px;">
-      <a class="btn btn--primary" href="measurement.html">לכל שירותי המדידה <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+      <a class="btn btn--primary" href="measurement">לכל שירותי המדידה <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
     </div>
   </div>
 </section>
@@ -523,17 +553,6 @@
             <p class="review-text">עודד מומלץ. שירות מהיר ומקצועי</p>
           </article>
 
-          <article class="review-card review-card--all">
-            <b>72 ביקורות בגוגל</b>
-            <p>כולן אמיתיות, כולן מלקוחות שעבדו איתנו. אפשר לקרוא את כולן במקום אחד.</p>
-            <a class="btn btn--primary" href="reviews.html">לכל הביקורות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
-          </article>
-
-          <article class="review-card review-card--all">
-            <b>72 ביקורות בגוגל</b>
-            <p>כולן אמיתיות, כולן מלקוחות שעבדו איתנו. אפשר לקרוא את כולן במקום אחד.</p>
-            <a class="btn btn--primary" href="reviews.html">לכל הביקורות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
-          </article>
 
         </div>
       </div>
@@ -709,7 +728,7 @@
           <span class="pill">חנויות ומסחר</span>
           <span class="pill">מבנים ואתרים היסטוריים</span>
         </div>
-        <a class="card__link" href="virtual-tour.html">לשירות הסיור הווירטואלי <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <a class="card__link" href="virtual-tour">לשירות הסיור הווירטואלי <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
       </div>
     </div>
 
@@ -727,7 +746,7 @@
           <span class="pill">סרטוני וידאו</span>
           <span class="pill">מצגות מכר אינטראקטיביות</span>
         </div>
-        <a class="card__link" href="visualizations.html">לשירות ההדמיות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <a class="card__link" href="visualizations">לשירות ההדמיות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
       </div>
     </div>
 
@@ -745,7 +764,7 @@
           <span class="pill">חשמל ואינסטלציה</span>
           <span class="pill">מיזוג · טרום חיפויים</span>
         </div>
-        <a class="card__link" href="infrastructure.html">לשירות תיעוד התשתיות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <a class="card__link" href="infrastructure">לשירות תיעוד התשתיות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
       </div>
     </div>
   </div>
@@ -760,7 +779,7 @@
       <h2>אין לכם עדיין טכנולוגיית סריקה מתקדמת? נשמח לעבוד יחד.</h2>
       <p style="max-width:520px;">מודדים שרוצים להציע ללקוחותיהם תוצרי סריקה תלת-מימדית - אנחנו סורקים עבורכם וממירים את ענן הנקודות ל-Revit, AutoCAD ו-SketchUp, או מפיקים סיור וירטואלי מקצועי למבנים שמדדתם.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="for-surveyors.html">לשיתוף פעולה עם מודדים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <a class="btn btn--primary" href="for-surveyors">לשיתוף פעולה עם מודדים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
       </div>
     </div>
   </div>
@@ -841,7 +860,7 @@
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span><div><b>מאות פרויקטים</b><span> לאדריכלים, מעצבים, יזמים ומוסדות.</span></div></li>
         </ul>
         <div style="margin-top:26px;">
-          <a class="btn btn--ghost" href="about.html">הסיפור המלא <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="btn btn--ghost" href="about">הסיפור המלא <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </div>
     </div>
@@ -856,7 +875,7 @@
       <h2>מוכנים למדוד אחרת?</h2>
       <p>ספרו לנו על הפרויקט שלכם ונחזור אליכם עם הצעה מותאמת. ייעוץ טלפוני ראשוני - חינם.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--primary" href="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
         <a class="btn btn--wa" href="https://wa.me/972543040804?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
       </div>
     </div>
@@ -865,6 +884,6 @@
 
 <div data-include="footer"></div>
 
-<script src="assets/makovki.js?v=r11"></script>
+<script src="assets/makovki.js?v=r14"></script>
 </body>
 </html>

@@ -7,30 +7,60 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>שירותי מדידה אדריכלית בסריקת לייזר | מקובקי שירותי מדידה - דיוק 6 מ"מ על 500 מ"ר</title>
 <meta name="description" content="שירותי מדידה אדריכלית ומדידת פנים בסריקת לייזר: תיעוד בדיוק 6 מ&quot;מ על 500 מ&quot;ר, קבצי DWG, Revit, ענן נקודות וסיור 360°. בקשו הצעה.">
-<link rel="canonical" href="https://makovki.com/measurement-architectural.html">
+<link rel="canonical" href="https://makovki.com/measurement-architectural">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="מקובקי שירותי מדידה">
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="שירותי מדידה אדריכלית בסריקת לייזר | מקובקי שירותי מדידה - דיוק 6 מ&quot;מ על 500 מ&quot;ר">
 <meta property="og:description" content="שירותי מדידה אדריכלית ומדידת פנים בסריקת לייזר: תיעוד בדיוק 6 מ&quot;מ על 500 מ&quot;ר, קבצי DWG, Revit, ענן נקודות וסיור 360°. בקשו הצעה.">
-<meta property="og:url" content="https://makovki.com/measurement-architectural.html">
-<meta property="og:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta property="og:url" content="https://makovki.com/measurement-architectural">
+<meta property="og:image" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:secure_url" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="מקובקי שירותי מדידה - סריקה תלת-מימדית בלייזר">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="שירותי מדידה אדריכלית בסריקת לייזר | מקובקי שירותי מדידה - דיוק 6 מ&quot;מ על 500 מ&quot;ר">
 <meta name="twitter:description" content="שירותי מדידה אדריכלית ומדידת פנים בסריקת לייזר: תיעוד בדיוק 6 מ&quot;מ על 500 מ&quot;ר, קבצי DWG, Revit, ענן נקודות וסיור 360°. בקשו הצעה.">
-<meta name="twitter:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta name="twitter:image" content="https://makovki.com/assets/real/og-card.jpg">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r11">
+<link rel="stylesheet" href="assets/makovki.css?v=r13">
 <style>
   /* page-scoped: darken the RTL text side (right) of the hero for readability */
   .hero--arch .hero__scrim{
@@ -70,12 +100,12 @@
   <canvas class="hero__canvas"></canvas>
   <div class="container">
     <div class="hero__inner">
-      <div class="crumbs"><a href="index.html">בית</a><span>›</span><a href="measurement.html">שירותי מדידה</a><span>›</span>שירותי מדידה אדריכלית</div>
+      <div class="crumbs"><a href="./">בית</a><span>›</span><a href="measurement">שירותי מדידה</a><span>›</span>שירותי מדידה אדריכלית</div>
       <div class="hero__eyebrow-line">שירותי מדידה אדריכלית / מדידת פנים · סריקת לייזר תלת-מימד</div>
       <h1>שירותי מדידה אדריכלית מדויקת - <span class="hl">נקודת האמת</span> שממנה מתחיל כל תכנון</h1>
       <p class="hero__sub">תיעוד מצב קיים מלא ומדויק של כל מבנה, דירה או חלל - קירות, פתחים, גבהים וזוויות, ברמת דיוק גבוהה מאוד. סריקת לייזר לוכדת את החלל כולו תוך דקות, ומגיעה למשרד שלכם כקובץ נקי, מוכן ל-Revit, AutoCAD ו-SketchUp.</p>
       <div class="hero__actions">
-        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--primary" href="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
         <a class="btn btn--on-dark" href="#deliverables">מה אתם מקבלים</a>
       </div>
       <div class="hero__stats">
@@ -182,7 +212,7 @@
         <div class="pill-list">
           <span class="pill">אדריכלים</span><span class="pill">מעצבי פנים</span><span class="pill">יזמים וקבלנים</span>
         </div>
-        <a class="btn btn--primary" href="contact.html">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <a class="btn btn--primary" href="contact">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
       </div>
     </div>
   </div>
@@ -379,7 +409,7 @@
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>שיתוף בקישור אחד</li>
           <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></span>חוסך חזרות לשטח</li>
         </ul>
-        <a class="card__link" href="virtual-tour.html">עוד על הסיור הווירטואלי <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <a class="card__link" href="virtual-tour">עוד על הסיור הווירטואלי <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
       </div>
     </div>
   </div>
@@ -657,17 +687,6 @@
             <p class="review-text">עודד מומלץ. שירות מהיר ומקצועי</p>
           </article>
 
-          <article class="review-card review-card--all">
-            <b>72 ביקורות בגוגל</b>
-            <p>כולן אמיתיות, כולן מלקוחות שעבדו איתנו. אפשר לקרוא את כולן במקום אחד.</p>
-            <a class="btn btn--primary" href="reviews.html">לכל הביקורות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
-          </article>
-
-          <article class="review-card review-card--all">
-            <b>72 ביקורות בגוגל</b>
-            <p>כולן אמיתיות, כולן מלקוחות שעבדו איתנו. אפשר לקרוא את כולן במקום אחד.</p>
-            <a class="btn btn--primary" href="reviews.html">לכל הביקורות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
-          </article>
 
         </div>
       </div>
@@ -808,7 +827,7 @@
       <h2>יש לכם פרויקט שדורש שירותי מדידה אדריכלית?</h2>
       <p>ספרו לנו על הפרויקט ונחזור אליכם עם הצעה מותאמת. ייעוץ טלפוני ראשוני - חינם, ותשלום רק לאחר ההגעה לנכס.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--primary" href="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
         <a class="btn btn--wa" href="https://wa.me/972543040804?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
       </div>
     </div>
@@ -817,7 +836,7 @@
 
 <div data-include="footer"></div>
 
-<script src="assets/makovki.js?v=r11"></script>
+<script src="assets/makovki.js?v=r14"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -840,7 +859,7 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
-        { "@type": "ListItem", "position": 2, "name": "שירותי מדידה", "item": "https://makovki.com/measurement.html" },
+        { "@type": "ListItem", "position": 2, "name": "שירותי מדידה", "item": "https://makovki.com/measurement" },
         { "@type": "ListItem", "position": 3, "name": "שירותי מדידה אדריכלית" }
       ]
     },

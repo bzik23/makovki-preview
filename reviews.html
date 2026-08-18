@@ -7,30 +7,60 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ביקורות לקוחות | מקובקי שירותי מדידה - דירוג 5.0 בגוגל</title>
 <meta name="description" content="כל הביקורות של לקוחות מקובקי שירותי מדידה מכרטיס Google - אדריכלים, מעצבי פנים, יזמים וקבלנים. דירוג 5.0. קראו והתרשמו.">
-<link rel="canonical" href="https://makovki.com/reviews.html">
+<link rel="canonical" href="https://makovki.com/reviews">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="מקובקי שירותי מדידה">
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="ביקורות לקוחות | מקובקי שירותי מדידה - דירוג 5.0 בגוגל">
 <meta property="og:description" content="כל הביקורות של לקוחות מקובקי שירותי מדידה מכרטיס Google - אדריכלים, מעצבי פנים, יזמים וקבלנים. דירוג 5.0. קראו והתרשמו.">
-<meta property="og:url" content="https://makovki.com/reviews.html">
-<meta property="og:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta property="og:url" content="https://makovki.com/reviews">
+<meta property="og:image" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:secure_url" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="מקובקי שירותי מדידה - סריקה תלת-מימדית בלייזר">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ביקורות לקוחות | מקובקי שירותי מדידה - דירוג 5.0 בגוגל">
 <meta name="twitter:description" content="כל הביקורות של לקוחות מקובקי שירותי מדידה מכרטיס Google - אדריכלים, מעצבי פנים, יזמים וקבלנים. דירוג 5.0. קראו והתרשמו.">
-<meta name="twitter:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta name="twitter:image" content="https://makovki.com/assets/real/og-card.jpg">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r11">
+<link rel="stylesheet" href="assets/makovki.css?v=r13">
 </head>
 <body>
 <div data-include="header"></div>
@@ -39,7 +69,7 @@
 <section class="page-hero">
   <div class="hero__grid"></div>
   <div class="container">
-    <div class="crumbs"><a href="index.html">בית</a><span>›</span>ביקורות לקוחות</div>
+    <div class="crumbs"><a href="./">בית</a><span>›</span>ביקורות לקוחות</div>
     <span class="eyebrow">ביקורות מ-Google</span>
     <h1>מה שהלקוחות שלנו כותבים</h1>
     <p class="lead">כל הביקורות בעמוד הזה נכתבו על ידי לקוחות אמיתיים בכרטיס Google של מקובקי שירותי מדידה - אדריכלים, מעצבי פנים, יזמים, קבלנים ובעלי בתים. שום דבר כאן לא נכתב על ידינו.</p>
@@ -790,7 +820,7 @@
       <h2>רוצים להצטרף לרשימה?</h2>
       <p>ספרו לנו על הפרויקט ונבנה פתרון מדידה מתאים. ייעוץ ראשוני חינם, ותשלום רק לאחר ההגעה לאתר.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="contact.html">לקבלת הצעת מחיר</a>
+        <a class="btn btn--primary" href="contact">לקבלת הצעת מחיר</a>
         <a class="btn btn--wa" href="https://wa.me/972543040804?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C">וואטסאפ</a>
       </div>
     </div>
@@ -805,8 +835,8 @@
   "@graph": [
     {
       "@type": "CollectionPage",
-      "@id": "https://makovki.com/reviews.html#page",
-      "url": "https://makovki.com/reviews.html",
+      "@id": "https://makovki.com/reviews#page",
+      "url": "https://makovki.com/reviews",
       "name": "ביקורות לקוחות | מקובקי שירותי מדידה",
       "description": "כל הביקורות של לקוחות מקובקי שירותי מדידה מכרטיס Google.",
       "inLanguage": "he-IL"
@@ -815,12 +845,12 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
-        { "@type": "ListItem", "position": 2, "name": "ביקורות לקוחות", "item": "https://makovki.com/reviews.html" }
+        { "@type": "ListItem", "position": 2, "name": "ביקורות לקוחות", "item": "https://makovki.com/reviews" }
       ]
     }
   ]
 }
 </script>
-<script src="assets/makovki.js?v=r11"></script>
+<script src="assets/makovki.js?v=r14"></script>
 </body>
 </html>

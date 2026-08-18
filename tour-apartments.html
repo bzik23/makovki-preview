@@ -7,32 +7,62 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>סיור וירטואלי 360° לדירות ובתים | מקובקי שירותי מדידה - כלי מכירה</title>
 <meta name="description" content="סיור וירטואלי 360° לדירות ובתים פרטיים - מציגים את הנכס לקונים ולשוכרים מכל מקום, 24/7, עם הערכת מדידה בתוך הסיור. צפו בדוגמה.">
-<link rel="canonical" href="https://makovki.com/tour-apartments.html">
+<link rel="canonical" href="https://makovki.com/tour-apartments">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="מקובקי שירותי מדידה">
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="סיור וירטואלי 360° לדירות ובתים | מקובקי שירותי מדידה - כלי מכירה">
 <meta property="og:description" content="סיור וירטואלי 360° לדירות ובתים פרטיים - מציגים את הנכס לקונים ולשוכרים מכל מקום, 24/7, עם הערכת מדידה בתוך הסיור. צפו בדוגמה.">
-<meta property="og:url" content="https://makovki.com/tour-apartments.html">
-<meta property="og:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta property="og:url" content="https://makovki.com/tour-apartments">
+<meta property="og:image" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:secure_url" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="מקובקי שירותי מדידה - סריקה תלת-מימדית בלייזר">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="סיור וירטואלי 360° לדירות ובתים | מקובקי שירותי מדידה - כלי מכירה">
 <meta name="twitter:description" content="סיור וירטואלי 360° לדירות ובתים פרטיים - מציגים את הנכס לקונים ולשוכרים מכל מקום, 24/7, עם הערכת מדידה בתוך הסיור. צפו בדוגמה.">
-<meta name="twitter:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta name="twitter:image" content="https://makovki.com/assets/real/og-card.jpg">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://my.matterport.com" crossorigin>
 <link rel="preconnect" href="https://cdn-2.matterport.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r11">
+<link rel="stylesheet" href="assets/makovki.css?v=r13">
 </head>
 <body>
 
@@ -43,14 +73,14 @@
   <canvas class="hero__canvas"></canvas>
   <div class="hero__grid"></div>
   <div class="container">
-    <div class="crumbs"><a href="index.html">בית</a><span>›</span><a href="virtual-tour.html">סיורים וירטואליים</a><span>›</span>דירות ובתים פרטיים</div>
+    <div class="crumbs"><a href="./">בית</a><span>›</span><a href="virtual-tour">סיורים וירטואליים</a><span>›</span>דירות ובתים פרטיים</div>
 
     <div class="hero-tour">
       <div class="hero-tour__copy">
         <h1>סיור וירטואלי 360° <span class="hl">לדירות ובתים פרטיים</span></h1>
         <p class="hero-tour__lead">מכניסים כל קונה ושוכר אל תוך הנכס - מהסלון שלו, בכל שעה. סיור אינטראקטיבי אמיתי שמרגיש כמו ביקור פיזי, מסנן מתעניינים רציניים ומקצר את הדרך לעסקה. גררו את הסיור החי וטיילו בדירה עכשיו.</p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+          <a class="btn btn--primary" href="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
           <a class="btn btn--on-dark" href="#choose">בחרו נכס לצפייה
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
           </a>
@@ -164,7 +194,7 @@
         <div class="pill-list">
           <span class="pill">סוכני נדל"ן</span><span class="pill">יזמים ופרויקטים</span><span class="pill">בעלי דירות</span>
         </div>
-        <a class="btn btn--primary" href="contact.html">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+        <a class="btn btn--primary" href="contact">בקשת הצעת מחיר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
       </div>
     </div>
   </div>
@@ -219,7 +249,7 @@
           <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5v14l11-7z"/></svg></span><div><b>סיור מודרך אוטומטי</b><span>מסלול צפייה חלק שרץ כמו סרטון</span></div></div>
           <div class="spec"><span class="spec__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.4"/><path d="M8 6l1.5-2h5L16 6"/></svg></span><div><b>צילומי סטילס באיכות 4K</b><span>תמונות שיווק חדות ישירות מהסיור</span></div></div>
         </div>
-        <div style="margin-top:26px;"><a class="btn btn--primary" href="contact.html">רוצה סיור לנכס שלי</a></div>
+        <div style="margin-top:26px;"><a class="btn btn--primary" href="contact">רוצה סיור לנכס שלי</a></div>
       </div>
       <div class="reveal">
         <div class="feature-media feature-media--tour">
@@ -322,7 +352,7 @@
       <h2>רוצים סיור וירטואלי לנכס שלכם?</h2>
       <p>נשמח להראות דוגמאות נוספות ולהתאים פתרון לנכס. ייעוץ ראשוני - חינם.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--primary" href="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
         <a class="btn btn--wa" href="https://wa.me/972543040804?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
       </div>
     </div>
@@ -331,7 +361,7 @@
 
 <div data-include="footer"></div>
 
-<script src="assets/makovki.js?v=r11"></script>
+<script src="assets/makovki.js?v=r14"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -354,7 +384,7 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
-        { "@type": "ListItem", "position": 2, "name": "סיורים וירטואליים", "item": "https://makovki.com/virtual-tour.html" },
+        { "@type": "ListItem", "position": 2, "name": "סיורים וירטואליים", "item": "https://makovki.com/virtual-tour" },
         { "@type": "ListItem", "position": 3, "name": "דירות ובתים פרטיים" }
       ]
     },

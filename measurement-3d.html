@@ -7,16 +7,41 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
-<meta http-equiv="refresh" content="0; url=measurement.html">
-<link rel="canonical" href="https://makovki.com/measurement.html">
+
+
+
+<meta http-equiv="refresh" content="0; url=measurement">
+<link rel="canonical" href="https://makovki.com/measurement">
 <title>מקובקי שירותי מדידה - שירותי מדידה</title>
-<script>location.replace("measurement.html");</script>
+<script>location.replace("measurement");</script>
 </head>
 <body>
-<p>מעבירים אתכם ל<a href="measurement.html">שירותי המדידה</a>...</p>
+<p>מעבירים אתכם ל<a href="measurement">שירותי המדידה</a>...</p>
 </body>
 </html>

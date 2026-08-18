@@ -7,27 +7,58 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>סיור וירטואלי 360° - כלי המכירה שכל יזם צריך | מקובקי שירותי מדידה</title>
 <meta name="description" content="סיור וירטואלי 360° הפך לסטנדרט בשיווק נדל&quot;ן - איך סיור מכניס את הלקוח אל הנכס, בונה אמון ומקצר את מסע המכירה. קראו עוד.">
-<link rel="canonical" href="https://makovki.com/post-virtual-tour-sales-tool.html">
+<link rel="canonical" href="https://makovki.com/post-virtual-tour-sales-tool">
 <link rel="icon" href="assets/real/logo-main.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="סיור וירטואלי 360° - כלי המכירה שכל יזם צריך | מקובקי שירותי מדידה">
 <meta property="og:description" content="סיור וירטואלי 360° הפך לסטנדרט בשיווק נדל&quot;ן - איך סיור מכניס את הלקוח אל הנכס, בונה אמון ומקצר את מסע המכירה. קראו עוד.">
-<meta property="og:image" content="https://makovki.com/assets/real/vtour-example.png">
 <meta property="og:site_name" content="מקובקי שירותי מדידה">
-<meta property="og:url" content="https://makovki.com/post-virtual-tour-sales-tool.html">
+<meta property="og:url" content="https://makovki.com/post-virtual-tour-sales-tool">
+<meta property="og:image" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:secure_url" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="מקובקי שירותי מדידה - סריקה תלת-מימדית בלייזר">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://makovki.com/assets/real/og-card.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r11">
+<link rel="stylesheet" href="assets/makovki.css?v=r13">
 </head>
 <body>
 
@@ -38,7 +69,7 @@
   <div class="hero__grid"></div>
   <div class="container">
     <div class="hero__inner">
-      <div class="crumbs"><a href="index.html">בית</a><span>›</span><a href="professional-info.html">מידע מקצועי</a><span>›</span>סיור וירטואלי כלי מכירה</div>
+      <div class="crumbs"><a href="./">בית</a><span>›</span><a href="professional-info">מידע מקצועי</a><span>›</span>סיור וירטואלי כלי מכירה</div>
       <span class="post-cat">סיורים</span>
       <h1>סיור וירטואלי 360°: כלי המכירה שכל יזם צריך</h1>
       <div class="post-metaline">
@@ -126,12 +157,12 @@
 
         <div class="inline-cta">
           <div><b>רוצים סיור וירטואלי לפרויקט שלכם?</b><span>ייעוץ טלפוני ראשוני חינם, ותשלום רק לאחר ההגעה לנכס.</span></div>
-          <a class="btn" href="contact.html">לקבלת הצעת מחיר</a>
+          <a class="btn" href="contact">לקבלת הצעת מחיר</a>
         </div>
 
         <h2>איך מפיקים סיור אצל מקובקי שירותי מדידה</h2>
         <p>התהליך פשוט ומהיר. הכל מתחיל בשיחת אפיון קצרה להבנת הנכס והמטרה, ובעקבותיה הצעת מחיר ברורה. ביום העבודה מגיעים לנכס וסורקים אותו בהליכה רציפה - <strong>100 מ"ר נסרקים ב-5 דקות</strong>, בלי חצובות ובלי לשבש את הפעילות במקום. לאחר עיבוד הסריקה מפיקים את הסיור ומוסרים קישור מוכן להטמעה, יחד עם שאר התוצרים שבחרתם.</p>
-        <p>מכיוון שכל זה נבנה מסריקת לייזר מדויקת, אתם מקבלים גם סיור לשיווק וגם בסיס מדידה אמין לפרויקט. לפרטים נוספים ראו את עמוד <a href="virtual-tour.html">סיורים וירטואליים</a>.</p>
+        <p>מכיוון שכל זה נבנה מסריקת לייזר מדויקת, אתם מקבלים גם סיור לשיווק וגם בסיס מדידה אמין לפרויקט. לפרטים נוספים ראו את עמוד <a href="virtual-tour">סיורים וירטואליים</a>.</p>
       </div>
 
       <!-- Tags -->
@@ -191,28 +222,28 @@
     </div>
     <div class="post-grid">
       <article class="post-card">
-        <a class="post-card__media" href="post-virtual-tour-real-estate.html"><img src="assets/real/render-ext-1.webp" alt="סיור וירטואלי לנדל&quot;ן" loading="lazy"><span class="post-card__cat">סיורים</span></a>
+        <a class="post-card__media" href="post-virtual-tour-real-estate"><img src="assets/real/render-ext-1.webp" alt="סיור וירטואלי לנדל&quot;ן" loading="lazy"><span class="post-card__cat">סיורים</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">4 דק' קריאה</div>
-          <h3><a href="post-virtual-tour-real-estate.html">סיור וירטואלי לנדל"ן: מוכרים נכס עוד לפני שהגיעו אליו</a></h3>
+          <h3><a href="post-virtual-tour-real-estate">סיור וירטואלי לנדל"ן: מוכרים נכס עוד לפני שהגיעו אליו</a></h3>
           <p>הרושם הראשון נוצר אונליין - איך סיור 360° הופך כל מודעה למצגת מכר חיה שמושכת את הלקוחות הנכונים.</p>
           <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
         </div>
       </article>
       <article class="post-card">
-        <a class="post-card__media" href="post-measure-inside-tour.html"><img src="assets/real/building-render.webp" alt="מדידה בתוך הסיור" loading="lazy"><span class="post-card__cat">סיורים</span></a>
+        <a class="post-card__media" href="post-measure-inside-tour"><img src="assets/real/building-render.webp" alt="מדידה בתוך הסיור" loading="lazy"><span class="post-card__cat">סיורים</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">6 דק' קריאה</div>
-          <h3><a href="post-measure-inside-tour.html">מדידה בתוך הסיור: לא רק לצפות, גם למדוד</a></h3>
+          <h3><a href="post-measure-inside-tour">מדידה בתוך הסיור: לא רק לצפות, גם למדוד</a></h3>
           <p>הסיור נבנה מהסריקה עצמה - ולכן אפשר למדוד בתוכו אורך, רוחב וגובה ישירות מהמסך.</p>
           <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
         </div>
       </article>
       <article class="post-card">
-        <a class="post-card__media" href="post-virtual-tour-saves-visits.html"><img src="assets/real/render-int-real.jpg" alt="סיור חוסך ביקורים" loading="lazy"><span class="post-card__cat">סיורים</span></a>
+        <a class="post-card__media" href="post-virtual-tour-saves-visits"><img src="assets/real/render-int-real.jpg" alt="סיור חוסך ביקורים" loading="lazy"><span class="post-card__cat">סיורים</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">4 דק' קריאה</div>
-          <h3><a href="post-virtual-tour-saves-visits.html">איך סיור וירטואלי חוסך ביקורים מיותרים בשטח</a></h3>
+          <h3><a href="post-virtual-tour-saves-visits">איך סיור וירטואלי חוסך ביקורים מיותרים בשטח</a></h3>
           <p>במקום נסיעות חוזרות - כל בעל עניין נכנס לנכס דיגיטלית מתי שנוח לו, ומקבל החלטות מהר יותר.</p>
           <span class="post-card__link">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
         </div>
@@ -229,7 +260,7 @@
       <h2>רוצים להכניס את הלקוחות אל תוך הנכס?</h2>
       <p>ספרו לנו על הפרויקט ונחזור אליכם עם הצעה מותאמת. ייעוץ טלפוני ראשוני חינם, ותשלום רק לאחר ההגעה לנכס.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="contact.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
+        <a class="btn btn--primary" href="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>לקבלת הצעת מחיר</a>
         <a class="btn btn--wa" href="https://wa.me/972543040804?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.5-1.2-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.3z"/></svg>וואטסאפ</a>
       </div>
     </div>
@@ -238,7 +269,7 @@
 
 <div data-include="footer"></div>
 
-<script src="assets/makovki.js?v=r11"></script>
+<script src="assets/makovki.js?v=r14"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -252,13 +283,13 @@
       "dateModified": "2026-06-16",
       "author": { "@type": "Person", "name": "עודד מקובקי" },
       "publisher": { "@type": "Organization", "name": "מקובקי שירותי מדידה - מדידות וסריקה תלת-מימדית", "logo": { "@type": "ImageObject", "url": "https://makovki.com/assets/real/logo-main.png" } },
-      "mainEntityOfPage": "https://makovki.com/post-virtual-tour-sales-tool.html"
+      "mainEntityOfPage": "https://makovki.com/post-virtual-tour-sales-tool"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://makovki.com/" },
-        { "@type": "ListItem", "position": 2, "name": "מידע מקצועי", "item": "https://makovki.com/professional-info.html" },
+        { "@type": "ListItem", "position": 2, "name": "מידע מקצועי", "item": "https://makovki.com/professional-info" },
         { "@type": "ListItem", "position": 3, "name": "סיור וירטואלי 360°: כלי המכירה שכל יזם צריך" }
       ]
     },

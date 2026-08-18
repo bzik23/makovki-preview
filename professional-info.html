@@ -7,30 +7,60 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>מידע מקצועי | מקובקי שירותי מדידה - מרכז הידע של שירותי המדידה</title>
 <meta name="description" content="מרכז הידע של מקובקי שירותי מדידה: מדריכים וטיפים על שירותי מדידה אדריכלית, סיורים וירטואליים ותיעוד תשתיות בסריקת לייזר. קראו עכשיו.">
-<link rel="canonical" href="https://makovki.com/professional-info.html">
+<link rel="canonical" href="https://makovki.com/professional-info">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="מקובקי שירותי מדידה">
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="מידע מקצועי | מקובקי שירותי מדידה - מרכז הידע של שירותי המדידה">
 <meta property="og:description" content="מרכז הידע של מקובקי שירותי מדידה: מדריכים וטיפים על שירותי מדידה אדריכלית, סיורים וירטואליים ותיעוד תשתיות בסריקת לייזר. קראו עכשיו.">
-<meta property="og:url" content="https://makovki.com/professional-info.html">
-<meta property="og:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta property="og:url" content="https://makovki.com/professional-info">
+<meta property="og:image" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:secure_url" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="מקובקי שירותי מדידה - סריקה תלת-מימדית בלייזר">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="מידע מקצועי | מקובקי שירותי מדידה - מרכז הידע של שירותי המדידה">
 <meta name="twitter:description" content="מרכז הידע של מקובקי שירותי מדידה: מדריכים וטיפים על שירותי מדידה אדריכלית, סיורים וירטואליים ותיעוד תשתיות בסריקת לייזר. קראו עכשיו.">
-<meta name="twitter:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta name="twitter:image" content="https://makovki.com/assets/real/og-card.jpg">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r11">
+<link rel="stylesheet" href="assets/makovki.css?v=r13">
 <link rel="stylesheet" href="assets/blog.css">
 </head>
 <body>
@@ -42,7 +72,7 @@
     <div class="blog-hero__inner">
 
       <div class="blog-hero__copy">
-        <div class="crumbs"><a href="index.html">בית</a><span>›</span>מרכז הידע<span>›</span>מידע מקצועי</div>
+        <div class="crumbs"><a href="./">בית</a><span>›</span>מרכז הידע<span>›</span>מידע מקצועי</div>
         <span class="eyebrow">מרכז הידע של מקובקי שירותי מדידה</span>
         <h1>מידע מקצועי</h1>
         <p>מדריכים, טיפים ותובנות מהשטח - על מדידות אדריכליות, סיורים וירטואליים ותיעוד תשתיות בטכנולוגיית סריקת לייזר תלת-מימדית.</p>
@@ -79,202 +109,202 @@
 
       <!-- ===================== מדידות (8) ===================== -->
       <article class="post-card reveal" data-cat="measure">
-        <a class="post-card__media" href="post-architectural-measurement-guide.html"><img src="assets/real/oded/oded-scanning-room.jpg" alt="שירותי מדידה אדריכלית מדויקת בסורק לייזר נייד" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <a class="post-card__media" href="post-architectural-measurement-guide"><img src="assets/real/oded/oded-scanning-room.jpg" alt="שירותי מדידה אדריכלית מדויקת בסורק לייזר נייד" loading="lazy"><span class="post-card__cat">מדידות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">7 דק' קריאה</div>
           <div class="post-card__tags"><span>שירותי מדידה אדריכלית</span><span>תיעוד מצב קיים</span></div>
-          <h3><a href="post-architectural-measurement-guide.html">שירותי מדידה אדריכלית מדויקת: המדריך המלא לתיעוד מצב קיים</a></h3>
+          <h3><a href="post-architectural-measurement-guide">שירותי מדידה אדריכלית מדויקת: המדריך המלא לתיעוד מצב קיים</a></h3>
           <p>כל מה שצריך לדעת לפני תכנון - מקירות וגבהים ועד פתחים וזוויות, וכיצד תיעוד מדויק חוסך זמן וכסף בהמשך.</p>
-          <a class="post-card__link" href="post-architectural-measurement-guide.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-architectural-measurement-guide">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="measure">
-        <a class="post-card__media" href="post-tzar-explained.html"><img src="assets/real/tzar-plan.jpg" alt="תצ״ר תוכנית לצורכי רישום" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <a class="post-card__media" href="post-tzar-explained"><img src="assets/real/tzar-plan.jpg" alt="תצ״ר תוכנית לצורכי רישום" loading="lazy"><span class="post-card__cat">מדידות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">5 דק' קריאה</div>
           <div class="post-card__tags"><span>תצ״ר</span><span>טאבו</span></div>
-          <h3><a href="post-tzar-explained.html">תצ״ר: מה זה, מתי צריך ואיך זה משפיע על הרישום בטאבו</a></h3>
+          <h3><a href="post-tzar-explained">תצ״ר: מה זה, מתי צריך ואיך זה משפיע על הרישום בטאבו</a></h3>
           <p>חלוקה, איחוד ורישום מקרקעין בטאבו - מדריך מלא להליך, לשלבים ולמה שחשוב לדעת לפני שמתחילים.</p>
-          <a class="post-card__link" href="post-tzar-explained.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-tzar-explained">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="measure">
-        <a class="post-card__media" href="post-topographic-map-permit.html"><img src="assets/real/topographic-map.png" alt="מפה טופוגרפית" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <a class="post-card__media" href="post-topographic-map-permit"><img src="assets/real/topographic-map.png" alt="מפה טופוגרפית" loading="lazy"><span class="post-card__cat">מדידות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">5 דק' קריאה</div>
           <div class="post-card__tags"><span>מפה טופוגרפית</span><span>היתר בנייה</span></div>
-          <h3><a href="post-topographic-map-permit.html">מפה טופוגרפית: למה כל היתר בנייה מתחיל ממנה</a></h3>
+          <h3><a href="post-topographic-map-permit">מפה טופוגרפית: למה כל היתר בנייה מתחיל ממנה</a></h3>
           <p>המפה המצבית היא הבסיס הגיאודטי לכל תכנון ורישוי. הסבר על מה היא כוללת, מתי נדרשת ואיך נבנית מסריקה מדויקת.</p>
-          <a class="post-card__link" href="post-topographic-map-permit.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-topographic-map-permit">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="measure">
-        <a class="post-card__media" href="post-measure-before-renovation.html"><img src="assets/real/pre-reno-measure.jpg" alt="מדידה לפני שיפוץ" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <a class="post-card__media" href="post-measure-before-renovation"><img src="assets/real/pre-reno-measure.jpg" alt="מדידה לפני שיפוץ" loading="lazy"><span class="post-card__cat">מדידות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">5 דק' קריאה</div>
           <div class="post-card__tags"><span>שיפוץ</span><span>מדידה מדויקת</span></div>
-          <h3><a href="post-measure-before-renovation.html">לפני שמשפצים: החשיבות של מדידה מדויקת לפני תכנון</a></h3>
+          <h3><a href="post-measure-before-renovation">לפני שמשפצים: החשיבות של מדידה מדויקת לפני תכנון</a></h3>
           <p>שיפוץ מתחיל מהמצב הקיים. איך מדידה מדויקת מונעת הפתעות בשטח, טעויות בתכנון ותוספות תקציב לא צפויות.</p>
-          <a class="post-card__link" href="post-measure-before-renovation.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-measure-before-renovation">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="measure">
-        <a class="post-card__media" href="post-scan-to-2d-plan.html"><img src="assets/real/gramushka-2d.png" alt="המרת תלת-מימד לתוכנית דו-מימד" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <a class="post-card__media" href="post-scan-to-2d-plan"><img src="assets/real/gramushka-2d.png" alt="המרת תלת-מימד לתוכנית דו-מימד" loading="lazy"><span class="post-card__cat">מדידות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">6 דק' קריאה</div>
           <div class="post-card__tags"><span>AutoCAD</span><span>ענן נקודות</span></div>
-          <h3><a href="post-scan-to-2d-plan.html">מתלת-מימד לתוכנית 2D: איך הופכים סריקה למסמך עבודה</a></h3>
+          <h3><a href="post-scan-to-2d-plan">מתלת-מימד לתוכנית 2D: איך הופכים סריקה למסמך עבודה</a></h3>
           <p>מענן הנקודות ועד תוכנית קווית מדויקת ב-CAD. תהליך העבודה שהופך דאטה גולמית למסמך שאפשר לתכנן לפיו.</p>
-          <a class="post-card__link" href="post-scan-to-2d-plan.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-scan-to-2d-plan">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="measure">
-        <a class="post-card__media" href="post-point-cloud-explained.html"><img src="assets/real/pointcloud-1.jpg" alt="ענן נקודות" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <a class="post-card__media" href="post-point-cloud-explained"><img src="assets/real/pointcloud-1.jpg" alt="ענן נקודות" loading="lazy"><span class="post-card__cat">מדידות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">7 דק' קריאה</div>
           <div class="post-card__tags"><span>ענן נקודות</span><span>סריקת לייזר</span></div>
-          <h3><a href="post-point-cloud-explained.html">ענן נקודות: מה זה ואיך הוא משנה את עולם המדידות</a></h3>
+          <h3><a href="post-point-cloud-explained">ענן נקודות: מה זה ואיך הוא משנה את עולם המדידות</a></h3>
           <p>מיליוני נקודות מדידה שמרכיבות עותק דיגיטלי מדויק של המציאות. מדריך למי שרוצה להבין את הטכנולוגיה שמאחורי הסריקה.</p>
-          <a class="post-card__link" href="post-point-cloud-explained.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-point-cloud-explained">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="measure">
-        <a class="post-card__media" href="post-interior-measurement-mistakes.html"><img src="assets/real/interior-measure-2.jpg" alt="מדידת פנים" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <a class="post-card__media" href="post-interior-measurement-mistakes"><img src="assets/real/interior-measure-2.jpg" alt="מדידת פנים" loading="lazy"><span class="post-card__cat">מדידות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">5 דק' קריאה</div>
           <div class="post-card__tags"><span>מדידת פנים</span><span>טיפים</span></div>
-          <h3><a href="post-interior-measurement-mistakes.html">5 טעויות נפוצות במדידת פנים - ואיך להימנע מהן</a></h3>
+          <h3><a href="post-interior-measurement-mistakes">5 טעויות נפוצות במדידת פנים - ואיך להימנע מהן</a></h3>
           <p>מדידה ידנית משאירה מקום לטעויות שמתגלות מאוחר מדי. הטעויות השכיחות בתיעוד מצב קיים והדרך המדויקת לעקוף אותן.</p>
-          <a class="post-card__link" href="post-interior-measurement-mistakes.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-interior-measurement-mistakes">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="measure">
-        <a class="post-card__media" href="post-millimeter-accuracy.html"><img src="assets/real/pointcloud-data.jpg" alt="דיוק גבוה מאוד בסריקת לייזר" loading="lazy"><span class="post-card__cat">מדידות</span></a>
+        <a class="post-card__media" href="post-millimeter-accuracy"><img src="assets/real/pointcloud-data.jpg" alt="דיוק גבוה מאוד בסריקת לייזר" loading="lazy"><span class="post-card__cat">מדידות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">5 דק' קריאה</div>
           <div class="post-card__tags"><span>דיוק גבוה מאוד</span><span>סריקת לייזר</span></div>
-          <h3><a href="post-millimeter-accuracy.html">דיוק גבוה מאוד: כך סריקת לייזר מייתרת מדידות חוזרות</a></h3>
+          <h3><a href="post-millimeter-accuracy">דיוק גבוה מאוד: כך סריקת לייזר מייתרת מדידות חוזרות</a></h3>
           <p>סריקה אחת מתעדת את הכל - בלי לחזור לשטח שוב ושוב. איך רמת הדיוק של הלייזר משנה את כללי המשחק למתכננים.</p>
-          <a class="post-card__link" href="post-millimeter-accuracy.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-millimeter-accuracy">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <!-- ===================== סיורים (5) ===================== -->
       <article class="post-card reveal" data-cat="tours">
-        <a class="post-card__media" href="post-virtual-tour-sales-tool.html"><img src="assets/real/vtour-example.png" alt="סיור וירטואלי 360" loading="lazy"><span class="post-card__cat">סיורים</span></a>
+        <a class="post-card__media" href="post-virtual-tour-sales-tool"><img src="assets/real/vtour-example.png" alt="סיור וירטואלי 360" loading="lazy"><span class="post-card__cat">סיורים</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">5 דק' קריאה</div>
           <div class="post-card__tags"><span>סיור וירטואלי</span><span>360°</span></div>
-          <h3><a href="post-virtual-tour-sales-tool.html">סיור וירטואלי 360°: כלי המכירה שכל יזם צריך</a></h3>
+          <h3><a href="post-virtual-tour-sales-tool">סיור וירטואלי 360°: כלי המכירה שכל יזם צריך</a></h3>
           <p>סיור אינטראקטיבי שמכניס את הלקוח אל תוך הנכס מכל מקום. למה זה הפך לסטנדרט בשיווק נדל״ן ופרויקטים.</p>
-          <a class="post-card__link" href="post-virtual-tour-sales-tool.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-virtual-tour-sales-tool">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="tours">
-        <a class="post-card__media" href="post-virtual-tour-saves-visits.html"><img src="assets/real/render-int-real.jpg" alt="סיור וירטואלי חוסך ביקורים" loading="lazy"><span class="post-card__cat">סיורים</span></a>
+        <a class="post-card__media" href="post-virtual-tour-saves-visits"><img src="assets/real/render-int-real.jpg" alt="סיור וירטואלי חוסך ביקורים" loading="lazy"><span class="post-card__cat">סיורים</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">4 דק' קריאה</div>
           <div class="post-card__tags"><span>סיור וירטואלי</span><span>יעילות</span></div>
-          <h3><a href="post-virtual-tour-saves-visits.html">איך סיור וירטואלי חוסך ביקורים מיותרים בשטח</a></h3>
+          <h3><a href="post-virtual-tour-saves-visits">איך סיור וירטואלי חוסך ביקורים מיותרים בשטח</a></h3>
           <p>במקום לתאם נסיעות חוזרות, כל בעל עניין נכנס לנכס דיגיטלית מתי שנוח לו. חיסכון בזמן, בעלויות ובקבלת החלטות.</p>
-          <a class="post-card__link" href="post-virtual-tour-saves-visits.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-virtual-tour-saves-visits">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="tours">
-        <a class="post-card__media" href="post-measure-inside-tour.html"><img src="assets/real/interior-measure.jpg" alt="מדידה בתוך הסיור הווירטואלי" loading="lazy"><span class="post-card__cat">סיורים</span></a>
+        <a class="post-card__media" href="post-measure-inside-tour"><img src="assets/real/interior-measure.jpg" alt="מדידה בתוך הסיור הווירטואלי" loading="lazy"><span class="post-card__cat">סיורים</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">6 דק' קריאה</div>
           <div class="post-card__tags"><span>סיור הניתן למדידה</span><span>360°</span></div>
-          <h3><a href="post-measure-inside-tour.html">מדידה בתוך הסיור: לא רק לצפות, גם למדוד</a></h3>
+          <h3><a href="post-measure-inside-tour">מדידה בתוך הסיור: לא רק לצפות, גם למדוד</a></h3>
           <p>הסיור הווירטואלי של מקובקי שירותי מדידה נבנה מהסריקה עצמה - כך שאפשר למדוד אורך, רוחב ושטח ישירות בתוך הסיור.</p>
-          <a class="post-card__link" href="post-measure-inside-tour.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-measure-inside-tour">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="tours">
-        <a class="post-card__media" href="post-virtual-tour-real-estate.html"><img src="assets/real/render-ext-1.webp" alt="סיור וירטואלי לנדל״ן" loading="lazy"><span class="post-card__cat">סיורים</span></a>
+        <a class="post-card__media" href="post-virtual-tour-real-estate"><img src="assets/real/render-ext-1.webp" alt="סיור וירטואלי לנדל״ן" loading="lazy"><span class="post-card__cat">סיורים</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">4 דק' קריאה</div>
           <div class="post-card__tags"><span>נדל״ן</span><span>שיווק</span></div>
-          <h3><a href="post-virtual-tour-real-estate.html">סיור וירטואלי לנדל״ן: מוכרים נכס עוד לפני שהגיעו אליו</a></h3>
+          <h3><a href="post-virtual-tour-real-estate">סיור וירטואלי לנדל״ן: מוכרים נכס עוד לפני שהגיעו אליו</a></h3>
           <p>מצגת מכר חיה שמציגה את הנכס בצורה הכי משכנעת - עוד לפני הפגישה הפיזית הראשונה. כלי שסוגר עסקאות מהר יותר.</p>
-          <a class="post-card__link" href="post-virtual-tour-real-estate.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-virtual-tour-real-estate">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="tours">
-        <a class="post-card__media" href="post-interactive-3d-vs-photos.html"><img src="assets/real/interactive-viz.png" alt="מודל תלת-מימד אינטראקטיבי" loading="lazy"><span class="post-card__cat">סיורים</span></a>
+        <a class="post-card__media" href="post-interactive-3d-vs-photos"><img src="assets/real/interactive-viz.png" alt="מודל תלת-מימד אינטראקטיבי" loading="lazy"><span class="post-card__cat">סיורים</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">5 דק' קריאה</div>
           <div class="post-card__tags"><span>הדמיות</span><span>סיור וירטואלי</span></div>
-          <h3><a href="post-interactive-3d-vs-photos.html">מודל תלת-מימד אינטראקטיבי מול תמונות: מה עדיף?</a></h3>
+          <h3><a href="post-interactive-3d-vs-photos">מודל תלת-מימד אינטראקטיבי מול תמונות: מה עדיף?</a></h3>
           <p>סטילס יפים מספרים חלק מהסיפור. מתי מודל אינטראקטיבי חי נותן ללקוח חוויה שמתמונה בודדת אי אפשר לקבל.</p>
-          <a class="post-card__link" href="post-interactive-3d-vs-photos.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-interactive-3d-vs-photos">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <!-- ===================== תשתיות (5) ===================== -->
       <article class="post-card reveal" data-cat="infra">
-        <a class="post-card__media" href="post-document-infrastructure-build.html"><img src="assets/real/pointcloud-industry.jpg" alt="תיעוד תשתיות באמצע בנייה" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
+        <a class="post-card__media" href="post-document-infrastructure-build"><img src="assets/real/pointcloud-industry.jpg" alt="תיעוד תשתיות באמצע בנייה" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">6 דק' קריאה</div>
           <div class="post-card__tags"><span>תיעוד תשתיות</span><span>טרום חיפוי</span></div>
-          <h3><a href="post-document-infrastructure-build.html">תיעוד תשתיות באמצע בנייה: לצלם לפני שמכסים</a></h3>
+          <h3><a href="post-document-infrastructure-build">תיעוד תשתיות באמצע בנייה: לצלם לפני שמכסים</a></h3>
           <p>צנרת, חשמל ומערכות שנעלמות מאחורי הגבס. למה סריקה טרום-חיפוי היא ביטוח זול לכל בעיה עתידית בתחזוקה.</p>
-          <a class="post-card__link" href="post-document-infrastructure-build.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-document-infrastructure-build">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="infra">
-        <a class="post-card__media" href="post-as-built-scanning.html"><img src="assets/real/pointcloud-layer.png" alt="תיעוד As-Built" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
+        <a class="post-card__media" href="post-as-built-scanning"><img src="assets/real/pointcloud-layer.png" alt="תיעוד As-Built" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">5 דק' קריאה</div>
           <div class="post-card__tags"><span>As-Built</span><span>בקרת איכות</span></div>
-          <h3><a href="post-as-built-scanning.html">סריקת As-Built: תיעוד מדויק של מה שבאמת נבנה</a></h3>
+          <h3><a href="post-as-built-scanning">סריקת As-Built: תיעוד מדויק של מה שבאמת נבנה</a></h3>
           <p>הפער בין התכנון למה שבוצע בפועל יכול לעלות ביוקר. איך תיעוד As-Built מדויק מיישר את הקו מול המציאות בשטח.</p>
-          <a class="post-card__link" href="post-as-built-scanning.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-as-built-scanning">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="infra">
-        <a class="post-card__media" href="post-laser-scanning-how-it-works.html"><img src="assets/real/oded/oded-scanning-historic.jpg" alt="טכנולוגיית סריקת לייזר בשטח - סריקת מבנה היסטורי" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
+        <a class="post-card__media" href="post-laser-scanning-how-it-works"><img src="assets/real/oded/oded-scanning-historic.jpg" alt="טכנולוגיית סריקת לייזר בשטח - סריקת מבנה היסטורי" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">7 דק' קריאה</div>
           <div class="post-card__tags"><span>סריקת לייזר</span><span>טכנולוגיה</span></div>
-          <h3><a href="post-laser-scanning-how-it-works.html">טכנולוגיית סריקת לייזר: איך זה עובד בשטח</a></h3>
+          <h3><a href="post-laser-scanning-how-it-works">טכנולוגיית סריקת לייזר: איך זה עובד בשטח</a></h3>
           <p>מבט מאחורי הקלעים על תהליך הסריקה - מהצבת הסורק ועד עיבוד ענן הנקודות למודל תלת-מימד שאפשר לעבוד איתו.</p>
-          <a class="post-card__link" href="post-laser-scanning-how-it-works.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-laser-scanning-how-it-works">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="infra">
-        <a class="post-card__media" href="post-laser-technology-overview.html"><img src="assets/real/oded-with-device.png" alt="סורק לייזר תלת-מימדי בפעולה" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
+        <a class="post-card__media" href="post-laser-technology-overview"><img src="assets/real/oded-with-device.png" alt="סורק לייזר תלת-מימדי בפעולה" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">4 דק' קריאה</div>
           <div class="post-card__tags"><span>טכנולוגיה</span><span>סורק לייזר</span></div>
-          <h3><a href="post-laser-technology-overview.html">עד 2.4 מיליון קרני לייזר בשנייה: מבט על הטכנולוגיה</a></h3>
+          <h3><a href="post-laser-technology-overview">עד 2.4 מיליון קרני לייזר בשנייה: מבט על הטכנולוגיה</a></h3>
           <p>מה מאפשר לסרוק חלל שלם בדקות ובדיוק גבוה מאוד? הצצה ליכולות של הסורק שמניע את כל תהליך העבודה של מקובקי שירותי מדידה.</p>
-          <a class="post-card__link" href="post-laser-technology-overview.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-laser-technology-overview">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
       <article class="post-card reveal" data-cat="infra">
-        <a class="post-card__media" href="post-scan-to-revit-workflow.html"><img src="assets/real/oded/oded-scanning-supermarket.jpg" alt="מהסריקה ל-Revit - תיעוד מרחב מסחרי" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
+        <a class="post-card__media" href="post-scan-to-revit-workflow"><img src="assets/real/oded/oded-scanning-supermarket.jpg" alt="מהסריקה ל-Revit - תיעוד מרחב מסחרי" loading="lazy"><span class="post-card__cat">תשתיות</span></a>
         <div class="post-card__body">
           <div class="post-card__meta">6 דק' קריאה</div>
           <div class="post-card__tags"><span>Scan-to-BIM</span><span>Revit</span></div>
-          <h3><a href="post-scan-to-revit-workflow.html">מהסריקה ל-Revit: תהליך העבודה מול מודדים ומתכננים</a></h3>
+          <h3><a href="post-scan-to-revit-workflow">מהסריקה ל-Revit: תהליך העבודה מול מודדים ומתכננים</a></h3>
           <p>כך הופכים ענן נקודות למודל BIM עובד. מדריך לשיתוף פעולה חלק בין הסורק, המודד והמתכנן - עד קובץ מוכן לעבודה.</p>
-          <a class="post-card__link" href="post-scan-to-revit-workflow.html">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+          <a class="post-card__link" href="post-scan-to-revit-workflow">קראו עוד <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
         </div>
       </article>
 
@@ -288,6 +318,6 @@
 </section>
 
 <div data-include="footer"></div>
-<script src="assets/makovki.js?v=r11"></script>
+<script src="assets/makovki.js?v=r14"></script>
 </body>
 </html>

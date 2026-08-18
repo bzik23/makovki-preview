@@ -7,16 +7,41 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
-<meta http-equiv="refresh" content="0; url=measurement-architectural.html">
-<link rel="canonical" href="https://makovki.com/measurement-architectural.html">
+
+
+
+<meta http-equiv="refresh" content="0; url=measurement-architectural">
+<link rel="canonical" href="https://makovki.com/measurement-architectural">
 <title>מקובקי שירותי מדידה - שירותי מדידה אדריכלית לאדריכלים</title>
-<script>location.replace("measurement-architectural.html");</script>
+<script>location.replace("measurement-architectural");</script>
 </head>
 <body>
-<p>מעבירים אתכם ל<a href="measurement-architectural.html">שירותי מדידה אדריכלית</a>...</p>
+<p>מעבירים אתכם ל<a href="measurement-architectural">שירותי מדידה אדריכלית</a>...</p>
 </body>
 </html>

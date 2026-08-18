@@ -7,30 +7,60 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>אודות מקובקי שירותי מדידה | עודד מקובקי ושירותי מדידה בלייזר</title>
 <meta name="description" content="הכירו את עודד מקובקי, שהביא לישראל סריקת לייזר מהמתקדמות בעולם. דיוק, אמינות וליווי אישי בכל מדידה. דברו איתנו.">
-<link rel="canonical" href="https://makovki.com/about.html">
+<link rel="canonical" href="https://makovki.com/about">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="מקובקי שירותי מדידה">
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="אודות מקובקי שירותי מדידה | עודד מקובקי ושירותי מדידה בלייזר">
 <meta property="og:description" content="הכירו את עודד מקובקי, שהביא לישראל סריקת לייזר מהמתקדמות בעולם. דיוק, אמינות וליווי אישי בכל מדידה. דברו איתנו.">
-<meta property="og:url" content="https://makovki.com/about.html">
-<meta property="og:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta property="og:url" content="https://makovki.com/about">
+<meta property="og:image" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:secure_url" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="מקובקי שירותי מדידה - סריקה תלת-מימדית בלייזר">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="אודות מקובקי שירותי מדידה | עודד מקובקי ושירותי מדידה בלייזר">
 <meta name="twitter:description" content="הכירו את עודד מקובקי, שהביא לישראל סריקת לייזר מהמתקדמות בעולם. דיוק, אמינות וליווי אישי בכל מדידה. דברו איתנו.">
-<meta name="twitter:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta name="twitter:image" content="https://makovki.com/assets/real/og-card.jpg">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r11">
+<link rel="stylesheet" href="assets/makovki.css?v=r13">
 </head>
 <body>
 <div data-include="header"></div>
@@ -40,7 +70,7 @@
   <canvas class="hero__canvas"></canvas>
   <div class="hero__grid"></div>
   <div class="container">
-    <div class="crumbs"><a href="index.html">בית</a><span>›</span>אודות</div>
+    <div class="crumbs"><a href="./">בית</a><span>›</span>אודות</div>
     <h1>חושבים אחרת. מוסיפים ערך.</h1>
     <p>מאחורי מקובקי שירותי מדידה עומד אדם אחד עם רצון אמיתי להביא ללקוחות את המוצרים הטובים והמתקדמים ביותר - עודד מקובקי. שירותי מדידה, סריקה תלת-מימדית והדמיות עם מטרה אחת פשוטה: כלים שיחסכו לאנשי המקצוע זמן, כסף, פקקים וטעויות, ויהפכו את עבודתם לפשוטה, קלה ומהירה - בלי פשרות ובלי הפתעות.</p>
   </div>
@@ -457,17 +487,6 @@
             <p class="review-text">עודד מומלץ. שירות מהיר ומקצועי</p>
           </article>
 
-          <article class="review-card review-card--all">
-            <b>72 ביקורות בגוגל</b>
-            <p>כולן אמיתיות, כולן מלקוחות שעבדו איתנו. אפשר לקרוא את כולן במקום אחד.</p>
-            <a class="btn btn--primary" href="reviews.html">לכל הביקורות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
-          </article>
-
-          <article class="review-card review-card--all">
-            <b>72 ביקורות בגוגל</b>
-            <p>כולן אמיתיות, כולן מלקוחות שעבדו איתנו. אפשר לקרוא את כולן במקום אחד.</p>
-            <a class="btn btn--primary" href="reviews.html">לכל הביקורות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
-          </article>
 
         </div>
       </div>
@@ -484,7 +503,7 @@
       <h2>רוצים להכיר את עודד מקרוב?</h2>
       <p>נשמח לשמוע על הפרויקט שלכם ולהראות איך נוכל לעזור. מדברים ישירות עם עודד, בלי מתווכים. ייעוץ ראשוני - חינם.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="contact.html">דברו איתנו</a>
+        <a class="btn btn--primary" href="contact">דברו איתנו</a>
         <a class="btn btn--wa" href="https://wa.me/972543040804?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C">וואטסאפ</a>
       </div>
     </div>
@@ -492,6 +511,6 @@
 </section>
 
 <div data-include="footer"></div>
-<script src="assets/makovki.js?v=r11"></script>
+<script src="assets/makovki.js?v=r14"></script>
 </body>
 </html>

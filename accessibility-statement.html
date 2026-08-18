@@ -7,31 +7,61 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>הצהרת נגישות | מקובקי שירותי מדידה - שירותי מדידה וסריקה תלת-מימדית</title>
 <meta name="description" content="הצהרת הנגישות של מקובקי שירותי מדידה: האתר הונגש לפי תקנות שוויון זכויות ותקן ישראלי ת&quot;י 5568 ברמת AA. נתקלתם בבעיה? פנו אלינו.">
-<link rel="canonical" href="https://makovki.com/accessibility-statement.html">
+<link rel="canonical" href="https://makovki.com/accessibility-statement">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="מקובקי שירותי מדידה">
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="הצהרת נגישות | מקובקי שירותי מדידה - שירותי מדידה וסריקה תלת-מימדית">
 <meta property="og:description" content="הצהרת הנגישות של מקובקי שירותי מדידה: האתר הונגש לפי תקנות שוויון זכויות ותקן ישראלי ת&quot;י 5568 ברמת AA. נתקלתם בבעיה? פנו אלינו.">
-<meta property="og:url" content="https://makovki.com/accessibility-statement.html">
-<meta property="og:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta property="og:url" content="https://makovki.com/accessibility-statement">
+<meta property="og:image" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:secure_url" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="מקובקי שירותי מדידה - סריקה תלת-מימדית בלייזר">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="הצהרת נגישות | מקובקי שירותי מדידה - שירותי מדידה וסריקה תלת-מימדית">
 <meta name="twitter:description" content="הצהרת הנגישות של מקובקי שירותי מדידה: האתר הונגש לפי תקנות שוויון זכויות ותקן ישראלי ת&quot;י 5568 ברמת AA. נתקלתם בבעיה? פנו אלינו.">
-<meta name="twitter:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta name="twitter:image" content="https://makovki.com/assets/real/og-card.jpg">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r11">
+<link rel="stylesheet" href="assets/makovki.css?v=r13">
 </head>
 <body>
 
@@ -40,7 +70,7 @@
 <section class="page-hero">
   <div class="hero__grid"></div>
   <div class="container">
-    <div class="crumbs"><a href="index.html">בית</a><span>›</span>הצהרת נגישות</div>
+    <div class="crumbs"><a href="./">בית</a><span>›</span>הצהרת נגישות</div>
     <h1>הצהרת נגישות</h1>
     <p>אנחנו במקובקי שירותי מדידה מאמינים שכל אדם זכאי לגלוש באתר בנוחות, בעצמאות ובכבוד. לכן פעלנו להנגיש את האתר ולאפשר חוויית שימוש שוויונית לכלל הגולשים.</p>
   </div>
@@ -69,7 +99,7 @@
 
       <div class="prose">
         <h2 id="s1">1. כללי</h2>
-        <p>מקובקי שירותי מדידה בע"מ (להלן "אנחנו", "החברה") רואה חשיבות רבה במתן שירות שוויוני לכלל הגולשים, ופועלת כדי שכל אדם יוכל לגלוש באתר בנוחות, בעצמאות ובכבוד, ללא תלות בסוג המוגבלות או בטכנולוגיה שבה הוא משתמש. אנו עושים מאמצים מתמשכים לשמור על אתר נגיש ככל האפשר, מתוך אמונה שלכל אדם מגיעה הזכות לחיות בשוויון. הצהרה זו מתעדכנת מעת לעת בהתאם לשיפורים שמבוצעים באתר.</p>
+        <p>מקובקי בע״מ (להלן "אנחנו", "החברה") רואה חשיבות רבה במתן שירות שוויוני לכלל הגולשים, ופועלת כדי שכל אדם יוכל לגלוש באתר בנוחות, בעצמאות ובכבוד, ללא תלות בסוג המוגבלות או בטכנולוגיה שבה הוא משתמש. אנו עושים מאמצים מתמשכים לשמור על אתר נגיש ככל האפשר, מתוך אמונה שלכל אדם מגיעה הזכות לחיות בשוויון. הצהרה זו מתעדכנת מעת לעת בהתאם לשיפורים שמבוצעים באתר.</p>
 
         <h2 id="s2">2. הנגשת האתר והתקן</h2>
         <p>אתר מקובקי שירותי מדידה הונגש בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג-2013, ובהתאם לתקן הישראלי (ת"י 5568) לנגישות תכנים באינטרנט, המבוסס על הנחיות הנגישות הבינלאומיות WCAG 2.0 ברמת התאמה AA.</p>
@@ -118,7 +148,7 @@
       <h2>רוצים לדבר איתנו?</h2>
       <p>אנחנו כאן לכל שאלה - על השירותים שלנו או על נגישות האתר. ייעוץ ראשוני - חינם.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary" href="contact.html">דברו איתנו</a>
+        <a class="btn btn--primary" href="contact">דברו איתנו</a>
         <a class="btn btn--wa" href="https://wa.me/972543040804?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C">וואטסאפ</a>
       </div>
     </div>
@@ -126,6 +156,6 @@
 </section>
 
 <div data-include="footer"></div>
-<script src="assets/makovki.js?v=r11"></script>
+<script src="assets/makovki.js?v=r14"></script>
 </body>
 </html>

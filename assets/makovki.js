@@ -30,7 +30,7 @@
      עד לתאריך הזה המספרים מוצגים כבסיס (data-count) ולא גדלים.
      ההגדלה לכל מספר נקבעת ב-data-weekly על ה-<span> ב-HTML.
      =========================================================================== */
-  var MK_GOLIVE_DATE = "2026-07-06"; // TODO: לעדכן לתאריך העלייה לאוויר בפועל
+  var MK_GOLIVE_DATE = "2026-08-17"; // TODO: לעדכן לתאריך העלייה לאוויר בפועל
   function mkWeeksSinceGolive() {
     var since = Date.parse(MK_GOLIVE_DATE);
     if (isNaN(since)) return 0;
@@ -85,8 +85,87 @@
     initHeroLift();
     initExpYears();
     initA11y();
+    initToTop();
+    initCookies();
     var y = document.querySelector("[data-year]");
     if (y) y.textContent = String(new Date().getFullYear());
+  }
+
+  /* ---- Back to top (mobile) ----
+     Shown once the visitor is roughly a screen down, so it never covers
+     content on the first view. CSS decides *whether* it exists (mobile only);
+     this only decides *when* it is visible. */
+  function initToTop() {
+    var btn = document.querySelector("[data-to-top]");
+    if (!btn) return;
+
+    function threshold() { return Math.max(500, window.innerHeight * 0.9); }
+    var queued = false;
+    function update() {
+      queued = false;
+      btn.classList.toggle("is-in", window.pageYOffset > threshold());
+    }
+    function onScroll() {
+      if (queued) return;
+      queued = true;
+      window.requestAnimationFrame(update);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+
+    btn.addEventListener("click", function () {
+      // honour both the OS setting and the site's own "stop animations" toggle
+      var still = document.documentElement.classList.contains("a11y-noanim") ||
+        (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+      window.scrollTo({ top: 0, behavior: still ? "auto" : "smooth" });
+    });
+  }
+
+  /* ---- Cookie consent bar ----
+     Shown once, then never again. The decision is mirrored to Google Consent
+     Mode: the GA4 snippet in <head> starts every visit denied and replays a
+     stored 'all' before config, so accepting here is what actually switches
+     analytics storage on. */
+  var CK_KEY = "mk-consent";
+
+  function ckStored() {
+    try { return localStorage.getItem(CK_KEY); } catch (e) { return "all"; }
+  }
+
+  function initCookies() {
+    var bar = document.querySelector("[data-cookies]");
+    if (!bar) return;
+
+    // a stored decision means this visitor already answered - stay out of the way
+    if (ckStored()) return;
+
+    bar.hidden = false;
+    // measure once it is laid out, so the floating controls clear the real height
+    requestAnimationFrame(function () {
+      document.body.style.setProperty("--ck-h", bar.offsetHeight + "px");
+      document.body.classList.add("ck-open");
+      bar.classList.add("is-in");
+    });
+
+    function decide(choice) {
+      try { localStorage.setItem(CK_KEY, choice); } catch (e) {}
+      if (choice === "all" && typeof window.gtag === "function") {
+        window.gtag("consent", "update", {
+          ad_storage: "granted",
+          ad_user_data: "granted",
+          ad_personalization: "granted",
+          analytics_storage: "granted"
+        });
+      }
+      bar.classList.remove("is-in");
+      document.body.classList.remove("ck-open");
+      window.setTimeout(function () { bar.hidden = true; }, 450);
+    }
+
+    bar.querySelectorAll("[data-ck]").forEach(function (btn) {
+      btn.addEventListener("click", function () { decide(btn.getAttribute("data-ck")); });
+    });
   }
 
   /* ---- Google reviews slider (RTL-aware, auto-running, side arrows) ---- */
@@ -685,10 +764,17 @@
 
   /* ---- Active link highlight ---- */
   function initActiveLink() {
-    var path = location.pathname.split("/").pop() || "index.html";
+    /* הכתובות באתר נקיות (/measurement) אבל בסביבת פיתוח/תצוגה מקדימה
+       ייתכן שעדיין נגיע דרך measurement.html - לכן משווים אחרי נרמול,
+       ועמוד הבית ("", "./", "index.html") מיוצג כמחרוזת ריקה. */
+    function norm(u) {
+      u = (u || "").split("#")[0].split("?")[0];
+      u = u.replace(/^\.\//, "").replace(/\.html$/, "");
+      return u === "index" ? "" : u;
+    }
+    var path = norm(location.pathname.split("/").pop());
     document.querySelectorAll(".nav__menu .nav__link").forEach(function (a) {
-      var href = (a.getAttribute("href") || "").split("#")[0];
-      if (href === path) a.style.color = "var(--violet-deep)";
+      if (norm(a.getAttribute("href")) === path) a.style.color = "var(--violet-deep)";
     });
   }
 

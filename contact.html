@@ -7,30 +7,60 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  /* Google Consent Mode v2 - storage stays denied until the visitor accepts in
+     the cookie bar. A returning visitor's saved decision is replayed here,
+     before config, so consent is never re-asked and never lost. */
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  try {
+    if (localStorage.getItem('mk-consent') === 'all') {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-TZBCNP9R3F');
 </script>
 <!-- GA4:end -->
+
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>צור קשר | מקובקי שירותי מדידה - שירותי מדידה וסריקה תלת-מימדית</title>
 <meta name="description" content="צרו קשר עם מקובקי שירותי מדידה להצעת מחיר לשירותי מדידה, סריקה תלת-מימדית, סיור וירטואלי והדמיות. טלפון 054-3040804. ייעוץ חינם.">
-<link rel="canonical" href="https://makovki.com/contact.html">
+<link rel="canonical" href="https://makovki.com/contact">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="מקובקי שירותי מדידה">
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="צור קשר | מקובקי שירותי מדידה - שירותי מדידה וסריקה תלת-מימדית">
 <meta property="og:description" content="צרו קשר עם מקובקי שירותי מדידה להצעת מחיר לשירותי מדידה, סריקה תלת-מימדית, סיור וירטואלי והדמיות. טלפון 054-3040804. ייעוץ חינם.">
-<meta property="og:url" content="https://makovki.com/contact.html">
-<meta property="og:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta property="og:url" content="https://makovki.com/contact">
+<meta property="og:image" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:secure_url" content="https://makovki.com/assets/real/og-card.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="מקובקי שירותי מדידה - סריקה תלת-מימדית בלייזר">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="צור קשר | מקובקי שירותי מדידה - שירותי מדידה וסריקה תלת-מימדית">
 <meta name="twitter:description" content="צרו קשר עם מקובקי שירותי מדידה להצעת מחיר לשירותי מדידה, סריקה תלת-מימדית, סיור וירטואלי והדמיות. טלפון 054-3040804. ייעוץ חינם.">
-<meta name="twitter:image" content="https://makovki.com/assets/real/og-cover.jpg">
+<meta name="twitter:image" content="https://makovki.com/assets/real/og-card.jpg">
 <link rel="icon" href="assets/real/logo-main.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/makovki.css?v=r11">
+<link rel="stylesheet" href="assets/makovki.css?v=r13">
 </head>
 <body>
 <div data-include="header"></div>
@@ -46,7 +76,7 @@
       <!-- Brand / info panel -->
       <aside class="contact-panel reveal">
         <div class="contact-panel__inner">
-          <div class="crumbs"><a href="index.html">בית</a><span>›</span>צור קשר</div>
+          <div class="crumbs"><a href="./">בית</a><span>›</span>צור קשר</div>
           <span class="eyebrow">דברו איתנו</span>
           <h1>בואו נדבר על<br>הפרויקט שלכם</h1>
           <p class="contact-panel__lead">השאירו פרטים ונחזור אליכם עם הצעה מותאמת. ייעוץ ראשוני - חינם וללא התחייבות.</p>
@@ -97,7 +127,7 @@
               </div>
               <div class="field">
                 <label for="email">כתובת אימייל</label>
-                <input id="email" name="email" type="email" placeholder="you@example.com">
+                <input id="email" name="email" type="email" placeholder="you@example.com" required>
               </div>
             </div>
             <div class="field">
@@ -120,7 +150,7 @@
             </div>
             <label class="consent">
               <input type="checkbox" name="privacy" required>
-              <span>אני מאשר/ת את <a href="privacy-policy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a> ומסכים/ה לשימוש כמפורט בה <span class="req">*</span></span>
+              <span>אני מאשר/ת את <a href="privacy-policy" target="_blank" rel="noopener">מדיניות הפרטיות</a> ומסכים/ה לשימוש כמפורט בה <span class="req">*</span></span>
             </label>
           </div>
 
@@ -140,7 +170,7 @@
 </section>
 
 <div data-include="footer"></div>
-<script src="assets/makovki.js?v=r11"></script>
+<script src="assets/makovki.js?v=r14"></script>
 <script>
 /* ===== Contact form: FormSubmit (email) + WhatsApp backup ===== */
 (function(){
@@ -148,6 +178,10 @@
   if(!form) return;
   var WA = '972543040804';
   var ENDPOINT = 'https://formsubmit.co/ajax/oded@makovki.com';
+  /* The visitor's confirmation is sent by our own endpoint (mk-confirm.php),
+     not by FormSubmit: FormSubmit's auto-response is plain text only and
+     cannot carry the branded template. */
+  var CONFIRM = 'mk-confirm.php';
   function val(id){ var el = document.getElementById(id); return el && el.value ? el.value.trim() : ''; }
   form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -170,16 +204,34 @@
     var fd = new FormData();
     fd.append('שם', name);
     fd.append('טלפון', phone);
-    if(email) fd.append('אימייל', email);
+    fd.append('אימייל', email);
     fd.append('שירות מבוקש', topic);
     if(msg) fd.append('פרטי הפרויקט', msg);
+    fd.append('אישור מדיניות פרטיות', 'כן');
     fd.append('_subject', 'פנייה חדשה מאתר מקובקי שירותי מדידה - ' + name);
     fd.append('_cc', 'bzik23@gmail.com');
     fd.append('_template', 'table');
     fd.append('_captcha', 'false');
+    /* _replyto lets Oded hit Reply straight to the lead, and is also the
+       address FormSubmit sends the confirmation below to. */
+    fd.append('_replyto', email);
+
+    /* Branded confirmation to the visitor, fired alongside the lead. Never
+       allowed to block or fail the submission - if it errors, the lead has
+       still reached Oded and that is what matters. */
+    var cd = new FormData();
+    cd.append('name', name);
+    cd.append('email', email);
+    cd.append('phone', phone);
+    cd.append('topic', topic);
+    fetch(CONFIRM, { method: 'POST', body: cd }).catch(function(){});
+
     fetch(ENDPOINT, { method:'POST', headers:{'Accept':'application/json'}, body: fd })
       .then(function(r){ return r.json(); })
-      .then(function(){ showOk(); })
+      .then(function(){ window.location.href = 'thank-you'; })
+      /* network/endpoint failure: keep the visitor in place, show the inline
+         confirmation and hand them the WhatsApp fallback rather than sending
+         them to a thank-you page for a lead that never arrived. */
       .catch(function(){ showOk(); window.open(waUrl, '_blank'); });
   });
 })();
