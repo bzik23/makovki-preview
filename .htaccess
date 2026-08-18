@@ -4,10 +4,14 @@
 # 2) 301 מכל 50 כתובות וורדפרס הישנות לעמוד המקביל באתר החדש.
 #    המקורות: wp-json (11 עמודים + 25 פוסטים), wp-sitemap.xml (6 קטגוריות
 #    + 3 מחברים) וארכיון האינטרנט (38 כתובות היסטוריות - אימת שאין נוספות).
-# 3) עמוד 404 מותאם
+# 3) כתובות נקיות בלי סיומת .html (/measurement-architectural), ו-301
+#    מכל כתובת ישנה עם .html לכתובת הנקייה המקבילה.
+# 4) עמוד 404 מותאם
 # ------------------------------------------------------------------
 
-Options -Indexes
+# -MultiViews חיוני: בלעדיו אפאצ'י היה מגיש /foo מתוך foo.html בעצמו
+# (משא ומתן תוכן) ומעקף את חוקי ההפניה שלמטה בלי 301.
+Options -Indexes -MultiViews
 DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
@@ -26,74 +30,121 @@ DirectoryIndex index.html
   # mod_alias משווה נתיב מפוענח - ו-[NC] חיוני: הדפדפנים והארכיון מקודדים
   # %D7 באותיות גדולות, וורדפרס פלט %d7 קטנות. שתי הצורות תקינות ושקולות.
   RewriteCond %{THE_REQUEST} "\s/+%d7%9e%d7%93%d7%99%d7%93%d7%94[^\s]*" [NC]
-  RewriteRule ^ https://makovki.com/post-architectural-measurement-guide.html [R=301,L]
+  RewriteRule ^ https://makovki.com/post-architectural-measurement-guide [R=301,L]
+
+  # ==================================================================
+  # כתובות נקיות - בלי סיומת .html
+  # ==================================================================
+  # התנאי %{ENV:REDIRECT_STATUS} ^$ מבטיח שהחוקים חלים רק על בקשה
+  # אמיתית מהרשת ולא על ההגשה הפנימית של ErrorDocument /404.html
+  # (אחרת נוצרת לולאת הפניות).
+  # הבדיקה היא מול THE_REQUEST - שורת הבקשה הגולמית - כדי שהחוק יתפוס
+  # את הכתובת כפי שהגולש/גוגל ביקשו אותה, ולא אחרי כתיבה-מחדש פנימית.
+
+  # 1) /index.html (וגם /path/index.html) -> התיקייה עצמה
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
+  RewriteCond %{THE_REQUEST} \s/+(([^\s?]*/)?)index\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L,NE]
+
+  # 2) /foo.html -> /foo
+  #    partials/ מוחרג במכוון: ההדר והפוטר נטענים משם ב-fetch מכל עמוד,
+  #    והפניה עליהם הייתה מוסיפה סיבוב רשת מיותר בכל טעינת עמוד.
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
+  RewriteCond %{REQUEST_URI} !^/partials/
+  RewriteCond %{THE_REQUEST} \s/+([^\s?]+)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L,NE]
+
+  # 3) /foo/ -> /foo   (מונע כפילות תוכן בין הצורה עם ובלי לוכסן סוגר)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/+$ /$1 [R=301,L,NE]
+
+  # 4) הגשה פנימית: /foo מוגש מתוך foo.html (בלי הפניה, בלי שינוי כתובת)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.+)$ /$1.html [L]
 </IfModule>
 
 <IfModule mod_alias.c>
+  # 🔴 RedirectMatch עם עוגנים (^...$) ולא Redirect רגיל.
+  # ב-LiteSpeed הכלל `Redirect 301 /measurement/` תופס גם את `/measurement`
+  # (אפאצ'י לא) - ומאז המעבר לכתובות נקיות זה בדיוק הכתובת של העמוד החדש,
+  # כלומר לולאת הפניות אינסופית. שלושת הסלאגים שמתנגשים עם עמוד קיים
+  # (measurement, virtual-tour, privacy-policy) מסתיימים ב-`/$` - הלוכסן
+  # הסוגר חובה; כל השאר ב-`/?$`.
+
   # ================= עמודי וורדפרס ישנים =================
-  Redirect 301 /contact-us/                 https://makovki.com/contact.html
-  Redirect 301 /contact-us-2/               https://makovki.com/contact.html
-  Redirect 301 /accessibility/              https://makovki.com/accessibility-statement.html
-  Redirect 301 /privacy-policy/             https://makovki.com/privacy-policy.html
-  Redirect 301 /conditions-privacy/         https://makovki.com/privacy-policy.html
-  Redirect 301 /architects-designers/       https://makovki.com/measurement-architectural.html
-  Redirect 301 /surveyors/                  https://makovki.com/for-surveyors.html
-  Redirect 301 /stores/                     https://makovki.com/tour-retail.html
-  Redirect 301 /real-estate-agents/         https://makovki.com/tour-apartments.html
-  Redirect 301 /entrepreneurs-contractors/  https://makovki.com/
+  RedirectMatch 301 ^/contact-us/?$                                    https://makovki.com/contact
+  RedirectMatch 301 ^/contact-us-2/?$                                  https://makovki.com/contact
+  RedirectMatch 301 ^/accessibility/?$                                 https://makovki.com/accessibility-statement
+  RedirectMatch 301 ^/privacy-policy/$                                 https://makovki.com/privacy-policy
+  RedirectMatch 301 ^/conditions-privacy/?$                            https://makovki.com/privacy-policy
+  RedirectMatch 301 ^/architects-designers/?$                          https://makovki.com/measurement-architectural
+  RedirectMatch 301 ^/surveyors/?$                                     https://makovki.com/for-surveyors
+  RedirectMatch 301 ^/stores/?$                                        https://makovki.com/tour-retail
+  RedirectMatch 301 ^/real-estate-agents/?$                            https://makovki.com/tour-apartments
+  RedirectMatch 301 ^/entrepreneurs-contractors/?$                     https://makovki.com/
 
   # ================= פוסטים ישנים - מדידה =================
-  Redirect 301 /measurement/                             https://makovki.com/measurement.html
-  Redirect 301 /house-measuring-before-renovation/       https://makovki.com/post-measure-before-renovation.html
-  Redirect 301 /land-distribution-plan/                  https://makovki.com/measurement-tzar.html
-  Redirect 301 /topographic-map/                         https://makovki.com/measurement-topographic.html
-  Redirect 301 /converting-blueprints-to-2d/             https://makovki.com/post-scan-to-2d-plan.html
-  Redirect 301 /convert-point-cloud/                     https://makovki.com/for-surveyors.html
-  Redirect 301 /infrastructure-documentation/            https://makovki.com/infrastructure.html
+  RedirectMatch 301 ^/measurement/$                                    https://makovki.com/measurement
+  RedirectMatch 301 ^/house-measuring-before-renovation/?$             https://makovki.com/post-measure-before-renovation
+  RedirectMatch 301 ^/land-distribution-plan/?$                        https://makovki.com/measurement-tzar
+  RedirectMatch 301 ^/topographic-map/?$                               https://makovki.com/measurement-topographic
+  RedirectMatch 301 ^/converting-blueprints-to-2d/?$                   https://makovki.com/post-scan-to-2d-plan
+  RedirectMatch 301 ^/convert-point-cloud/?$                           https://makovki.com/for-surveyors
+  RedirectMatch 301 ^/infrastructure-documentation/?$                  https://makovki.com/infrastructure
 
   # ================= פוסטים ישנים - סיורים וירטואליים =================
-  Redirect 301 /virtual-tour/                                      https://makovki.com/virtual-tour.html
-  Redirect 301 /architectural-virtual-tour/                        https://makovki.com/virtual-tour.html
-  Redirect 301 /virtual-tour-stores/                               https://makovki.com/tour-retail.html
-  Redirect 301 /add-a-virtual-tour-to-the-measured-structure/      https://makovki.com/virtual-tour.html
+  RedirectMatch 301 ^/virtual-tour/$                                   https://makovki.com/virtual-tour
+  RedirectMatch 301 ^/architectural-virtual-tour/?$                    https://makovki.com/virtual-tour
+  RedirectMatch 301 ^/virtual-tour-stores/?$                           https://makovki.com/tour-retail
+  RedirectMatch 301 ^/add-a-virtual-tour-to-the-measured-structure/?$  https://makovki.com/virtual-tour
 
   # ================= פוסטים ישנים - הדמיות =================
-  Redirect 301 /video-photo-visualizations/          https://makovki.com/visualizations.html
-  Redirect 301 /interactive-rendering/               https://makovki.com/visualizations.html
-  Redirect 301 /video-rendering/                     https://makovki.com/visualizations.html
-  Redirect 301 /exterior-stills-rendering/           https://makovki.com/visualizations.html
-  Redirect 301 /interactive-building-presentation/   https://makovki.com/visualizations.html
-  Redirect 301 /interactive-digital-booklet/         https://makovki.com/visualizations.html
-  Redirect 301 /interactive-booklet/                 https://makovki.com/visualizations.html
-  Redirect 301 /image-cleaning-insert-service/       https://makovki.com/visualizations.html
-  Redirect 301 /image-enhancement/                   https://makovki.com/visualizations.html
-  Redirect 301 /cleaning-adding/                     https://makovki.com/visualizations.html
-  Redirect 301 /day-to-dusk/                         https://makovki.com/visualizations.html
-  Redirect 301 /apparel-system/                      https://makovki.com/visualizations.html
+  RedirectMatch 301 ^/video-photo-visualizations/?$                    https://makovki.com/visualizations
+  RedirectMatch 301 ^/interactive-rendering/?$                         https://makovki.com/visualizations
+  RedirectMatch 301 ^/video-rendering/?$                               https://makovki.com/visualizations
+  RedirectMatch 301 ^/exterior-stills-rendering/?$                     https://makovki.com/visualizations
+  RedirectMatch 301 ^/interactive-building-presentation/?$             https://makovki.com/visualizations
+  RedirectMatch 301 ^/interactive-digital-booklet/?$                   https://makovki.com/visualizations
+  RedirectMatch 301 ^/interactive-booklet/?$                           https://makovki.com/visualizations
+  RedirectMatch 301 ^/image-cleaning-insert-service/?$                 https://makovki.com/visualizations
+  RedirectMatch 301 ^/image-enhancement/?$                             https://makovki.com/visualizations
+  RedirectMatch 301 ^/cleaning-adding/?$                               https://makovki.com/visualizations
+  RedirectMatch 301 ^/day-to-dusk/?$                                   https://makovki.com/visualizations
+  RedirectMatch 301 ^/apparel-system/?$                                https://makovki.com/visualizations
 
   # ================= ארכיוני קטגוריה (היו בסייטמאפ הישן) =================
-  Redirect 301 /category/architects-interior-designers/  https://makovki.com/measurement-architectural.html
-  Redirect 301 /category/surveyors/                      https://makovki.com/for-surveyors.html
-  Redirect 301 /category/stores/                         https://makovki.com/tour-retail.html
-  Redirect 301 /category/real-estate-agents/             https://makovki.com/tour-apartments.html
-  Redirect 301 /category/entrepreneurs-contractors/      https://makovki.com/
-  Redirect 301 /category/uncategorized/                  https://makovki.com/
+  RedirectMatch 301 ^/category/architects-interior-designers/?$        https://makovki.com/measurement-architectural
+  RedirectMatch 301 ^/category/surveyors/?$                            https://makovki.com/for-surveyors
+  RedirectMatch 301 ^/category/stores/?$                               https://makovki.com/tour-retail
+  RedirectMatch 301 ^/category/real-estate-agents/?$                   https://makovki.com/tour-apartments
+  RedirectMatch 301 ^/category/entrepreneurs-contractors/?$            https://makovki.com/
+  RedirectMatch 301 ^/category/uncategorized/?$                        https://makovki.com/
+
+  # ================= עמודים יתומים באתר החדש =================
+  # שלושת אלה היו קבצי הפניה בצד-לקוח (meta refresh). עכשיו 301 אמיתי,
+  # בשתי הצורות - עם .html ובלעדיה - כי שתיהן כבר קיימות בשטח.
+  RedirectMatch 301 ^/for-architects(\.html)?/?$                       https://makovki.com/measurement-architectural
+  RedirectMatch 301 ^/measurement-3d(\.html)?/?$                       https://makovki.com/measurement
+  RedirectMatch 301 ^/for-contractors(\.html)?/?$                      https://makovki.com/
 
   # ================= שונות =================
-  Redirect 301 /thanks/  https://makovki.com/
+  RedirectMatch 301 ^/thanks/?$                                        https://makovki.com/
 
 
   # סייטמאפ ישן -> החדש (גוגל מכיר את wp-sitemap.xml, שם הוגש הסייטמאפ)
-  RedirectMatch 301 ^/(wp-sitemap.*\.xml|sitemap\.rss)/?$  https://makovki.com/sitemap.xml
+  RedirectMatch 301 ^/(wp-sitemap.*\.xml|sitemap\.rss)/?$              https://makovki.com/sitemap.xml
 
   # ארכיוני מחבר ופידים - שאריות וורדפרס, אין להם מקבילה באתר החדש
-  RedirectMatch 301 ^/author/.*$  https://makovki.com/about.html
-  RedirectMatch 301 ^/(.*/)?feed/?$  https://makovki.com/
+  RedirectMatch 301 ^/author/.*$                                       https://makovki.com/about
+  RedirectMatch 301 ^/(.*/)?feed/?$                                    https://makovki.com/
 
   # מסכי הניהול של וורדפרס -> עמוד הבית (מוריד גם רעש בוטים)
   # ⚠️ במכוון בלי wp-content/uploads: תמונות מאונדקסות בגוגל תמונות צריכות
   # להחזיר 404 כן, ולא 301 לעמוד הבית - זה דפוס soft-404 שגוגל מעניש עליו.
-  RedirectMatch 301 ^/(wp-admin|wp-login\.php|xmlrpc\.php)(/.*)?$  https://makovki.com/
+  RedirectMatch 301 ^/(wp-admin|wp-login\.php|xmlrpc\.php)(/.*)?$      https://makovki.com/
 </IfModule>
 
 # ================= עמוד שגיאה =================
@@ -116,4 +167,16 @@ ErrorDocument 404 /404.html
   ExpiresByType image/svg+xml           "access plus 1 year"
   # HTML לא נשמר במטמון - כדי שעדכוני תוכן יופיעו מיד
   ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
+
+# 🔴 השורה שלמעלה לבדה לא עבדה: השרת החזיר על HTML
+# `Cache-Control: max-age=2628000` (חודש) מכלל ExpiresDefault ברמת השרת.
+# משמעותה שגולש חוזר היה ממשיך לראות חודש שלם עמוד ישן מהמטמון שלו.
+# mod_headers רץ אחרי mod_expires ולכן דורס אותו - וזה מה שבאמת אוכף
+# את המדיניות "HTML תמיד טרי, נכסים סטטיים שנה".
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+    Header unset Expires
+  </FilesMatch>
 </IfModule>
